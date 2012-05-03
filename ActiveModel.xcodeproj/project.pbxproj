@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC13D38C14476F0E004BAB74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38B14476F0E004BAB74 /* UIKit.framework */; };
+		AC13D38E14476F0E004BAB74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38D14476F0E004BAB74 /* Foundation.framework */; };
+		AC13D39014476F0E004BAB74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */; };
+		AC13D3AC14476F0E004BAB74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38B14476F0E004BAB74 /* UIKit.framework */; };
+		AC13D3AD14476F0E004BAB74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38D14476F0E004BAB74 /* Foundation.framework */; };
+		AC13D3AE14476F0E004BAB74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */; };
+		AC23542E15502B62005AC17D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC23542D15502B62005AC17D /* README.md */; };
+		AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543215502E05005AC17D /* NumericalityValidatorTest.m */; };
+		AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543515517DF4005AC17D /* ValidatorTestCase.m */; };
+		AC2354461551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */; };
+		AC2354491551B746005AC17D /* NSNumber+OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2354481551B746005AC17D /* NSNumber+OMNumericalityValidator.m */; };
+		AC23544D1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23544C1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m */; };
+		AC2354501552DB51005AC17D /* OMActiveModel+OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23544F1552DB50005AC17D /* OMActiveModel+OMValidator.m */; };
+		AC672F23144889DE00BA34CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F21144889D500BA34CA /* main.m */; };
+		AC672F26144889ED00BA34CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC672F24144889EC00BA34CA /* InfoPlist.strings */; };
+		AC672F2F144889FF00BA34CA /* OMActiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F28144889FE00BA34CA /* OMActiveModel.m */; };
+		AC672F30144889FF00BA34CA /* ActiveModelAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2A144889FE00BA34CA /* ActiveModelAppDelegate.m */; };
+		AC672F31144889FF00BA34CA /* Payee.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2C144889FE00BA34CA /* Payee.m */; };
+		AC672F32144889FF00BA34CA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2E144889FE00BA34CA /* RootViewController.m */; };
+		AC672F3814488A2300BA34CA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3414488A2300BA34CA /* MainWindow.xib */; };
+		AC672F3914488A2300BA34CA /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3614488A2300BA34CA /* RootViewController.xib */; };
+		AC672F3E14488A7400BA34CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3C14488A7400BA34CA /* InfoPlist.strings */; };
+		AC672F4114488A8100BA34CA /* ActiveModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F4014488A8100BA34CA /* ActiveModelTests.m */; };
+		AC672F441448D93800BA34CA /* PresenceValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F431448D93800BA34CA /* PresenceValidatorTest.m */; };
+		AC6F9E511449CE84006BDA00 /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E501449CE84006BDA00 /* OMPresenceValidator.m */; };
+		AC6F9E541449CEEB006BDA00 /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E531449CEEB006BDA00 /* OMValidator.m */; };
+		AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E74144A4F6D006BDA00 /* BlankTest.m */; };
+		AC6F9E7D144A504A006BDA00 /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */; };
+		AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC13D3AF14476F0E004BAB74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC13D37E14476F0E004BAB74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC13D38614476F0E004BAB74;
+			remoteInfo = ActiveResource;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AC13D38714476F0E004BAB74 /* ActiveModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActiveModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC13D38B14476F0E004BAB74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AC13D38D14476F0E004BAB74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AC13D3AB14476F0E004BAB74 /* ActiveModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC23542D15502B62005AC17D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		AC23543115502E05005AC17D /* NumericalityValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumericalityValidatorTest.h; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		AC23543215502E05005AC17D /* NumericalityValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumericalityValidatorTest.m; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC23543415517DF4005AC17D /* ValidatorTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidatorTestCase.h; path = ActiveModelTests/TestCases/Validators/ValidatorTestCase.h; sourceTree = SOURCE_ROOT; };
+		AC23543515517DF4005AC17D /* ValidatorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ValidatorTestCase.m; path = ActiveModelTests/TestCases/Validators/ValidatorTestCase.m; sourceTree = SOURCE_ROOT; };
+		AC2354441551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+OMNumericalityValidator.h"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.h"; sourceTree = SOURCE_ROOT; };
+		AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+OMNumericalityValidator.m"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.m"; sourceTree = SOURCE_ROOT; };
+		AC2354471551B746005AC17D /* NSNumber+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+OMNumericalityValidator.h"; path = "ActiveModel/validators/NumericalityValidator/NSNumber+OMNumericalityValidator.h"; sourceTree = SOURCE_ROOT; };
+		AC2354481551B746005AC17D /* NSNumber+OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+OMNumericalityValidator.m"; path = "ActiveModel/validators/NumericalityValidator/NSNumber+OMNumericalityValidator.m"; sourceTree = SOURCE_ROOT; };
+		AC23544B1551B880005AC17D /* OMActiveModel+OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+OMPresenceValidator.h"; path = "ActiveModel/validators/PresenceValidator/OMActiveModel+OMPresenceValidator.h"; sourceTree = SOURCE_ROOT; };
+		AC23544C1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+OMPresenceValidator.m"; path = "ActiveModel/validators/PresenceValidator/OMActiveModel+OMPresenceValidator.m"; sourceTree = SOURCE_ROOT; };
+		AC23544E1552DB50005AC17D /* OMActiveModel+OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+OMValidator.h"; path = "ActiveModel/validators/OMActiveModel+OMValidator.h"; sourceTree = SOURCE_ROOT; };
+		AC23544F1552DB50005AC17D /* OMActiveModel+OMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+OMValidator.m"; path = "ActiveModel/validators/OMActiveModel+OMValidator.m"; sourceTree = SOURCE_ROOT; };
+		AC672F1F1448899D00BA34CA /* ActiveModel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ActiveModel-Info.plist"; path = "ActiveModel/ActiveModel-Info.plist"; sourceTree = SOURCE_ROOT; };
+		AC672F20144889B500BA34CA /* ActiveModel-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ActiveModel-Prefix.pch"; path = "ActiveModel/ActiveModel-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		AC672F21144889D500BA34CA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ActiveModel/main.m; sourceTree = SOURCE_ROOT; };
+		AC672F25144889ED00BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ActiveModel/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		AC672F27144889FE00BA34CA /* OMActiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMActiveModel.h; path = ActiveModel/OMActiveModel.h; sourceTree = SOURCE_ROOT; };
+		AC672F28144889FE00BA34CA /* OMActiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMActiveModel.m; path = ActiveModel/OMActiveModel.m; sourceTree = SOURCE_ROOT; };
+		AC672F29144889FE00BA34CA /* ActiveModelAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveModelAppDelegate.h; path = ActiveModel/ActiveModelAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		AC672F2A144889FE00BA34CA /* ActiveModelAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveModelAppDelegate.m; path = ActiveModel/ActiveModelAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		AC672F2B144889FE00BA34CA /* Payee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Payee.h; path = ActiveModel/Payee.h; sourceTree = SOURCE_ROOT; };
+		AC672F2C144889FE00BA34CA /* Payee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Payee.m; path = ActiveModel/Payee.m; sourceTree = SOURCE_ROOT; };
+		AC672F2D144889FE00BA34CA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ActiveModel/RootViewController.h; sourceTree = SOURCE_ROOT; };
+		AC672F2E144889FE00BA34CA /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ActiveModel/RootViewController.m; sourceTree = SOURCE_ROOT; };
+		AC672F3514488A2300BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ActiveModel/en.lproj/MainWindow.xib; sourceTree = SOURCE_ROOT; };
+		AC672F3714488A2300BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ActiveModel/en.lproj/RootViewController.xib; sourceTree = SOURCE_ROOT; };
+		AC672F3A14488A6300BA34CA /* ActiveModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ActiveModelTests-Info.plist"; path = "ActiveModelTests/ActiveModelTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		AC672F3B14488A6300BA34CA /* ActiveModelTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ActiveModelTests-Prefix.pch"; path = "ActiveModelTests/ActiveModelTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		AC672F3D14488A7400BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ActiveModelTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		AC672F3F14488A8100BA34CA /* ActiveModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveModelTests.h; path = ActiveModelTests/ActiveModelTests.h; sourceTree = SOURCE_ROOT; };
+		AC672F4014488A8100BA34CA /* ActiveModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveModelTests.m; path = ActiveModelTests/ActiveModelTests.m; sourceTree = SOURCE_ROOT; };
+		AC672F421448D93800BA34CA /* PresenceValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PresenceValidatorTest.h; path = ActiveModelTests/PresenceValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		AC672F431448D93800BA34CA /* PresenceValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PresenceValidatorTest.m; path = ActiveModelTests/PresenceValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC6F9E4F1449CE84006BDA00 /* OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMPresenceValidator.h; path = ActiveModel/validators/OMPresenceValidator.h; sourceTree = SOURCE_ROOT; };
+		AC6F9E501449CE84006BDA00 /* OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMPresenceValidator.m; path = ActiveModel/validators/OMPresenceValidator.m; sourceTree = SOURCE_ROOT; };
+		AC6F9E521449CEEB006BDA00 /* OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMValidator.h; path = ActiveModel/OMValidator.h; sourceTree = SOURCE_ROOT; };
+		AC6F9E531449CEEB006BDA00 /* OMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMValidator.m; path = ActiveModel/OMValidator.m; sourceTree = SOURCE_ROOT; };
+		AC6F9E73144A4F6D006BDA00 /* BlankTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlankTest.h; path = ActiveModelTests/TestCases/BlankTest.h; sourceTree = SOURCE_ROOT; };
+		AC6F9E74144A4F6D006BDA00 /* BlankTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlankTest.m; path = ActiveModelTests/TestCases/BlankTest.m; sourceTree = SOURCE_ROOT; };
+		AC6F9E7B144A504A006BDA00 /* NSObject+Blank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Blank.h"; path = "ActiveModel/NSExtensions/NSObject+Blank.h"; sourceTree = SOURCE_ROOT; };
+		AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Blank.m"; path = "ActiveModel/NSExtensions/NSObject+Blank.m"; sourceTree = SOURCE_ROOT; };
+		AC732422144CBD1000CF9DE8 /* OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMNumericalityValidator.h; path = ActiveModel/validators/OMNumericalityValidator.h; sourceTree = SOURCE_ROOT; };
+		AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMNumericalityValidator.m; path = ActiveModel/validators/OMNumericalityValidator.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC13D38414476F0E004BAB74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC13D38C14476F0E004BAB74 /* UIKit.framework in Frameworks */,
+				AC13D38E14476F0E004BAB74 /* Foundation.framework in Frameworks */,
+				AC13D39014476F0E004BAB74 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC13D3A714476F0E004BAB74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC13D3AC14476F0E004BAB74 /* UIKit.framework in Frameworks */,
+				AC13D3AD14476F0E004BAB74 /* Foundation.framework in Frameworks */,
+				AC13D3AE14476F0E004BAB74 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC13D37C14476F0E004BAB74 = {
+			isa = PBXGroup;
+			children = (
+				AC13D39114476F0E004BAB74 /* ActiveModel */,
+				AC13D3B114476F0E004BAB74 /* ActiveModelTests */,
+				AC13D38A14476F0E004BAB74 /* Frameworks */,
+				AC13D38814476F0E004BAB74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AC13D38814476F0E004BAB74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC13D38714476F0E004BAB74 /* ActiveModel.app */,
+				AC13D3AB14476F0E004BAB74 /* ActiveModelTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC13D38A14476F0E004BAB74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC13D38B14476F0E004BAB74 /* UIKit.framework */,
+				AC13D38D14476F0E004BAB74 /* Foundation.framework */,
+				AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC13D39114476F0E004BAB74 /* ActiveModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC672F29144889FE00BA34CA /* ActiveModelAppDelegate.h */,
+				AC672F2A144889FE00BA34CA /* ActiveModelAppDelegate.m */,
+				AC672F2D144889FE00BA34CA /* RootViewController.h */,
+				AC672F2E144889FE00BA34CA /* RootViewController.m */,
+				AC672F27144889FE00BA34CA /* OMActiveModel.h */,
+				AC672F28144889FE00BA34CA /* OMActiveModel.m */,
+				AC672F3414488A2300BA34CA /* MainWindow.xib */,
+				AC672F3614488A2300BA34CA /* RootViewController.xib */,
+				AC13D39214476F0E004BAB74 /* Supporting Files */,
+				AC6F9E77144A4F95006BDA00 /* NSExtensions */,
+				AC6F9E4A1449CCCD006BDA00 /* Validators */,
+			);
+			name = ActiveModel;
+			path = ActiveResource;
+			sourceTree = "<group>";
+		};
+		AC13D39214476F0E004BAB74 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC23542D15502B62005AC17D /* README.md */,
+				AC672F24144889EC00BA34CA /* InfoPlist.strings */,
+				AC672F21144889D500BA34CA /* main.m */,
+				AC672F20144889B500BA34CA /* ActiveModel-Prefix.pch */,
+				AC672F1F1448899D00BA34CA /* ActiveModel-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC13D3B114476F0E004BAB74 /* ActiveModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				ACF16CCD15502183002A4124 /* NSExtensions */,
+				ACF16CCA15502063002A4124 /* Validators */,
+				AC672F3F14488A8100BA34CA /* ActiveModelTests.h */,
+				AC672F4014488A8100BA34CA /* ActiveModelTests.m */,
+				AC13D3B214476F0E004BAB74 /* Supporting Files */,
+			);
+			name = ActiveModelTests;
+			path = ActiveResourceTests;
+			sourceTree = "<group>";
+		};
+		AC13D3B214476F0E004BAB74 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC672F3C14488A7400BA34CA /* InfoPlist.strings */,
+				AC672F3A14488A6300BA34CA /* ActiveModelTests-Info.plist */,
+				AC672F3B14488A6300BA34CA /* ActiveModelTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC23543015502C98005AC17D /* NumericalityValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC23543115502E05005AC17D /* NumericalityValidatorTest.h */,
+				AC23543215502E05005AC17D /* NumericalityValidatorTest.m */,
+			);
+			name = NumericalityValidator;
+			sourceTree = "<group>";
+		};
+		AC2354371551B5E0005AC17D /* NumericalityValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC732422144CBD1000CF9DE8 /* OMNumericalityValidator.h */,
+				AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */,
+				AC2354441551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.h */,
+				AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */,
+				AC2354471551B746005AC17D /* NSNumber+OMNumericalityValidator.h */,
+				AC2354481551B746005AC17D /* NSNumber+OMNumericalityValidator.m */,
+			);
+			name = NumericalityValidator;
+			sourceTree = "<group>";
+		};
+		AC23544A1551B84F005AC17D /* PresenceValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC6F9E4F1449CE84006BDA00 /* OMPresenceValidator.h */,
+				AC6F9E501449CE84006BDA00 /* OMPresenceValidator.m */,
+				AC23544B1551B880005AC17D /* OMActiveModel+OMPresenceValidator.h */,
+				AC23544C1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m */,
+			);
+			name = PresenceValidator;
+			sourceTree = "<group>";
+		};
+		AC6F9E4A1449CCCD006BDA00 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				AC6F9E521449CEEB006BDA00 /* OMValidator.h */,
+				AC6F9E531449CEEB006BDA00 /* OMValidator.m */,
+				AC23544E1552DB50005AC17D /* OMActiveModel+OMValidator.h */,
+				AC23544F1552DB50005AC17D /* OMActiveModel+OMValidator.m */,
+				AC23544A1551B84F005AC17D /* PresenceValidator */,
+				AC2354371551B5E0005AC17D /* NumericalityValidator */,
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
+		AC6F9E77144A4F95006BDA00 /* NSExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC6F9E7B144A504A006BDA00 /* NSObject+Blank.h */,
+				AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */,
+			);
+			name = NSExtensions;
+			sourceTree = "<group>";
+		};
+		ACF16CCA15502063002A4124 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				AC23543415517DF4005AC17D /* ValidatorTestCase.h */,
+				AC23543515517DF4005AC17D /* ValidatorTestCase.m */,
+				ACF16CCC15502094002A4124 /* Fixtures */,
+				AC23543015502C98005AC17D /* NumericalityValidator */,
+				ACF16CCB15502074002A4124 /* PresenceValidator */,
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
+		ACF16CCB15502074002A4124 /* PresenceValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC672F421448D93800BA34CA /* PresenceValidatorTest.h */,
+				AC672F431448D93800BA34CA /* PresenceValidatorTest.m */,
+			);
+			name = PresenceValidator;
+			sourceTree = "<group>";
+		};
+		ACF16CCC15502094002A4124 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				AC672F2B144889FE00BA34CA /* Payee.h */,
+				AC672F2C144889FE00BA34CA /* Payee.m */,
+			);
+			name = Fixtures;
+			sourceTree = "<group>";
+		};
+		ACF16CCD15502183002A4124 /* NSExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC6F9E73144A4F6D006BDA00 /* BlankTest.h */,
+				AC6F9E74144A4F6D006BDA00 /* BlankTest.m */,
+			);
+			name = NSExtensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC13D38614476F0E004BAB74 /* ActiveModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC13D3BE14476F0E004BAB74 /* Build configuration list for PBXNativeTarget "ActiveModel" */;
+			buildPhases = (
+				AC13D38314476F0E004BAB74 /* Sources */,
+				AC13D38414476F0E004BAB74 /* Frameworks */,
+				AC13D38514476F0E004BAB74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ActiveModel;
+			productName = ActiveResource;
+			productReference = AC13D38714476F0E004BAB74 /* ActiveModel.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AC13D3AA14476F0E004BAB74 /* ActiveModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC13D3C114476F0E004BAB74 /* Build configuration list for PBXNativeTarget "ActiveModelTests" */;
+			buildPhases = (
+				AC13D3A614476F0E004BAB74 /* Sources */,
+				AC13D3A714476F0E004BAB74 /* Frameworks */,
+				AC13D3A814476F0E004BAB74 /* Resources */,
+				AC13D3A914476F0E004BAB74 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC13D3B014476F0E004BAB74 /* PBXTargetDependency */,
+			);
+			name = ActiveModelTests;
+			productName = ActiveResourceTests;
+			productReference = AC13D3AB14476F0E004BAB74 /* ActiveModelTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC13D37E14476F0E004BAB74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Michael R. Fleet";
+			};
+			buildConfigurationList = AC13D38114476F0E004BAB74 /* Build configuration list for PBXProject "ActiveModel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AC13D37C14476F0E004BAB74;
+			productRefGroup = AC13D38814476F0E004BAB74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC13D38614476F0E004BAB74 /* ActiveModel */,
+				AC13D3AA14476F0E004BAB74 /* ActiveModelTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC13D38514476F0E004BAB74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC672F26144889ED00BA34CA /* InfoPlist.strings in Resources */,
+				AC672F3814488A2300BA34CA /* MainWindow.xib in Resources */,
+				AC672F3914488A2300BA34CA /* RootViewController.xib in Resources */,
+				AC23542E15502B62005AC17D /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC13D3A814476F0E004BAB74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC672F3E14488A7400BA34CA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AC13D3A914476F0E004BAB74 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC13D38314476F0E004BAB74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC672F23144889DE00BA34CA /* main.m in Sources */,
+				AC672F2F144889FF00BA34CA /* OMActiveModel.m in Sources */,
+				AC672F30144889FF00BA34CA /* ActiveModelAppDelegate.m in Sources */,
+				AC672F31144889FF00BA34CA /* Payee.m in Sources */,
+				AC672F32144889FF00BA34CA /* RootViewController.m in Sources */,
+				AC6F9E511449CE84006BDA00 /* OMPresenceValidator.m in Sources */,
+				AC6F9E541449CEEB006BDA00 /* OMValidator.m in Sources */,
+				AC6F9E7D144A504A006BDA00 /* NSObject+Blank.m in Sources */,
+				AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */,
+				AC2354461551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m in Sources */,
+				AC2354491551B746005AC17D /* NSNumber+OMNumericalityValidator.m in Sources */,
+				AC23544D1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m in Sources */,
+				AC2354501552DB51005AC17D /* OMActiveModel+OMValidator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC13D3A614476F0E004BAB74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC672F4114488A8100BA34CA /* ActiveModelTests.m in Sources */,
+				AC672F441448D93800BA34CA /* PresenceValidatorTest.m in Sources */,
+				AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */,
+				AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */,
+				AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC13D3B014476F0E004BAB74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC13D38614476F0E004BAB74 /* ActiveModel */;
+			targetProxy = AC13D3AF14476F0E004BAB74 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AC672F24144889EC00BA34CA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC672F25144889ED00BA34CA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AC672F3414488A2300BA34CA /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC672F3514488A2300BA34CA /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		AC672F3614488A2300BA34CA /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC672F3714488A2300BA34CA /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		AC672F3C14488A7400BA34CA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC672F3D14488A7400BA34CA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AC13D3BC14476F0E004BAB74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AC13D3BD14476F0E004BAB74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		AC13D3BF14476F0E004BAB74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveModel/ActiveModel-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "ActiveModel/ActiveModel-Info.plist";
+				PRODUCT_NAME = ActiveModel;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AC13D3C014476F0E004BAB74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveModel/ActiveModel-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "ActiveModel/ActiveModel-Info.plist";
+				PRODUCT_NAME = ActiveModel;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		AC13D3C214476F0E004BAB74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ActiveModel.app/ActiveModel";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveModelTests/ActiveModelTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "ActiveModelTests/ActiveModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = ActiveModelTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		AC13D3C314476F0E004BAB74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ActiveModel.app/ActiveModel";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ActiveModelTests/ActiveModelTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "ActiveModelTests/ActiveModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = ActiveModelTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC13D38114476F0E004BAB74 /* Build configuration list for PBXProject "ActiveModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC13D3BC14476F0E004BAB74 /* Debug */,
+				AC13D3BD14476F0E004BAB74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC13D3BE14476F0E004BAB74 /* Build configuration list for PBXNativeTarget "ActiveModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC13D3BF14476F0E004BAB74 /* Debug */,
+				AC13D3C014476F0E004BAB74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC13D3C114476F0E004BAB74 /* Build configuration list for PBXNativeTarget "ActiveModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC13D3C214476F0E004BAB74 /* Debug */,
+				AC13D3C314476F0E004BAB74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC13D37E14476F0E004BAB74 /* Project object */;
+}
