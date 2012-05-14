@@ -24,7 +24,6 @@
 
 
 #import "Payee.h"
-#import "OMValidator.h"
 #import "ValidatorTestCase.h"
 
 

@@ -38,7 +38,6 @@
 - (void)setUp
 {
     [super setUp];
-    
     model = [[Payee alloc] init];
 }
 
@@ -46,9 +45,7 @@
 
 - (void)tearDown
 {
-    NSLog(@"model errors: %@", [model errors]);
     [model release];
-    
     [super tearDown];
 }
 

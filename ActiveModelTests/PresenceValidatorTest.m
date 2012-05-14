@@ -38,17 +38,14 @@
 - (void)setUp
 {
     [super setUp];
-
-    payee = [[Payee alloc] init];
+    model = [[Payee alloc] init];
 }
 
 
 
 - (void)tearDown
 {
-    NSLog(@"payee errors: %@", [payee errors]);
-    [payee release];
-
+    [model release];
     [super tearDown];
 }
 
@@ -60,24 +57,24 @@
 
 - (void)testIfValueIsNilItShouldBeInvalid
 {
-    [payee setName:nil];
-    [self assertPropertyIsInvalid:@"name" forModel:payee];
+    [model setName:nil];
+    [self assertPropertyIsInvalid:@"name" forModel:model];
 }
 
 
 
 - (void)testIfValueIsEmptyStringItShouldBeInvalid
 {
-    [payee setName:@""];
-    [self assertPropertyIsInvalid:@"name" forModel:payee];
+    [model setName:@""];
+    [self assertPropertyIsInvalid:@"name" forModel:model];
 }
 
 
 
 - (void)testIfValueIsNotEmptyItShouldBeValid
 {
-    [payee setName:@"Winnie the Pooh"];
-    [self assertPropertyIsValid:@"name" forModel:payee];
+    [model setName:@"Winnie the Pooh"];
+    [self assertPropertyIsValid:@"name" forModel:model];
 }
 
 

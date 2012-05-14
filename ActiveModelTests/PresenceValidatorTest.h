@@ -24,13 +24,12 @@
 
 
 #import "Payee.h"
-#import "OMValidator.h"
 #import "ValidatorTestCase.h"
 
 
 
 @interface PresenceValidatorTest : ValidatorTestCase
 {
-    Payee *payee;    
+    Payee *model;    
 }
 @end
