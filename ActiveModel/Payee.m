@@ -33,17 +33,55 @@
 
 
 
-@synthesize three;
-@synthesize two;
+@synthesize allowBlank;
+@synthesize allowNil;
+@synthesize allowNilAndBlank;
 @synthesize name;
 @synthesize ratio;
+@synthesize three;
+@synthesize two;
 
+
+
+- (void)dealloc
+{
+    [self setAllowBlank:nil];
+    [self setAllowNil:nil];
+    [self setAllowNilAndBlank:nil];
+    [self setName:nil];
+    [self setRatio:nil];
+    [self setThree:nil];
+    [self setTwo:nil];
+    [super dealloc];
+}
 
 
 // this initialize method is invoked *after* its superclass initialize method
 + (void)initialize
 {
     // setup validations
+    // OMValidator:
+    // test allowNil constraint
+    [self validatesNumericalityOf:@"allowNil"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"Y", @"allowNil",
+                                   nil]];
+
+    // test allowBlank constraint
+    [self validatesNumericalityOf:@"allowBlank"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"1", @"allowBlank",
+                                   nil]];
+
+    // test allowNil & allowBlank constraints
+    [self validatesNumericalityOf:@"allowNilAndBlank"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"y", @"allowNil",
+                                   @"T", @"allowBlank",
+                                   nil]];
+
+
+
     // OMNumericalityValidator:
     // test multiple properties sharing constraints
     [self validatesNumericalityOf:[NSArray arrayWithObjects:@"two", @"three", @"ratio", nil]

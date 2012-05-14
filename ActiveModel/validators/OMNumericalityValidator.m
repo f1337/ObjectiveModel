@@ -43,16 +43,17 @@
 
 
 
-- (id)initWithProperties:(NSArray *)p andOptions:(NSDictionary *)options
+- (id)initWithDictionary:(NSDictionary *)dictionary
 {
-    if ( (self = [super initWithProperties:p andOptions:options]) )
+    if ( (self = [super initWithDictionary:dictionary]) )
     {
-        if ( ! message )
+        if ( ! [message length] )
         {
             message = @"is not a valid number.";
         }
 
         // verify options input
+        NSDictionary *options = [self options];
         for (NSString *key in options)
         {
             // option key must be a valid NSNumber selector
@@ -107,21 +108,24 @@
 
 
 
-- (void)validate:(OMActiveModel *)record withProperty:(NSString *)property andValue:(NSObject *)value
+//- (BOOL)validate:(OMActiveModel *)record withProperty:(NSString *)property andValue:(NSObject *)value
+- (BOOL)validateValue:(id *)ioValue;
 {
     // if allowNil and value is nil, skip validation
-    if ( allowNil && value == nil )
+    if ( allowNil && *ioValue == nil )
     {
-        return;
+        [NSException raise:@"UNREACHABLE" format:@"This code should be unreachable, by virtue of superclass' nil/blank checks."];
+        return YES;
     }
 
+    NSLog(@"prefrack");
     // if value isn't a number, raise an error
-    NSNumber *numericValue = (NSNumber *)value;
+    NSNumber *numericValue = (NSNumber *)*ioValue;
     if ( ! numericValue )
     {
-        [[record errors] setObject:[NSString stringWithFormat:@"%@ %@", property, message] forKey:property];
-        return;
+        return NO;
     }
+    NSLog(@"postfrack");
 
     for (NSString *option in [self options])
     {
@@ -130,10 +134,11 @@
         if ( selector )
         {
             BOOL valid = YES;
-            id value = [[self options] objectForKey:option];
             NSString *selectorString = NSStringFromSelector(selector);
+
             if ( [selectorString hasSuffix:@":"] )
             {
+                id value = [[self options] objectForKey:option];
                 valid = (BOOL)[numericValue performSelector:selector withObject:value];
             }
             else
@@ -143,11 +148,12 @@
 
             if ( ! valid )
             {
-                [[record errors] setObject:[NSString stringWithFormat:@"%@ %@", property, message] forKey:property];
-                return;
+                return NO;
             }
         }
     }
+
+    return YES;
 }
 
 

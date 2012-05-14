@@ -27,11 +27,22 @@
 
 
 
+@interface OMActiveModel (Private)
++ (NSMutableArray *)validatorsForKey:(NSString *)key;
++ (NSMutableDictionary *)validatorsForSelf;
+@end
+
+
+
 @implementation OMActiveModel (OMValidator)
 
 
 
 static NSMutableDictionary *validations = nil;
+
+
+
+#pragma mark - CLASS METHODS
 
 
 
@@ -82,18 +93,20 @@ static NSMutableDictionary *validations = nil;
     
     if (propertySet)
     {
-        // create the validations array for this class
-        if ( ! [validations objectForKey:self] )
-        {
-            [validations setObject:[NSMutableArray array] forKey:self];
-        }
-        
         // add the validators to the validations array for this class
         for (Class validator in validators)
         {
-            [[validations objectForKey:self] addObject:[[validator alloc] initWithProperties:propertySet andOptions:options]];
+            for (NSString *property in propertySet)
+            {
+                OMValidator *myValidator = [[validator alloc] initWithDictionary:options];
+                NSMutableArray *validationsForKey = [self validatorsForKey:property];
+
+                [validationsForKey addObject:myValidator];
+
+            }
         }
-        NSLog(@"validations for %@: %@", self, [validations objectForKey:self]);
+
+        NSLog(@"validations for %@: %@", self, [self validatorsForSelf]);
     }
     else
     {
@@ -103,93 +116,76 @@ static NSMutableDictionary *validations = nil;
 
 
 
-// TODO: use swizzling to override init & dealloc?
-- (id)init
+/*!
+ * Validators are stored in a nested dictionary + array structure like so:
+ * {
+ *      classA:
+ *      {
+ *          propertyA:
+ *          [
+ *              OMValidator,
+ *              OMValidator,
+ *              OMValidator
+ *          ],
+ *          propertyB:
+ *          [
+ *              OMValidator,
+ *              OMValidator,
+ *              OMValidator
+ *          ]
+ *      },
+ *
+ *      classB:
+ *      {
+ *          propertyA:
+ *          [
+ *              OMValidator,
+ *              OMValidator,
+ *              OMValidator
+ *          ],
+ *          propertyB:
+ *          [
+ *              OMValidator,
+ *              OMValidator,
+ *              OMValidator
+ *          ]
+ *      }
+ * }
+ */
++ (NSMutableArray *)validatorsForKey:(NSString *)key
 {
-    if ( (self = [super init]) )
+    NSMutableDictionary *validationsForSelf = [self validatorsForSelf];
+    NSMutableArray *validationsForKey = [validationsForSelf objectForKey:key];
+    
+    // auto-create the validations array for the key
+    if ( ! validationsForKey )
     {
-        // create an empty dictionary for storing validation errors
-        errors = [[NSMutableDictionary alloc] init];
-        
-        // use KVO to receive property change notifications
-        NSArray *validators = [validations objectForKey:[self class]];
-        NSLog(@"validators for me: %@", validators);
-        for (OMValidator *validator in validators)
-        {
-            NSLog(@"validator properties: %@", [validator properties]);
-            for (NSString *property in [validator properties])
-            {
-                NSLog(@"added KVO to %@.%@ for validator: %@", self, property, validator);
-                [self addObserver:self
-                       forKeyPath:property
-                          options:NSKeyValueObservingOptionNew
-                          context:validator];
-            }
-        }
+        validationsForKey = [NSMutableArray array];
+        [validationsForSelf setObject:validationsForKey forKey:key];
     }
     
-    return self;
+    return validationsForKey;
 }
 
 
 
-- (void)dealloc
++ (NSMutableDictionary *)validatorsForSelf
 {
-    // remove KVO
-    NSArray *validators = [validations objectForKey:[self class]];
-    NSLog(@"validators for me: %@", validators);
-    for (OMValidator *validator in validators)
+    NSMutableDictionary *validationsForSelf = [validations objectForKey:self];
+    
+    // auto-create the validations hash for this class
+    if ( ! validationsForSelf )
     {
-        NSLog(@"validator properties: %@", [validator properties]);
-        for (NSString *property in [validator properties])
-        {
-            // iOS 5+:
-            //            NSLog(@"removed KVO from %@.%@ for validator: %@", self, property, validator);
-            //            [self removeObserver:self forKeyPath:property context:validator];
-            // iOS 2+:
-            NSLog(@"removed KVO from %@.%@", self, property);
-            [self removeObserver:self forKeyPath:property];
-        }
+        validationsForSelf = [NSMutableDictionary dictionary];
+        [validations setObject:validationsForSelf forKey:self];
     }
     
-    
-    [errors release];
-    
-    [super dealloc];
+    return validationsForSelf;
 }
 
 
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    NSLog(@"observeValueForKeyPath: %@ ofObject: %@ change: %@ context: %@", keyPath, object, change, context);
-    // EXPERIMENTAL: auto-validate changed property
-    // FIXME:
-    // removeObjectForKey:keyPath causes collisions for keyPaths with multiple validators
-    [errors removeObjectForKey:keyPath];
-    // execute validator
-    OMValidator *validator = (OMValidator *)context;
-    [validator validate:self withProperty:keyPath andValue:[self valueForKeyPath:keyPath]];
-    NSLog(@"[%@ validate:%@ withProperty:%@ andValue:%@]", validator, self, keyPath, [self valueForKeyPath:keyPath]);
-    NSLog(@"errors for keypath: %@", [errors objectForKey:keyPath]);
-}
-
-
-
-- (void)validate
-{
-    // empty errors dictionary
-    [errors removeAllObjects];
-    
-    NSLog(@"validations for %@: %@", self, [validations objectForKey:[self class]]);
-    
-    // iterate through validations for this model
-    for (OMValidator *validator in [validations objectForKey:[self class]])
-    {
-        [validator validate:self];
-    }
-    
-}
+#pragma mark - INSTANCE METHODS
 
 
 
@@ -204,6 +200,77 @@ static NSMutableDictionary *validations = nil;
 - (BOOL)isValid
 {
     return (! [self isInvalid]);
+}
+
+
+
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    NSLog(@"observeValueForKeyPath: %@ ofObject: %@ change: %@ context: %@", keyPath, object, change, context);
+//    // EXPERIMENTAL: auto-validate changed property
+//    // FIXME:
+//    // removeObjectForKey:keyPath causes collisions for keyPaths with multiple validators
+//    [errors removeObjectForKey:keyPath];
+//    // execute validator
+//    OMValidator *validator = (OMValidator *)context;
+//    [validator validate:self withProperty:keyPath andValue:[self valueForKeyPath:keyPath]];
+//    NSLog(@"[%@ validate:%@ withProperty:%@ andValue:%@]", validator, self, keyPath, [self valueForKeyPath:keyPath]);
+//    NSLog(@"errors for keypath: %@", [errors objectForKey:keyPath]);
+//}
+
+
+
+- (void)setErrorMessage:(NSString *)message forKey:(NSString *)key
+{
+    [errors setObject:[NSString stringWithFormat:@"%@ %@", key, message] forKey:key];
+}
+
+
+
+- (void)validate
+{
+    // empty errors dictionary
+    [errors removeAllObjects];
+    
+    // iterate through validations for this model
+    NSDictionary *validationsForSelf = [[self class] validatorsForSelf];
+
+    for (NSString *key in validationsForSelf)
+    {
+        NSError *error;// = [NSError errorWithDomain:@"dotcom" code:0 userInfo:nil];
+        NSObject *value = [self valueForKey:key];
+        if ( ! [self validateValue:&value forKey:key error:&error] )
+        {
+            // TODO: dispatch delegate method
+            [self setErrorMessage:@"failed" forKey:key];
+        }
+    }
+    
+}
+
+
+
+#pragma mark - NSKeyValueCoding
+
+
+
+- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
+{
+    // invoke the superclass validateValue:forKey:error:, to take advantage
+    // of built-in subsequent invocation of validate<Key>:error: methods
+    BOOL valid = [super validateValue:ioValue forKey:inKey error:outError];
+    NSArray *validators = [[self class] validatorsForKey:inKey];
+
+    for (OMValidator *validator in validators)
+    {
+        if ( ! [validator validateValue:ioValue error:outError] )
+        {
+            valid = NO;
+            // TODO: build up error(s) structure per KVV guidelines
+        }
+    }
+
+    return valid;
 }
 
 

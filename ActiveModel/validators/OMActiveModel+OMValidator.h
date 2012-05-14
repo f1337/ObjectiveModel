@@ -46,6 +46,10 @@
 
 
 
+- (void)setErrorMessage:(NSString *)message forKey:(NSString *)key;
+
+
+
 /*!
  * @brief Executes all validators defined for the model and updates the errors
  * array accordingly.

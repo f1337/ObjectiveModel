@@ -32,68 +32,70 @@
 
 
 @synthesize options = _options;
-@synthesize properties = _properties;
 
 
 
 - (void)dealloc
 {
+    [message release];
     [_options release];
-    [_properties release];
-    
     [super dealloc];
 }
 
 
 
-- (id)initWithProperties:(NSArray *)properties andOptions:(NSDictionary *)options
+- (id)initWithDictionary:(NSDictionary *)dictionary
 {
     if ( (self = [super init]) )
     {
-        [self setOptions:options];
-        [self setProperties:properties];
+        // TODO: allowNil, allowBlank, and message should be read-only!
+        allowBlank = [[dictionary objectForKey:@"allowBlank"] boolValue];
+        allowNil = [[dictionary objectForKey:@"allowNil"] boolValue];
+        message = [dictionary objectForKey:@"message"];
 
-        allowBlank = [[options objectForKey:@"allowBlank"] boolValue];
-        allowNil = [[options objectForKey:@"allowNil"] boolValue];
-        message = [options objectForKey:@"message"];
+        // remove allowBlank, allowNil, and message from the options dictionary
+        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+        NSMutableArray *keys = [NSMutableArray array];
+        [keys addObject:@"allowBlank"];
+        [keys addObject:@"allowNil"];
+        [keys addObject:@"message"];
+        [options removeObjectsForKeys:keys];
+        [self setOptions:options];
     }
 
-    NSLog(@"validator init self: %@, properties: %@, options: %@", self, _properties, _options);
+    NSLog(@"validator: %@ initWithDictionary: %@", self, dictionary);
 
     return self;
 }
 
 
 
-- (void)validate:(OMActiveModel *)record
+- (BOOL)validateValue:(id *)ioValue error:(NSError **)outError
 {
-    NSLog(@"validate properties: %@", _properties);
-    NSObject *value;
-    for (NSString *property in _properties)
+    if (
+        // skip validation if value is nil and allowNil is true
+        ( allowNil && *ioValue == nil )
+        || 
+        // skip validation if value is blank and allowBlank is true
+        ( allowBlank && [*ioValue isBlank] )
+    )
     {
-        value = [record valueForKey:property];
-        NSLog(@"validate: %@, for value: %@", property, value);
-        NSLog(@"value == nil %d", (value == nil));
-        NSLog(@"allowNil: %d", allowNil);
-        if (
-            // skip validation if value is nil and allowNil is true
-            (value == nil && allowNil) || 
-            // skip validation if value is blank and allowBlank is true
-            ([value isBlank] && allowBlank)
-        )
-        {
-            NSLog(@"validation skipping for: %@", property);
-            continue;
-        }
-        [self validate:record withProperty:property andValue:value];
+        NSLog(@"skipping validation for: %@", self);
+        return YES;
+    }
+    else
+    {
+        NSLog(@"applying validation for: %@", self);
+        return [self validateValue:ioValue];
     }
 }
 
 
 
-- (void)validate:(OMActiveModel *)record withProperty:(NSString *)property andValue:(NSObject *)value;
+- (BOOL)validateValue:(id *)ioValue
 {
-    [NSException raise:@"Method not implemented" format:@"Method validate:withProperty:andValue should be implemented in Validator subclass."];
+    [NSException raise:@"Method not implemented" format:@"Method validateValue: should be implemented in Validator subclass."];
+    return NO;
 }
 
 

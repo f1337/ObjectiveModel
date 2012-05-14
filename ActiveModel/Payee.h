@@ -30,10 +30,13 @@
 
 
 
-@property (assign) NSNumber *two;
-@property (assign) NSNumber *three;
+@property (assign) NSString *allowBlank;
+@property (assign) NSString *allowNil;
+@property (assign) NSString *allowNilAndBlank;
 @property (assign) NSString *name;
 @property (assign) NSNumber *ratio;
+@property (assign) NSNumber *two;
+@property (assign) NSNumber *three;
 
 
 

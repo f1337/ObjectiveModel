@@ -41,14 +41,12 @@
 
 /*! The validation options. */
 @property (nonatomic, retain) NSDictionary *options;
-/*! The properties to validate. */
-@property (nonatomic, retain) NSArray *properties;
 
 
 
-- (id)initWithProperties:(NSArray *)properties andOptions:(NSDictionary *)options;
-- (void)validate:(OMActiveModel *)record;
-- (void)validate:(OMActiveModel *)record withProperty:(NSString *)property andValue:(NSObject *)value;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (BOOL)validateValue:(id *)ioValue;
+- (BOOL)validateValue:(id *)ioValue error:(NSError **)outError;
 
 
 

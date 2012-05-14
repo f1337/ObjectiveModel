@@ -31,13 +31,13 @@
 
 
 
-- (id)initWithProperties:(NSArray *)p andOptions:(NSDictionary *)options
+- (id)initWithDictionary:(NSDictionary *)dictionary
 {
-    if ( (self = [super initWithProperties:p andOptions:options]) )
+    if ( (self = [super initWithDictionary:dictionary]) )
     {
         allowBlank = NO;
         allowNil = NO;
-        if (! message)
+        if ( ! [message length] )
         {
             message = @"cannot be blank.";
         }
@@ -48,11 +48,15 @@
 
 
 
-- (void)validate:(OMActiveModel *)record withProperty:(NSString *)property andValue:(NSObject *)value
+- (BOOL)validateValue:(id *)ioValue;
 {
-    if ( value == nil || [value isBlank] )
+    if ( *ioValue == nil || [*ioValue isBlank] )
     {
-        [[record errors] setObject:[NSString stringWithFormat:@"%@ %@", property, message] forKey:property];
+        return NO;
+    }
+    else
+    {
+        return YES;
     }
 }
 

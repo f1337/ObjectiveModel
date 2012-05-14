@@ -23,32 +23,13 @@
 
 
 
+#import "Payee.h"
 #import "ValidatorTestCase.h"
 
 
 
-@implementation ValidatorTestCase
-
-
-
-#pragma mark - CUSTOM ASSERTIONS
-
-
-
-- (void)assertPropertyIsValid:(NSString *)property forModel:(OMActiveModel *)model
+@interface OMValidatorTest : ValidatorTestCase
 {
-    id value = [model valueForKey:property];
-    STAssertTrue([model validateValue:&value forKey:property error:nil], @"Model property '%@' is invalid, but expected to be valid.", property);
+    Payee *model;    
 }
-
-
-
-- (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model
-{
-    id value = [model valueForKey:property];
-    STAssertFalse([model validateValue:&value forKey:property error:nil], @"Model property '%@' is valid, but expected to be invalid.", property);
-}
-
-
-
 @end

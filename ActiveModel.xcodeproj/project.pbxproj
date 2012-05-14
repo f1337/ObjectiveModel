@@ -29,13 +29,13 @@
 		AC672F3814488A2300BA34CA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3414488A2300BA34CA /* MainWindow.xib */; };
 		AC672F3914488A2300BA34CA /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3614488A2300BA34CA /* RootViewController.xib */; };
 		AC672F3E14488A7400BA34CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3C14488A7400BA34CA /* InfoPlist.strings */; };
-		AC672F4114488A8100BA34CA /* ActiveModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F4014488A8100BA34CA /* ActiveModelTests.m */; };
 		AC672F441448D93800BA34CA /* PresenceValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F431448D93800BA34CA /* PresenceValidatorTest.m */; };
 		AC6F9E511449CE84006BDA00 /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E501449CE84006BDA00 /* OMPresenceValidator.m */; };
 		AC6F9E541449CEEB006BDA00 /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E531449CEEB006BDA00 /* OMValidator.m */; };
 		AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E74144A4F6D006BDA00 /* BlankTest.m */; };
 		AC6F9E7D144A504A006BDA00 /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */; };
 		AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */; };
+		ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC78531561A8D400B29DFE /* OMValidatorTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +84,6 @@
 		AC672F3A14488A6300BA34CA /* ActiveModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ActiveModelTests-Info.plist"; path = "ActiveModelTests/ActiveModelTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		AC672F3B14488A6300BA34CA /* ActiveModelTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ActiveModelTests-Prefix.pch"; path = "ActiveModelTests/ActiveModelTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		AC672F3D14488A7400BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ActiveModelTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		AC672F3F14488A8100BA34CA /* ActiveModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveModelTests.h; path = ActiveModelTests/ActiveModelTests.h; sourceTree = SOURCE_ROOT; };
-		AC672F4014488A8100BA34CA /* ActiveModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveModelTests.m; path = ActiveModelTests/ActiveModelTests.m; sourceTree = SOURCE_ROOT; };
 		AC672F421448D93800BA34CA /* PresenceValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PresenceValidatorTest.h; path = ActiveModelTests/PresenceValidatorTest.h; sourceTree = SOURCE_ROOT; };
 		AC672F431448D93800BA34CA /* PresenceValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PresenceValidatorTest.m; path = ActiveModelTests/PresenceValidatorTest.m; sourceTree = SOURCE_ROOT; };
 		AC6F9E4F1449CE84006BDA00 /* OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMPresenceValidator.h; path = ActiveModel/validators/OMPresenceValidator.h; sourceTree = SOURCE_ROOT; };
@@ -98,6 +96,8 @@
 		AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Blank.m"; path = "ActiveModel/NSExtensions/NSObject+Blank.m"; sourceTree = SOURCE_ROOT; };
 		AC732422144CBD1000CF9DE8 /* OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMNumericalityValidator.h; path = ActiveModel/validators/OMNumericalityValidator.h; sourceTree = SOURCE_ROOT; };
 		AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMNumericalityValidator.m; path = ActiveModel/validators/OMNumericalityValidator.m; sourceTree = SOURCE_ROOT; };
+		ACEC78521561A8D400B29DFE /* OMValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMValidatorTest.h; path = ActiveModelTests/TestCases/Validators/OMValidator/OMValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		ACEC78531561A8D400B29DFE /* OMValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMValidatorTest.m; path = ActiveModelTests/TestCases/Validators/OMValidator/OMValidatorTest.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +189,6 @@
 			children = (
 				ACF16CCD15502183002A4124 /* NSExtensions */,
 				ACF16CCA15502063002A4124 /* Validators */,
-				AC672F3F14488A8100BA34CA /* ActiveModelTests.h */,
-				AC672F4014488A8100BA34CA /* ActiveModelTests.m */,
 				AC13D3B214476F0E004BAB74 /* Supporting Files */,
 			);
 			name = ActiveModelTests;
@@ -262,12 +260,22 @@
 			name = NSExtensions;
 			sourceTree = "<group>";
 		};
+		ACEC78561561A8DA00B29DFE /* OMValidator */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC78521561A8D400B29DFE /* OMValidatorTest.h */,
+				ACEC78531561A8D400B29DFE /* OMValidatorTest.m */,
+			);
+			name = OMValidator;
+			sourceTree = "<group>";
+		};
 		ACF16CCA15502063002A4124 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
 				AC23543415517DF4005AC17D /* ValidatorTestCase.h */,
 				AC23543515517DF4005AC17D /* ValidatorTestCase.m */,
 				ACF16CCC15502094002A4124 /* Fixtures */,
+				ACEC78561561A8DA00B29DFE /* OMValidator */,
 				AC23543015502C98005AC17D /* NumericalityValidator */,
 				ACF16CCB15502074002A4124 /* PresenceValidator */,
 			);
@@ -430,11 +438,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC672F4114488A8100BA34CA /* ActiveModelTests.m in Sources */,
 				AC672F441448D93800BA34CA /* PresenceValidatorTest.m in Sources */,
 				AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */,
 				AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */,
 				AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */,
+				ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
