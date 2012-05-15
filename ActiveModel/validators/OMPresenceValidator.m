@@ -31,16 +31,14 @@
 
 
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
+- (id)init
 {
-    if ( (self = [super initWithDictionary:dictionary]) )
+    if ( (self = [super init]) )
     {
         allowBlank = NO;
         allowNil = NO;
-        if ( ! [message length] )
-        {
-            message = @"cannot be blank.";
-        }
+        // set the default message
+        _message = @"cannot be blank";
     }
     
     return self;

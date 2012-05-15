@@ -38,7 +38,8 @@
 - (void)assertPropertyIsValid:(NSString *)property forModel:(OMActiveModel *)model
 {
     id value = [model valueForKey:property];
-    STAssertTrue([model validateValue:&value forKey:property error:nil], @"Model property '%@' is invalid, but expected to be valid.", property);
+    NSError *error = nil;
+    STAssertTrue([model validateValue:&value forKey:property error:&error], @"Model property '%@' is invalid, but expected to be valid. Error: %@.", property, error);
 }
 
 
@@ -46,7 +47,9 @@
 - (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model
 {
     id value = [model valueForKey:property];
-    STAssertFalse([model validateValue:&value forKey:property error:nil], @"Model property '%@' is valid, but expected to be invalid.", property);
+    NSError *error = nil;
+    STAssertFalse([model validateValue:&value forKey:property error:&error], @"Model property '%@' is valid, but expected to be invalid.", property);
+    NSLog(@"assertPropertyIsInvalid error: %@", error);
 }
 
 

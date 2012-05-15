@@ -24,6 +24,8 @@
 
 
 #import "OMValidator.h"
+#import "NSError+ValidationErrors.h"
+#import <CoreData/CoreData.h>
 
 
 
@@ -37,35 +39,53 @@
 
 - (void)dealloc
 {
-    [message release];
+    [_message release];
     [_options release];
     [super dealloc];
 }
 
 
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
+- (id)init
 {
     if ( (self = [super init]) )
     {
-        // TODO: allowNil, allowBlank, and message should be read-only!
-        allowBlank = [[dictionary objectForKey:@"allowBlank"] boolValue];
-        allowNil = [[dictionary objectForKey:@"allowNil"] boolValue];
-        message = [dictionary objectForKey:@"message"];
+        // set the default message
+        _message = @"is invalid";
+    }
+    
+    return self;
+}
 
-        // remove allowBlank, allowNil, and message from the options dictionary
-        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-        NSMutableArray *keys = [NSMutableArray array];
-        [keys addObject:@"allowBlank"];
-        [keys addObject:@"allowNil"];
-        [keys addObject:@"message"];
-        [options removeObjectsForKeys:keys];
-        [self setOptions:options];
+
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    if ( (self = [self init]) )
+    {
+        [self setOptions:dictionary];
     }
 
-    NSLog(@"validator: %@ initWithDictionary: %@", self, dictionary);
-
     return self;
+}
+
+
+
+- (void)setOptions:(NSDictionary *)options
+{
+    if ( _options != options )
+    {
+        [_options release];
+        _options = options;
+        [_options retain];
+
+        // TODO: allowNil, allowBlank, and message should be read-only!
+        allowBlank = [[_options objectForKey:@"allowBlank"] boolValue];
+        allowNil = [[_options objectForKey:@"allowNil"] boolValue];
+        if ( [_options objectForKey:@"message"] )
+        {
+            _message = [_options objectForKey:@"message"];
+        }
+    }
 }
 
 
@@ -86,7 +106,30 @@
     else
     {
         NSLog(@"applying validation for: %@", self);
-        return [self validateValue:ioValue];
+        if ( [self validateValue:ioValue] )
+        {
+            NSLog(@"validation passed for: %@", self);
+            return YES;
+        }
+        else
+        {
+            NSLog(@"validation failed for: %@ with message: %@", self, _message);
+
+            // Error structured per CoreData guidelines:
+            // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
+            // don't create an error if none was requested
+            if (outError != NULL)
+            {
+                NSDictionary *userInfoDict = [NSDictionary dictionaryWithObject:_message
+                                                                         forKey:NSLocalizedDescriptionKey];
+                *outError = [NSError errorWithOriginalError:*outError 
+                                                     domain:@"OMValidator" 
+                                                       code:0 
+                                                   userInfo:userInfoDict];
+            }
+
+            return NO;
+        }
     }
 }
 

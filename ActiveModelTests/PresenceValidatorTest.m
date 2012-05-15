@@ -55,6 +55,11 @@
 
 
 
+// TODO: implement RoR validation tests:
+// https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/presence_validation_test.rb
+
+
+
 - (void)testIfValueIsNilItShouldBeInvalid
 {
     [model setName:nil];

@@ -23,16 +23,18 @@
 
 
 
-#import "OMValidator.h"
-#import "OMActiveModel+OMNumericalityValidator.h"
-#import "NSNumber+OMNumericalityValidator.h"
+#import <Foundation/Foundation.h>
 
 
 
-@interface OMNumericalityValidator : OMValidator
-{
-    NSDictionary *_filteredOptions;
-}
+@interface NSError (ValidationErrors)
+
+
+
++ (id)errorWithOriginalError:(NSError *)originalError 
+                      domain:(NSString *)domain 
+                        code:(NSInteger)code 
+                    userInfo:(NSDictionary *)dict;
 
 
 

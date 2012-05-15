@@ -34,7 +34,7 @@
     /*! Skip validation if property is nil (default is NO). */
     BOOL allowNil;
     /*! A custom error message (default is set by subclasses). */
-    NSString *message;
+    NSString *_message;
 }
 
 

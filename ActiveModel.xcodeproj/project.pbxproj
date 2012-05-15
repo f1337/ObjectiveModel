@@ -13,6 +13,8 @@
 		AC13D3AC14476F0E004BAB74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38B14476F0E004BAB74 /* UIKit.framework */; };
 		AC13D3AD14476F0E004BAB74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38D14476F0E004BAB74 /* Foundation.framework */; };
 		AC13D3AE14476F0E004BAB74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */; };
+		AC17480A1562EA2900A56648 /* NSError+ValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */; };
+		AC17480D1562EF5500A56648 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC17480C1562EF5500A56648 /* CoreData.framework */; };
 		AC23542E15502B62005AC17D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC23542D15502B62005AC17D /* README.md */; };
 		AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543215502E05005AC17D /* NumericalityValidatorTest.m */; };
 		AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543515517DF4005AC17D /* ValidatorTestCase.m */; };
@@ -54,6 +56,9 @@
 		AC13D38D14476F0E004BAB74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AC13D3AB14476F0E004BAB74 /* ActiveModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC1748081562EA2900A56648 /* NSError+ValidationErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSError+ValidationErrors.h"; path = "ActiveModel/NSExtensions/NSError+ValidationErrors.h"; sourceTree = SOURCE_ROOT; };
+		AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSError+ValidationErrors.m"; path = "ActiveModel/NSExtensions/NSError+ValidationErrors.m"; sourceTree = SOURCE_ROOT; };
+		AC17480C1562EF5500A56648 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AC23542D15502B62005AC17D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		AC23543115502E05005AC17D /* NumericalityValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumericalityValidatorTest.h; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.h; sourceTree = SOURCE_ROOT; };
 		AC23543215502E05005AC17D /* NumericalityValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumericalityValidatorTest.m; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.m; sourceTree = SOURCE_ROOT; };
@@ -107,6 +112,7 @@
 			files = (
 				AC13D38C14476F0E004BAB74 /* UIKit.framework in Frameworks */,
 				AC13D38E14476F0E004BAB74 /* Foundation.framework in Frameworks */,
+				AC17480D1562EF5500A56648 /* CoreData.framework in Frameworks */,
 				AC13D39014476F0E004BAB74 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +154,7 @@
 			children = (
 				AC13D38B14476F0E004BAB74 /* UIKit.framework */,
 				AC13D38D14476F0E004BAB74 /* Foundation.framework */,
+				AC17480C1562EF5500A56648 /* CoreData.framework */,
 				AC13D38F14476F0E004BAB74 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -256,6 +263,8 @@
 			children = (
 				AC6F9E7B144A504A006BDA00 /* NSObject+Blank.h */,
 				AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */,
+				AC1748081562EA2900A56648 /* NSError+ValidationErrors.h */,
+				AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */,
 			);
 			name = NSExtensions;
 			sourceTree = "<group>";
@@ -431,6 +440,7 @@
 				AC2354491551B746005AC17D /* NSNumber+OMNumericalityValidator.m in Sources */,
 				AC23544D1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m in Sources */,
 				AC2354501552DB51005AC17D /* OMActiveModel+OMValidator.m in Sources */,
+				AC17480A1562EA2900A56648 /* NSError+ValidationErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

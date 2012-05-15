@@ -76,7 +76,7 @@ static NSMutableDictionary *validations = nil;
         [NSException raise:NSInvalidArgumentException format:@"You must provide at least one validator to apply."];
     }
     
-    NSArray *propertySet;
+    NSArray *propertySet = nil;
     
     if ( [properties isBlank] )
     {
@@ -91,7 +91,7 @@ static NSMutableDictionary *validations = nil;
         propertySet = (NSArray *) properties;
     }
     
-    if (propertySet)
+    if ( propertySet )
     {
         // add the validators to the validations array for this class
         for (Class validator in validators)
@@ -100,9 +100,8 @@ static NSMutableDictionary *validations = nil;
             {
                 OMValidator *myValidator = [[validator alloc] initWithDictionary:options];
                 NSMutableArray *validationsForKey = [self validatorsForKey:property];
-
                 [validationsForKey addObject:myValidator];
-
+                [myValidator release];
             }
         }
 
@@ -211,7 +210,7 @@ static NSMutableDictionary *validations = nil;
 
     for (NSString *key in validationsForSelf)
     {
-        NSError *error;// = [NSError errorWithDomain:@"dotcom" code:0 userInfo:nil];
+        NSError *error = nil;
         NSObject *value = [self valueForKey:key];
 
         if ( ! [self validateValue:&value forKey:key error:&error] )
@@ -230,28 +229,40 @@ static NSMutableDictionary *validations = nil;
 
 
 /*!
+ * To implement custom validation methods on a model,
+ * Per Apple's "Core Data Programming Guide":
+ * "If you want to implement logic in addition to the constraints you provide in
+ * the managed object model, you should not override validateValue:forKey:error:.
+ * Instead you should implement methods of the form validate<Key>:error:.
+ * https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
+ *
  * Per Apple's "Key-Value Coding Programming Guide":
  * "Key-value coding does not perform validation automatically. It is, in
  * general, your application’s responsibility to invoke the validation methods."
- * (https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/Validation.html#//apple_ref/doc/uid/20002173-SW1)
+ * https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/Validation.html#//apple_ref/doc/uid/20002173-SW1
  */
 - (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
 {
     // invoke the superclass validateValue:forKey:error:, to take advantage
     // of built-in subsequent invocation of validate<Key>:error: methods
-    BOOL valid = [super validateValue:ioValue forKey:inKey error:outError];
-    NSArray *validators = [[self class] validatorsForKey:inKey];
-
-    for (OMValidator *validator in validators)
+    if ( [super validateValue:ioValue forKey:inKey error:outError] )
     {
-        if ( ! [validator validateValue:ioValue error:outError] )
+        NSArray *validators = [[self class] validatorsForKey:inKey];
+
+        for (OMValidator *validator in validators)
         {
-            valid = NO;
-            // TODO: build up error(s) structure per KVV guidelines
+            if ( ! [validator validateValue:ioValue error:outError] )
+            {
+                return NO;
+            }
         }
     }
+    else
+    {
+        return NO;
+    }
 
-    return valid;
+    return YES;
 }
 
 
