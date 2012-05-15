@@ -33,28 +33,22 @@
 
 
 /*!
- * @brief Triggers validations and returns YES if errors were added to the object, else NO
+ * @brief Triggers validations and returns YES if any validation fails, else NO
  */
 - (BOOL)isInvalid;
 
 
 
 /*!
- * @brief Triggers validations and returns YES if no errors were added to the object, else NO
+ * @brief Triggers validations and returns YES if all validations pass, else NO
  */
 - (BOOL)isValid;
 
 
 
-- (void)setErrorMessage:(NSString *)message forKey:(NSString *)key;
-
-
-
 /*!
- * @brief Executes all validators defined for the model and updates the errors
- * array accordingly.
- */
-- (void)validate;
+ * @brief Executes all validators defined for the model. See isValid. */
+- (BOOL)validate;
 
 
 

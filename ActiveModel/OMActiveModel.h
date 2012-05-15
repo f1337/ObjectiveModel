@@ -28,13 +28,6 @@
 
 
 @interface OMActiveModel : NSObject
-{
-    NSMutableDictionary *errors;
-}
-
-
-
-@property (readonly) NSMutableDictionary *errors;
 
 
 

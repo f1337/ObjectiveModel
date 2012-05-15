@@ -31,29 +31,4 @@
 
 
 
-@synthesize errors;
-
-
-
-- (id)init
-{
-    if ( (self = [super init]) )
-    {
-        errors = [[NSMutableDictionary alloc] init];
-    }
-
-    return self;
-}
-
-
-
-- (void)dealloc
-{
-    [errors release];
-
-    [super dealloc];
-}
-
-
-
 @end

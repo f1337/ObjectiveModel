@@ -191,47 +191,21 @@ static NSMutableDictionary *validations = nil;
 
 - (BOOL)isInvalid
 {
-    [self validate];
-    return ([errors count] ? YES : NO);
+    return (! [self isValid]);
 }
 
 
 
 - (BOOL)isValid
 {
-    return (! [self isInvalid]);
+    return [self validate];
 }
 
 
 
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    NSLog(@"observeValueForKeyPath: %@ ofObject: %@ change: %@ context: %@", keyPath, object, change, context);
-//    // EXPERIMENTAL: auto-validate changed property
-//    // FIXME:
-//    // removeObjectForKey:keyPath causes collisions for keyPaths with multiple validators
-//    [errors removeObjectForKey:keyPath];
-//    // execute validator
-//    OMValidator *validator = (OMValidator *)context;
-//    [validator validate:self withProperty:keyPath andValue:[self valueForKeyPath:keyPath]];
-//    NSLog(@"[%@ validate:%@ withProperty:%@ andValue:%@]", validator, self, keyPath, [self valueForKeyPath:keyPath]);
-//    NSLog(@"errors for keypath: %@", [errors objectForKey:keyPath]);
-//}
-
-
-
-- (void)setErrorMessage:(NSString *)message forKey:(NSString *)key
+// TODO: move into isValid?
+- (BOOL)validate
 {
-    [errors setObject:[NSString stringWithFormat:@"%@ %@", key, message] forKey:key];
-}
-
-
-
-- (void)validate
-{
-    // empty errors dictionary
-    [errors removeAllObjects];
-    
     // iterate through validations for this model
     NSDictionary *validationsForSelf = [[self class] validatorsForSelf];
 
@@ -239,13 +213,14 @@ static NSMutableDictionary *validations = nil;
     {
         NSError *error;// = [NSError errorWithDomain:@"dotcom" code:0 userInfo:nil];
         NSObject *value = [self valueForKey:key];
+
         if ( ! [self validateValue:&value forKey:key error:&error] )
         {
-            // TODO: dispatch delegate method
-            [self setErrorMessage:@"failed" forKey:key];
+            return NO;
         }
     }
-    
+
+    return YES;
 }
 
 
@@ -254,6 +229,12 @@ static NSMutableDictionary *validations = nil;
 
 
 
+/*!
+ * Per Apple's "Key-Value Coding Programming Guide":
+ * "Key-value coding does not perform validation automatically. It is, in
+ * general, your application’s responsibility to invoke the validation methods."
+ * (https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/Validation.html#//apple_ref/doc/uid/20002173-SW1)
+ */
 - (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
 {
     // invoke the superclass validateValue:forKey:error:, to take advantage
