@@ -57,7 +57,7 @@
 
 
 
-#pragma mark - TESTS
+#pragma mark - TRANSLITERATED RoR TESTS
 
 
 
@@ -116,6 +116,10 @@
     [model setFirstName:nil];
     [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
 }
+
+
+
+#pragma mark - TESTS
 
 
 

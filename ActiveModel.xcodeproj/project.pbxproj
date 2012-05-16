@@ -37,6 +37,7 @@
 		AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E74144A4F6D006BDA00 /* BlankTest.m */; };
 		AC6F9E7D144A504A006BDA00 /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */; };
 		AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */; };
+		AC7816FA1563FCCC009B5B54 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7816F71563FA6F009B5B54 /* Topic.m */; };
 		ACAA50B215631E1000111FBD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC17480C1562EF5500A56648 /* CoreData.framework */; };
 		ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC78531561A8D400B29DFE /* OMValidatorTest.m */; };
 /* End PBXBuildFile section */
@@ -81,7 +82,7 @@
 		AC672F28144889FE00BA34CA /* OMActiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMActiveModel.m; path = ActiveModel/OMActiveModel.m; sourceTree = SOURCE_ROOT; };
 		AC672F29144889FE00BA34CA /* ActiveModelAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveModelAppDelegate.h; path = ActiveModel/ActiveModelAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		AC672F2A144889FE00BA34CA /* ActiveModelAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveModelAppDelegate.m; path = ActiveModel/ActiveModelAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		AC672F2B144889FE00BA34CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Person.h; path = ActiveModel/Person.h; sourceTree = SOURCE_ROOT; };
+		AC672F2B144889FE00BA34CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = ActiveModel/Person.h; sourceTree = SOURCE_ROOT; };
 		AC672F2C144889FE00BA34CA /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = ActiveModel/Person.m; sourceTree = SOURCE_ROOT; };
 		AC672F2D144889FE00BA34CA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ActiveModel/RootViewController.h; sourceTree = SOURCE_ROOT; };
 		AC672F2E144889FE00BA34CA /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ActiveModel/RootViewController.m; sourceTree = SOURCE_ROOT; };
@@ -102,6 +103,8 @@
 		AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Blank.m"; path = "ActiveModel/NSExtensions/NSObject+Blank.m"; sourceTree = SOURCE_ROOT; };
 		AC732422144CBD1000CF9DE8 /* OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMNumericalityValidator.h; path = ActiveModel/validators/OMNumericalityValidator.h; sourceTree = SOURCE_ROOT; };
 		AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMNumericalityValidator.m; path = ActiveModel/validators/OMNumericalityValidator.m; sourceTree = SOURCE_ROOT; };
+		AC7816F61563FA6F009B5B54 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = ActiveModelTests/Models/Topic.h; sourceTree = SOURCE_ROOT; };
+		AC7816F71563FA6F009B5B54 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = ActiveModelTests/Models/Topic.m; sourceTree = SOURCE_ROOT; };
 		ACEC78521561A8D400B29DFE /* OMValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMValidatorTest.h; path = ActiveModelTests/TestCases/Validators/OMValidator/OMValidatorTest.h; sourceTree = SOURCE_ROOT; };
 		ACEC78531561A8D400B29DFE /* OMValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMValidatorTest.m; path = ActiveModelTests/TestCases/Validators/OMValidator/OMValidatorTest.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -307,6 +310,8 @@
 			children = (
 				AC672F2B144889FE00BA34CA /* Person.h */,
 				AC672F2C144889FE00BA34CA /* Person.m */,
+				AC7816F61563FA6F009B5B54 /* Topic.h */,
+				AC7816F71563FA6F009B5B54 /* Topic.m */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */,
 				AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */,
 				ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */,
+				AC7816FA1563FCCC009B5B54 /* Topic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

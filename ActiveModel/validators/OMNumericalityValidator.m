@@ -138,8 +138,27 @@
     }
 
     NSLog(@"prefrack");
-    // if value isn't a number, raise an error
-    NSNumber *numericValue = (NSNumber *)*ioValue;
+
+    // sanitize ioValue: should be a number or string
+    NSNumber *numericValue;
+    if ( [*ioValue isKindOfClass:[NSNumber class]] )
+    {
+        numericValue = (NSNumber *)*ioValue;
+    }
+    else if ( [*ioValue isKindOfClass:[NSString class]] )
+    {
+        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        numericValue = [f numberFromString:*ioValue];
+        [f release];
+    }
+    // if value isn't a number or string, fail validation
+    else
+    {
+        return NO;
+    }
+
+    // extra sanity check, in case value is nil
     if ( ! numericValue )
     {
         return NO;
