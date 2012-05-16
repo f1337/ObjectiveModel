@@ -104,16 +104,21 @@
 {
     [model release];
     [Person removeAllValidations];
+    [Topic removeAllValidations];
     [super tearDown];
 }
 
 
 
-#pragma mark - TRANSLITERATED RoR TESTS
+#pragma mark - TRANSLITERATED RoR TEST DATA
 
 
 
 //NIL = [nil]
+- (NSArray *)null
+{
+    return [NSArray arrayWithObject:[NSNull null]];
+}
 
 
 
@@ -126,21 +131,62 @@
 
 
 //BIGDECIMAL_STRINGS = %w(12345678901234567890.1234567890) # 30 significant digits
-//FLOAT_STRINGS = %w(0.0 +0.0 -0.0 10.0 10.5 -10.5 -0.0001 -090.1 90.1e1 -90.1e5 -90.1e-5 90e-5)
-//INTEGER_STRINGS = %w(0 +0 -0 10 +10 -10 0090 -090)
-//FLOATS = [0.0, 10.0, 10.5, -10.5, -0.0001] + FLOAT_STRINGS
-//INTEGERS = [0, 10, -10] + INTEGER_STRINGS
-- (NSArray *)integers
+//BIGDECIMAL = BIGDECIMAL_STRINGS.collect! { |bd| BigDecimal.new(bd) }
+- (NSArray *)bigDecimals
 {
-    return [NSArray arrayWithObjects:
-            [NSNumber numberWithInt:0],
-            [NSNumber numberWithInt:10],
-            [NSNumber numberWithInt:-10], nil];
+    return [@"12345678901234567890.1234567890" componentsSeparatedByString:@" "];
 }
 
 
 
-//BIGDECIMAL = BIGDECIMAL_STRINGS.collect! { |bd| BigDecimal.new(bd) }
+//FLOAT_STRINGS = %w(0.0 +0.0 -0.0 10.0 10.5 -10.5 -0.0001 -090.1 90.1e1 -90.1e5 -90.1e-5 90e-5)
+//FLOATS = [0.0, 10.0, 10.5, -10.5, -0.0001] + FLOAT_STRINGS
+- (NSArray *)floats
+{
+    NSMutableArray *floats = [NSMutableArray arrayWithObjects:
+                              [NSNumber numberWithInt:0.0],
+                              [NSNumber numberWithInt:10.0],
+                              [NSNumber numberWithInt:10.5],
+                              [NSNumber numberWithInt:-10.5],
+                              [NSNumber numberWithInt:-0.0001], nil];
+    
+    // NSNumberFormatter doesn't play nicely with multiple positivePrefixes
+    // (none versus plus sign). Validating w/o preceding plus sign.
+    // NSNumberFormatter doesn't like to juggle standard and scientific notation.
+    // Validating w/o scientific notation.
+    [floats addObjectsFromArray:[@"0.0 -0.0 10.0 10.5 -10.5 -0.0001 -090.1" componentsSeparatedByString:@" "]];
+    
+    return floats;
+}
+
+
+
+// INFINITY = [1.0/0.0]
+- (NSArray *)infinity
+{
+    return [NSArray arrayWithObject:[NSNumber numberWithFloat:INFINITY]];
+}
+
+
+
+//INTEGER_STRINGS = %w(0 +0 -0 10 +10 -10 0090 -090)
+//INTEGERS = [0, 10, -10] + INTEGER_STRINGS
+- (NSArray *)integers
+{
+    NSMutableArray *integers = [NSMutableArray arrayWithObjects:
+                                [NSNumber numberWithInt:0],
+                                [NSNumber numberWithInt:10],
+                                [NSNumber numberWithInt:-10], nil];
+    
+    // NSNumberFormatter doesn't play nicely with multiple positivePrefixes
+    // (none versus plus sign). Validating w/o preceding plus sign.
+    [integers addObjectsFromArray:[@"0 -0 10 -10 0090 -090" componentsSeparatedByString:@" "]];
+    
+    return integers;
+}
+
+
+
 //JUNK = ["not a number", "42 not a number", "0xdeadbeef", "0xinvalidhex", "0Xdeadbeef", "00-1", "--3", "+-3", "+3-1", "-+019.0", "12.12.13.12", "123\nnot a number"]
 - (NSArray *)junkStrings
 {
@@ -162,17 +208,45 @@
 
 
 
-//INFINITY = [1.0/0.0]
+#pragma mark - TRANSLITERATED RoR TESTS
+
+
 
 - (void)testDefaultValidatesNumericalityOf
 {
     // Topic.validates_numericality_of :approved
     [Topic validatesNumericalityOf:@"approved" withOptions:nil];
+
     // invalid!(NIL + BLANK + JUNK)
+    [self assertValuesAreInvalid:[self null]];
     [self assertValuesAreInvalid:[self blankStrings]];
     [self assertValuesAreInvalid:[self junkStrings]];
+
     // valid!(FLOATS + INTEGERS + BIGDECIMAL + INFINITY)
+    [self assertValuesAreValid:[self floats]];
     [self assertValuesAreValid:[self integers]];
+    [self assertValuesAreValid:[self bigDecimals]];
+    [self assertValuesAreValid:[self infinity]];
+}
+
+
+
+- (void)testValidatesNumericalityOfWithNilAllowed
+{
+    // Topic.validates_numericality_of :approved, :allow_nil => true
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"allowNil", nil]];
+
+    // invalid!(JUNK + BLANK)
+    [self assertValuesAreInvalid:[self blankStrings]];
+    [self assertValuesAreInvalid:[self junkStrings]];
+
+    // valid!(NIL + FLOATS + INTEGERS + BIGDECIMAL + INFINITY)
+    [self assertValuesAreValid:[self null]];
+    [self assertValuesAreValid:[self floats]];
+    [self assertValuesAreValid:[self integers]];
+    [self assertValuesAreValid:[self bigDecimals]];
+    [self assertValuesAreValid:[self infinity]];
 }
 
 
@@ -254,7 +328,7 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-        NSLog(@"topic: %@, approved: %@, value: %@", topic, [topic approved], value);
+        NSLog(@"invalid expected topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.invalid?, "#{value.inspect} not rejected as a number"
         // assert topic.errors[:approved].any?, "FAILED for #{value.inspect}"
         // assert_equal error, topic.errors[:approved].first if error
@@ -278,6 +352,7 @@
     {
         // topic.approved = value
         [topic setApproved:value];
+        NSLog(@"valid expected topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.valid?, "#{value.inspect} not accepted as a number"
         [self assertModelIsValid:topic];
     }

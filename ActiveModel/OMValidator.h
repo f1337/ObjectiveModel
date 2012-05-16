@@ -46,8 +46,9 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (NSString *)message;
-- (BOOL)validateValue:(id *)ioValue;
-- (BOOL)validateValue:(id *)ioValue error:(NSError **)outError;
+- (BOOL)validateValue:(NSObject *)value;
+// TODO: we don't use the error pointer anymore, factor out:
+- (BOOL)validateValue:(NSObject *)value error:(NSError **)outError;
 
 
 

@@ -128,10 +128,10 @@
 
 
 
-- (BOOL)validateValue:(id *)ioValue;
+- (BOOL)validateValue:(NSObject *)value
 {
     // if allowNil and value is nil, skip validation
-    if ( allowNil && (*ioValue == nil) )
+    if ( allowNil && (value == nil) )
     {
         [NSException raise:@"UNREACHABLE" format:@"This code should be unreachable, by virtue of superclass' nil/blank checks."];
         return YES;
@@ -139,17 +139,19 @@
 
     NSLog(@"prefrack");
 
-    // sanitize ioValue: should be a number or string
+    // sanitize value: should be a number or string
     NSNumber *numericValue;
-    if ( [*ioValue isKindOfClass:[NSNumber class]] )
+    NSString *stringValue;
+    if ( [value isKindOfClass:[NSNumber class]] )
     {
-        numericValue = (NSNumber *)*ioValue;
+        numericValue = (NSNumber *)value;
     }
-    else if ( [*ioValue isKindOfClass:[NSString class]] )
+    else if ( [value isKindOfClass:[NSString class]] )
     {
+        stringValue = (NSString *)value;
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
-        numericValue = [f numberFromString:*ioValue];
+        numericValue = [f numberFromString:stringValue];
         [f release];
     }
     // if value isn't a number or string, fail validation
@@ -158,11 +160,14 @@
         return NO;
     }
 
-    // extra sanity check, in case value is nil
+    // extra sanity check, in case casting to numericValue ends in nil
+    // in theory, the app should never reach this code,
+    // but in testing it does, and i'm not sure why yet. ~mrf
     if ( ! numericValue )
     {
         return NO;
     }
+
     NSLog(@"postfrack");
 
     for (NSString *option in _filteredOptions)

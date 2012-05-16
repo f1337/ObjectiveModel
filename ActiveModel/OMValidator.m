@@ -96,14 +96,14 @@
 
 
 
-- (BOOL)validateValue:(id *)ioValue error:(NSError **)outError
+- (BOOL)validateValue:(NSObject *)value error:(NSError **)outError
 {
     if (
-        // skip validation if value is nil and allowNil is true
-        ( allowNil && *ioValue == nil )
+        // skip validation if value is nil or NSNull and allowNil is true
+        ( allowNil && (value == nil || [value isKindOfClass:[NSNull class]]) )
         || 
         // skip validation if value is blank and allowBlank is true
-        ( allowBlank && [*ioValue isBlank] )
+        ( allowBlank && [value isBlank] )
     )
     {
         NSLog(@"skipping validation for: %@", self);
@@ -111,13 +111,13 @@
     }
     else
     {
-        return [self validateValue:ioValue];
+        return [self validateValue:value];
     }
 }
 
 
 
-- (BOOL)validateValue:(id *)ioValue
+- (BOOL)validateValue:(NSObject *)value
 {
     [NSException raise:@"Method not implemented" format:@"Method validateValue: should be implemented in Validator subclass."];
     return NO;

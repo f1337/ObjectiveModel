@@ -74,7 +74,7 @@
     NSError *error = nil;
     
     // perform validation
-    STAssertTrue([model isValid:&error], @"Model (%@) expected to be valid, but returned invalid.", model);
+    STAssertTrue([model isValid:&error], @"Model (%@) expected to be valid, but returned invalid. Error: %@", model, error);
     STAssertNil(error, @"Error expected to be nil.");
 }
 

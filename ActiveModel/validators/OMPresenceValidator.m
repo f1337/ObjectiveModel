@@ -46,9 +46,9 @@
 
 
 
-- (BOOL)validateValue:(id *)ioValue;
+- (BOOL)validateValue:(NSObject *)value
 {
-    if ( *ioValue == nil || [*ioValue isBlank] )
+    if ( value == nil || [value isBlank] )
     {
         return NO;
     }

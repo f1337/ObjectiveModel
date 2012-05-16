@@ -259,7 +259,7 @@ static NSMutableDictionary *validations = nil;
 
         for (OMValidator *validator in validators)
         {
-            if ( ! [validator validateValue:ioValue error:outError] )
+            if ( ! [validator validateValue:*ioValue error:outError] )
             {
                 // don't return immediately, or we won't get all the errors
                 valid = NO;
