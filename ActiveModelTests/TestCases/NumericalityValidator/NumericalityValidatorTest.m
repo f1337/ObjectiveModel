@@ -24,6 +24,7 @@
 
 
 #import "NumericalityValidatorTest.h"
+#import "OMActiveModel+OMNumericalityValidator.h"
 
 
 
@@ -38,7 +39,7 @@
 - (void)setUp
 {
     [super setUp];
-    model = [[Payee alloc] init];
+    model = [[Person alloc] init];
 }
 
 
@@ -46,6 +47,7 @@
 - (void)tearDown
 {
     [model release];
+//    [Person removeAllValidations];
     [super tearDown];
 }
 
@@ -57,7 +59,8 @@
 
 - (void)testAnUnsetOrNilValueForTwoShouldBeInvalid
 {
-    [self assertPropertyIsInvalid:@"two" forModel:model];
+//    [Person validatesNumericalityOf:@"two" withOptions:nil];
+    [self assertPropertyIsInvalid:@"two" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 
@@ -65,7 +68,7 @@
 - (void)testIfTwoEquals0ItShouldBeInvalid
 {
     [model setTwo:[NSNumber numberWithInt:0]];
-    [self assertPropertyIsInvalid:@"two" forModel:model];
+    [self assertPropertyIsInvalid:@"two" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 
@@ -81,7 +84,7 @@
 - (void)testIfTwoEquals15ItShouldBeInvalid
 {
     [model setTwo:[NSNumber numberWithInt:15]];
-    [self assertPropertyIsInvalid:@"two" forModel:model];
+    [self assertPropertyIsInvalid:@"two" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 
@@ -89,7 +92,7 @@
 - (void)testIfThreeEquals1ItShouldBeInvalid
 {
     [model setThree:[NSNumber numberWithInt:1]];
-    [self assertPropertyIsInvalid:@"three" forModel:model];
+    [self assertPropertyIsInvalid:@"three" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 
@@ -105,7 +108,7 @@
 - (void)testIfThreeEquals15ItShouldBeInvalid
 {
     [model setThree:[NSNumber numberWithInt:15]];
-    [self assertPropertyIsInvalid:@"three" forModel:model];
+    [self assertPropertyIsInvalid:@"three" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 

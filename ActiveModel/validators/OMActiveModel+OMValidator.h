@@ -35,20 +35,28 @@
 /*!
  * @brief Triggers validations and returns YES if any validation fails, else NO
  */
-- (BOOL)isInvalid;
+- (BOOL)isInvalid:(NSError **)errors;
 
 
 
 /*!
  * @brief Triggers validations and returns YES if all validations pass, else NO
  */
-- (BOOL)isValid;
+- (BOOL)isValid:(NSError **)errors;
 
 
 
 /*!
- * @brief Executes all validators defined for the model. See isValid. */
-- (BOOL)validate;
+ * @brief Executes all validators defined for the model. See isValid.
+ */
+- (BOOL)validate:(NSError **)errors;
+
+
+
+/*!
+ * @brief Removes all validators defined for the model.
+ */
++ (void)removeAllValidations;
 
 
 

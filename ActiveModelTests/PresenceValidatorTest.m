@@ -1,6 +1,10 @@
 /*!
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
+ * Portions of this software were transliterated from Ruby on Rails.
+ * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/presence_validation_test.rb
+ * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -24,6 +28,7 @@
 
 
 #import "PresenceValidatorTest.h"
+#import <CoreData/CoreData.h>
 
 
 
@@ -38,7 +43,8 @@
 - (void)setUp
 {
     [super setUp];
-    model = [[Payee alloc] init];
+    [Person removeAllValidations];
+    model = [[Person alloc] init];
 }
 
 
@@ -55,31 +61,87 @@
 
 
 
-// TODO: implement RoR validation tests:
-// https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/presence_validation_test.rb
+- (void)testAcceptsMultipleProperties
+{
+    // define validation
+    [Person validatesPresenceOf:[NSArray arrayWithObjects:@"firstName", @"lastName", nil] withOptions:nil];
+
+    // assert both properties invalid
+    [self assertModelIsInvalid:model withErrorMessage:@"cannot be blank" forKeys:[NSArray arrayWithObjects:@"firstName", @"lastName", nil]];
+
+    // assert one property invalid
+    [model setFirstName:@"Robert"];
+    [model setLastName:@"     "];
+    [self assertModelIsInvalid:model withErrorMessage:@"cannot be blank" forKeys:[NSArray arrayWithObjects:@"lastName", nil]];
+
+    // assert both properties valid
+    [model setLastName:@"Tabula Rasa"];
+    [self assertModelIsValid:model];
+}
+
+
+
+- (void)testAcceptsSingleProperty
+{
+    // define validation
+    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+
+    // assert property is invalid
+    [self assertModelIsInvalid:model withErrorMessage:@"cannot be blank" forKeys:[NSArray arrayWithObjects:@"firstName", nil]];
+
+    // assert property is valid
+    [model setFirstName:@"Yoda"];
+    [self assertModelIsValid:model];
+}
+
+
+
+- (void)testAcceptsCustomErrorUsingQuotes
+{
+    // define custom message
+    NSString *message = @"This string contains 'single' and \"double\" quotes";
+    // define validation
+    [Person validatesPresenceOf:@"firstName"
+                    withOptions:[NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil]];
+    
+    // assert property is invalid
+    [self assertModelIsInvalid:model withErrorMessage:message forKeys:[NSArray arrayWithObjects:@"firstName", nil]];
+}
 
 
 
 - (void)testIfValueIsNilItShouldBeInvalid
 {
-    [model setName:nil];
-    [self assertPropertyIsInvalid:@"name" forModel:model];
+    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [model setFirstName:nil];
+    [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
 }
 
 
 
 - (void)testIfValueIsEmptyStringItShouldBeInvalid
 {
-    [model setName:@""];
-    [self assertPropertyIsInvalid:@"name" forModel:model];
+    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [model setFirstName:@""];
+    [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
 }
 
 
 
-- (void)testIfValueIsNotEmptyItShouldBeValid
+- (void)testIfValueIsBlankStringItShouldBeInvalid
 {
-    [model setName:@"Winnie the Pooh"];
-    [self assertPropertyIsValid:@"name" forModel:model];
+    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [model setFirstName:@"     "];
+    [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
+}
+
+
+
+- (void)testIfValueIsNotBlankItShouldBeValid
+{
+    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [model setFirstName:@"Winnie the Pooh"];
+    [self assertPropertyIsValid:@"firstName" forModel:model];
 }
 
 

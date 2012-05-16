@@ -45,6 +45,7 @@
 
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)message;
 - (BOOL)validateValue:(id *)ioValue;
 - (BOOL)validateValue:(id *)ioValue error:(NSError **)outError;
 

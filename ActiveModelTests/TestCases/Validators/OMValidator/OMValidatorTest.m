@@ -38,7 +38,7 @@
 - (void)setUp
 {
     [super setUp];
-    model = [[Payee alloc] init];
+    model = [[Person alloc] init];
 }
 
 
@@ -46,6 +46,7 @@
 - (void)tearDown
 {
     [model release];
+//    [Person removeAllValidations];
     [super tearDown];
 }
 
@@ -72,7 +73,7 @@
 
 - (void)testAnUnsetValueForAllowBlankShouldBeInvalid
 {
-    [self assertPropertyIsInvalid:@"allowBlank" forModel:model];
+    [self assertPropertyIsInvalid:@"allowBlank" forModel:model withErrorMessage:@"is invalid"];
 }
 
 
@@ -80,7 +81,7 @@
 - (void)testANilValueForAllowBlankShouldBeInvalid
 {
     [model setAllowBlank:nil];
-    [self assertPropertyIsInvalid:@"allowBlank" forModel:model];
+    [self assertPropertyIsInvalid:@"allowBlank" forModel:model withErrorMessage:@"is invalid"];
 }
 
 

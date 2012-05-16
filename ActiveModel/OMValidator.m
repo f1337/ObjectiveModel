@@ -24,7 +24,6 @@
 
 
 #import "OMValidator.h"
-#import "NSError+ValidationErrors.h"
 #import <CoreData/CoreData.h>
 
 
@@ -70,6 +69,13 @@
 
 
 
+- (NSString *)message
+{
+    return _message;
+}
+
+
+
 - (void)setOptions:(NSDictionary *)options
 {
     if ( _options != options )
@@ -105,31 +111,7 @@
     }
     else
     {
-        NSLog(@"applying validation for: %@", self);
-        if ( [self validateValue:ioValue] )
-        {
-            NSLog(@"validation passed for: %@", self);
-            return YES;
-        }
-        else
-        {
-            NSLog(@"validation failed for: %@ with message: %@", self, _message);
-
-            // Error structured per CoreData guidelines:
-            // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
-            // don't create an error if none was requested
-            if (outError != NULL)
-            {
-                NSDictionary *userInfoDict = [NSDictionary dictionaryWithObject:_message
-                                                                         forKey:NSLocalizedDescriptionKey];
-                *outError = [NSError errorWithOriginalError:*outError 
-                                                     domain:@"OMValidator" 
-                                                       code:0 
-                                                   userInfo:userInfoDict];
-            }
-
-            return NO;
-        }
+        return [self validateValue:ioValue];
     }
 }
 

@@ -24,6 +24,7 @@
 
 
 #import "ValidatorTestCase.h"
+#import <CoreData/CoreData.h>
 
 
 
@@ -32,6 +33,50 @@
 
 
 #pragma mark - CUSTOM ASSERTIONS
+
+
+
+- (void)assertModelIsInvalid:(OMActiveModel *)model withErrorMessage:(NSString *)message forKeys:(NSArray *)keys
+{
+    NSError *error = nil;
+    
+    // perform validation
+    STAssertTrue([model isInvalid:&error], @"Model (%@) expected to be invalid, but returned valid.", model);
+    STAssertNotNil(error, @"Error expected to be non-nil.");
+    
+    // handle multiple errors
+    if ( [error code] == NSValidationMultipleErrorsError )
+    {
+        NSArray *errors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+        STAssertTrue([errors count], @"Expected a non-empty errors array");
+        // sanity check the errors count against the keys count
+        STAssertEquals([errors count], [keys count], @"Expected errors count to equal keys count.");
+        
+        for (NSUInteger i = 0; i < [keys count]; i++)
+        {
+            NSError *subError = [errors objectAtIndex:i];
+            STAssertTrue([[[subError userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:i]], @"Unexpected NSValidationErrorKey value: %@", [[subError userInfo] objectForKey:NSValidationKeyErrorKey]);
+            STAssertTrue([[subError localizedDescription] isEqualToString:message], @"Unexpected error message from model: %@", error);
+        }
+    }
+    // handle single error
+    else
+    {
+        STAssertTrue([[[error userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:0]], @"Unexpected NSValidationErrorKey value: %@", [[error userInfo] objectForKey:NSValidationKeyErrorKey]);
+        STAssertTrue([[error localizedDescription] isEqualToString:message], @"Unexpected error message from model: %@", error);
+    }
+}
+
+
+
+- (void)assertModelIsValid:(OMActiveModel *)model
+{
+    NSError *error = nil;
+    
+    // perform validation
+    STAssertTrue([model isValid:&error], @"Model (%@) expected to be valid, but returned invalid.", model);
+    STAssertNil(error, @"Error expected to be nil.");
+}
 
 
 
@@ -47,9 +92,37 @@
 - (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model
 {
     id value = [model valueForKey:property];
+    STAssertFalse([model validateValue:&value forKey:property error:NULL], @"Model property '%@' is valid, but expected to be invalid.", property);
+}
+
+
+
+- (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model withErrorMessage:(NSString *)message
+{
+    id value = [model valueForKey:property];
     NSError *error = nil;
     STAssertFalse([model validateValue:&value forKey:property error:&error], @"Model property '%@' is valid, but expected to be invalid.", property);
-    NSLog(@"assertPropertyIsInvalid error: %@", error);
+    STAssertNotNil(error, @"Error expected to be non-nil.");
+    
+    // handle multiple errors
+    if ( [error code] == NSValidationMultipleErrorsError )
+    {
+        NSArray *errors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+        STAssertTrue([errors count], @"Expected a non-empty errors array");
+        
+        for (NSUInteger i = 0; i < [errors count]; i++)
+        {
+            NSError *subError = [errors objectAtIndex:i];
+            STAssertTrue([[[subError userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:property], @"Unexpected NSValidationErrorKey value: %@", [[subError userInfo] objectForKey:NSValidationKeyErrorKey]);
+            STAssertTrue([[subError localizedDescription] isEqualToString:message], @"Unexpected error message from model: %@", error);
+        }
+    }
+    // handle single error
+    else
+    {
+        STAssertTrue([[[error userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:property], @"Unexpected NSValidationErrorKey value: %@", [[error userInfo] objectForKey:NSValidationKeyErrorKey]);
+        STAssertTrue([[error localizedDescription] isEqualToString:message], @"Unexpected error message from model: %@", error);
+    }
 }
 
 

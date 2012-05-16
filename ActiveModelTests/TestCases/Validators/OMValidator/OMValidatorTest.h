@@ -23,13 +23,13 @@
 
 
 
-#import "Payee.h"
+#import "Person.h"
 #import "ValidatorTestCase.h"
 
 
 
 @interface OMValidatorTest : ValidatorTestCase
 {
-    Payee *model;    
+    Person *model;    
 }
 @end

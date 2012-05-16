@@ -26,7 +26,7 @@
 		AC672F26144889ED00BA34CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC672F24144889EC00BA34CA /* InfoPlist.strings */; };
 		AC672F2F144889FF00BA34CA /* OMActiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F28144889FE00BA34CA /* OMActiveModel.m */; };
 		AC672F30144889FF00BA34CA /* ActiveModelAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2A144889FE00BA34CA /* ActiveModelAppDelegate.m */; };
-		AC672F31144889FF00BA34CA /* Payee.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2C144889FE00BA34CA /* Payee.m */; };
+		AC672F31144889FF00BA34CA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2C144889FE00BA34CA /* Person.m */; };
 		AC672F32144889FF00BA34CA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F2E144889FE00BA34CA /* RootViewController.m */; };
 		AC672F3814488A2300BA34CA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3414488A2300BA34CA /* MainWindow.xib */; };
 		AC672F3914488A2300BA34CA /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3614488A2300BA34CA /* RootViewController.xib */; };
@@ -37,6 +37,7 @@
 		AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E74144A4F6D006BDA00 /* BlankTest.m */; };
 		AC6F9E7D144A504A006BDA00 /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */; };
 		AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */; };
+		ACAA50B215631E1000111FBD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC17480C1562EF5500A56648 /* CoreData.framework */; };
 		ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC78531561A8D400B29DFE /* OMValidatorTest.m */; };
 /* End PBXBuildFile section */
 
@@ -80,8 +81,8 @@
 		AC672F28144889FE00BA34CA /* OMActiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMActiveModel.m; path = ActiveModel/OMActiveModel.m; sourceTree = SOURCE_ROOT; };
 		AC672F29144889FE00BA34CA /* ActiveModelAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveModelAppDelegate.h; path = ActiveModel/ActiveModelAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		AC672F2A144889FE00BA34CA /* ActiveModelAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveModelAppDelegate.m; path = ActiveModel/ActiveModelAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		AC672F2B144889FE00BA34CA /* Payee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Payee.h; path = ActiveModel/Payee.h; sourceTree = SOURCE_ROOT; };
-		AC672F2C144889FE00BA34CA /* Payee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Payee.m; path = ActiveModel/Payee.m; sourceTree = SOURCE_ROOT; };
+		AC672F2B144889FE00BA34CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; name = Person.h; path = ActiveModel/Person.h; sourceTree = SOURCE_ROOT; };
+		AC672F2C144889FE00BA34CA /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = ActiveModel/Person.m; sourceTree = SOURCE_ROOT; };
 		AC672F2D144889FE00BA34CA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ActiveModel/RootViewController.h; sourceTree = SOURCE_ROOT; };
 		AC672F2E144889FE00BA34CA /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ActiveModel/RootViewController.m; sourceTree = SOURCE_ROOT; };
 		AC672F3514488A2300BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ActiveModel/en.lproj/MainWindow.xib; sourceTree = SOURCE_ROOT; };
@@ -124,6 +125,7 @@
 				AC13D3AC14476F0E004BAB74 /* UIKit.framework in Frameworks */,
 				AC13D3AD14476F0E004BAB74 /* Foundation.framework in Frameworks */,
 				AC13D3AE14476F0E004BAB74 /* CoreGraphics.framework in Frameworks */,
+				ACAA50B215631E1000111FBD /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,8 +305,8 @@
 		ACF16CCC15502094002A4124 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				AC672F2B144889FE00BA34CA /* Payee.h */,
-				AC672F2C144889FE00BA34CA /* Payee.m */,
+				AC672F2B144889FE00BA34CA /* Person.h */,
+				AC672F2C144889FE00BA34CA /* Person.m */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -430,7 +432,7 @@
 				AC672F23144889DE00BA34CA /* main.m in Sources */,
 				AC672F2F144889FF00BA34CA /* OMActiveModel.m in Sources */,
 				AC672F30144889FF00BA34CA /* ActiveModelAppDelegate.m in Sources */,
-				AC672F31144889FF00BA34CA /* Payee.m in Sources */,
+				AC672F31144889FF00BA34CA /* Person.m in Sources */,
 				AC672F32144889FF00BA34CA /* RootViewController.m in Sources */,
 				AC6F9E511449CE84006BDA00 /* OMPresenceValidator.m in Sources */,
 				AC6F9E541449CEEB006BDA00 /* OMValidator.m in Sources */,

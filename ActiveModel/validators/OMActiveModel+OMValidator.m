@@ -24,6 +24,9 @@
 
 
 #import "OMActiveModel+OMValidator.h"
+#import <CoreData/CoreData.h>
+#import "NSError+ValidationErrors.h"
+
 
 
 
@@ -55,6 +58,13 @@ static NSMutableDictionary *validations = nil;
     {
         validations = [[NSMutableDictionary alloc] init];
     }
+}
+
+
+
++ (void)removeAllValidations
+{
+    [validations setObject:[NSMutableDictionary dictionary] forKey:self];
 }
 
 
@@ -188,38 +198,38 @@ static NSMutableDictionary *validations = nil;
 
 
 
-- (BOOL)isInvalid
+- (BOOL)isInvalid:(NSError **)errors
 {
-    return (! [self isValid]);
+    return (! [self isValid:errors]);
 }
 
 
 
-- (BOOL)isValid
+- (BOOL)isValid:(NSError **)errors
 {
-    return [self validate];
+    return [self validate:errors];
 }
 
 
 
 // TODO: move into isValid?
-- (BOOL)validate
+- (BOOL)validate:(NSError **)errors
 {
+    BOOL valid = YES;
+
     // iterate through validations for this model
     NSDictionary *validationsForSelf = [[self class] validatorsForSelf];
-
     for (NSString *key in validationsForSelf)
     {
-        NSError *error = nil;
         NSObject *value = [self valueForKey:key];
 
-        if ( ! [self validateValue:&value forKey:key error:&error] )
+        if ( ! [self validateValue:&value forKey:key error:errors] )
         {
-            return NO;
+            valid = NO;
         }
     }
 
-    return YES;
+    return valid;
 }
 
 
@@ -245,7 +255,10 @@ static NSMutableDictionary *validations = nil;
 {
     // invoke the superclass validateValue:forKey:error:, to take advantage
     // of built-in subsequent invocation of validate<Key>:error: methods
-    if ( [super validateValue:ioValue forKey:inKey error:outError] )
+    BOOL valid = [super validateValue:ioValue forKey:inKey error:outError];
+
+    // skip custom validation if superclass validation failed
+    if ( valid )
     {
         NSArray *validators = [[self class] validatorsForKey:inKey];
 
@@ -253,16 +266,36 @@ static NSMutableDictionary *validations = nil;
         {
             if ( ! [validator validateValue:ioValue error:outError] )
             {
-                return NO;
+                // don't return immediately, or we won't get all the errors
+                valid = NO;
+
+                // Error structured per CoreData guidelines:
+                // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
+                // don't create an error if none was requested
+                if (outError != NULL)
+                {
+                    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              // the property name that failed validation
+                                              inKey, NSValidationKeyErrorKey,
+                                              // wrap the ioValue in NSValue in order to
+                                              // safely handle scalars and objects alike
+                                              [NSValue valueWithPointer:*ioValue], NSValidationValueErrorKey,
+                                              // a reference to this model
+                                              self, NSValidationObjectErrorKey,
+                                              // the validation error message
+                                              [validator message], NSLocalizedDescriptionKey,
+                                              nil];
+
+                    *outError = [NSError errorWithOriginalError:*outError 
+                                                         domain:@"OMValidator" 
+                                                           code:NSManagedObjectValidationError 
+                                                       userInfo:userInfo];
+                }
             }
         }
     }
-    else
-    {
-        return NO;
-    }
 
-    return YES;
+    return valid;
 }
 
 

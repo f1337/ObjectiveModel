@@ -23,13 +23,13 @@
 
 
 
-#import "Payee.h"
+#import "Person.h"
 #import "ValidatorTestCase.h"
 
 
 
 @interface NumericalityValidatorTest : ValidatorTestCase
 {
-    Payee *model;    
+    Person *model;    
 }
 @end

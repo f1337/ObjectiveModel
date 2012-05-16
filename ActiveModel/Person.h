@@ -24,17 +24,23 @@
 
 
 #import "OMActiveModel.h"
-#import "OMValidator.h"
+
+
+@interface Person : OMActiveModel
 
 
 
-@interface ValidatorTestCase : SenTestCase
+@property (assign) NSString *allowBlank;
+@property (assign) NSString *allowNil;
+@property (assign) NSString *allowNilAndBlank;
 
+@property (assign) NSString *firstName;
+@property (assign) NSString *lastName;
 
-- (void)assertModelIsInvalid:(OMActiveModel *)model withErrorMessage:(NSString *)message forKeys:(NSArray *)keys;
-- (void)assertModelIsValid:(OMActiveModel *)model;
-- (void)assertPropertyIsValid:(NSString *)property forModel:(OMActiveModel *)model;
-- (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model withErrorMessage:(NSString *)message;
+@property (assign) NSString *name;
+@property (assign) NSNumber *ratio;
+@property (assign) NSNumber *two;
+@property (assign) NSNumber *three;
 
 
 
