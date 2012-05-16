@@ -39,6 +39,44 @@
 - (void)setUp
 {
     [super setUp];
+
+    [Person validatesNumericalityOf:[NSArray arrayWithObjects:@"two", @"three", @"ratio", nil]
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:1.1], @"greaterThan",
+                                   [NSNumber numberWithInt:0], @"greaterThanOrEqualTo",
+                                   [NSNumber numberWithInt:16], @"lessThan",
+                                   [NSNumber numberWithInt:20.50], @"lessThanOrEqualTo",
+                                   [NSNumber numberWithInt:25], @"notEqualTo",
+                                   nil]];
+    
+    // test even integer contraints
+    [Person validatesNumericalityOf:@"two"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:2], @"equalTo",
+                                   [NSNumber numberWithBool:YES], @"even",
+                                   [NSNumber numberWithInt:2], @"greaterThanOrEqualTo",
+                                   [NSNumber numberWithBool:YES], @"integer",
+                                   [NSNumber numberWithInt:2], @"lessThanOrEqualTo",
+                                   nil]];
+    
+    // test odd integer contraints & allowNil
+    [Person validatesNumericalityOf:@"three"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:3], @"equalTo",
+                                   [NSNumber numberWithInt:3], @"greaterThanOrEqualTo",
+                                   [NSNumber numberWithBool:YES], @"integer",
+                                   [NSNumber numberWithInt:3], @"lessThanOrEqualTo",
+                                   [NSNumber numberWithBool:YES], @"odd",
+                                   nil]];
+    
+    // test float <=> integer constraints
+    [Person validatesNumericalityOf:@"ratio"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithFloat:15.25], @"equalTo",
+                                   [NSNumber numberWithFloat:15.25], @"greaterThanOrEqualTo",
+                                   [NSNumber numberWithFloat:15.25], @"lessThanOrEqualTo",
+                                   nil]];
+
     model = [[Person alloc] init];
 }
 
@@ -47,7 +85,7 @@
 - (void)tearDown
 {
     [model release];
-//    [Person removeAllValidations];
+    [Person removeAllValidations];
     [super tearDown];
 }
 
@@ -59,7 +97,6 @@
 
 - (void)testAnUnsetOrNilValueForTwoShouldBeInvalid
 {
-//    [Person validatesNumericalityOf:@"two" withOptions:nil];
     [self assertPropertyIsInvalid:@"two" forModel:model withErrorMessage:@"is not a valid number"];
 }
 

@@ -76,11 +76,6 @@ static NSMutableDictionary *validations = nil;
  */
 + (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
 {
-    //    NSString *log = [NSString stringWithFormat:@"%@ validates %@ of %@ withOptions: %@", self, constraint, properties, options];
-    //    NSLog(@"%@", log);
-    //    NSLog(@"isMemberOfClass NSString?: %d", [properties isMemberOfClass:[NSString class]]);
-    //    NSLog(@"conformsToProtocol NSFastEnumeration?: %d", [[properties class] conformsToProtocol:@protocol(NSFastEnumeration)]);
-    
     if ( [validators isBlank] )
     {
         [NSException raise:NSInvalidArgumentException format:@"You must provide at least one validator to apply."];

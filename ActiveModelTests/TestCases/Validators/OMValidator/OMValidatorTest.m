@@ -24,6 +24,7 @@
 
 
 #import "OMValidatorTest.h"
+#import "OMActiveModel+OMNumericalityValidator.h"
 
 
 
@@ -38,6 +39,24 @@
 - (void)setUp
 {
     [super setUp];
+    [Person validatesNumericalityOf:@"firstName"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"Y", @"allowNil",
+                                   nil]];
+    
+    // test allowBlank constraint
+    [Person validatesNumericalityOf:@"lastName"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"1", @"allowBlank",
+                                   nil]];
+    
+    // test allowNil & allowBlank constraints
+    [Person validatesNumericalityOf:@"title"
+                      withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"y", @"allowNil",
+                                   @"T", @"allowBlank",
+                                   nil]];
+
     model = [[Person alloc] init];
 }
 
@@ -46,7 +65,7 @@
 - (void)tearDown
 {
     [model release];
-//    [Person removeAllValidations];
+    [Person removeAllValidations];
     [super tearDown];
 }
 
@@ -56,63 +75,63 @@
 
 
 
-- (void)testAnUnsetValueForAllowNilShouldBeValid
+- (void)testAnUnsetValueForFirstNameShouldBeValid
 {
-    [self assertPropertyIsValid:@"allowNil" forModel:model];
+    [self assertPropertyIsValid:@"firstName" forModel:model];
 }
 
 
 
-- (void)testANilValueForAllowNilShouldBeValid
+- (void)testANilValueForFirstNameShouldBeValid
 {
-    [model setAllowNil:nil];
-    [self assertPropertyIsValid:@"allowNil" forModel:model];
+    [model setFirstName:nil];
+    [self assertPropertyIsValid:@"firstName" forModel:model];
 }
 
 
 
-- (void)testAnUnsetValueForAllowBlankShouldBeInvalid
+- (void)testAnUnsetValueForLastNameShouldBeInvalid
 {
-    [self assertPropertyIsInvalid:@"allowBlank" forModel:model withErrorMessage:@"is invalid"];
+    [self assertPropertyIsInvalid:@"lastName" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 
 
-- (void)testANilValueForAllowBlankShouldBeInvalid
+- (void)testANilValueForLastNameShouldBeInvalid
 {
-    [model setAllowBlank:nil];
-    [self assertPropertyIsInvalid:@"allowBlank" forModel:model withErrorMessage:@"is invalid"];
+    [model setLastName:nil];
+    [self assertPropertyIsInvalid:@"lastName" forModel:model withErrorMessage:@"is not a valid number"];
 }
 
 
 
-- (void)testABlankValueForAllowBlankShouldBeValid
+- (void)testABlankValueForLastNameShouldBeValid
 {
-    [model setAllowBlank:@""];
-    [self assertPropertyIsValid:@"allowBlank" forModel:model];
+    [model setLastName:@""];
+    [self assertPropertyIsValid:@"lastName" forModel:model];
 }
 
 
 
-- (void)testAnUnsetValueForAllowNilAndBlankShouldBeValid
+- (void)testAnUnsetValueForTitleShouldBeValid
 {
-    [self assertPropertyIsValid:@"allowNilAndBlank" forModel:model];
+    [self assertPropertyIsValid:@"title" forModel:model];
 }
 
 
 
-- (void)testANilValueForAllowNilAndBlankShouldBeValid
+- (void)testANilValueForTitleShouldBeValid
 {
-    [model setAllowNil:nil];
-    [self assertPropertyIsValid:@"allowNilAndBlank" forModel:model];
+    [model setTitle:nil];
+    [self assertPropertyIsValid:@"title" forModel:model];
 }
 
 
 
-- (void)testABlankValueForAllowNilAndBlankShouldBeValid
+- (void)testABlankValueForTitleShouldBeValid
 {
-    [model setAllowBlank:@""];
-    [self assertPropertyIsValid:@"allowNilAndBlank" forModel:model];
+    [model setTitle:@""];
+    [self assertPropertyIsValid:@"title" forModel:model];
 }
 
 

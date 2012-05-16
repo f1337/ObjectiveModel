@@ -30,12 +30,9 @@
 
 
 
-@property (assign) NSString *allowBlank;
-@property (assign) NSString *allowNil;
-@property (assign) NSString *allowNilAndBlank;
-
 @property (assign) NSString *firstName;
 @property (assign) NSString *lastName;
+@property (assign) NSString *title;
 
 @property (assign) NSString *name;
 @property (assign) NSNumber *ratio;
