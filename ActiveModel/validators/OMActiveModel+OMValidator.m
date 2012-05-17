@@ -52,8 +52,6 @@ static NSMutableDictionary *validations = nil;
 // this initialize method is invoked *before* any subclass initialize method
 + (void)initialize
 {
-    NSLog(@"OMActiveModel.initialize! self: %@", self);
-    
     if (self == [OMActiveModel class])
     {
         validations = [[NSMutableDictionary alloc] init];
@@ -109,8 +107,6 @@ static NSMutableDictionary *validations = nil;
                 [myValidator release];
             }
         }
-
-        NSLog(@"validations for %@: %@", self, [self validatorsForSelf]);
     }
     else
     {

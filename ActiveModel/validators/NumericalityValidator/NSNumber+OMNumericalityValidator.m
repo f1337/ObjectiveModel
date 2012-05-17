@@ -62,81 +62,11 @@
 
 - (BOOL)isInteger
 {
-//    // this is the only semi-sane way to determine if NSNumber was initialized
-//    // with an int or not
-//    return ( (strcmp([self objCType], @encode(int)) == 0) ? YES : NO );
-    if (strcmp([self objCType], @encode(int)) == 0)
-    {
-        NSLog(@"NSNumber: %@ is an int", self);
-        return YES;
-    }
-    else if (strcmp([self objCType], @encode(uint)) == 0)
-    {
-        NSLog(@"NSNumber: %@ is a uint", self);
-        return YES;
-    }
-    else if (strcmp([self objCType], @encode(NSInteger)) == 0)
-    {
-        NSLog(@"NSNumber: %@ is an NSInteger", self);
-        return YES;
-    }
-    else if (strcmp([self objCType], @encode(NSUInteger)) == 0)
-    {
-        NSLog(@"NSNumber: %@ is an NSUInteger", self);
-        return YES;
-    }
-    else if (strcmp([self objCType], @encode(float)) == 0)
-    {
-        NSLog(@"NSNumber: %@ is a float", self);
-    }
-    else if (strcmp([self objCType], @encode(double)) == 0)
-    {
-    }
-    else if (strcmp([self objCType], @encode(BOOL)) == 0)
-    {
-        NSLog(@"NSNumber: %@ is a BOOL", self);
-    }
-    else
-    {
-        NSLog(@"NSNumber: %@ is some other type: %s", self, [self objCType]);
-    }
-
-    return NO;
-
-//    // fix to handle "negative zero"
-//    NSString *stringValue = [self stringValue];
-//    if ( [stringValue isEqualToString:@"-0"] )
-//    {
-//        stringValue = @"0";
-//    }
-//    
-//    BOOL indeed = ([[NSString stringWithFormat:@"%d", [self integerValue]] isEqualToString:stringValue] ? YES : NO);
-//    NSLog(@"NSNumber self: %@", self);
-//    NSLog(@"NSNumber stringValue: %@", stringValue);
-//    NSLog(@"NSNumber isInteger: %@", [NSNumber numberWithBool:indeed]);
-////    NSLog(@"NSNumber decimalValue: %@", [self decimalValue]);
-//    NSLog(@"NSNumber intValue: %d", [self intValue]);
-//    NSLog(@"NSNumber integerValue: %d", [self integerValue]);
-//    NSLog(@"NSNumber doubleValue: %f", [self doubleValue]);
-//    NSLog(@"NSNumber floatValue: %f", [self floatValue]);
-//
-//    return indeed;
+    // this is the only semi-sane way to determine if NSNumber was initialized
+    // with an int or not
+    return ( (strcmp([self objCType], @encode(int)) == 0) ? YES : NO );
 }
-/*
- - (BOOL)isInteger
- {
- // fix to handle "negative zero"
- // not sure if we really want to support "negative zero"
- // if support is removed, unit test should be updated
- NSString *stringValue = [self stringValue];
- if ( [stringValue isEqualToString:@"-0"] )
- {
- stringValue = @"0";
- }
- 
- return ([[NSString stringWithFormat:@"%d", [self integerValue]] isEqualToString:stringValue] ? YES : NO);
- }
- */
+
 
 
 - (BOOL)isLessThan:(NSNumber *)maximum

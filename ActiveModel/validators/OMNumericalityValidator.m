@@ -137,8 +137,6 @@
         return YES;
     }
 
-    NSLog(@"prefrack");
-
     // sanitize value: should be a number or string
     NSNumber *numericValue = nil;
     NSString *stringValue = nil;
@@ -147,13 +145,11 @@
     if ( [value isKindOfClass:[NSDecimalNumber class]] )
     {
         numericValue = (NSDecimalNumber *)value;
-        NSLog(@"numeric value set from NSDecimalNumber. in: %@, out: %@", value, numericValue);
     }
     // if value is already an NSNumber, don't convert it
     else if ( [value isKindOfClass:[NSNumber class]] )
     {
         numericValue = (NSNumber *)value;
-        NSLog(@"numeric value set from NSNumber. in: %@, out: %@", value, numericValue);
     }
     // convert NSString value to NSDecimalNumber or NSNumber
     else if ( [value isKindOfClass:[NSString class]] )
@@ -166,6 +162,7 @@
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         numericValue = [f numberFromString:stringValue];
 
+        // if NSNumberFormatter failed to convert, numericValue will be nil
         if ( ! numericValue )
         {
             return  NO;
@@ -174,6 +171,7 @@
         // now try a more precise method, preserving original double/integer type
         else
         {
+            // is there a decimal separator in the string?
             NSRange separatorRange = [stringValue rangeOfString:[f decimalSeparator] options:NSLiteralSearch];
 
             // decimal separator not found
@@ -182,47 +180,22 @@
                 // we have an integer, so create an NSNumber from the string's integerValue
                 // do NOT use the formatter's conversion, as it casts all values to double
                 numericValue = [NSNumber numberWithInteger:[stringValue integerValue]];
-                NSLog(@"number is an integer. no further conversion necessary. in: %@, out: %@", stringValue, numericValue);
             }
             // decimal separator found
             else
             {
-                // perform add'l conversion to prevent decimal stripping!
-                NSLog(@"number is not an integer. in: %@, formatter converted to: %@", stringValue, numericValue);
-
                 // we have a float/double, so create an NSDecimalNumber from the
                 // string's doubleValue
                 numericValue = [NSDecimalNumber numberWithDouble:[stringValue doubleValue]];
-
-                // log inconsistencies
-                if ( ! [stringValue isEqualToString:[numericValue stringValue]] )
-                {
-                    NSLog(@"INCONSISTENT!");
-
-                    // log result
-                    NSLog(@"add'l conversion applied. in: %@, converted to: %@", stringValue, numericValue);
-                }
             }
         }
         [f release];
-        NSLog(@"FINAL number in: %@, number out: %@", stringValue, numericValue);
     }
     // if value isn't a number or string, fail validation
     else
     {
         return NO;
     }
-
-    // extra sanity check, in case casting to numericValue ends in nil
-    // in theory, the app should never reach this code,
-    // but in testing it does, and i'm not sure why yet. ~mrf
-    if ( ! numericValue )
-    {
-        NSAssert(@"UNREACHABLE!", @"Shouldn't get here!");
-        return NO;
-    }
-
-    NSLog(@"postfrack");
 
     for (NSString *option in _filteredOptions)
     {

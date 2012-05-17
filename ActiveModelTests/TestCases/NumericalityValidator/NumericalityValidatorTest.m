@@ -211,32 +211,6 @@
 #pragma mark - TRANSLITERATED RoR TESTS
 
 
-//- (void)testNSNumberInsanity
-//{
-//    NSString *doubleString = @"0.0";
-//    NSNumber *doubleNumber = [NSNumber numberWithDouble:[doubleString doubleValue]];
-//    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:doubleString];
-//
-//    NSLog(@"doubleString: %@", doubleString);
-//    NSLog(@"[doubleString doubleValue]: %f", [doubleString doubleValue]);
-//    NSLog(@"[doubleNumber doubleValue]: %f", [doubleNumber doubleValue]);
-//    NSLog(@"[doubleNumber objCType]: %s", [doubleNumber objCType]);
-//    NSLog(@"[decimalNumber doubleValue]: %f", [decimalNumber doubleValue]);
-//    NSLog(@"[decimalNumber objCType]: %s", [decimalNumber objCType]);
-//
-//    
-//    NSString *intString = @"0";
-//    NSNumber *intNumber = [NSNumber numberWithInteger:[intString integerValue]];
-//    NSLog(@"intString: %@", intString);
-//    NSLog(@"[intNumber objCType]: %s", [intNumber objCType]);
-//
-//
-//    NSLog(@"[doubleNumber isInteger]: %d, [intNumber isInteger]: %d", [doubleNumber isInteger], [intNumber isInteger]);
-//
-//
-//
-//}
-
 
 - (void)testDefaultValidatesNumericalityOf
 {
@@ -499,7 +473,7 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-        NSLog(@"expecting invalid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
+//        NSLog(@"expecting invalid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.invalid?, "#{value.inspect} not rejected as a number"
         // assert topic.errors[:approved].any?, "FAILED for #{value.inspect}"
         // assert_equal error, topic.errors[:approved].first if error
@@ -523,7 +497,7 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-        NSLog(@"expecting valid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
+//        NSLog(@"expecting valid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.valid?, "#{value.inspect} not accepted as a number"
         [self assertModelIsValid:topic];
     }

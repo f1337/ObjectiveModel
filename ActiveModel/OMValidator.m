@@ -106,7 +106,6 @@
         ( allowBlank && [value isBlank] )
     )
     {
-        NSLog(@"skipping validation for: %@", self);
         return YES;
     }
     else

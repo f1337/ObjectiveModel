@@ -76,10 +76,6 @@
     // perform validation
     STAssertTrue([model isValid:&error], @"Model (%@) expected to be valid, but returned invalid. Error: %@", model, error);
     STAssertNil(error, @"Error expected to be nil.");
-    if (error)
-    {
-        NSLog(@"assertModelIsValid badValue: %@", [[error userInfo] objectForKey:NSValidationValueErrorKey]);
-    }
 }
 
 
