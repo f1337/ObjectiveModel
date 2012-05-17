@@ -28,7 +28,7 @@
 
 
 #import "NumericalityValidatorTest.h"
-#import "OMActiveModel+OMNumericalityValidator.h"
+#import "OMNumericalityValidator.h"
 #import "Topic.h"
 
 
@@ -144,11 +144,11 @@
 - (NSArray *)floats
 {
     NSMutableArray *floats = [NSMutableArray arrayWithObjects:
-                              [NSNumber numberWithInt:0.0],
-                              [NSNumber numberWithInt:10.0],
-                              [NSNumber numberWithInt:10.5],
-                              [NSNumber numberWithInt:-10.5],
-                              [NSNumber numberWithInt:-0.0001], nil];
+                              [NSNumber numberWithFloat:0.0],
+                              [NSNumber numberWithFloat:10.0],
+                              [NSNumber numberWithFloat:10.5],
+                              [NSNumber numberWithFloat:-10.5],
+                              [NSNumber numberWithFloat:-0.0001], nil];
     
     // NSNumberFormatter doesn't play nicely with multiple positivePrefixes
     // (none versus plus sign). Validating w/o preceding plus sign.
@@ -211,6 +211,32 @@
 #pragma mark - TRANSLITERATED RoR TESTS
 
 
+//- (void)testNSNumberInsanity
+//{
+//    NSString *doubleString = @"0.0";
+//    NSNumber *doubleNumber = [NSNumber numberWithDouble:[doubleString doubleValue]];
+//    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:doubleString];
+//
+//    NSLog(@"doubleString: %@", doubleString);
+//    NSLog(@"[doubleString doubleValue]: %f", [doubleString doubleValue]);
+//    NSLog(@"[doubleNumber doubleValue]: %f", [doubleNumber doubleValue]);
+//    NSLog(@"[doubleNumber objCType]: %s", [doubleNumber objCType]);
+//    NSLog(@"[decimalNumber doubleValue]: %f", [decimalNumber doubleValue]);
+//    NSLog(@"[decimalNumber objCType]: %s", [decimalNumber objCType]);
+//
+//    
+//    NSString *intString = @"0";
+//    NSNumber *intNumber = [NSNumber numberWithInteger:[intString integerValue]];
+//    NSLog(@"intString: %@", intString);
+//    NSLog(@"[intNumber objCType]: %s", [intNumber objCType]);
+//
+//
+//    NSLog(@"[doubleNumber isInteger]: %d, [intNumber isInteger]: %d", [doubleNumber isInteger], [intNumber isInteger]);
+//
+//
+//
+//}
+
 
 - (void)testDefaultValidatesNumericalityOf
 {
@@ -251,6 +277,151 @@
 
 
 
+- (void)testValidatesNumericalityOfWithIntegerOnly
+{
+    // Topic.validates_numericality_of :approved, :only_integer => true
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"integer", nil]];
+
+    // invalid!(NIL + BLANK + JUNK + FLOATS + BIGDECIMAL + INFINITY)
+    [self assertValuesAreInvalid:[self null]];
+    [self assertValuesAreInvalid:[self blankStrings]];
+    [self assertValuesAreInvalid:[self junkStrings]];
+    [self assertValuesAreInvalid:[self floats]];
+    [self assertValuesAreInvalid:[self bigDecimals]];
+    [self assertValuesAreInvalid:[self infinity]];
+
+    // valid!(INTEGERS)
+    [self assertValuesAreValid:[self integers]];
+}
+
+/*
+ def test_validates_numericality_of_with_integer_only_and_nil_allowed
+ Topic.validates_numericality_of :approved, :only_integer => true, :allow_nil => true
+ 
+ invalid!(JUNK + BLANK + FLOATS + BIGDECIMAL + INFINITY)
+ valid!(NIL + INTEGERS)
+ end
+ 
+ def test_validates_numericality_with_greater_than
+ Topic.validates_numericality_of :approved, :greater_than => 10
+ 
+ invalid!([-10, 10], 'must be greater than 10')
+ valid!([11])
+ end
+ 
+ def test_validates_numericality_with_greater_than_or_equal
+ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => 10
+ 
+ invalid!([-9, 9], 'must be greater than or equal to 10')
+ valid!([10])
+ end
+ 
+ def test_validates_numericality_with_equal_to
+ Topic.validates_numericality_of :approved, :equal_to => 10
+ 
+ invalid!([-10, 11] + INFINITY, 'must be equal to 10')
+ valid!([10])
+ end
+ 
+ def test_validates_numericality_with_less_than
+ Topic.validates_numericality_of :approved, :less_than => 10
+ 
+ invalid!([10], 'must be less than 10')
+ valid!([-9, 9])
+ end
+ 
+ def test_validates_numericality_with_less_than_or_equal_to
+ Topic.validates_numericality_of :approved, :less_than_or_equal_to => 10
+ 
+ invalid!([11], 'must be less than or equal to 10')
+ valid!([-10, 10])
+ end
+ 
+ def test_validates_numericality_with_odd
+ Topic.validates_numericality_of :approved, :odd => true
+ 
+ invalid!([-2, 2], 'must be odd')
+ valid!([-1, 1])
+ end
+ 
+ def test_validates_numericality_with_even
+ Topic.validates_numericality_of :approved, :even => true
+ 
+ invalid!([-1, 1], 'must be even')
+ valid!([-2, 2])
+ end
+ 
+ def test_validates_numericality_with_greater_than_less_than_and_even
+ Topic.validates_numericality_of :approved, :greater_than => 1, :less_than => 4, :even => true
+ 
+ invalid!([1, 3, 4])
+ valid!([2])
+ end
+ 
+ def test_validates_numericality_with_other_than
+ Topic.validates_numericality_of :approved, :other_than => 0
+ 
+ invalid!([0, 0.0])
+ valid!([-1, 42])
+ end
+ 
+ def test_validates_numericality_with_proc
+ Topic.send(:define_method, :min_approved, lambda { 5 })
+ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
+ 
+ invalid!([3, 4])
+ valid!([5, 6])
+ Topic.send(:remove_method, :min_approved)
+ end
+ 
+ def test_validates_numericality_with_symbol
+ Topic.send(:define_method, :max_approved, lambda { 5 })
+ Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
+ 
+ invalid!([6])
+ valid!([4, 5])
+ Topic.send(:remove_method, :max_approved)
+ end
+ 
+ def test_validates_numericality_with_numeric_message
+ Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
+ topic = Topic.new("title" => "numeric test", "approved" => 10)
+ 
+ assert !topic.valid?
+ assert_equal ["smaller than 4"], topic.errors[:approved]
+ 
+ Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
+ topic = Topic.new("title" => "numeric test", "approved" => 1)
+ 
+ assert !topic.valid?
+ assert_equal ["greater than 4"], topic.errors[:approved]
+ end
+ 
+ def test_validates_numericality_of_for_ruby_class
+ Person.validates_numericality_of :karma, :allow_nil => false
+ 
+ p = Person.new
+ p.karma = "Pix"
+ assert p.invalid?
+ 
+ assert_equal ["is not a number"], p.errors[:karma]
+ 
+ p.karma = "1234"
+ assert p.valid?
+ ensure
+ Person.reset_callbacks(:validate)
+ end
+ 
+ def test_validates_numericality_with_invalid_args
+ assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => "foo" }
+ assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than_or_equal_to => "foo" }
+ assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than => "foo" }
+ assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than => "foo" }
+ assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
+ end
+ 
+ */
 #pragma mark - TESTS
 
 
@@ -328,7 +499,7 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-        NSLog(@"invalid expected topic: %@, approved: %@, value: %@", topic, [topic approved], value);
+        NSLog(@"expecting invalid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.invalid?, "#{value.inspect} not rejected as a number"
         // assert topic.errors[:approved].any?, "FAILED for #{value.inspect}"
         // assert_equal error, topic.errors[:approved].first if error
@@ -352,7 +523,7 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-        NSLog(@"valid expected topic: %@, approved: %@, value: %@", topic, [topic approved], value);
+        NSLog(@"expecting valid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.valid?, "#{value.inspect} not accepted as a number"
         [self assertModelIsValid:topic];
     }
