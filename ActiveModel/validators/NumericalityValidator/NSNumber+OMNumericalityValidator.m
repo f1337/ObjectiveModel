@@ -93,7 +93,7 @@
 
 - (BOOL)isOdd
 {
-    return ([self isInteger] && ([self intValue] % 2 == 1));
+    return ([self isInteger] && ([self intValue] % 2 != 0));
 }
 
 

@@ -75,7 +75,10 @@
             id value = [filteredOptions objectForKey:key];
             
             // value must be an NSNumber, or a selector
-            if ( [value isKindOfClass:[NSNumber class]] || (strcmp([value objCType], @encode(SEL)) == 0) )
+            if ( [value isKindOfClass:[NSNumber class]]
+                ||
+                ([value respondsToSelector:@selector(objCType)] && strcmp([value objCType], @encode(SEL)) == 0)
+            )
             {
                 // all is well
             }

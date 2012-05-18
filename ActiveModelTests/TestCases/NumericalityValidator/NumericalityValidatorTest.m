@@ -335,7 +335,7 @@
                                     nil]];
     
     // invalid!([10], 'must be less than 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:10], nil]
+    [self assertValuesAreInvalid:[NSArray arrayWithObject:[NSNumber numberWithInt:10]]
                 withErrorMessage:@"must be less than 10"];
 
     // valid!([-9, 9])
@@ -357,7 +357,7 @@
                                     nil]];
     
     // invalid!([11], 'must be less than or equal to 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:11], nil]
+    [self assertValuesAreInvalid:[NSArray arrayWithObject:[NSNumber numberWithInt:11]]
                 withErrorMessage:@"must be less than or equal to 10"];
     
     // valid!([-10, 10])
@@ -365,91 +365,155 @@
 }
 
 
+
+- (void)testValidatesNumericalityWithOdd
+{
+    // Topic.validates_numericality_of :approved, :odd => true
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithBool:YES], @"odd",
+                                    // TODO: in RoR, certain numeric constraints
+                                    // produce custom error messages.
+                                    // can/should we provide the same?
+                                    @"must be odd", @"message",
+                                    nil]];
+    
+    // invalid!([-2, 2], 'must be odd')
+    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]
+                withErrorMessage:@"must be odd"];
+    
+    // valid!([-1, 1])
+    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]];
+}
+
+
+
+- (void)testValidatesNumericalityWithEven
+{
+    // Topic.validates_numericality_of :approved, :even => true
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithBool:YES], @"even",
+                                    // TODO: in RoR, certain numeric constraints
+                                    // produce custom error messages.
+                                    // can/should we provide the same?
+                                    @"must be even", @"message",
+                                    nil]];
+    
+    // invalid!([-1, 1], 'must be even')
+    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]
+                withErrorMessage:@"must be even"];
+
+    // valid!([-2, 2])
+    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]];
+}
+
+
+
+- (void)testValidatesNumericalityWithGreaterThanLessThanAndEven
+{
+    // Topic.validates_numericality_of :approved, :greater_than => 1, :less_than => 4, :even => true
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithInt:1], @"greaterThan",
+                                    [NSNumber numberWithInt:4], @"lessThan",
+                                    [NSNumber numberWithBool:YES], @"even",
+                                    nil]];
+    
+    // invalid!([1, 3, 4])
+    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:3], [NSNumber numberWithInt:4], nil]
+                withErrorMessage:nil];
+    
+    // valid!([2])
+    [self assertValuesAreValid:[NSArray arrayWithObject:[NSNumber numberWithInt:2]]];
+}
+
+
+
 /*
- def test_validates_numericality_with_odd
- Topic.validates_numericality_of :approved, :odd => true
- 
- invalid!([-2, 2], 'must be odd')
- valid!([-1, 1])
- end
- 
- def test_validates_numericality_with_even
- Topic.validates_numericality_of :approved, :even => true
- 
- invalid!([-1, 1], 'must be even')
- valid!([-2, 2])
- end
- 
- def test_validates_numericality_with_greater_than_less_than_and_even
- Topic.validates_numericality_of :approved, :greater_than => 1, :less_than => 4, :even => true
- 
- invalid!([1, 3, 4])
- valid!([2])
- end
- 
+ TODO:
+
+
  def test_validates_numericality_with_other_than
- Topic.validates_numericality_of :approved, :other_than => 0
- 
- invalid!([0, 0.0])
- valid!([-1, 42])
+     Topic.validates_numericality_of :approved, :other_than => 0
+     
+     invalid!([0, 0.0])
+     valid!([-1, 42])
  end
  
  def test_validates_numericality_with_proc
- Topic.send(:define_method, :min_approved, lambda { 5 })
- Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
- 
- invalid!([3, 4])
- valid!([5, 6])
- Topic.send(:remove_method, :min_approved)
+     Topic.send(:define_method, :min_approved, lambda { 5 })
+     Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
+     
+     invalid!([3, 4])
+     valid!([5, 6])
+     Topic.send(:remove_method, :min_approved)
  end
  
  def test_validates_numericality_with_symbol
- Topic.send(:define_method, :max_approved, lambda { 5 })
- Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
- 
- invalid!([6])
- valid!([4, 5])
- Topic.send(:remove_method, :max_approved)
+     Topic.send(:define_method, :max_approved, lambda { 5 })
+     Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
+     
+     invalid!([6])
+     valid!([4, 5])
+     Topic.send(:remove_method, :max_approved)
  end
  
  def test_validates_numericality_with_numeric_message
- Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
- topic = Topic.new("title" => "numeric test", "approved" => 10)
- 
- assert !topic.valid?
- assert_equal ["smaller than 4"], topic.errors[:approved]
- 
- Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
- topic = Topic.new("title" => "numeric test", "approved" => 1)
- 
- assert !topic.valid?
- assert_equal ["greater than 4"], topic.errors[:approved]
+     Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
+     topic = Topic.new("title" => "numeric test", "approved" => 10)
+     
+     assert !topic.valid?
+     assert_equal ["smaller than 4"], topic.errors[:approved]
+     
+     Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
+     topic = Topic.new("title" => "numeric test", "approved" => 1)
+     
+     assert !topic.valid?
+     assert_equal ["greater than 4"], topic.errors[:approved]
  end
  
  def test_validates_numericality_of_for_ruby_class
- Person.validates_numericality_of :karma, :allow_nil => false
- 
- p = Person.new
- p.karma = "Pix"
- assert p.invalid?
- 
- assert_equal ["is not a number"], p.errors[:karma]
- 
- p.karma = "1234"
- assert p.valid?
- ensure
- Person.reset_callbacks(:validate)
+     Person.validates_numericality_of :karma, :allow_nil => false
+     
+     p = Person.new
+     p.karma = "Pix"
+     assert p.invalid?
+     
+     assert_equal ["is not a number"], p.errors[:karma]
+     
+     p.karma = "1234"
+     assert p.valid?
+     ensure
+     Person.reset_callbacks(:validate)
  end
  
- def test_validates_numericality_with_invalid_args
- assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => "foo" }
- assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than_or_equal_to => "foo" }
- assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than => "foo" }
- assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than => "foo" }
- assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
- end
- 
- */
+*/
+
+
+
+- (void)testValidatesNumericalityWithInvalidArgs
+{
+    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => "foo" }
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"greaterThanOrEqualTo", nil];
+    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+
+    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than_or_equal_to => "foo" }
+    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"lessThanOrEqualTo", nil];
+    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+
+    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than => "foo" }
+    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"greaterThan", nil];
+    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+    
+    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than => "foo" }
+    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"lessThan", nil];
+    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+    
+    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
+    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"equalTo", nil];
+    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+}
 
 
 
