@@ -269,14 +269,30 @@
     [self assertValuesAreValid:[self integers]];
 }
 
+
+
+- (void)testValidatesNumericalityOfWithIntegerOnlyAndNilAllowed
+{
+    // Topic.validates_numericality_of :approved, :only_integer => true, :allow_nil => true
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithBool:YES], @"allowNil",
+                                    [NSNumber numberWithBool:YES], @"integer",
+                                    nil]];
+
+    // invalid!(JUNK + BLANK + FLOATS + BIGDECIMAL + INFINITY)
+    [self assertValuesAreInvalid:[self blankStrings]];
+    [self assertValuesAreInvalid:[self junkStrings]];
+    [self assertValuesAreInvalid:[self floats]];
+    [self assertValuesAreInvalid:[self bigDecimals]];
+    [self assertValuesAreInvalid:[self infinity]];
+
+    // valid!(NIL + INTEGERS)
+    [self assertValuesAreValid:[self null]];
+    [self assertValuesAreValid:[self integers]];
+}
+ 
 /*
- def test_validates_numericality_of_with_integer_only_and_nil_allowed
- Topic.validates_numericality_of :approved, :only_integer => true, :allow_nil => true
- 
- invalid!(JUNK + BLANK + FLOATS + BIGDECIMAL + INFINITY)
- valid!(NIL + INTEGERS)
- end
- 
  def test_validates_numericality_with_greater_than
  Topic.validates_numericality_of :approved, :greater_than => 10
  
