@@ -27,14 +27,13 @@
 
 
 
-- (BOOL)isEqualTo:(NSNumber *)expected;
 - (BOOL)isEven;
-- (BOOL)isGreaterThan:(NSNumber *)minimum;
-- (BOOL)isGreaterThanOrEqualTo:(NSNumber *)minimum;
-- (BOOL)isLessThan:(NSNumber *)maximum;
-- (BOOL)isLessThanOrEqualTo:(NSNumber *)maximum;
+- (BOOL)isGreaterThanNumber:(NSNumber *)minimum;
+- (BOOL)isGreaterThanOrEqualToNumber:(NSNumber *)minimum;
+- (BOOL)isLessThanNumber:(NSNumber *)maximum;
+- (BOOL)isLessThanOrEqualToNumber:(NSNumber *)maximum;
 - (BOOL)isInteger;
-- (BOOL)isNotEqualTo:(NSNumber *)expected;
+- (BOOL)isNotEqualToNumber:(NSNumber *)expected;
 - (BOOL)isOdd;
 
 

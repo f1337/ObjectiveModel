@@ -31,13 +31,6 @@
 
 
 
-- (BOOL)isEqualTo:(NSNumber *)expected
-{
-    return [self isEqualToNumber:expected];
-}
-
-
-
 - (BOOL)isEven
 {
     return ([self isInteger] && ([self intValue] % 2 == 0));
@@ -45,14 +38,14 @@
 
 
 
-- (BOOL)isGreaterThan:(NSNumber *)minimum
+- (BOOL)isGreaterThanNumber:(NSNumber *)minimum
 {
     return ( ([minimum compare:self] == NSOrderedAscending) ? YES : NO );
 }
 
 
 
-- (BOOL)isGreaterThanOrEqualTo:(NSNumber *)minimum
+- (BOOL)isGreaterThanOrEqualToNumber:(NSNumber *)minimum
 {
     NSComparisonResult result = [minimum compare:self];
     return ( (result == NSOrderedAscending || result == NSOrderedSame) ? YES : NO );
@@ -69,14 +62,14 @@
 
 
 
-- (BOOL)isLessThan:(NSNumber *)maximum
+- (BOOL)isLessThanNumber:(NSNumber *)maximum
 {
     return ( ([maximum compare:self] == NSOrderedDescending) ? YES : NO );
 }
 
 
 
-- (BOOL)isLessThanOrEqualTo:(NSNumber *)maximum
+- (BOOL)isLessThanOrEqualToNumber:(NSNumber *)maximum
 {
     NSComparisonResult result = [maximum compare:self];
     return ( (result == NSOrderedDescending || result == NSOrderedSame) ? YES : NO );
@@ -84,7 +77,7 @@
 
 
 
-- (BOOL)isNotEqualTo:(NSNumber *)expected
+- (BOOL)isNotEqualToNumber:(NSNumber *)expected
 {
     return (! [self isEqualToNumber:expected]);
 }

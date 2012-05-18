@@ -118,7 +118,7 @@
 
     if ( ! [NSNumber instancesRespondToSelector:selector] )
     {
-        [selectorName appendString:@":"];
+        [selectorName appendString:@"Number:"];
         selector = NSSelectorFromString(selectorName);
 
         if ( ! [NSNumber instancesRespondToSelector:selector] )
