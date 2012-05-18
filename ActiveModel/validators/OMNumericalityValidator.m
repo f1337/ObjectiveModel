@@ -73,11 +73,12 @@
         if ( [self selectorFromOption:key] )
         {
             id value = [filteredOptions objectForKey:key];
-            
-            // value must be an NSNumber, or a selector
-            if ( [value isKindOfClass:[NSNumber class]]
+
+            // value must be an NSNumber, or an NSNumber selector
+            if (
+                [value isKindOfClass:[NSNumber class]]
                 ||
-                ([value respondsToSelector:@selector(objCType)] && strcmp([value objCType], @encode(SEL)) == 0)
+                ( [value respondsToSelector:@selector(objCType)] && strcmp([value objCType], @encode(SEL)) == 0)
             )
             {
                 // all is well
@@ -89,7 +90,7 @@
         }
         else
         {
-            [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) is not a valid NSNumber selector.", key];
+            [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) is not a valid NSNumber constraint.", key];
         }
     }
 

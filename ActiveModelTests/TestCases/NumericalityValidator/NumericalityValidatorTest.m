@@ -430,17 +430,29 @@
 
 
 
+- (void)testValidatesNumericalityWithIsNotEqualTo
+{
+    // Topic.validates_numericality_of :approved, :other_than => 0
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithInt:0], @"notEqualTo",
+                                    nil]];
+    
+    // invalid!([0, 0.0])
+    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithDouble:0.0], nil]
+                withErrorMessage:nil];
+    
+    // valid!([-1, 42])
+    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:42], nil]];
+}
+
+
+
 /*
  TODO:
 
 
- def test_validates_numericality_with_other_than
-     Topic.validates_numericality_of :approved, :other_than => 0
-     
-     invalid!([0, 0.0])
-     valid!([-1, 42])
- end
- 
+ // convert to test blocks
  def test_validates_numericality_with_proc
      Topic.send(:define_method, :min_approved, lambda { 5 })
      Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
@@ -449,16 +461,33 @@
      valid!([5, 6])
      Topic.send(:remove_method, :min_approved)
  end
- 
- def test_validates_numericality_with_symbol
-     Topic.send(:define_method, :max_approved, lambda { 5 })
-     Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
-     
-     invalid!([6])
-     valid!([4, 5])
-     Topic.send(:remove_method, :max_approved)
- end
- 
+*/
+
+
+// TODO: does not work ATM, b/c the validator can't invoke the model's selector
+// will require significant refactor in order to support
+/*
+- (void)testValidatesNumericalityWithSelector
+{
+    // Topic.send(:define_method, :max_approved, lambda { 5 })
+
+    // Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSValue valueWithPointer:@selector(maxApproved)], @"lessThanOrEqualTo",
+                                    nil]];
+    
+    // invalid!([6])
+    [self assertValuesAreInvalid:[NSArray arrayWithObject:[NSNumber numberWithInt:6]] withErrorMessage:nil];
+    
+    // valid!([4, 5])
+    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:5], nil]];
+}
+*/
+
+
+/*
+ // needs some deep thought:
  def test_validates_numericality_with_numeric_message
      Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
      topic = Topic.new("title" => "numeric test", "approved" => 10)
@@ -472,6 +501,9 @@
      assert !topic.valid?
      assert_equal ["greater than 4"], topic.errors[:approved]
  end
+
+ // probably not going to attempt to include
+ // not even sure what this is doing ATM, maybe my ruby foo is weak now
  
  def test_validates_numericality_of_for_ruby_class
      Person.validates_numericality_of :karma, :allow_nil => false
