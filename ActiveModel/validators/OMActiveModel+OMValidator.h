@@ -55,6 +55,7 @@
 
 /*!
  * @brief Removes all validators defined for the model.
+ * // TODO: move this to category extension in test package. no need for consumer use.
  */
 + (void)removeAllValidations;
 
@@ -75,6 +76,7 @@
  * "allowNil" => YES or NO
  * "allowBlank" => YES or NO
  * "message" => @"Custom validator message"
+ * TODO: title?
  * "on" => "create" or "update" or "save" (TODO)
  * "if" => @selector(method) (TODO)
  * "unless" => @selector(method) (TODO)

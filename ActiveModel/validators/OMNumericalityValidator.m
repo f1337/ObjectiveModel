@@ -162,6 +162,7 @@
 
 
         // first, see if NSNumberFormatter returns null, indicating bad input:
+        // TODO: numberformatter should be static
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         numericValue = [f numberFromString:stringValue];
