@@ -43,7 +43,6 @@
 - (void)setUp
 {
     [super setUp];
-    [Person removeAllValidations];
     model = [[Person alloc] init];
 }
 
@@ -52,6 +51,7 @@
 - (void)tearDown
 {
     [model release];
+    [Person removeAllValidations];
     [super tearDown];
 }
 

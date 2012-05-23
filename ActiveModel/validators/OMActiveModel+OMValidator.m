@@ -203,7 +203,7 @@ static NSMutableDictionary *validations = nil;
 
 
 
-// TODO: move into isValid?
+ // TODO: move into isValid?
 - (BOOL)validate:(NSError **)errors
 {
     BOOL valid = YES;
@@ -255,7 +255,7 @@ static NSMutableDictionary *validations = nil;
 
         for (OMValidator *validator in validators)
         {
-            if ( ! [validator validateValue:*ioValue error:outError] )
+            if ( ! [validator validateModel:self withValue:*ioValue forKey:inKey error:outError] )
             {
                 // don't return immediately, or we won't get all the errors
                 valid = NO;

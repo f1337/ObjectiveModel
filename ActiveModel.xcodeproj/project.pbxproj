@@ -39,6 +39,9 @@
 		AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */; };
 		AC7816FA1563FCCC009B5B54 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7816F71563FA6F009B5B54 /* Topic.m */; };
 		ACAA50B215631E1000111FBD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC17480C1562EF5500A56648 /* CoreData.framework */; };
+		ACE78066156AB8B300570CFB /* FormatValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE78064156AB7A700570CFB /* FormatValidatorTest.m */; };
+		ACE7806A156ABD6500570CFB /* OMFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE78069156ABD6500570CFB /* OMFormatValidator.m */; };
+		ACE7806D156ABDC200570CFB /* OMActiveModel+FormatValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE7806C156ABDC200570CFB /* OMActiveModel+FormatValidation.m */; };
 		ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC78531561A8D400B29DFE /* OMValidatorTest.m */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +108,12 @@
 		AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMNumericalityValidator.m; path = ActiveModel/validators/OMNumericalityValidator.m; sourceTree = SOURCE_ROOT; };
 		AC7816F61563FA6F009B5B54 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = ActiveModelTests/Models/Topic.h; sourceTree = SOURCE_ROOT; };
 		AC7816F71563FA6F009B5B54 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = ActiveModelTests/Models/Topic.m; sourceTree = SOURCE_ROOT; };
+		ACE78063156AB7A700570CFB /* FormatValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormatValidatorTest.h; path = ActiveModelTests/TestCases/FormatValidatorTests/FormatValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		ACE78064156AB7A700570CFB /* FormatValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormatValidatorTest.m; path = ActiveModelTests/TestCases/FormatValidatorTests/FormatValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		ACE78068156ABD6500570CFB /* OMFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMFormatValidator.h; path = ActiveModel/validators/FormatValidator/OMFormatValidator.h; sourceTree = SOURCE_ROOT; };
+		ACE78069156ABD6500570CFB /* OMFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMFormatValidator.m; path = ActiveModel/validators/FormatValidator/OMFormatValidator.m; sourceTree = SOURCE_ROOT; };
+		ACE7806B156ABDC200570CFB /* OMActiveModel+FormatValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+FormatValidation.h"; path = "ActiveModel/validators/FormatValidator/OMActiveModel+FormatValidation.h"; sourceTree = SOURCE_ROOT; };
+		ACE7806C156ABDC200570CFB /* OMActiveModel+FormatValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+FormatValidation.m"; path = "ActiveModel/validators/FormatValidator/OMActiveModel+FormatValidation.m"; sourceTree = SOURCE_ROOT; };
 		ACEC78521561A8D400B29DFE /* OMValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMValidatorTest.h; path = ActiveModelTests/TestCases/Validators/OMValidator/OMValidatorTest.h; sourceTree = SOURCE_ROOT; };
 		ACEC78531561A8D400B29DFE /* OMValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMValidatorTest.m; path = ActiveModelTests/TestCases/Validators/OMValidator/OMValidatorTest.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -257,8 +266,9 @@
 				AC6F9E531449CEEB006BDA00 /* OMValidator.m */,
 				AC23544E1552DB50005AC17D /* OMActiveModel+OMValidator.h */,
 				AC23544F1552DB50005AC17D /* OMActiveModel+OMValidator.m */,
-				AC23544A1551B84F005AC17D /* PresenceValidator */,
+				ACE78067156ABB0200570CFB /* FormatValidator */,
 				AC2354371551B5E0005AC17D /* NumericalityValidator */,
+				AC23544A1551B84F005AC17D /* PresenceValidator */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -272,6 +282,26 @@
 				AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */,
 			);
 			name = NSExtensions;
+			sourceTree = "<group>";
+		};
+		ACE78062156AB76400570CFB /* FormatValidator */ = {
+			isa = PBXGroup;
+			children = (
+				ACE78063156AB7A700570CFB /* FormatValidatorTest.h */,
+				ACE78064156AB7A700570CFB /* FormatValidatorTest.m */,
+			);
+			name = FormatValidator;
+			sourceTree = "<group>";
+		};
+		ACE78067156ABB0200570CFB /* FormatValidator */ = {
+			isa = PBXGroup;
+			children = (
+				ACE78068156ABD6500570CFB /* OMFormatValidator.h */,
+				ACE78069156ABD6500570CFB /* OMFormatValidator.m */,
+				ACE7806B156ABDC200570CFB /* OMActiveModel+FormatValidation.h */,
+				ACE7806C156ABDC200570CFB /* OMActiveModel+FormatValidation.m */,
+			);
+			name = FormatValidator;
 			sourceTree = "<group>";
 		};
 		ACEC78561561A8DA00B29DFE /* OMValidator */ = {
@@ -290,6 +320,7 @@
 				AC23543515517DF4005AC17D /* ValidatorTestCase.m */,
 				ACF16CCC15502094002A4124 /* Fixtures */,
 				ACEC78561561A8DA00B29DFE /* OMValidator */,
+				ACE78062156AB76400570CFB /* FormatValidator */,
 				AC23543015502C98005AC17D /* NumericalityValidator */,
 				ACF16CCB15502074002A4124 /* PresenceValidator */,
 			);
@@ -448,6 +479,8 @@
 				AC23544D1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m in Sources */,
 				AC2354501552DB51005AC17D /* OMActiveModel+OMValidator.m in Sources */,
 				AC17480A1562EA2900A56648 /* NSError+ValidationErrors.m in Sources */,
+				ACE7806A156ABD6500570CFB /* OMFormatValidator.m in Sources */,
+				ACE7806D156ABDC200570CFB /* OMActiveModel+FormatValidation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +494,7 @@
 				AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */,
 				ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */,
 				AC7816FA1563FCCC009B5B54 /* Topic.m in Sources */,
+				ACE78066156AB8B300570CFB /* FormatValidatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

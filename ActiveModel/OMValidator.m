@@ -45,7 +45,7 @@
 
 
 
-- (id)init
+- (instancetype)init
 {
     if ( (self = [super init]) )
     {
@@ -57,7 +57,7 @@
 }
 
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     if ( (self = [self init]) )
     {
@@ -96,30 +96,22 @@
 
 
 
-- (BOOL)validateValue:(NSObject *)value error:(NSError **)outError
+- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
     if (
         // skip validation if value is nil or NSNull and allowNil is true
         ( allowNil && (value == nil || [value isKindOfClass:[NSNull class]]) )
         || 
         // skip validation if value is blank and allowBlank is true
-        ( allowBlank && [value isBlank] )
+        ( allowBlank && (value == nil || [value isBlank]) )
     )
     {
         return YES;
     }
     else
     {
-        return [self validateValue:value];
+        return NO;
     }
-}
-
-
-
-- (BOOL)validateValue:(NSObject *)value
-{
-    [NSException raise:@"Method not implemented" format:@"Method validateValue: should be implemented in Validator subclass."];
-    return NO;
 }
 
 

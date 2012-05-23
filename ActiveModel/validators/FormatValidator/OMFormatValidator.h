@@ -23,40 +23,18 @@
 
 
 
-#import "OMPresenceValidator.h"
+#import "OMValidator.h"
+#import "OMActiveModel+FormatValidation.h"
 
 
 
-@implementation OMPresenceValidator
+@interface OMFormatValidator : OMValidator
 
 
 
-- (instancetype)init
-{
-    if ( (self = [super init]) )
-    {
-        allowBlank = NO;
-        allowNil = NO;
-        // set the default message
-        _message = @"cannot be blank";
-    }
-    
-    return self;
-}
-
-
-
-- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
-{
-    if ( value == nil || [value isBlank] )
-    {
-        return NO;
-    }
-    else
-    {
-        return YES;
-    }
-}
+@property (nonatomic, readonly, copy) NSRegularExpression * (^ block) (OMActiveModel *);
+@property (nonatomic, readonly, assign) BOOL matchesPattern;
+@property (nonatomic, readonly, copy) NSRegularExpression *regularExpression;
 
 
 

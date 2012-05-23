@@ -43,7 +43,7 @@
 
 
 
-- (id)init
+- (instancetype)init
 {
     if ( (self = [super init]) )
     {
@@ -132,14 +132,14 @@
 
 
 
-- (BOOL)validateValue:(NSObject *)value
+- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
-    // if allowNil and value is nil, skip validation
-    if ( allowNil && (value == nil) )
+    // the superclass' validation will return YES if validation is to be skipped
+    if ( [super validateModel:model withValue:value forKey:inKey error:outError] )
     {
-        [NSException raise:@"UNREACHABLE" format:@"This code should be unreachable, by virtue of superclass' nil/blank checks."];
         return YES;
     }
+
 
     // sanitize value: should be a number or string
     NSNumber *numericValue = nil;

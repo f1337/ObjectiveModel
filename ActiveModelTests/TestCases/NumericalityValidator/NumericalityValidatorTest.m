@@ -54,16 +54,8 @@
 
 
 
-- (void)setUp
-{
-    [super setUp];
-}
-
-
-
 - (void)tearDown
 {
-    [model release];
     [Topic removeAllValidations];
     [super tearDown];
 }
@@ -526,23 +518,23 @@
 
 - (void)testValidatesNumericalityWithInvalidArgs
 {
-    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => "foo" }
+    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => "foo" }
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"greaterThanOrEqualTo", nil];
     STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
 
-    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than_or_equal_to => "foo" }
+    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than_or_equal_to => "foo" }
     options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"lessThanOrEqualTo", nil];
     STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
 
-    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than => "foo" }
+    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than => "foo" }
     options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"greaterThan", nil];
     STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
     
-    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than => "foo" }
+    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than => "foo" }
     options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"lessThan", nil];
     STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
     
-    //assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
+    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
     options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"equalTo", nil];
     STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
 }
@@ -578,6 +570,8 @@
         // assert_equal error, topic.errors[:approved].first if error
         [self assertModelIsInvalid:topic withErrorMessage:message forKeys:[NSArray arrayWithObject:@"approved"]];
     }
+
+    [topic release];
 }
 
 
@@ -600,6 +594,8 @@
         // assert topic.valid?, "#{value.inspect} not accepted as a number"
         [self assertModelIsValid:topic];
     }
+
+    [topic release];
 }
 
 //def with_each_topic_approved_value(values)

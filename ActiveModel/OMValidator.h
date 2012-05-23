@@ -44,11 +44,10 @@
 
 
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (NSString *)message;
-- (BOOL)validateValue:(NSObject *)value;
-// TODO: we don't use the error pointer anymore, factor out:
-- (BOOL)validateValue:(NSObject *)value error:(NSError **)outError;
+// TODO: we may want to use the error object for returning custom error messages. if not, factor out:
+- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError;
 
 
 

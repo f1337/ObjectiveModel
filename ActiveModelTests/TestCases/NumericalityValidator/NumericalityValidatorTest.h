@@ -29,7 +29,5 @@
 
 
 @interface NumericalityValidatorTest : ValidatorTestCase
-{
-    Person *model;    
-}
+
 @end

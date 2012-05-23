@@ -90,21 +90,6 @@
 
 
 
-- (void)testAnUnsetValueForLastNameShouldBeInvalid
-{
-    [self assertPropertyIsInvalid:@"lastName" forModel:model withErrorMessage:@"is not a valid number"];
-}
-
-
-
-- (void)testANilValueForLastNameShouldBeInvalid
-{
-    [model setLastName:nil];
-    [self assertPropertyIsInvalid:@"lastName" forModel:model withErrorMessage:@"is not a valid number"];
-}
-
-
-
 - (void)testABlankValueForLastNameShouldBeValid
 {
     [model setLastName:@""];
