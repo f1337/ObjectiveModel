@@ -44,8 +44,13 @@
 
 
 
+- (void)errorWithOriginalError:(NSError **)originalError
+                         value:(NSObject *)value
+                        forKey:(NSString *)inKey
+                       message:(NSString *)message;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (NSString *)message;
+- (BOOL)shouldSkipValidationForValue:(NSObject *)value;
 // TODO: we may want to use the error object for returning custom error messages. if not, factor out:
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError;
 

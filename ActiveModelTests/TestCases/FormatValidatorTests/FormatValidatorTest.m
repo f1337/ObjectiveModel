@@ -165,27 +165,28 @@
 
 
 
-- (void)testValidateFormatWithNilValue
-{
-    [Topic validatesFormatOf:@"title"
-                 withOptions:nil
-                  andPattern:@"^Valid Title$"];
-    
-    Topic *topic = [[Topic alloc] init];
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"title"]];
-}
+//- (void)testValidateFormatWithNilValue
+//{
+//    [Topic validatesFormatOf:@"title"
+//                 withOptions:nil
+//                  andPattern:@"^Valid Title$"];
+//    
+//    Topic *topic = [[Topic alloc] init];
+//    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"title"]];
+//}
 
 
 
 - (void)testValidateFormatWithFormattedMessage
 {
-    // Topic.validates_format_of(:title, :with => /^Valid Title$/, :message => "can't be v")
+    // Topic.validates_format_of(:title, :with => /^Valid Title$/, :message => "can't be %{value}")
     [Topic validatesFormatOf:@"title"
                  withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"can't be %{value}", @"message", nil]
                   andPattern:@"^Valid Title$"];
 
     // t = Topic.new(:title => 'Invalid title')
     Topic *topic = [[Topic alloc] init];
+    [topic setTitle:@"Invalid title"];
     // assert t.invalid?
     // assert_equal ["can't be Invalid title"], t.errors[:title]
     [self assertModelIsInvalid:topic withErrorMessage:@"can't be Invalid title" forKeys:[NSArray arrayWithObject:@"title"]];

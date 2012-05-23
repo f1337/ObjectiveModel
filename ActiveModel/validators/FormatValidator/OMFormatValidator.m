@@ -74,19 +74,14 @@
 
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
-    // the superclass' validation will return YES if validation is to be skipped
-    if ( [super validateModel:model withValue:value forKey:inKey error:outError] )
-    {
-        return YES;
-    }
-
     NSRegularExpression *regularExpression;
     NSString *stringValue = (NSString *)value;
+    BOOL valid = YES;
 
     // if value doesn't convert to string, fail validation
     if ( ! stringValue )
     {
-        return NO;
+        valid = NO;
     }
     // is there a block to apply?
     else if ( _block )
@@ -104,13 +99,20 @@
     // if we expect a match:
     if ( _matchesPattern )
     {
-        return ( matchRange.location != NSNotFound );
+        valid = ( matchRange.location != NSNotFound );
     }
     // we don't expect a match:
     else
     {
-        return ( matchRange.location == NSNotFound );
+        valid = ( matchRange.location == NSNotFound );
     }
+
+    if ( ! valid )
+    {
+        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+    }
+
+    return valid;
 }
 
 

@@ -255,32 +255,13 @@ static NSMutableDictionary *validations = nil;
 
         for (OMValidator *validator in validators)
         {
-            if ( ! [validator validateModel:self withValue:*ioValue forKey:inKey error:outError] )
+            // skip validation?
+            if ( ! [validator shouldSkipValidationForValue:*ioValue] )
             {
-                // don't return immediately, or we won't get all the errors
-                valid = NO;
-
-                // Error structured per CoreData guidelines:
-                // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
-                // don't create an error if none was requested
-                if (outError != NULL)
+                if ( ! [validator validateModel:self withValue:*ioValue forKey:inKey error:outError] )
                 {
-                    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                              // the property name that failed validation
-                                              inKey, NSValidationKeyErrorKey,
-                                              // wrap the ioValue in NSValue in order to
-                                              // safely handle scalars and objects alike
-                                              [NSValue valueWithPointer:*ioValue], NSValidationValueErrorKey,
-                                              // a reference to this model
-                                              self, NSValidationObjectErrorKey,
-                                              // the validation error message
-                                              [validator message], NSLocalizedDescriptionKey,
-                                              nil];
-
-                    *outError = [NSError errorWithOriginalError:*outError 
-                                                         domain:@"OMValidator" 
-                                                           code:NSManagedObjectValidationError 
-                                                       userInfo:userInfo];
+                    // don't return immediately, or we won't get all the errors
+                    valid = NO;
                 }
             }
         }

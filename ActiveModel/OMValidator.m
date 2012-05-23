@@ -25,6 +25,7 @@
 
 #import "OMValidator.h"
 #import <CoreData/CoreData.h>
+#import "NSError+ValidationErrors.h"
 
 
 
@@ -57,6 +58,7 @@
 }
 
 
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     if ( (self = [self init]) )
@@ -65,6 +67,37 @@
     }
 
     return self;
+}
+
+
+
+- (void)errorWithOriginalError:(NSError **)originalError
+                         value:(NSObject *)value
+                        forKey:(NSString *)inKey
+                       message:(NSString *)message
+{
+    if ( originalError != NULL )
+    {
+        // Error structured per CoreData guidelines:
+        // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
+        // don't create an error if none was requested
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  // the property name that failed validation
+                                  inKey, NSValidationKeyErrorKey,
+                                  // wrap the ioValue in NSValue in order to
+                                  // safely handle scalars and objects alike
+                                  [NSValue valueWithPointer:value], NSValidationValueErrorKey,
+                                  // a reference to this model
+                                  self, NSValidationObjectErrorKey,
+                                  // the validation error message
+                                  message, NSLocalizedDescriptionKey,
+                                  nil];
+        
+        *originalError = [NSError errorWithOriginalError:*originalError
+                                                  domain:@"OMValidator" 
+                                                    code:NSManagedObjectValidationError 
+                                                userInfo:userInfo];
+    }
 }
 
 
@@ -96,7 +129,7 @@
 
 
 
-- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
+- (BOOL)shouldSkipValidationForValue:(NSObject *)value
 {
     if (
         // skip validation if value is nil or NSNull and allowNil is true
@@ -104,12 +137,27 @@
         || 
         // skip validation if value is blank and allowBlank is true
         ( allowBlank && (value == nil || [value isBlank]) )
-    )
+        )
     {
         return YES;
     }
     else
     {
+        return NO;
+    }
+}
+
+
+
+- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
+{
+    if ( [self shouldSkipValidationForValue:value] )
+    {
+        return YES;
+    }
+    else
+    {
+        [self errorWithOriginalError:outError value:value forKey:inKey message:_message];
         return NO;
     }
 }

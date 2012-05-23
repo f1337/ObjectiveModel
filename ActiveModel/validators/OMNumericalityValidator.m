@@ -135,7 +135,7 @@
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
     // the superclass' validation will return YES if validation is to be skipped
-    if ( [super validateModel:model withValue:value forKey:inKey error:outError] )
+    if ( [self shouldSkipValidationForValue:value] )
     {
         return YES;
     }
@@ -144,6 +144,7 @@
     // sanitize value: should be a number or string
     NSNumber *numericValue = nil;
     NSString *stringValue = nil;
+    BOOL valid = YES;
 
     // if value is already an NSDecimalNumber, don't convert it
     if ( [value isKindOfClass:[NSDecimalNumber class]] )
@@ -170,7 +171,7 @@
         // if NSNumberFormatter failed to convert, numericValue will be nil
         if ( ! numericValue )
         {
-            return  NO;
+            valid = NO;
         }
         // NSNumberFormatter returned a value
         // now try a more precise method, preserving original double/integer type
@@ -199,7 +200,7 @@
     // if value isn't a number or string, fail validation
     else
     {
-        return NO;
+        valid = NO;
     }
 
     for (NSString *option in _filteredOptions)
@@ -208,7 +209,6 @@
         SEL selector = [self selectorFromOption:option];
         if ( selector )
         {
-            BOOL valid = YES;
             NSString *selectorString = NSStringFromSelector(selector);
 
             if ( [selectorString hasSuffix:@":"] )
@@ -223,12 +223,17 @@
 
             if ( ! valid )
             {
-                return NO;
+                break;
             }
         }
     }
 
-    return YES;
+    if ( ! valid )
+    {
+        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+    }
+
+    return valid;
 }
 
 

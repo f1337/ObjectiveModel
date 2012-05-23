@@ -46,7 +46,8 @@
 
 
 
-- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
+//- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
+- (BOOL)shouldSkipValidationForValue:(NSObject *)value
 {
     if ( value == nil || [value isBlank] )
     {
