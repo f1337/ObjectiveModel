@@ -83,8 +83,13 @@
     NSRegularExpression *regularExpression;
     NSString *stringValue = (NSString *)value;
 
+    // if value doesn't convert to string, fail validation
+    if ( ! stringValue )
+    {
+        return NO;
+    }
     // is there a block to apply?
-    if ( _block )
+    else if ( _block )
     {
         regularExpression = _block(model);
     }
