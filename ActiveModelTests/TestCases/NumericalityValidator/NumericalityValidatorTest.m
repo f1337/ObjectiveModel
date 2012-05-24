@@ -569,13 +569,6 @@
     [topic release];
 }
 
-//def with_each_topic_approved_value(values)
-//topic = Topic.new(:title => "numeric test", :content => "whatever")
-//values.each do |value|
-//topic.approved = value
-//yield topic, value
-//end
-//end
 
 
 @end
