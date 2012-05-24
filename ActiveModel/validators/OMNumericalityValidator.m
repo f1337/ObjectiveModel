@@ -131,18 +131,20 @@
         {
             id value = [filteredOptions objectForKey:key];
 
-            // value must be an NSNumber, or an NSNumber selector
+            // value must be an NSNumber, a block, or a selector string
             if (
                 [value isKindOfClass:[NSNumber class]]
                 ||
-                ( [value respondsToSelector:@selector(objCType)] && strcmp([value objCType], @encode(SEL)) == 0)
+                [value isKindOfClass:NSClassFromString(@"NSBlock")]
+                ||
+                ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
             )
             {
                 // all is well
             }
             else
             {
-                [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) value (%@) is not an NSNumber or selector.", key, value];
+                [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) value (%@) is not an NSNumber, block, or selector.", key, value];
             }
         }
         else
@@ -270,6 +272,30 @@
             if ( [selectorString hasSuffix:@":"] )
             {
                 optionValue = [_filteredOptions objectForKey:option];
+
+                // if optionValue is a block, invoke block and expect NSNumber result
+                if ( [optionValue isKindOfClass:NSClassFromString(@"NSBlock")] )
+                {
+                    OMNumericalityValidatorNumberBlock block = [_filteredOptions objectForKey:option];
+                    optionValue = (NSNumber *)block(model);
+                }
+                // if optionValue is an NSValue (but not an NSNumber), invoke the wrapped selector
+                else if ( (! [optionValue isKindOfClass:[NSNumber class]]) && [optionValue isKindOfClass:[NSValue class]] )
+                {
+                    SEL optionValueSelector;
+                    NSValue *optionValueWrapper = [_filteredOptions objectForKey:option];
+                    [optionValueWrapper getValue:&optionValueSelector];
+
+                    if ( optionValueSelector && [model respondsToSelector:optionValueSelector] )
+                    {
+                        optionValue = (NSNumber *)[model performSelector:optionValueSelector];
+                    }
+                    else
+                    {
+                        optionValue = nil;
+                    }
+                }
+
                 valid = (BOOL)[numericValue performSelector:selector withObject:optionValue];
             }
             else

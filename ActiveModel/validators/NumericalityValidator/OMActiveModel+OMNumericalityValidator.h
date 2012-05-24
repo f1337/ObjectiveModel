@@ -27,6 +27,10 @@
 
 
 
+typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
+
+
+
 @interface OMActiveModel (OMNumericalityValidator)
 
 

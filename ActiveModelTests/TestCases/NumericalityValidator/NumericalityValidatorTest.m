@@ -412,30 +412,37 @@
 
 
 
-/*
- // TODO: convert to test blocks
- def test_validates_numericality_with_proc
-     Topic.send(:define_method, :min_approved, lambda { 5 })
-     Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
-     
-     invalid!([3, 4])
-     valid!([5, 6])
-     Topic.send(:remove_method, :min_approved)
- end
-*/
+- (void)testValidatesNumericalityWithBlock
+{
+    // Topic.send(:define_method, :min_approved, lambda { 5 })
+    id block = ^NSNumber *(id topic)
+    {
+        return [NSNumber numberWithInt:5];
+    };
+
+    // Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    block, @"greaterThanOrEqualTo",
+                                    nil]];
+
+    // invalid!([3, 4])
+    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:3], [NSNumber numberWithInt:4], nil]
+                withErrorMessage:@"must be greater than or equal to 5"];
+
+    // valid!([5, 6])
+    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:6], nil]];
+}
 
 
-// TODO: does not work ATM, b/c the validator can't invoke the model's selector
-// will require significant refactor in order to support
-/*
+
 - (void)testValidatesNumericalityWithSelector
 {
     // Topic.send(:define_method, :max_approved, lambda { 5 })
-
     // Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSValue valueWithPointer:@selector(maxApproved)], @"lessThanOrEqualTo",
+                                    [NSValue valueWithBytes:&@selector(maxApproved) objCType:@encode(SEL)], @"lessThanOrEqualTo",
                                     nil]];
     
     // invalid!([6])
@@ -444,8 +451,6 @@
     // valid!([4, 5])
     [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:5], nil]];
 }
-*/
-
 
 
 
