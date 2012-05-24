@@ -132,22 +132,4 @@
 
 
 
-- (void)testIfValueIsBlankStringItShouldBeInvalid
-{
-    [Person validatesPresenceOf:@"firstName" withOptions:nil];
-    [model setFirstName:@"     "];
-    [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
-}
-
-
-
-- (void)testIfValueIsNotBlankItShouldBeValid
-{
-    [Person validatesPresenceOf:@"firstName" withOptions:nil];
-    [model setFirstName:@"Winnie the Pooh"];
-    [self assertPropertyIsValid:@"firstName" forModel:model];
-}
-
-
-
 @end
