@@ -76,35 +76,34 @@
 {
     NSRegularExpression *regularExpression;
     NSString *stringValue = (NSString *)value;
-    BOOL valid = YES;
-
     // if value doesn't convert to string, fail validation
-    if ( ! stringValue )
-    {
-        valid = NO;
-    }
-    // is there a block to apply?
-    else if ( _block )
-    {
-        regularExpression = _block(model);
-    }
-    else
-    {
-        regularExpression = _regularExpression;
-    }
+    BOOL valid = ( [stringValue length] > 0 );
 
-    // does the value match the pattern?
-    NSRange matchRange = [regularExpression rangeOfFirstMatchInString:stringValue options:0 range:NSMakeRange(0, [stringValue length])];
-
-    // if we expect a match:
-    if ( _matchesPattern )
+    if ( valid )
     {
-        valid = ( matchRange.location != NSNotFound );
-    }
-    // we don't expect a match:
-    else
-    {
-        valid = ( matchRange.location == NSNotFound );
+        // is there a block to apply?
+        if ( _block )
+        {
+            regularExpression = _block(model);
+        }
+        else
+        {
+            regularExpression = _regularExpression;
+        }
+        
+        // does the value match the pattern?
+        NSRange matchRange = [regularExpression rangeOfFirstMatchInString:stringValue options:0 range:NSMakeRange(0, [stringValue length])];
+        
+        // if we expect a match:
+        if ( _matchesPattern )
+        {
+            valid = ( matchRange.location != NSNotFound );
+        }
+        // we don't expect a match:
+        else
+        {
+            valid = ( matchRange.location == NSNotFound );
+        }
     }
 
     if ( ! valid )

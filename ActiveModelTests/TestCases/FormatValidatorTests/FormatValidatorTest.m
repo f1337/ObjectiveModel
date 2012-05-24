@@ -165,15 +165,15 @@
 
 
 
-//- (void)testValidateFormatWithNilValue
-//{
-//    [Topic validatesFormatOf:@"title"
-//                 withOptions:nil
-//                  andPattern:@"^Valid Title$"];
-//    
-//    Topic *topic = [[Topic alloc] init];
-//    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"title"]];
-//}
+- (void)testValidateFormatWithNilValue
+{
+    [Topic validatesFormatOf:@"title"
+                 withOptions:nil
+                  andPattern:@"^Valid Title$"];
+    
+    Topic *topic = [[Topic alloc] init];
+    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"title"]];
+}
 
 
 
