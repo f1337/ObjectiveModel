@@ -78,6 +78,13 @@
 {
     if ( originalError != NULL )
     {
+        // formatted message
+        if ( value )
+        {
+            message = [message stringByReplacingOccurrencesOfString:@"%{value}" withString:[value description]];
+        }
+
+        
         // Error structured per CoreData guidelines:
         // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW2
         // don't create an error if none was requested
