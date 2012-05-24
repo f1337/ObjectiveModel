@@ -31,7 +31,8 @@
 
 
 
--(SEL)selectorFromOption:(NSString *)option;
+- (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number;
+- (SEL)selectorFromOption:(NSString *)option;
 
 
 
@@ -43,15 +44,53 @@
 
 
 
-- (instancetype)init
+- (NSString *)message
 {
-    if ( (self = [super init]) )
+    return ( [_message length] ? _message : @"is not a valid number" );
+}
+
+
+
+- (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number
+{
+    NSString *message = nil;
+
+    // only construct a specific default message if a custom message has not been defined
+    if ( [_message length] )
     {
-        // set the default message
-        _message = @"is not a valid number";
+        message = _message;
+    }
+    else
+    {
+        // insert spaces before capitals
+        NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"([a-z])([A-Z])" options:0 error:NULL];
+        message = [regexp stringByReplacingMatchesInString:selectorString options:0 range:NSMakeRange(0, [selectorString length]) withTemplate:@"$1 $2"];
+        
+        // lowercase
+        message = [message lowercaseString];
+        
+        // replace "is" with "must be"
+        NSRegularExpression *regexp2 = [NSRegularExpression regularExpressionWithPattern:@"\\Ais " options:0 error:NULL];
+        message = [regexp2 stringByReplacingMatchesInString:message options:0 range:NSMakeRange(0, [message length]) withTemplate:@"must be "];
+        
+        // replace "must be not" with "must not be"
+        message = [message stringByReplacingOccurrencesOfString:@" be not " withString:@" not be "];
+        
+        // replace "must be integer" with "must be an integer"
+        message = [message stringByReplacingOccurrencesOfString:@" be integer" withString:@" be an integer"];
+        
+        // replace "number" with option value (if present)
+        NSRegularExpression *regexp3 = [NSRegularExpression regularExpressionWithPattern:@" number:\\Z" options:0 error:NULL];
+        message = [regexp3 stringByReplacingMatchesInString:message options:0 range:NSMakeRange(0, [message length]) withTemplate:@" %{count}"];
+    }
+    
+    // replace "%{count}" with numeric value (if present)
+    if ( number )
+    {
+        message = [message stringByReplacingOccurrencesOfString:@"%{count}" withString:[number stringValue]];
     }
 
-    return self;
+    return message;
 }
 
 
@@ -141,6 +180,7 @@
     }
 
 
+    NSString *message = [self message];
     // sanitize value: should be a number or string
     NSNumber *numericValue = nil;
     NSString *stringValue = nil;
@@ -205,6 +245,8 @@
 
     for (NSString *option in _filteredOptions)
     {
+        NSNumber *optionValue;
+
         // convert "odd" constraint to @selector(isOdd)
         SEL selector = [self selectorFromOption:option];
         if ( selector )
@@ -213,16 +255,18 @@
 
             if ( [selectorString hasSuffix:@":"] )
             {
-                id value = [_filteredOptions objectForKey:option];
-                valid = (BOOL)[numericValue performSelector:selector withObject:value];
+                optionValue = [_filteredOptions objectForKey:option];
+                valid = (BOOL)[numericValue performSelector:selector withObject:optionValue];
             }
             else
             {
+                optionValue = nil;
                 valid = (BOOL)[numericValue performSelector:selector];
             }
 
             if ( ! valid )
             {
+                message = [self messageForSelectorString:selectorString withNumber:optionValue];
                 break;
             }
         }
@@ -230,7 +274,7 @@
 
     if ( ! valid )
     {
-        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+        [self errorWithOriginalError:outError value:value forKey:inKey message:message];
     }
 
     return valid;

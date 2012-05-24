@@ -210,12 +210,12 @@
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"integer", nil]];
 
     // invalid!(NIL + BLANK + JUNK + FLOATS + BIGDECIMAL + INFINITY)
-    [self assertValuesAreInvalid:[self null] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self floats] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self bigDecimals] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self infinity] withErrorMessage:nil];
+    [self assertValuesAreInvalid:[self null] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self floats] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self bigDecimals] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self infinity] withErrorMessage:@"must be an integer"];
 
     // valid!(INTEGERS)
     [self assertValuesAreValid:[self integers]];
@@ -233,11 +233,11 @@
                                     nil]];
 
     // invalid!(JUNK + BLANK + FLOATS + BIGDECIMAL + INFINITY)
-    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self floats] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self bigDecimals] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self infinity] withErrorMessage:nil];
+    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self floats] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self bigDecimals] withErrorMessage:@"must be an integer"];
+    [self assertValuesAreInvalid:[self infinity] withErrorMessage:@"must be an integer"];
 
     // valid!(NIL + INTEGERS)
     [self assertValuesAreValid:[self null]];
@@ -252,10 +252,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:10], @"greaterThan",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be greater than 10", @"message",
                                     nil]];
 
     // invalid!([-10, 10], 'must be greater than 10')
@@ -274,10 +270,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:10], @"greaterThanOrEqualTo",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be greater than or equal to 10", @"message",
                                     nil]];
 
     // invalid!([-9, 9], 'must be greater than or equal to 10')
@@ -296,10 +288,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:10], @"equalTo",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be equal to 10", @"message",
                                     nil]];
 
     // invalid!([-10, 11] + INFINITY, 'must be equal to 10')
@@ -320,10 +308,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:10], @"lessThan",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be less than 10", @"message",
                                     nil]];
     
     // invalid!([10], 'must be less than 10')
@@ -342,10 +326,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:10], @"lessThanOrEqualTo",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be less than or equal to 10", @"message",
                                     nil]];
     
     // invalid!([11], 'must be less than or equal to 10')
@@ -364,10 +344,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithBool:YES], @"odd",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be odd", @"message",
                                     nil]];
     
     // invalid!([-2, 2], 'must be odd')
@@ -386,10 +362,6 @@
     [Topic validatesNumericalityOf:@"approved"
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithBool:YES], @"even",
-                                    // TODO: in RoR, certain numeric constraints
-                                    // produce custom error messages.
-                                    // can/should we provide the same?
-                                    @"must be even", @"message",
                                     nil]];
     
     // invalid!([-1, 1], 'must be even')
@@ -432,7 +404,7 @@
     
     // invalid!([0, 0.0])
     [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithDouble:0.0], nil]
-                withErrorMessage:nil];
+                withErrorMessage:@"must not be equal to 0"];
     
     // valid!([-1, 42])
     [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:42], nil]];
@@ -441,10 +413,7 @@
 
 
 /*
- TODO:
-
-
- // convert to test blocks
+ // TODO: convert to test blocks
  def test_validates_numericality_with_proc
      Topic.send(:define_method, :min_approved, lambda { 5 })
      Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
@@ -478,41 +447,45 @@
 */
 
 
-/*
- // needs some deep thought:
- def test_validates_numericality_with_numeric_message
-     Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
-     topic = Topic.new("title" => "numeric test", "approved" => 10)
-     
-     assert !topic.valid?
-     assert_equal ["smaller than 4"], topic.errors[:approved]
-     
-     Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
-     topic = Topic.new("title" => "numeric test", "approved" => 1)
-     
-     assert !topic.valid?
-     assert_equal ["greater than 4"], topic.errors[:approved]
- end
 
- // probably not going to attempt to include
- // not even sure what this is doing ATM, maybe my ruby foo is weak now
- 
- def test_validates_numericality_of_for_ruby_class
-     Person.validates_numericality_of :karma, :allow_nil => false
-     
-     p = Person.new
-     p.karma = "Pix"
-     assert p.invalid?
-     
-     assert_equal ["is not a number"], p.errors[:karma]
-     
-     p.karma = "1234"
-     assert p.valid?
-     ensure
-     Person.reset_callbacks(:validate)
- end
- 
-*/
+
+- (void)testValidatesNumericalityWithNumericMessage
+{
+    // Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithInt:4], @"lessThan",
+                                    @"smaller than %{count}", @"message",
+                                    nil]];
+
+    // topic = Topic.new("title" => "numeric test", "approved" => 10)
+    Topic *topic = [[Topic alloc] init];
+    [topic setTitle:@"numeric test"];
+    [topic setApproved:[NSNumber numberWithInt:10]];
+    
+    // assert !topic.valid?
+    // assert_equal ["smaller than 4"], topic.errors[:approved]
+    [self assertModelIsInvalid:topic withErrorMessage:@"smaller than 4" forKeys:[NSArray arrayWithObject:@"approved"]];
+    [topic release];
+    
+
+    // Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithInt:4], @"greaterThan",
+                                    @"bigger than %{count}", @"message",
+                                    nil]];
+    
+    // topic = Topic.new("title" => "numeric test", "approved" => 1)
+    topic = [[Topic alloc] init];
+    [topic setTitle:@"numeric test"];
+    [topic setApproved:[NSNumber numberWithInt:1]];
+
+    // assert !topic.valid?
+    // assert_equal ["greater than 4"], topic.errors[:approved]
+    [self assertModelIsInvalid:topic withErrorMessage:@"bigger than 4" forKeys:[NSArray arrayWithObject:@"approved"]];
+    [topic release];
+}
 
 
 
@@ -548,11 +521,6 @@
 // def invalid!(values, error = nil)
 - (void)assertValuesAreInvalid:(NSArray *)values withErrorMessage:(NSString *)message
 {
-    if ( ! message )
-    {
-        message = @"is not a valid number";
-    }
-
     // with_each_topic_approved_value(values) do |topic, value|
     // topic = Topic.new(:title => "numeric test", :content => "whatever")
     Topic *topic = [[Topic alloc] init];
@@ -564,7 +532,6 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-//        NSLog(@"expecting invalid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.invalid?, "#{value.inspect} not rejected as a number"
         // assert topic.errors[:approved].any?, "FAILED for #{value.inspect}"
         // assert_equal error, topic.errors[:approved].first if error
@@ -590,7 +557,6 @@
     {
         // topic.approved = value
         [topic setApproved:value];
-//        NSLog(@"expecting valid topic: %@, approved: %@, value: %@", topic, [topic approved], value);
         // assert topic.valid?, "#{value.inspect} not accepted as a number"
         [self assertModelIsValid:topic];
     }

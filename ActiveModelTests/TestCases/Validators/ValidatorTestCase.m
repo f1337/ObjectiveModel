@@ -56,14 +56,20 @@
         {
             NSError *subError = [errors objectAtIndex:i];
             STAssertTrue([[[subError userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:i]], @"Unexpected NSValidationErrorKey value: %@", [[subError userInfo] objectForKey:NSValidationKeyErrorKey]);
-            STAssertTrue([[subError localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [subError localizedDescription]);
+            if ( message )
+            {
+                STAssertTrue([[subError localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [subError localizedDescription]);
+            }
         }
     }
     // handle single error
     else
     {
         STAssertTrue([[[error userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:0]], @"Unexpected NSValidationErrorKey value: %@", [[error userInfo] objectForKey:NSValidationKeyErrorKey]);
-        STAssertTrue([[error localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [error localizedDescription]);
+        if ( message )
+        {
+            STAssertTrue([[error localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [error localizedDescription]);
+        }
     }
 }
 

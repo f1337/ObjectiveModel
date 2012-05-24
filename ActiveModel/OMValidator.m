@@ -46,19 +46,6 @@
 
 
 
-- (instancetype)init
-{
-    if ( (self = [super init]) )
-    {
-        // set the default message
-        _message = @"is invalid";
-    }
-    
-    return self;
-}
-
-
-
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     if ( (self = [self init]) )
@@ -111,7 +98,7 @@
 
 - (NSString *)message
 {
-    return _message;
+    return ( [_message length] ? _message : @"is invalid" );
 }
 
 
@@ -127,10 +114,7 @@
         // TODO: allowNil, allowBlank, and message should be read-only!
         allowBlank = [[_options objectForKey:@"allowBlank"] boolValue];
         allowNil = [[_options objectForKey:@"allowNil"] boolValue];
-        if ( [_options objectForKey:@"message"] )
-        {
-            _message = [_options objectForKey:@"message"];
-        }
+        _message = [_options objectForKey:@"message"];
     }
 }
 
@@ -164,7 +148,7 @@
     }
     else
     {
-        [self errorWithOriginalError:outError value:value forKey:inKey message:_message];
+        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
         return NO;
     }
 }
