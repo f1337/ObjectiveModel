@@ -31,6 +31,10 @@
 
 
 
++ (NSNumberFormatter *)numberFormatter;
+
+
+
 - (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number;
 - (SEL)selectorFromOption:(NSString *)option;
 
@@ -42,6 +46,20 @@
 
 @implementation OMNumericalityValidator
 
+
+
++ (NSNumberFormatter *)numberFormatter
+{
+    static NSNumberFormatter *numberFormatter = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    });
+
+    return numberFormatter;
+}
 
 
 - (NSString *)message
@@ -201,11 +219,8 @@
     {
         stringValue = (NSString *)value;
 
-
         // first, see if NSNumberFormatter returns null, indicating bad input:
-        // TODO: numberformatter should be static
-        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumberFormatter * f = [[self class] numberFormatter];
         numericValue = [f numberFromString:stringValue];
 
         // if NSNumberFormatter failed to convert, numericValue will be nil
@@ -235,7 +250,6 @@
                 numericValue = [NSDecimalNumber numberWithDouble:[stringValue doubleValue]];
             }
         }
-        [f release];
     }
     // if value isn't a number or string, fail validation
     else

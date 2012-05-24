@@ -34,11 +34,6 @@
 @property (assign) NSString *lastName;
 @property (assign) NSString *title;
 
-@property (assign) NSString *name;
-@property (assign) NSNumber *ratio;
-@property (assign) NSNumber *two;
-@property (assign) NSNumber *three;
-
 
 
 @end

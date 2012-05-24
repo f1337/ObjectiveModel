@@ -35,8 +35,6 @@
 {
     if ( (self = [super init]) )
     {
-        allowBlank = NO;
-        allowNil = NO;
         // set the default message
         _message = @"cannot be blank";
     }

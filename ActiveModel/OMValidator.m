@@ -33,6 +33,8 @@
 
 
 
+@synthesize allowBlank = _allowBlank;
+@synthesize allowNil = _allowNil;
 @synthesize options = _options;
 
 
@@ -111,9 +113,9 @@
         _options = options;
         [_options retain];
 
-        // TODO: allowNil, allowBlank, and message should be read-only!
-        allowBlank = [[_options objectForKey:@"allowBlank"] boolValue];
-        allowNil = [[_options objectForKey:@"allowNil"] boolValue];
+        // TODO: message should be read-only!
+        _allowBlank = ( [[_options objectForKey:@"allowBlank"] boolValue] ? YES : NO );
+        _allowNil = ( [[_options objectForKey:@"allowNil"] boolValue] ? YES : NO );
         _message = [_options objectForKey:@"message"];
     }
 }
@@ -124,10 +126,10 @@
 {
     if (
         // skip validation if value is nil or NSNull and allowNil is true
-        ( allowNil && (value == nil || [value isKindOfClass:[NSNull class]]) )
+        ( _allowNil && (value == nil || [value isKindOfClass:[NSNull class]]) )
         || 
         // skip validation if value is blank and allowBlank is true
-        ( allowBlank && (value == nil || [value isBlank]) )
+        ( _allowBlank && (value == nil || [value isBlank]) )
         )
     {
         return YES;

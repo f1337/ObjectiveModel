@@ -37,12 +37,6 @@
 @synthesize lastName;
 @synthesize title;
 
-// TODO: factor these out of NumericalityValidatorTest:
-@synthesize name;
-@synthesize ratio;
-@synthesize three;
-@synthesize two;
-
 
 
 - (void)dealloc
@@ -50,11 +44,6 @@
     [self setFirstName:nil];
     [self setLastName:nil];
     [self setTitle:nil];
-
-    [self setName:nil];
-    [self setRatio:nil];
-    [self setThree:nil];
-    [self setTwo:nil];
     [super dealloc];
 }
 
