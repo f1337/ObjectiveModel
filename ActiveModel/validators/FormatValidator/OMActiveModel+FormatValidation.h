@@ -27,6 +27,10 @@
 
 
 
+typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
+
+
+
 @interface OMActiveModel (FormatValidation)
 
 
@@ -125,13 +129,11 @@
  * * <tt>strict</tt> - Specifies whether validation should be strict. 
  *   See <tt>ActiveModel::Validation#validates!</tt> for more information.
  */
-
-
-
-+ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(NSRegularExpression * (^) (id))block;
++ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMFormatValidatorRegularExpressionBlock)block;
 + (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andPattern:(NSString *)pattern;
 + (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andRegularExpression:(NSRegularExpression *)regularExpression;
 
 
 
 @end
+
