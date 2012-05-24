@@ -54,14 +54,6 @@
 
 
 /*!
- * @brief Removes all validators defined for the model.
- * // TODO: move this to category extension in test package. no need for consumer use.
- */
-+ (void)removeAllValidations;
-
-
-
-/*!
  * @param properties An NSString property name OR an NSArray of NSString property names
  * @param validators An NSArray containing one or more of the following:
  * "acceptance"
@@ -82,6 +74,10 @@
  * "unless" => @selector(method) (TODO)
  */
 + (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
+
+
+
++ (NSMutableDictionary *)validations;
 
 
 

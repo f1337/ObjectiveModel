@@ -31,10 +31,26 @@
 @interface ValidatorTestCase : SenTestCase
 
 
+
 - (void)assertModelIsInvalid:(OMActiveModel *)model withErrorMessage:(NSString *)message forKeys:(NSArray *)keys;
 - (void)assertModelIsValid:(OMActiveModel *)model;
 - (void)assertPropertyIsValid:(NSString *)property forModel:(OMActiveModel *)model;
 - (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model withErrorMessage:(NSString *)message;
+
+
+
+@end
+
+
+
+@interface OMActiveModel (ValidatorTests)
+
+
+
+/*!
+ * @brief Removes all validators defined for the model.
+ */
++ (void)removeAllValidations;
 
 
 

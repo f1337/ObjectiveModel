@@ -41,28 +41,20 @@
 
 
 
-static NSMutableDictionary *validations = nil;
-
-
-
 #pragma mark - CLASS METHODS
 
 
 
-// this initialize method is invoked *before* any subclass initialize method
-+ (void)initialize
++ (NSMutableDictionary *)validations
 {
-    if (self == [OMActiveModel class])
-    {
+    static NSMutableDictionary *validations = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         validations = [[NSMutableDictionary alloc] init];
-    }
-}
+    });
 
-
-
-+ (void)removeAllValidations
-{
-    [validations setObject:[NSMutableDictionary dictionary] forKey:self];
+    return validations;
 }
 
 
@@ -171,13 +163,13 @@ static NSMutableDictionary *validations = nil;
 
 + (NSMutableDictionary *)validatorsForSelf
 {
-    NSMutableDictionary *validationsForSelf = [validations objectForKey:self];
+    NSMutableDictionary *validationsForSelf = [[self validations] objectForKey:self];
     
     // auto-create the validations hash for this class
     if ( ! validationsForSelf )
     {
         validationsForSelf = [NSMutableDictionary dictionary];
-        [validations setObject:validationsForSelf forKey:self];
+        [[self validations] setObject:validationsForSelf forKey:self];
     }
     
     return validationsForSelf;

@@ -134,3 +134,18 @@
 
 
 @end
+
+
+
+@implementation OMActiveModel (ValidatorTests)
+
+
+
++ (void)removeAllValidations
+{
+    [[self validations] setObject:[NSMutableDictionary dictionary] forKey:self];
+}
+
+
+
+@end
