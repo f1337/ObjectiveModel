@@ -54,11 +54,7 @@ typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
  *
  * Configuration options:
  * * <tt>"message"</tt> - A custom error message (default is: "is not a number").
- * * <tt>"on"</tt> - Specifies when this validation is active. Runs in all
- *   validation contexts by default (+nil+), other options are <tt>"create"</tt>
- *   and <tt>"update"</tt>.
  * * <tt>"integer"</tt> - Specifies whether the value has to be an integer, e.g. an integral value (default is +false+).
- * * <tt>"allowNil"</tt> - Skip validation if attribute is +nil+ (default is +false+). Notice that for fixnum and float columns empty strings are converted to +nil+.
  * * <tt>"greaterThan"</tt> - Specifies the value must be greater than the supplied value.
  * * <tt>"greaterThanOrEqualTo"</tt> - Specifies the value must be greater than or equal the supplied value.
  * * <tt>"equalTo"</tt> - Specifies the value must be equal to the supplied value.
@@ -67,12 +63,6 @@ typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
  * * <tt>"lessThanOrEqualTo"</tt> - Specifies the value must be less than or equal the supplied value.
  * * <tt>"odd"</tt> - Specifies the value must be an odd number.
  * * <tt>"even"</tt> - Specifies the value must be an even number.
- * * <tt>"if"</tt> - Specifies a selector to call to determine if the validation should
- *   occur (e.g. <tt>"if" => "allowValidation"</tt>. The selector should return YES or NO.
- * * <tt>"unless"</tt> - Specifies a selector to call to determine if the validation should
- *   not occur (e.g. <tt>"unless" => "skipValidation"</tt>. The selector should return YES or NO.
- * * <tt>"strict"</tt> - YES or NO. Specifies whether the validator should throw a runtime exception
- *	 if the validation fails.
  *
  * The following options can also be supplied with a selector:
  * * <tt>"greaterThan"</tt>

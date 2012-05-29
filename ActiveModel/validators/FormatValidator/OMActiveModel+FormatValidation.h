@@ -106,28 +106,10 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  * http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40009708-CH1-SW53
  * 
  * Configuration options:
- * * <tt>message</tt> - A custom error message (default is: "is invalid").
- * * <tt>allowNil</tt> - If set to true, skips this validation if the attribute
- *   is +nil+ (default is +false+).
- * * <tt>allow_blank</tt> - If set to true, skips this validation if the
- *   attribute is blank (default is +false+).
  * * <tt>matchesPattern</tt> - If set to YES, then if the attribute matches the
  *   pattern it will result in a successful validation. If set to NO, then if
  *   the attribute does not match the pattern it will result in a successful
  *   validation.
- * * <tt>on</tt> - Specifies when this validation is active. Runs in all
- *   validation contexts by default (+nil+), other options are <tt>create</tt>
- *   and <tt>update</tt>.
- * * <tt>if</tt> - Specifies a method, proc or string to call to determine
- *   if the validation should occur (e.g. <tt>if => @selector(allowValidation)</tt>, or
- *   <tt>if => Proc.new { |user| user.signup_step > 2 }</tt>). The method, proc
- *   or string should return or evaluate to a true or false value.
- * * <tt>unless</tt> - Specifies a method, proc or string to call to determine
- *   if the validation should not occur (e.g. <tt>unless => @selector(skipValidation)</tt>,
- *   or <tt>unless => Proc.new { |user| user.signup_step <= 2 }</tt>). The
- *   method, proc or string should return or evaluate to a true or false value.
- * * <tt>strict</tt> - Specifies whether validation should be strict. 
- *   See <tt>ActiveModel::Validation#validates!</tt> for more information.
  */
 + (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMFormatValidatorRegularExpressionBlock)block;
 + (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andPattern:(NSString *)pattern;

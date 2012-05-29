@@ -72,9 +72,9 @@
 		AC23543215502E05005AC17D /* NumericalityValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumericalityValidatorTest.m; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.m; sourceTree = SOURCE_ROOT; };
 		AC23543415517DF4005AC17D /* ValidatorTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidatorTestCase.h; path = ActiveModelTests/TestCases/Validators/ValidatorTestCase.h; sourceTree = SOURCE_ROOT; };
 		AC23543515517DF4005AC17D /* ValidatorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ValidatorTestCase.m; path = ActiveModelTests/TestCases/Validators/ValidatorTestCase.m; sourceTree = SOURCE_ROOT; };
-		AC2354441551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "OMActiveModel+OMNumericalityValidator.h"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.h"; sourceTree = SOURCE_ROOT; };
+		AC2354441551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+OMNumericalityValidator.h"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.h"; sourceTree = SOURCE_ROOT; };
 		AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+OMNumericalityValidator.m"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.m"; sourceTree = SOURCE_ROOT; };
-		AC2354471551B746005AC17D /* NSNumber+ComparisonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "NSNumber+ComparisonMethods.h"; path = "ActiveModel/validators/NumericalityValidator/NSNumber+ComparisonMethods.h"; sourceTree = SOURCE_ROOT; };
+		AC2354471551B746005AC17D /* NSNumber+ComparisonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+ComparisonMethods.h"; path = "ActiveModel/validators/NumericalityValidator/NSNumber+ComparisonMethods.h"; sourceTree = SOURCE_ROOT; };
 		AC2354481551B746005AC17D /* NSNumber+ComparisonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+ComparisonMethods.m"; path = "ActiveModel/validators/NumericalityValidator/NSNumber+ComparisonMethods.m"; sourceTree = SOURCE_ROOT; };
 		AC23544B1551B880005AC17D /* OMActiveModel+OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+OMPresenceValidator.h"; path = "ActiveModel/validators/PresenceValidator/OMActiveModel+OMPresenceValidator.h"; sourceTree = SOURCE_ROOT; };
 		AC23544C1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+OMPresenceValidator.m"; path = "ActiveModel/validators/PresenceValidator/OMActiveModel+OMPresenceValidator.m"; sourceTree = SOURCE_ROOT; };
@@ -251,8 +251,6 @@
 				AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */,
 				AC2354441551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.h */,
 				AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */,
-				AC2354471551B746005AC17D /* NSNumber+ComparisonMethods.h */,
-				AC2354481551B746005AC17D /* NSNumber+ComparisonMethods.m */,
 			);
 			name = NumericalityValidator;
 			sourceTree = "<group>";
@@ -290,6 +288,8 @@
 				AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */,
 				AC1748081562EA2900A56648 /* NSError+ValidationErrors.h */,
 				AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */,
+				AC2354471551B746005AC17D /* NSNumber+ComparisonMethods.h */,
+				AC2354481551B746005AC17D /* NSNumber+ComparisonMethods.m */,
 			);
 			name = NSExtensions;
 			sourceTree = "<group>";

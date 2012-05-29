@@ -27,18 +27,97 @@
 
 
 
+// typedef BOOL (^ OMValidatorConditionalBlock) (id);
+
+
+
 @interface OMValidator : NSObject
 {
-    /*! A custom error message (default is set by subclasses). */
+    /*! A custom error message (default is: "is invalid"). */
     NSString *_message;
 }
 
 
 
+/*!
+ * If set to true, skips this validation if the attribute is blank (default is +false+).
+ */
 @property (nonatomic, readonly, assign) BOOL allowBlank;
+
+
+
+/*!
+ * If set to true, skips this validation if the attribute is +nil+ (default is +false+).
+ */
 @property (nonatomic, readonly, assign) BOOL allowNil;
-/*! The validation options. */
+
+
+
+/*!
+ * TODO: make this private. The validation options.
+ */
 @property (nonatomic, retain) NSDictionary *options;
+
+
+
+/*!
+ * TODO?: validateForUpdate, validateForInsert, validateForDelete
+ * ~mrf: May provide value with CoreData implementations.
+ *
+ * See: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW3
+ *
+ * @property (nonatomic, assign) BOOL validateForDelete;
+ * @property (nonatomic, assign) BOOL validateForInsert;
+ * @property (nonatomic, assign) BOOL validateForUpdate;
+ */
+
+
+/*!
+ * TODO: shouldApplyValidationSelector
+ *
+ * Specifies a selector to call to determine if the validation should occur.
+ *
+ *   [model setShouldApplyValidationSelector:@selector(allowValidation)];
+ *
+ * The selector should return YES or NO.
+ *
+ * @property (nonatomic, assign) SEL shouldApplyValidationSelector;
+ */
+
+
+
+/*!
+ * TODO: shouldApplyValidationBlock
+ *
+ * Specifies a block to call to determine if the validation should occur.
+ *
+ *   [model setShouldApplyValidationBlock:^(id)model
+ *   {
+ *      return ( [[model property] length] ? YES : NO );
+ *   }];
+ *
+ * The selector should return YES or NO.
+ *
+ * @property (nonatomic, assign) OMValidatorConditionalBlock shouldApplyValidationBlock;
+ */
+
+
+
+/*!
+ * TODO?: Specifies whether validation should be strict.
+ * ~mrf: This seems like overkill for now.
+ *
+ * YES or NO. Specifies whether the validator should throw a runtime exception
+ * if the validation fails, instead of raising a user-friendly error.
+ *
+ * @property (nonatomic, readonly, assign) BOOL strict;
+ */
+
+
+/*!
+ * TODO?: Per ~mlj's feedback, add error title?
+ * @property (nonatomic, retain) NSString *title;
+ */
 
 
 

@@ -65,13 +65,6 @@
  * OMNumericalityValidator
  * OMPresenceValidator
  * @param options A dictionary with one or more of the following keys/value pairs:
- * "allowNil" => YES or NO
- * "allowBlank" => YES or NO
- * "message" => @"Custom validator message"
- * TODO: title?
- * "on" => "create" or "update" or "save" (TODO)
- * "if" => @selector(method) (TODO)
- * "unless" => @selector(method) (TODO)
  */
 + (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
 

@@ -52,8 +52,6 @@
  *  * <tt>:equals</tt> - The exact size of the attribute.
  *  * <tt>:within</tt> - A range specifying the minimum and maximum size of the
  *    attribute.
- *  * <tt>:allow_nil</tt> - Attribute may be +nil+; skip validation.
- *  * <tt>:allow_blank</tt> - Attribute may be blank; skip validation.
  *  * <tt>:too_long</tt> - The error message if the attribute goes over the
  *    maximum (default is: "is too long (maximum is %{count} characters)").
  *  * <tt>:too_short</tt> - The error message if the attribute goes under the
@@ -64,23 +62,10 @@
  *  * <tt>:message</tt> - The error message to use for a <tt>:minimum</tt>,
  *    <tt>:maximum</tt>, or <tt>:is</tt> violation. An alias of the appropriate
  *    <tt>too_long</tt>/<tt>too_short</tt>/<tt>wrong_length</tt> message.
- *  * <tt>:on</tt> - Specifies when this validation is active. Runs in all
- *    validation contexts by default (+nil+), other options are <tt>:create</tt>
- *    and <tt>:update</tt>.
- *  * <tt>:if</tt> - Specifies a method, proc or string to call to determine if
- *    the validation should occur (e.g. <tt>:if => :allow_validation</tt>, or
- *    <tt>:if => Proc.new { |user| user.signup_step > 2 }</tt>). The method, proc
- *    or string should return or evaluate to a true or false value.
- *  * <tt>:unless</tt> - Specifies a method, proc or string to call to determine
- *    if the validation should not occur (e.g. <tt>:unless => :skip_validation</tt>,
- *    or <tt>:unless => Proc.new { |user| user.signup_step <= 2 }</tt>). The method,
- *    proc or string should return or evaluate to a true or false value.
  *  * <tt>:tokenizer</tt> - Specifies how to split up the attribute string.
  *    (e.g. <tt>:tokenizer => lambda {|str| str.scan(/\w+/)}</tt> to count words
  *    as in above example). Defaults to <tt>lambda{ |value| value.split(//) }</tt>
  *    which counts individual characters.
- *  * <tt>:strict</tt> - Specifies whether validation should be strict.
- *    See <tt>ActiveModel::Validation* validates!</tt> for more information.
  */
 + (void)validatesLengthOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 + (void)validatesSizeOf:(NSObject *)properties withOptions:(NSDictionary *)options;
