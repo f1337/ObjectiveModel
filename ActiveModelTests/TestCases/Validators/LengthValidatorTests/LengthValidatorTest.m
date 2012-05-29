@@ -53,25 +53,89 @@
 
 
 
+- (void)testValidatesLengthWithAllowNil
+{
+    // Topic.validates_length_of( :title, :is => 5, :allow_nil => true )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              [NSNumber numberWithBool:YES], @"allowNil",
+                              nil]];
+
+    Topic *topic;
+    // assert Topic.new("title" => "ab").invalid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:@"ab"];
+    [self assertModelIsInvalid:topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    [topic release];
+
+    // assert Topic.new("title" => "").invalid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:@""];
+    [self assertModelIsInvalid:topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    [topic release];
+    
+    // assert Topic.new("title" => nil).valid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:nil];
+    [self assertModelIsValid:topic];
+    [topic release];
+    
+    topic = [[Topic alloc] init];
+    [self assertModelIsValid:topic];
+    [topic release];
+    
+    // assert Topic.new("title" => "abcde").valid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:@"abcde"];
+    [self assertModelIsValid:topic];
+    [topic release];
+}
+
+
+
+- (void)testValidatesLengthWithAllowBlank
+{
+    // Topic.validates_length_of( :title, :is => 5, :allow_blank => true )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              [NSNumber numberWithBool:YES], @"allowBlank",
+                              nil]];
+    
+    Topic *topic;
+    // assert Topic.new("title" => "ab").invalid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:@"ab"];
+    [self assertModelIsInvalid:topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    [topic release];
+
+    // assert Topic.new("title" => "").valid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:@""];
+    [self assertModelIsValid:topic];
+    [topic release];
+
+    // assert Topic.new("title" => nil).valid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:nil];
+    [self assertModelIsValid:topic];
+    [topic release];
+    
+    topic = [[Topic alloc] init];
+    [self assertModelIsValid:topic];
+    [topic release];
+
+    // assert Topic.new("title" => "abcde").valid?
+    topic = [[Topic alloc] init];
+    [topic setTitle:@"abcde"];
+    [self assertModelIsValid:topic];
+    [topic release];
+}
+
+
+
 /*
- def test_validates_length_of_with_allow_nil
- Topic.validates_length_of( :title, :is => 5, :allow_nil => true )
- 
- assert Topic.new("title" => "ab").invalid?
- assert Topic.new("title" => "").invalid?
- assert Topic.new("title" => nil).valid?
- assert Topic.new("title" => "abcde").valid?
- end
- 
- def test_validates_length_of_with_allow_blank
- Topic.validates_length_of( :title, :is => 5, :allow_blank => true )
- 
- assert Topic.new("title" => "ab").invalid?
- assert Topic.new("title" => "").valid?
- assert Topic.new("title" => nil).valid?
- assert Topic.new("title" => "abcde").valid?
- end
- 
  def test_validates_length_of_using_minimum
  Topic.validates_length_of :title, :minimum => 5
  

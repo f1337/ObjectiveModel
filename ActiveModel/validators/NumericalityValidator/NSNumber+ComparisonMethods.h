@@ -23,16 +23,18 @@
 
 
 
-#import "OMValidator.h"
-#import "OMActiveModel+OMNumericalityValidator.h"
-#import "NSNumber+ComparisonMethods.h"
+@interface NSNumber (ComparisonMethods)
 
 
 
-@interface OMNumericalityValidator : OMValidator
-{
-    NSDictionary *_filteredOptions;
-}
+- (BOOL)isEven;
+- (BOOL)isGreaterThanNumber:(NSNumber *)minimum;
+- (BOOL)isGreaterThanOrEqualToNumber:(NSNumber *)minimum;
+- (BOOL)isLessThanNumber:(NSNumber *)maximum;
+- (BOOL)isLessThanOrEqualToNumber:(NSNumber *)maximum;
+- (BOOL)isInteger;
+- (BOOL)isNotEqualToNumber:(NSNumber *)expected;
+- (BOOL)isOdd;
 
 
 
