@@ -32,10 +32,6 @@
 
 
 @interface OMValidator : NSObject
-{
-    /*! A custom error message (default is: "is invalid"). */
-    NSString *_message;
-}
 
 
 
@@ -50,6 +46,11 @@
  * If set to true, skips this validation if the attribute is +nil+ (default is +false+).
  */
 @property (nonatomic, readonly, assign) BOOL allowNil;
+
+
+
+/*! A custom error message (default is: "is invalid"). */
+@property (nonatomic, copy) NSString *message;
 
 
 
@@ -126,7 +127,6 @@
                         forKey:(NSString *)inKey
                        message:(NSString *)message;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (NSString *)message;
 - (BOOL)shouldSkipValidationForValue:(NSObject *)value;
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError;
 

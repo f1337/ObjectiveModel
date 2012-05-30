@@ -62,9 +62,10 @@
 }
 
 
+
 - (NSString *)message
 {
-    return ( [_message length] ? _message : @"is not a valid number" );
+    return ( [[super message] length] ? [super message] : @"is not a valid number" );
 }
 
 
@@ -74,9 +75,9 @@
     NSString *message = nil;
 
     // only construct a specific default message if a custom message has not been defined
-    if ( [_message length] )
+    if ( [[super message] length] )
     {
-        message = _message;
+        message = [super message];
     }
     else
     {

@@ -35,6 +35,7 @@
 
 @synthesize allowBlank = _allowBlank;
 @synthesize allowNil = _allowNil;
+@synthesize message = _message;
 @synthesize options = _options;
 
 
@@ -67,6 +68,12 @@
 {
     if ( originalError != NULL )
     {
+        // default message
+        if ( ! [message length] )
+        {
+            message = @"is invalid";
+        }
+
         // formatted message
         if ( value )
         {
@@ -94,13 +101,6 @@
                                                     code:NSManagedObjectValidationError 
                                                 userInfo:userInfo];
     }
-}
-
-
-
-- (NSString *)message
-{
-    return ( [_message length] ? _message : @"is invalid" );
 }
 
 

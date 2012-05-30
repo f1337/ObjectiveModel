@@ -36,7 +36,7 @@
     if ( (self = [super init]) )
     {
         // set the default message
-        _message = @"cannot be blank";
+        [self setMessage:@"cannot be blank"];
     }
     
     return self;
