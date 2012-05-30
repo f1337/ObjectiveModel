@@ -38,14 +38,14 @@
 /*!
  * If set to true, skips this validation if the attribute is blank (default is +false+).
  */
-@property (nonatomic, readonly, assign) BOOL allowBlank;
+@property (nonatomic, assign) BOOL allowBlank;
 
 
 
 /*!
  * If set to true, skips this validation if the attribute is +nil+ (default is +false+).
  */
-@property (nonatomic, readonly, assign) BOOL allowNil;
+@property (nonatomic, assign) BOOL allowNil;
 
 
 
@@ -55,7 +55,7 @@
 
 
 /*!
- * TODO: make this private. The validation options.
+ * TODO: make this private, or readonly? The validation options.
  */
 @property (nonatomic, retain) NSDictionary *options;
 

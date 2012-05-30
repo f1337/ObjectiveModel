@@ -63,12 +63,15 @@
     }
 
     // MESSAGES  = { :is => :wrong_length, :minimum => :too_short, :maximum => :too_long }.freeze
-//    NSDictionary *messages = [NSDictionary dictionaryWithObjectsAndKeys:
-//                              (id), ...,
-//                              nil];
+    // TODO: make MESSAGES static!
+    NSDictionary *messages = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"wrongLength:", @"equals",
+                            @"is too short (minimum is %{count} characters)", @"minimum",
+                            @"tooLong:", @"maximum",
+                            nil];
 
     // CHECKS    = { :is => :==, :minimum => :>=, :maximum => :<= }.freeze
-    // TODO: make static!
+    // TODO: make CHECKS static!
     NSDictionary *checks = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"isEqualToNumber:", @"equals",
                             @"isGreaterThanOrEqualToNumber:", @"minimum",
@@ -103,9 +106,10 @@
 
             //default_message = options[MESSAGES[key]]
             //errors_options[:message] ||= default_message if default_message
+            NSString *message = [[messages objectForKey:key] stringByReplacingOccurrencesOfString:@"%{count}" withString:[checkValue stringValue]];
 
             //record.errors.add(attribute, MESSAGES[key], errors_options)
-            [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+            [self errorWithOriginalError:outError value:value forKey:inKey message:message];
         }
 
     }

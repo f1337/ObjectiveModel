@@ -113,10 +113,9 @@
         _options = options;
         [_options retain];
 
-        // TODO: message should be read-only!
-        _allowBlank = ( [[_options objectForKey:@"allowBlank"] boolValue] ? YES : NO );
-        _allowNil = ( [[_options objectForKey:@"allowNil"] boolValue] ? YES : NO );
-        _message = [_options objectForKey:@"message"];
+        [self setAllowBlank:( [[_options objectForKey:@"allowBlank"] boolValue] ? YES : NO )];
+        [self setAllowNil:( [[_options objectForKey:@"allowNil"] boolValue] ? YES : NO )];
+        [self setMessage:[_options objectForKey:@"message"]];
     }
 }
 

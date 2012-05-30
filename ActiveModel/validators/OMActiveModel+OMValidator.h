@@ -61,9 +61,9 @@
  * "exclusion"
  * "format"
  * "inclusion"
- * "length"
- * OMNumericalityValidator
- * OMPresenceValidator
+ * "length" => OMLengthValidator
+ * "numercality" => OMNumericalityValidator
+ * "presence" => OMPresenceValidator
  * @param options A dictionary with one or more of the following keys/value pairs:
  */
 + (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
