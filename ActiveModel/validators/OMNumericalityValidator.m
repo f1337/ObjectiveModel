@@ -31,12 +31,12 @@
 
 
 
++ (NSDictionary *)constraints;
 + (NSNumberFormatter *)numberFormatter;
 
 
 
 - (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number;
-- (SEL)selectorFromOption:(NSString *)option;
 
 
 
@@ -45,6 +45,59 @@
 
 
 @implementation OMNumericalityValidator
+
+
+
+@synthesize even = _even;
+@synthesize equalTo = _equalTo;
+@synthesize greaterThan = _greaterThan;
+@synthesize greaterThanOrEqualTo = _greaterThanOrEqualTo;
+@synthesize integer = _integer;
+@synthesize lessThan = _lessThan;
+@synthesize lessThanOrEqualTo = _lessThanOrEqualTo;
+@synthesize notEqualTo = _notEqualTo;
+@synthesize odd = _odd;
+
+
+
+- (void)dealloc
+{
+    [self setEven:nil];
+    [self setEqualTo:nil];
+    [self setGreaterThan:nil];
+    [self setGreaterThanOrEqualTo:nil];
+    [self setInteger:nil];
+    [self setLessThan:nil];
+    [self setLessThanOrEqualTo:nil];
+    [self setNotEqualTo:nil];
+    [self setOdd:nil];
+    [super dealloc];
+}
+
+
+
++ (NSDictionary *)constraints
+{
+    static NSDictionary *constraints;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        constraints = [NSDictionary dictionaryWithObjectsAndKeys:
+                       @"isEven", @"even",
+                       @"isEqualToNumber:", @"equalTo",
+                       @"isGreaterThanNumber:", @"greaterThan",
+                       @"isGreaterThanOrEqualToNumber:", @"greaterThanOrEqualTo",
+                       @"isInteger", @"integer",
+                       @"isLessThanNumber:", @"lessThan",
+                       @"isLessThanOrEqualToNumber:", @"lessThanOrEqualTo",
+                       @"isNotEqualToNumber:", @"notEqualTo",
+                       @"isOdd", @"odd",
+                       nil];
+        [constraints retain];
+    });
+    
+    return constraints;
+}
 
 
 
@@ -124,11 +177,14 @@
     [filteredOptions removeObjectsForKeys:keys];
 
 
+    // this is where the magic happens: KVC, baby!
+    [self setValuesForKeysWithDictionary:filteredOptions];
+
+
     // verify options input
     for (NSString *key in filteredOptions)
     {
-        // option key must be a valid NSNumber selector
-        if ( [self selectorFromOption:key] )
+        if ( [[[self class] constraints] objectForKey:key] )
         {
             id value = [filteredOptions objectForKey:key];
 
@@ -155,39 +211,8 @@
     }
 
     
-    // store the filtered options for use in validation methods
-    [_filteredOptions release];
-    _filteredOptions = filteredOptions;
-    [_filteredOptions retain];
-
-    
     // we still want to retain the unfiltered options hash
     [super setOptions:options];
-}
-
-
-
-/*!
- * Returns the selector for the given option constraint,
- * e.g. [self selectorFromOption:@"odd"] => @selector(isOdd)
- */
--(SEL)selectorFromOption:(NSString *)option
-{
-    NSMutableString *selectorName = [NSMutableString stringWithFormat:@"is%@%@", [[option substringToIndex:1] uppercaseString], [option substringFromIndex:1]];
-    SEL selector = NSSelectorFromString(selectorName);
-
-    if ( ! [NSNumber instancesRespondToSelector:selector] )
-    {
-        [selectorName appendString:@"Number:"];
-        selector = NSSelectorFromString(selectorName);
-
-        if ( ! [NSNumber instancesRespondToSelector:selector] )
-        {
-            return nil;
-        }
-    }
-
-    return selector;
 }
 
 
@@ -201,6 +226,7 @@
     }
 
 
+    // >>> PART I: Sanitize value
     NSString *message = [self message];
     // sanitize value: should be a number or string
     NSNumber *numericValue = nil;
@@ -260,31 +286,41 @@
         valid = NO;
     }
 
-    for (NSString *option in _filteredOptions)
+
+    // >>> PART II: Apply constraints
+    NSDictionary *constraints = [[self class] constraints];
+
+    for (NSString *option in constraints)
     {
         NSNumber *optionValue;
 
+        // skip constraint if it wasn't set by user
+        if ( [self valueForKey:option] == nil)
+        {
+            continue;
+        }
+
         // convert "odd" constraint to @selector(isOdd)
-        SEL selector = [self selectorFromOption:option];
+        SEL selector = NSSelectorFromString([constraints objectForKey:option]);
         if ( selector )
         {
             NSString *selectorString = NSStringFromSelector(selector);
 
             if ( [selectorString hasSuffix:@":"] )
             {
-                optionValue = [_filteredOptions objectForKey:option];
+                optionValue = [self valueForKey:option];
 
                 // if optionValue is a block, invoke block and expect NSNumber result
                 if ( [optionValue isKindOfClass:NSClassFromString(@"NSBlock")] )
                 {
-                    OMNumericalityValidatorNumberBlock block = [_filteredOptions objectForKey:option];
+                    OMNumericalityValidatorNumberBlock block = [self valueForKey:option];
                     optionValue = (NSNumber *)block(model);
                 }
                 // if optionValue is an NSValue (but not an NSNumber), invoke the wrapped selector
                 else if ( (! [optionValue isKindOfClass:[NSNumber class]]) && [optionValue isKindOfClass:[NSValue class]] )
                 {
                     SEL optionValueSelector;
-                    NSValue *optionValueWrapper = [_filteredOptions objectForKey:option];
+                    NSValue *optionValueWrapper = [self valueForKey:option];
                     [optionValueWrapper getValue:&optionValueSelector];
 
                     if ( optionValueSelector && [model respondsToSelector:optionValueSelector] )
