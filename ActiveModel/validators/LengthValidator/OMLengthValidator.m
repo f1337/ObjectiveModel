@@ -31,6 +31,20 @@
 
 
 
+@interface OMLengthValidator (Private)
+
+
+
++ (NSDictionary *)constraints;
++ (NSDictionary *)defaultMessages;
++ (NSDictionary *)messageKeys;
+
+
+
+@end
+
+
+
 @implementation OMLengthValidator
 
 
@@ -57,9 +71,66 @@
 
 
 
++ (NSDictionary *)constraints
+{
+    static NSDictionary *constraints;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        constraints = [NSDictionary dictionaryWithObjectsAndKeys:
+                       @"isEqualToNumber:", @"equals",
+                       @"isGreaterThanOrEqualToNumber:", @"minimum",
+                       @"isLessThanOrEqualToNumber:", @"maximum",
+                       nil];
+        [constraints retain];
+    });
+
+    return constraints;
+}
+
+
+
++ (NSDictionary *)defaultMessages
+{
+    static NSDictionary *defaultMessages;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        defaultMessages = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"is the wrong length (should be %{count} characters)", @"wrongLengthMessage",
+                           @"is too short (minimum is %{count} characters)", @"tooShortMessage",
+                           @"is too long (maximum is %{count} characters)", @"tooLongMessage",
+                           nil];
+        [defaultMessages retain];
+    });
+    
+    return defaultMessages;
+}
+
+
+
 - (NSString *)message
 {
     return [super message];
+}
+
+
+
++ (NSDictionary *)messageKeys
+{
+    static NSDictionary *messageKeys;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        messageKeys = [NSDictionary dictionaryWithObjectsAndKeys:
+                       @"wrongLengthMessage", @"equals",
+                       @"tooShortMessage", @"minimum",
+                       @"tooLongMessage", @"maximum",
+                       nil];
+        [messageKeys retain];
+    });
+    
+    return messageKeys;
 }
 
 
@@ -112,34 +183,14 @@
         valueLength = [NSNumber numberWithUnsignedInteger:[[value description] length]];
     }
 
-    // MESSAGES  = { :is => :wrong_length, :minimum => :too_short, :maximum => :too_long }.freeze
-    // TODO: make MESSAGES static!
-    NSDictionary *messageKeys = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"wrongLengthMessage", @"equals",
-                            @"tooShortMessage", @"minimum",
-                            @"tooLongMessage", @"maximum",
-                            nil];
-
-    NSDictionary *defaultMessages = [NSDictionary dictionaryWithObjectsAndKeys:
-                              @"is the wrong length (should be %{count} characters)", @"wrongLengthMessage",
-                              @"is too short (minimum is %{count} characters)", @"tooShortMessage",
-                              @"is too long (maximum is %{count} characters)", @"tooLongMessage",
-                              nil];
-
-    // CHECKS    = { :is => :==, :minimum => :>=, :maximum => :<= }.freeze
-    // TODO: make CHECKS static!
-    NSDictionary *checks = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"isEqualToNumber:", @"equals",
-                            @"isGreaterThanOrEqualToNumber:", @"minimum",
-                            @"isLessThanOrEqualToNumber:", @"maximum",
-                            nil];
-
-    // RESERVED_OPTIONS  = [:minimum, :maximum, :within, :is, :tokenizer, :too_short, :too_long]
 
     BOOL valid = YES;
+    NSDictionary *constraints = [[self class] constraints];
+    NSDictionary *defaultMessages = [[self class] defaultMessages];
+    NSDictionary *messageKeys = [[self class] messageKeys];
 
     // CHECKS.each do |key, validity_check|
-    for (NSString *key in checks)
+    for (NSString *key in constraints)
     {
         NSNumber *checkValue;
         SEL validityCheckSelector;
@@ -149,7 +200,7 @@
             // skip the check if it isn't defined
             ( checkValue = [self valueForKey:key] )
             // extra sanity check to ensure the selector isn't nil
-            && ( validityCheckSelector = NSSelectorFromString([checks objectForKey:key]) )
+            && ( validityCheckSelector = NSSelectorFromString([constraints objectForKey:key]) )
             // next if value_length.send(validity_check, check_value)
             // if the selector returns true, skip to the next check
             && ( ! ([valueLength performSelector:validityCheckSelector withObject:checkValue]) )
