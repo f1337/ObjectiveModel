@@ -194,11 +194,11 @@
 
 
 
-- (void)testValidateFormatWithMatchesPatternNO
+- (void)testValidateFormatWithShouldMatchPatternNO
 {
     // Topic.validates_format_of(:title, :without => /foo/, :message => "should not contain foo")
     [Topic validatesFormatOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"matchesPattern", @"should not contain foo", @"message", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"shouldMatchPattern", @"should not contain foo", @"message", nil]
                   andPattern:@"foo"];
 
     // t = Topic.new
@@ -260,7 +260,7 @@
 {
     // Topic.validates_format_of :content, :without => lambda{ |topic| topic.title == "characters" ? /\A\d+\Z/ : /\A\S+\Z/ }
     [Topic validatesFormatOf:@"content"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"matchesPattern", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"shouldMatchPattern", nil]
                     andBlock:^NSRegularExpression *(id topic)
      {
          NSString *pattern = ( [[topic title] isEqualToString:@"characters"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
@@ -310,7 +310,7 @@
 - (void)testValidatesFormatWithRegularExpressionAndPatternMatchesNO
 {
     [Topic validatesFormatOf:@"content"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"matchesPattern", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"shouldMatchPattern", nil]
         andRegularExpression:[NSRegularExpression regularExpressionWithPattern:@"\\A\\d+\\Z" options:0 error:nil]];
 
     // t = Topic.new

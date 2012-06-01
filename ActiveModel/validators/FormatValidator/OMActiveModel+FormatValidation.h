@@ -65,7 +65,7 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  *
  *		+ (void)initialize
  *		{
- *	    	[self validatesFormatOf:@"email" withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"matchesPattern", nil] andPattern:@"NOSPAM"];
+ *	    	[self validatesFormatOf:@"email" withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"shouldMatchPattern", nil] andPattern:@"NOSPAM"];
  *		}
  *   @end
  *
@@ -105,11 +105,6 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  * string, <tt>^</tt> and <tt>$</tt> match the start/end of a line.
  * http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40009708-CH1-SW53
  * 
- * Configuration options:
- * * <tt>matchesPattern</tt> - If set to YES, then if the attribute matches the
- *   pattern it will result in a successful validation. If set to NO, then if
- *   the attribute does not match the pattern it will result in a successful
- *   validation.
  */
 + (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMFormatValidatorRegularExpressionBlock)block;
 + (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andPattern:(NSString *)pattern;

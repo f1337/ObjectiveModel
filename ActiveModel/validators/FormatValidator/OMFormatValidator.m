@@ -32,35 +32,8 @@
 
 
 @synthesize block = _block;
-@synthesize matchesPattern = _matchesPattern;
+@synthesize shouldMatchPattern = _shouldMatchPattern;
 @synthesize regularExpression = _regularExpression;
-
-
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    if ( (self = [super initWithDictionary:dictionary]) )
-    {
-        _block = [dictionary objectForKey:@"block"];
-        _regularExpression = [[dictionary objectForKey:@"regularExpression"] copy];
-
-
-        id matchesPattern = [dictionary objectForKey:@"matchesPattern"];
-
-        // "matchesPattern" value should be a string "YES"/"NO"
-        // or a numberWithBool.
-        if ( [matchesPattern respondsToSelector:@selector(boolValue)] )
-        {
-            _matchesPattern = [matchesPattern boolValue];
-        }
-        else
-        {
-            _matchesPattern = YES;
-        }
-    }
-    
-    return self;
-}
 
 
 
@@ -68,6 +41,40 @@
 {
     [_regularExpression release];
     [super dealloc];
+}
+
+
+
+// TODO: move into OMValidator base class after refactoring other siblings
+- (void)setOptions:(NSDictionary *)options
+{
+    // filter out the properties that require special attention
+    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"allowBlank"];
+    [keys addObject:@"allowNil"];
+    [keys addObject:@"shouldMatchPattern"];
+    // when this is moved into the base class, "message" no longer needs filtered
+    [keys addObject:@"message"];
+    [filteredOptions removeObjectsForKeys:keys];
+
+    // "shouldMatchPattern" value should be a string "YES"/"NO"
+    // or a numberWithBool.
+    id shouldMatchPattern = [options objectForKey:@"shouldMatchPattern"];
+    if ( [shouldMatchPattern respondsToSelector:@selector(boolValue)] )
+    {
+        _shouldMatchPattern = [shouldMatchPattern boolValue];
+    }
+    else
+    {
+        _shouldMatchPattern = YES;
+    }
+
+    // this is where the magic happens: KVC, baby!
+    [self setValuesForKeysWithDictionary:filteredOptions];
+    
+    // and hit the superclass for the special handling of allowNil, allowBlank
+    [super setOptions:options];
 }
 
 
@@ -95,7 +102,7 @@
         NSRange matchRange = [regularExpression rangeOfFirstMatchInString:stringValue options:0 range:NSMakeRange(0, [stringValue length])];
         
         // if we expect a match:
-        if ( _matchesPattern )
+        if ( _shouldMatchPattern )
         {
             valid = ( matchRange.location != NSNotFound );
         }

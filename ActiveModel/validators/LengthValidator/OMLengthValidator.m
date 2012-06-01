@@ -44,6 +44,19 @@
 
 
 
+- (void)dealloc
+{
+    [self setEquals:nil];
+    [self setMaximum:nil];
+    [self setMinimum:nil];
+    [self setTooLongMessage:nil];
+    [self setTooShortMessage:nil];
+    [self setWrongLengthMessage:nil];
+    [super dealloc];
+}
+
+
+
 - (NSString *)message
 {
     return [super message];
