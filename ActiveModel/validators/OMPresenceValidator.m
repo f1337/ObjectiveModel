@@ -31,15 +31,9 @@
 
 
 
-- (instancetype)init
+- (NSString *)message
 {
-    if ( (self = [super init]) )
-    {
-        // set the default message
-        [self setMessage:@"cannot be blank"];
-    }
-    
-    return self;
+    return ( [[super message] length] ? [super message] : @"cannot be blank" );
 }
 
 

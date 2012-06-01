@@ -30,4 +30,14 @@
 
 @interface OMPresenceValidator : OMValidator
 
+
+
+
+/*!
+ * A custom error message (default is: "can't be blank").
+ */
+- (NSString *)message;
+
+
+
 @end
