@@ -49,15 +49,30 @@
     {
         NSArray *errors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
         STAssertTrue([errors count], @"Expected a non-empty errors array");
-        // sanity check the errors count against the keys count
-        STAssertEquals([errors count], [keys count], @"Expected errors count to equal keys count.");
-        
-        for (NSUInteger i = 0; i < [keys count]; i++)
+
+        for (NSString *key in keys)
         {
-            NSError *subError = [errors objectAtIndex:i];
-            STAssertTrue([[[subError userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:i]], @"Unexpected NSValidationErrorKey value: %@", [[subError userInfo] objectForKey:NSValidationKeyErrorKey]);
-            if ( message )
+            NSUInteger index = NSNotFound;
+            NSError *subError;
+
+            // ensure the expected key exists in the errors array
+            for (NSUInteger i = 0; i < [errors count]; i++)
             {
+                subError = [errors objectAtIndex:i];
+                if ( [[[subError userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:key] )
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if ( index == NSNotFound )
+            {
+                STFail(@"Unable to locate NSValidationKeyErrorKey value in errors array: %@", key);
+            }
+            else if ( message )
+            {
+                subError = [errors objectAtIndex:index];
                 STAssertTrue([[subError localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [subError localizedDescription]);
             }
         }
@@ -65,7 +80,7 @@
     // handle single error
     else
     {
-        STAssertTrue([[[error userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:0]], @"Unexpected NSValidationErrorKey value: %@", [[error userInfo] objectForKey:NSValidationKeyErrorKey]);
+        STAssertTrue([[[error userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:0]], @"Unexpected NSValidationErrorKey value. Expected: %@. Received: %@.", [keys objectAtIndex:0], [[error userInfo] objectForKey:NSValidationKeyErrorKey]);
         if ( message )
         {
             STAssertTrue([[error localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [error localizedDescription]);

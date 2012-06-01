@@ -35,6 +35,43 @@
 
 
 
+@synthesize equals = _equals;
+@synthesize maximum = _maximum;
+@synthesize minimum = _minimum;
+@synthesize tooLongMessage = _tooLongMessage;
+@synthesize tooShortMessage = _tooShortMessage;
+@synthesize wrongLengthMessage = _wrongLengthMessage;
+
+
+
+- (NSString *)message
+{
+    return [super message];
+}
+
+
+
+// TODO: move into OMValidator base class after refactoring other siblings
+- (void)setOptions:(NSDictionary *)options
+{
+    // filter out the properties that require special attention
+    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"allowBlank"];
+    [keys addObject:@"allowNil"];
+    // when this is moved into the base class, "message" no longer needs filtered
+    [keys addObject:@"message"];
+    [filteredOptions removeObjectsForKeys:keys];
+
+    // this is where the magic happens: KVC, baby!
+    [self setValuesForKeysWithDictionary:filteredOptions];
+
+    // and hit the superclass for the special handling of allowNil, allowBlank
+    [super setOptions:options];
+}
+
+
+
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
     // the superclass' validation will return YES if validation is to be skipped
@@ -64,11 +101,17 @@
 
     // MESSAGES  = { :is => :wrong_length, :minimum => :too_short, :maximum => :too_long }.freeze
     // TODO: make MESSAGES static!
-    NSDictionary *messages = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"wrongLength:", @"equals",
-                            @"is too short (minimum is %{count} characters)", @"minimum",
-                            @"tooLong:", @"maximum",
+    NSDictionary *messageKeys = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"wrongLengthMessage", @"equals",
+                            @"tooShortMessage", @"minimum",
+                            @"tooLongMessage", @"maximum",
                             nil];
+
+    NSDictionary *defaultMessages = [NSDictionary dictionaryWithObjectsAndKeys:
+                              @"is the wrong length (should be %{count} characters)", @"wrongLengthMessage",
+                              @"is too short (minimum is %{count} characters)", @"tooShortMessage",
+                              @"is too long (maximum is %{count} characters)", @"tooLongMessage",
+                              nil];
 
     // CHECKS    = { :is => :==, :minimum => :>=, :maximum => :<= }.freeze
     // TODO: make CHECKS static!
@@ -90,8 +133,8 @@
 
         if (
             // next unless check_value = options[key]
-            // skip the check if it isn't defined in the options dictionary
-            ( checkValue = [[self options] objectForKey:key] )
+            // skip the check if it isn't defined
+            ( checkValue = [self valueForKey:key] )
             // extra sanity check to ensure the selector isn't nil
             && ( validityCheckSelector = NSSelectorFromString([checks objectForKey:key]) )
             // next if value_length.send(validity_check, check_value)
@@ -103,10 +146,18 @@
 
             //errors_options = options.except(*RESERVED_OPTIONS)
             //errors_options[:count] = check_value
-
             //default_message = options[MESSAGES[key]]
             //errors_options[:message] ||= default_message if default_message
-            NSString *message = [[messages objectForKey:key] stringByReplacingOccurrencesOfString:@"%{count}" withString:[checkValue stringValue]];
+            NSString *message;
+            if ( ! (
+                    ( message = [self message] )
+                    ||
+                    (message = [self valueForKey:[messageKeys objectForKey:key]])
+            ))
+            {
+                message = [defaultMessages objectForKey:[messageKeys objectForKey:key]];
+            }
+            message = [message stringByReplacingOccurrencesOfString:@"%{count}" withString:[checkValue stringValue]];
 
             //record.errors.add(attribute, MESSAGES[key], errors_options)
             [self errorWithOriginalError:outError value:value forKey:inKey message:message];

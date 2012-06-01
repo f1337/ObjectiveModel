@@ -24,9 +24,16 @@
 
 
 #import "ValidatorTestCase.h"
+#import "Topic.h"
 
 
 
 @interface LengthValidatorTest : ValidatorTestCase
+
+
+
+@property (assign) Topic *topic;
+
+
 
 @end

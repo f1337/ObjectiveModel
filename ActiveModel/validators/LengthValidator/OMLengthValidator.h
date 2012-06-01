@@ -31,4 +31,69 @@
 
 @interface OMLengthValidator : OMValidator
 
+
+
+/*!
+ * The exact size of the attribute.
+ */
+@property (assign) NSNumber *equals;
+
+
+
+/*!
+ * The maximum size of the attribute.
+ */
+@property (assign) NSNumber *maximum;
+
+
+
+/*!  
+ * The error message to use for a minimum, maximum, or equals violation.
+ * An alias of the tooLongMessage, tooShortMessage, and wrongLengthMessage.
+ */
+- (NSString *)message;
+
+
+
+/*!
+ * The minimum size of the attribute.
+ */
+@property (assign) NSNumber *minimum;
+
+
+
+/*!
+ * The error message if the attribute goes over the maximum
+ * (default is: "is too long (maximum is %{count} characters)").
+ */
+@property (copy) NSString *tooLongMessage;
+                                          
+                                          
+                                          
+/*!
+ * The error message if the attribute goes under the minimum
+ * (default is: "is too short (minimum is %{count} characters)").
+ */
+@property (copy) NSString *tooShortMessage;
+                                          
+                                          
+                                          
+/*!
+ * TODO: tokenizer
+ * Specifies how to split up the attribute string.
+ *    (e.g. <tt>:tokenizer => lambda {|str| str.scan(/\w+/)}</tt> to count words
+ *    as in above example). Defaults to <tt>lambda{ |value| value.split(//) }</tt>
+ *    which counts individual characters.
+ */
+
+
+
+/*!
+ * The error message if using @"equals" and the attribute is the wrong size
+ * (default is: "is the wrong length (should be is %{count} characters)").
+ */
+@property (copy) NSString *wrongLengthMessage;
+
+
+
 @end

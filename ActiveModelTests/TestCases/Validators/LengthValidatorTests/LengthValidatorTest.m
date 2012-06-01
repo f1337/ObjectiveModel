@@ -37,12 +37,24 @@
 
 
 
+@synthesize topic = _topic;
+
+
 #pragma mark - SETUP/TEARDOWN
+
+
+
+- (void)setUp
+{
+    [super setUp];
+    [self setTopic:[[Topic alloc] init]];
+}
 
 
 
 - (void)tearDown
 {
+    [_topic release];
     [Topic removeAllValidations];
     [super tearDown];
 }
@@ -144,94 +156,170 @@
                               nil]];
 
     // t = Topic.new("title" => "valid", "content" => "whatever")
-    Topic *topic = [[Topic alloc] init];
-    [topic setTitle:@"valid"];
-    [topic setContent:@"whatever"];
+    [_topic setTitle:@"valid"];
+    [_topic setContent:@"whatever"];
     // assert t.valid?
-    [self assertModelIsValid:topic];
-    [topic release];
+    [self assertModelIsValid:_topic];
 
     // t.title = "not"
-    [topic setTitle:@"not"];
+    [_topic setTitle:@"not"];
     // assert t.invalid?
     // assert t.errors[:title].any?
     // assert_equal ["is too short (minimum is 5 characters)"], t.errors[:title]
-    [self assertModelIsInvalid:topic withErrorMessage:@"is too short (minimum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
 
     // t.title = ""
-//assert t.invalid?
-//assert t.errors[:title].any?
-//assert_equal ["is too short (minimum is 5 characters)"], t.errors[:title]
-//
-//t.title = nil
-//assert t.invalid?
-//assert t.errors[:title].any?
-//assert_equal ["is too short (minimum is 5 characters)"], t.errors["title"]
+    [_topic setTitle:@""];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is too short (minimum is 5 characters)"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is too short (minimum is 5 characters)"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
 }
 
 
 
-/* 
- def test_validates_length_of_using_maximum_should_allow_nil
- Topic.validates_length_of :title, :maximum => 10
- t = Topic.new
- assert t.valid?
- end
- 
- def test_optionally_validates_length_of_using_minimum
- Topic.validates_length_of :title, :minimum => 5, :allow_nil => true
- 
- t = Topic.new("title" => "valid", "content" => "whatever")
- assert t.valid?
- 
- t.title = nil
- assert t.valid?
- end
- 
- def test_validates_length_of_using_maximum
- Topic.validates_length_of :title, :maximum => 5
- 
- t = Topic.new("title" => "valid", "content" => "whatever")
- assert t.valid?
- 
- t.title = "notvalid"
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["is too long (maximum is 5 characters)"], t.errors[:title]
- 
- t.title = ""
- assert t.valid?
- end
- 
- def test_optionally_validates_length_of_using_maximum
- Topic.validates_length_of :title, :maximum => 5, :allow_nil => true
- 
- t = Topic.new("title" => "valid", "content" => "whatever")
- assert t.valid?
- 
- t.title = nil
- assert t.valid?
- end
- 
- def test_validates_length_of_using_within
- Topic.validates_length_of(:title, :content, :within => 3..5)
- 
- t = Topic.new("title" => "a!", "content" => "I'm ooooooooh so very long")
- assert t.invalid?
- assert_equal ["is too short (minimum is 3 characters)"], t.errors[:title]
- assert_equal ["is too long (maximum is 5 characters)"], t.errors[:content]
- 
- t.title = nil
- t.content = nil
- assert t.invalid?
- assert_equal ["is too short (minimum is 3 characters)"], t.errors[:title]
- assert_equal ["is too short (minimum is 3 characters)"], t.errors[:content]
- 
- t.title = "abe"
- t.content  = "mad"
- assert t.valid?
- end
- 
+- (void)testValidatesLengthUsingMaximumShouldAllowNil
+{
+    // Topic.validates_length_of :title, :maximum => 10
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:10], @"maximum",
+                              nil]];
+
+    // t = Topic.new
+    Topic *topic = [[Topic alloc] init];
+
+    // assert t.valid?
+    [self assertModelIsValid:topic];
+
+    [topic release];
+}
+
+
+
+- (void)testOptionallyValidatesLengthUsingMinimum
+{
+    // Topic.validates_length_of :title, :minimum => 5, :allow_nil => true
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"minimum",
+                              @"Y", @"allowNil",
+                              nil]];
+
+    // t = Topic.new("title" => "valid", "content" => "whatever")
+    [_topic setTitle:@"valid"];
+    [_topic setContent:@"whatever"];
+
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesLengthUsingMaximum
+{
+    // Topic.validates_length_of :title, :maximum => 5
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"maximum",
+                              nil]];
+
+    // t = Topic.new("title" => "valid", "content" => "whatever")
+    [_topic setTitle:@"valid"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = "notvalid"
+    [_topic setTitle:@"notvalid"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is too long (maximum is 5 characters)"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too long (maximum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t.title = ""
+    [_topic setTitle:@""];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+-(void)testOptionallyValidatesLengthUsingMaximum
+{
+    // Topic.validates_length_of :title, :maximum => 5, :allow_nil => true
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"maximum",
+                              @"Y", @"allowNil",
+                              nil]];
+
+    // t = Topic.new("title" => "valid", "content" => "whatever")
+    [_topic setTitle:@"valid"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesLengthUsingMinimumAndMaximum
+{
+    // Topic.validates_length_of(:title, :content, :within => 3..5)
+    [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:3], @"minimum",
+                              [NSNumber numberWithInt:5], @"maximum",
+                              nil]];
+
+    // t = Topic.new("title" => "a!", "content" => "I'm ooooooooh so very long")
+    [_topic setTitle:@"a!"];
+    [_topic setContent:@"I'm ooooooooh so very long"];
+    // assert t.invalid?
+    // assert_equal ["is too short (minimum is 3 characters)"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 3 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+    // assert_equal ["is too long (maximum is 5 characters)"], t.errors[:content]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too long (maximum is 5 characters)" forKeys:[NSArray arrayWithObject:@"content"]];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // t.content = nil
+    [_topic setContent:nil];
+    // assert t.invalid?
+    // assert_equal ["is too short (minimum is 3 characters)"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 3 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+    // assert_equal ["is too short (minimum is 3 characters)"], t.errors[:content]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 3 characters)" forKeys:[NSArray arrayWithObject:@"content"]];
+
+    // t.title = "abe"
+    [_topic setTitle:@"abe"];
+    // t.content  = "mad"
+    [_topic setContent:@"mad"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+/*
+// HACK:
+// NSRange isn't really an analog to Ruby's Range. Skipping this test.
  def test_validates_length_of_using_within_with_exclusive_range
  Topic.validates_length_of(:title, :within => 4...10)
  
@@ -245,203 +333,439 @@
  t.title = "Four"
  assert t.valid?
  end
+*/
+
+
+
+- (void)testOptionallyValidatesLengthUsingMinimumAndMaximum
+{
+    // Topic.validates_length_of :title, :content, :within => 3..5, :allow_nil => true
+    [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:3], @"minimum",
+                              [NSNumber numberWithInt:5], @"maximum",
+                              @"Y", @"allowNil",
+                              nil]];
+
+    // t = Topic.new('title' => 'abc', 'content' => 'abcd')
+    [_topic setTitle:@"abc"];
+    [_topic setContent:@"abcd"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesLengthUsingEquals
+{
+    // Topic.validates_length_of :title, :is => 5
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              nil]];
+
+    // t = Topic.new("title" => "valid", "content" => "whatever")
+    [_topic setTitle:@"valid"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = "notvalid"
+    [_topic setTitle:@"notvalid"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is the wrong length (should be 5 characters)"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is the wrong length (should be 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t.title = ""
+    [_topic setTitle:@""];
+    // assert t.invalid?
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is the wrong length (should be 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // assert t.invalid?
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is the wrong length (should be 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testOptionallyValidatesLengthUsingEquals
+{
+    // Topic.validates_length_of :title, :is => 5, :allow_nil => true
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              @"Y", @"allowNil",
+                              nil]];
+
+    // t = Topic.new("title" => "valid", "content" => "whatever")
+    [_topic setTitle:@"valid"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = nil
+    [_topic setTitle:@"valid"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesLengthWithBignum
+{
+    // bigmin = 2 ** 30
+    NSUInteger bigMin = (2 ^ 30);
+    // bigmax = 2 ** 32
+    // bigrange = bigmin...bigmax
+    NSUInteger bigMax = (2 ^ 32);
+
+    // assert_nothing_raised do
+    // Topic.validates_length_of :title, :is => bigmin + 5
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(bigMin + 5)], @"equals", nil];
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withOptions:options], @"An exception should NOT have been raised.");
+    // Topic.validates_length_of :title, :within => bigrange
+    // Topic.validates_length_of :title, :in => bigrange
+    options = [NSDictionary dictionaryWithObjectsAndKeys:
+               [NSNumber numberWithInt:bigMin], @"minimum",
+               [NSNumber numberWithInt:bigMax], @"maximum",
+               nil];
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withOptions:options], @"An exception should NOT have been raised.");
+    // Topic.validates_length_of :title, :minimum => bigmin
+    options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:bigMin], @"minimum", nil];
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withOptions:options], @"An exception should NOT have been raised.");
+    // Topic.validates_length_of :title, :maximum => bigmax
+    options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:bigMax], @"maximum", nil];
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withOptions:options], @"An exception should NOT have been raised.");
+}
+
+/*
+// TODO: testValidatesLengthUsingNastyOptions
+
  
- def test_optionally_validates_length_of_using_within
- Topic.validates_length_of :title, :content, :within => 3..5, :allow_nil => true
+ - (void)testValidatesLengthUsingNastyOptions
+ {
+ // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }
+ NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-6], @"equals", nil];
+ STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
  
- t = Topic.new('title' => 'abc', 'content' => 'abcd')
- assert t.valid?
- 
- t.title = nil
- assert t.valid?
- end
- 
- def test_validates_length_of_using_is
- Topic.validates_length_of :title, :is => 5
- 
- t = Topic.new("title" => "valid", "content" => "whatever")
- assert t.valid?
- 
- t.title = "notvalid"
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["is the wrong length (should be 5 characters)"], t.errors[:title]
- 
- t.title = ""
- assert t.invalid?
- 
- t.title = nil
- assert t.invalid?
- end
- 
- def test_optionally_validates_length_of_using_is
- Topic.validates_length_of :title, :is => 5, :allow_nil => true
- 
- t = Topic.new("title" => "valid", "content" => "whatever")
- assert t.valid?
- 
- t.title = nil
- assert t.valid?
- end
- 
- def test_validates_length_of_using_bignum
- bigmin = 2 ** 30
- bigmax = 2 ** 32
- bigrange = bigmin...bigmax
- assert_nothing_raised do
- Topic.validates_length_of :title, :is => bigmin + 5
- Topic.validates_length_of :title, :within => bigrange
- Topic.validates_length_of :title, :in => bigrange
- Topic.validates_length_of :title, :minimum => bigmin
- Topic.validates_length_of :title, :maximum => bigmax
- end
- end
- 
- def test_validates_length_of_nasty_params
- assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }
- assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => 6) }
- assert_raise(ArgumentError) { Topic.validates_length_of(:title, :minimum => "a") }
- assert_raise(ArgumentError) { Topic.validates_length_of(:title, :maximum => "a") }
- assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => "a") }
- assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => "a") }
- end
- 
- def test_validates_length_of_custom_errors_for_minimum_with_message
- Topic.validates_length_of( :title, :minimum => 5, :message => "boo %{count}" )
- t = Topic.new("title" => "uhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["boo 5"], t.errors[:title]
- end
- 
- def test_validates_length_of_custom_errors_for_minimum_with_too_short
- Topic.validates_length_of( :title, :minimum => 5, :too_short => "hoo %{count}" )
- t = Topic.new("title" => "uhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["hoo 5"], t.errors[:title]
- end
- 
- def test_validates_length_of_custom_errors_for_maximum_with_message
- Topic.validates_length_of( :title, :maximum => 5, :message => "boo %{count}" )
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["boo 5"], t.errors[:title]
- end
- 
- def test_validates_length_of_custom_errors_for_in
- Topic.validates_length_of(:title, :in => 10..20, :message => "hoo %{count}")
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["hoo 10"], t.errors["title"]
- 
- t = Topic.new("title" => "uhohuhohuhohuhohuhohuhohuhohuhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["hoo 20"], t.errors["title"]
- end
- 
- def test_validates_length_of_custom_errors_for_maximum_with_too_long
- Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}" )
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["hoo 5"], t.errors["title"]
- end
- 
- def test_validates_length_of_custom_errors_for_both_too_short_and_too_long
- Topic.validates_length_of :title, :minimum => 3, :maximum => 5, :too_short => 'too short', :too_long => 'too long'
- 
- t = Topic.new(:title => 'a')
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ['too short'], t.errors['title']
- 
- t = Topic.new(:title => 'aaaaaa')
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ['too long'], t.errors['title']
- end
- 
- def test_validates_length_of_custom_errors_for_is_with_message
- Topic.validates_length_of( :title, :is => 5, :message => "boo %{count}" )
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["boo 5"], t.errors["title"]
- end
- 
- def test_validates_length_of_custom_errors_for_is_with_wrong_length
- Topic.validates_length_of( :title, :is => 5, :wrong_length => "hoo %{count}" )
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["hoo 5"], t.errors["title"]
- end
- 
- def test_validates_length_of_using_minimum_utf8
- Topic.validates_length_of :title, :minimum => 5
- 
- t = Topic.new("title" => "一二三四五", "content" => "whatever")
- assert t.valid?
- 
- t.title = "一二三四"
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["is too short (minimum is 5 characters)"], t.errors["title"]
- end
- 
- def test_validates_length_of_using_maximum_utf8
- Topic.validates_length_of :title, :maximum => 5
- 
- t = Topic.new("title" => "一二三四五", "content" => "whatever")
- assert t.valid?
- 
- t.title = "一二34五六"
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["is too long (maximum is 5 characters)"], t.errors["title"]
- end
- 
- def test_validates_length_of_using_within_utf8
- Topic.validates_length_of(:title, :content, :within => 3..5)
- 
- t = Topic.new("title" => "一二", "content" => "12三四五六七")
- assert t.invalid?
- assert_equal ["is too short (minimum is 3 characters)"], t.errors[:title]
- assert_equal ["is too long (maximum is 5 characters)"], t.errors[:content]
- t.title = "一二三"
- t.content  = "12三"
- assert t.valid?
- end
- 
- def test_optionally_validates_length_of_using_within_utf8
- Topic.validates_length_of :title, :within => 3..5, :allow_nil => true
- 
- t = Topic.new(:title => "一二三四五")
- assert t.valid?, t.errors.inspect
- 
- t = Topic.new(:title => "一二三")
- assert t.valid?, t.errors.inspect
- 
- t.title = nil
- assert t.valid?, t.errors.inspect
- end
- 
- def test_validates_length_of_using_is_utf8
- Topic.validates_length_of :title, :is => 5
- 
- t = Topic.new("title" => "一二345", "content" => "whatever")
- assert t.valid?
- 
- t.title = "一二345六"
- assert t.invalid?
- assert t.errors[:title].any?
- assert_equal ["is the wrong length (should be 5 characters)"], t.errors["title"]
- end
- 
+ // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => 6) }
+ // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :minimum => "a") }
+ // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :maximum => "a") }
+ // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => "a") }
+ // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => "a") }
+ }
+*/
+
+
+
+
+
+
+- (void)testValidatesLengthWithMinimumAndMessage
+{
+    // Topic.validates_length_of( :title, :minimum => 5, :message => "boo %{count}" )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"minimum",
+                              @"boo %{count}", @"message",
+                              nil]];
+    // t = Topic.new("title" => "uhoh", "content" => "whatever")
+    [_topic setTitle:@"uhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["boo 5"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"boo 5" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthWithMinimumAndTooShortMessage
+{
+    // Topic.validates_length_of( :title, :minimum => 5, :too_short => "hoo %{count}" )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"minimum",
+                              @"hoo %{count}", @"tooShortMessage",
+                              nil]];
+    // t = Topic.new("title" => "uhoh", "content" => "whatever")
+    [_topic setTitle:@"uhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["hoo 5"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"hoo 5" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthWithMaximumAndMessage
+{
+    // Topic.validates_length_of( :title, :maximum => 5, :message => "boo %{count}" )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"maximum",
+                              @"boo %{count}", @"message",
+                              nil]];
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
+    [_topic setTitle:@"uhohuhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["boo 5"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"boo 5" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthUsingMinimumAndMaximumWithMessage
+{
+    // Topic.validates_length_of(:title, :in => 10..20, :message => "hoo %{count}")
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:10], @"minimum",
+                              [NSNumber numberWithInt:20], @"maximum",
+                              @"hoo %{count}", @"message",
+                              nil]];
+
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
+    [_topic setTitle:@"uhohuhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["hoo 10"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"hoo 10" forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t = Topic.new("title" => "uhohuhohuhohuhohuhohuhohuhohuhoh", "content" => "whatever")
+    [_topic setTitle:@"uhohuhohuhohuhohuhohuhohuhohuhoh"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["hoo 20"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"hoo 20" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthWithMaximumAndTooLongMessage
+{
+    // Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}" )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"maximum",
+                              @"hoo %{count}", @"tooLongMessage",
+                              nil]];
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
+    [_topic setTitle:@"uhohuhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["hoo 5"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"hoo 5" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthWithTooShortAndTooLong
+{
+    // Topic.validates_length_of :title, :minimum => 3, :maximum => 5, :too_short => 'too short', :too_long => 'too long'
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:3], @"minimum",
+                              [NSNumber numberWithInt:5], @"maximum",
+                              @"too short", @"tooShortMessage",
+                              @"too long", @"tooLongMessage",
+                              nil]];
+
+    // t = Topic.new(:title => 'a')
+    [_topic setTitle:@"a"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ['too short'], t.errors['title']
+    [self assertModelIsInvalid:_topic withErrorMessage:@"too short" forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t = Topic.new(:title => 'aaaaaa')
+    [_topic setTitle:@"aaaaaa"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ['too long'], t.errors['title']
+    [self assertModelIsInvalid:_topic withErrorMessage:@"too long" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthWithEqualsAndMessage
+{
+    // Topic.validates_length_of( :title, :is => 5, :message => "boo %{count}" )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              @"boo %{count}", @"message",
+                              nil]];
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
+    [_topic setTitle:@"uhohuhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["boo 5"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"boo 5" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthWithEqualsAndWrongLengthMessage
+{
+    // Topic.validates_length_of( :title, :is => 5, :wrong_length => "hoo %{count}" )
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              @"hoo %{count}", @"wrongLengthMessage",
+                              nil]];
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
+    [_topic setTitle:@"uhohuhoh"];
+    [_topic setContent:@"whatever"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["hoo 5"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"hoo 5" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthUsingMinimumWithUTF8
+{
+    // Topic.validates_length_of :title, :minimum => 5
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"minimum",
+                              nil]];
+    // t = Topic.new("title" => "一二三四五", "content" => "whatever")
+    [_topic setTitle:@"一二三四五"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = "一二三四"
+    [_topic setTitle:@"一二三四"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is too short (minimum is 5 characters)"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthUsingMaximumWithUTF8
+{
+    // Topic.validates_length_of :title, :maximum => 5
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"maximum",
+                              nil]];
+
+    // t = Topic.new("title" => "一二三四五", "content" => "whatever")
+    [_topic setTitle:@"一二三四五"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = "一二34五六"
+    [_topic setTitle:@"一二34五六"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is too long (maximum is 5 characters)"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too long (maximum is 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesLengthUsingMinimumAndMaximumWithUTF8
+{
+    // Topic.validates_length_of(:title, :content, :within => 3..5)
+    [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:3], @"minimum",
+                              [NSNumber numberWithInt:5], @"maximum",
+                              nil]];
+
+    // t = Topic.new("title" => "一二", "content" => "12三四五六七")
+    [_topic setTitle:@"一二"];
+    [_topic setContent:@"12三四五六七"];
+    // assert t.invalid?
+    // assert_equal ["is too short (minimum is 3 characters)"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too short (minimum is 3 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+    // assert_equal ["is too long (maximum is 5 characters)"], t.errors[:content]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is too long (maximum is 5 characters)" forKeys:[NSArray arrayWithObject:@"content"]];
+
+    // t.title = "一二三"
+    [_topic setTitle:@"一二三"];
+    // t.content  = "12三"
+    [_topic setContent:@"12三"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testOptionallyValidatesLengthUsingMinimumAndMaximumWithUTF8
+{
+    // Topic.validates_length_of :title, :within => 3..5, :allow_nil => true
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:3], @"minimum",
+                              [NSNumber numberWithInt:5], @"maximum",
+                              @"Y", @"allowNil",
+                              nil]];
+
+    // t = Topic.new(:title => "一二三四五")
+    [_topic setTitle:@"一二三四五"];
+    // assert t.valid?, t.errors.inspect
+    [self assertModelIsValid:_topic];
+
+    // t = Topic.new(:title => "一二三")
+    [_topic setTitle:@"一二三"];
+    // assert t.valid?, t.errors.inspect
+    [self assertModelIsValid:_topic];
+
+    // t.title = nil
+    [_topic setTitle:nil];
+    // assert t.valid?, t.errors.inspect
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesLengthUsingEqualsWintUTF8
+{
+    // Topic.validates_length_of :title, :is => 5
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"equals",
+                              nil]];
+
+    // t = Topic.new("title" => "一二345", "content" => "whatever")
+    [_topic setTitle:@"一二345"];
+    [_topic setContent:@"whatever"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.title = "一二345六"
+    [_topic setTitle:@"一二345六"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    // assert_equal ["is the wrong length (should be 5 characters)"], t.errors["title"]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is the wrong length (should be 5 characters)" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+/*
+ // TODO: testValidatesLengthWithTokenizerBlock
  def test_validates_length_of_with_block
  Topic.validates_length_of :content, :minimum => 5, :too_short => "Your essay must be at least %{count} words.",
  :tokenizer => lambda {|str| str.scan(/\w+/) }
@@ -453,49 +777,74 @@
  assert t.errors[:content].any?
  assert_equal ["Your essay must be at least 5 words."], t.errors[:content]
  end
- 
- def test_validates_length_of_for_fixnum
- Topic.validates_length_of(:approved, :is => 4)
- 
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever", :approved => 1)
- assert t.invalid?
- assert t.errors[:approved].any?
- 
- t = Topic.new("title" => "uhohuhoh", "content" => "whatever", :approved => 1234)
- assert t.valid?
- end
- 
- def test_validates_length_of_for_ruby_class
- Person.validates_length_of :karma, :minimum => 5
- 
- p = Person.new
- p.karma = "Pix"
- assert p.invalid?
- 
- assert_equal ["is too short (minimum is 5 characters)"], p.errors[:karma]
- 
- p.karma = "The Smiths"
- assert p.valid?
- ensure
- Person.reset_callbacks(:validate)
- end
- 
- def test_validates_length_of_for_infinite_maxima
- Topic.validates_length_of(:title, :within => 5..Float::INFINITY)
- 
- t = Topic.new("title" => "1234")
- assert t.invalid?
- assert t.errors[:title].any?
- 
- t.title = "12345"
- assert t.valid?
- 
- Topic.validates_length_of(:author_name, :maximum => Float::INFINITY)
- 
- assert t.valid?
- 
- t.author_name = "A very long author name that should still be valid." * 100
- assert t.valid?
- end
 */
+
+
+// 1234 => "1234"
+- (void)testValidatesLengthWithNumber
+{
+    // Topic.validates_length_of(:approved, :is => 4)
+    [Topic validatesLengthOf:@"approved"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:4], @"equals",
+                              nil]];
+
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever", :approved => 1)
+    [_topic setTitle:@"uhohuhoh"];
+    [_topic setContent:@"whatever"];
+    [_topic setApproved:[NSNumber numberWithInt:1]];
+    // assert t.invalid?
+    // assert t.errors[:approved].any?
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"approved"]];
+
+    // t = Topic.new("title" => "uhohuhoh", "content" => "whatever", :approved => 1234)
+    [_topic setApproved:[NSNumber numberWithInt:1234]];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesLengthWithInfiniteMaximum
+{
+    // Topic.validates_length_of(:title, :within => 5..Float::INFINITY)
+    [Topic validatesLengthOf:@"title"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"minimum",
+                              [NSNumber numberWithFloat:INFINITY], @"maximum",
+                              nil]];
+
+    // t = Topic.new("title" => "1234")
+    [_topic setTitle:@"1234"];
+    // assert t.invalid?
+    // assert t.errors[:title].any?
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+
+    // t.title = "12345"
+    [_topic setTitle:@"12345"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // Topic.validates_length_of(:author_name, :maximum => Float::INFINITY)
+    [Topic validatesLengthOf:@"authorName"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithFloat:INFINITY], @"maximum",
+                              nil]];
+
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.author_name = "A very long author name that should still be valid." * 100
+    NSString *authorName = @"A very long author name that should still be valid.";
+    int times = 100;
+    NSMutableString *result = [NSMutableString stringWithCapacity:[authorName length] * times]; 
+    for (int i = 0; i < times; i++)
+    {
+        [result appendString:authorName];    
+    }
+    [_topic setAuthorName:result];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
 @end

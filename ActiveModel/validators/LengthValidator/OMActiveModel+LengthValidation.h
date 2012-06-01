@@ -45,27 +45,6 @@
  *      validates_length_of :essay, :minimum => 100, :too_short => "Your essay must be at least 100 words.",
  *                          :tokenizer => lambda { |str| str.scan(/\w+/) }
  *    end
- *  
- *  Configuration options:
- *  * <tt>:minimum</tt> - The minimum size of the attribute.
- *  * <tt>:maximum</tt> - The maximum size of the attribute.
- *  * <tt>:equals</tt> - The exact size of the attribute.
- *  * <tt>:within</tt> - A range specifying the minimum and maximum size of the
- *    attribute.
- *  * <tt>:too_long</tt> - The error message if the attribute goes over the
- *    maximum (default is: "is too long (maximum is %{count} characters)").
- *  * <tt>:too_short</tt> - The error message if the attribute goes under the
- *    minimum (default is: "is too short (min is %{count} characters)").
- *  * <tt>:wrong_length</tt> - The error message if using the <tt>:is</tt> method
- *    and the attribute is the wrong size (default is: "is the wrong length
- *    (should be %{count} characters)").
- *  * <tt>:message</tt> - The error message to use for a <tt>:minimum</tt>,
- *    <tt>:maximum</tt>, or <tt>:is</tt> violation. An alias of the appropriate
- *    <tt>too_long</tt>/<tt>too_short</tt>/<tt>wrong_length</tt> message.
- *  * <tt>:tokenizer</tt> - Specifies how to split up the attribute string.
- *    (e.g. <tt>:tokenizer => lambda {|str| str.scan(/\w+/)}</tt> to count words
- *    as in above example). Defaults to <tt>lambda{ |value| value.split(//) }</tt>
- *    which counts individual characters.
  */
 + (void)validatesLengthOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 + (void)validatesSizeOf:(NSObject *)properties withOptions:(NSDictionary *)options;
