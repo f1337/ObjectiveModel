@@ -79,15 +79,22 @@
                                           
                                           
 /*!
- * TODO: tokenizer
- * Specifies how to split up the attribute string.
- *    (e.g. <tt>:tokenizer => lambda {|str| str.scan(/\w+/)}</tt> to count words
- *    as in above example). Defaults to <tt>lambda{ |value| value.split(//) }</tt>
- *    which counts individual characters.
- */
-/*!
- * Specifies how to split up the attribute string.
- * The OMLengthValidatorTokenizerBlock for tokenizing the attribute value.
+ * Specifies how to split up the attribute string, e.g.:
+ *
+ * [Topic validatesLengthOf:@"content"
+ *              withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+ *                           [NSNumber numberWithInt:5], @"minimum",
+ *                           @"Your essay must be at least %{count} words.", @"tooShortMessage",
+ *                           nil]
+ *                 andBlock:^NSArray *(NSObject *value)
+ *  {
+ *      NSString *stringValue = [value description];
+ *      NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:@"\\w+" options:0 error:nil];
+ *      return [pattern matchesInString:stringValue options:NSMatchingReportCompletion range:NSMakeRange(0, [stringValue length])];
+ *  }];
+ *
+ * ...to count words as in above example.
+ * Defaults to counting individual characters.
  */
 @property (copy) OMLengthValidatorTokenizerBlock tokenizer;
 

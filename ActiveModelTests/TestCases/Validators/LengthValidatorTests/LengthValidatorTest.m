@@ -445,26 +445,21 @@
     STAssertNoThrow([Topic validatesLengthOf:@"title" withOptions:options], @"An exception should NOT have been raised.");
 }
 
-/*
-// TODO: testValidatesLengthUsingNastyOptions
-
- 
- - (void)testValidatesLengthUsingNastyOptions
- {
- // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }
- NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-6], @"equals", nil];
- STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
- 
- // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => 6) }
- // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :minimum => "a") }
- // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :maximum => "a") }
- // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => "a") }
- // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => "a") }
- }
-*/
 
 
-
+//// TODO: testValidatesLengthUsingNastyOptions
+//- (void)testValidatesLengthUsingNastyOptions
+//{
+//    // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }
+//    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-6], @"equals", nil];
+//    STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+//
+//    // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => 6) }
+//    // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :minimum => "a") }
+//    // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :maximum => "a") }
+//    // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :within => "a") }
+//    // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => "a") }
+//}
 
 
 
