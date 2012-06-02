@@ -41,7 +41,7 @@
 + (void)validatesLengthOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMLengthValidatorTokenizerBlock)block
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:block forKey:@"block"];
+    [dictionary setObject:block forKey:@"tokenizer"];
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andOptions:dictionary];
 }
 

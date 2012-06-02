@@ -32,7 +32,11 @@
 
 
 
-@property (copy) NSRegularExpression * (^ block) (OMActiveModel *);
+/*!
+ * The OMFormatValidatorRegularExpressionBlock for generating the
+ * regular expression to apply to the attribute value.
+ */
+@property (copy) OMFormatValidatorRegularExpressionBlock block;
 
 
 
@@ -45,6 +49,9 @@
 
 
 
+/*!
+ * The regular expression to apply to the attribute value.
+ */
 @property (copy) NSRegularExpression *regularExpression;
 
 

@@ -764,20 +764,35 @@
 }
 
 
-/*
- // TODO: testValidatesLengthWithTokenizerBlock
- def test_validates_length_of_with_block
- Topic.validates_length_of :content, :minimum => 5, :too_short => "Your essay must be at least %{count} words.",
- :tokenizer => lambda {|str| str.scan(/\w+/) }
- t = Topic.new(:content => "this content should be long enough")
- assert t.valid?
- 
- t.content = "not long enough"
- assert t.invalid?
- assert t.errors[:content].any?
- assert_equal ["Your essay must be at least 5 words."], t.errors[:content]
- end
-*/
+
+- (void)testValidatesLengthWithTokenizerBlock
+{
+    // Topic.validates_length_of :content, :minimum => 5, :too_short => "Your essay must be at least %{count} words.",
+    // :tokenizer => lambda {|str| str.scan(/\w+/) }
+    [Topic validatesLengthOf:@"content"
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:5], @"minimum",
+                              @"Your essay must be at least %{count} words.", @"tooShortMessage",
+                              nil]
+                    andBlock:^NSArray *(NSObject *value)
+     {
+         NSString *stringValue = [value description];
+         NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:@"\\w+" options:0 error:nil];
+         return [pattern matchesInString:stringValue options:NSMatchingReportCompletion range:NSMakeRange(0, [stringValue length])];
+     }];
+    // t = Topic.new(:content => "this content should be long enough")
+    [_topic setContent:@"this content should be long enough"];
+    // assert t.valid?
+    [self assertModelIsValid:_topic];
+
+    // t.content = "not long enough"
+    [_topic setContent:@"not long enough"];
+    // assert t.invalid?
+    // assert t.errors[:content].any?
+    // assert_equal ["Your essay must be at least 5 words."], t.errors[:content]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"Your essay must be at least 5 words." forKeys:[NSArray arrayWithObject:@"content"]];
+}
+
 
 
 // 1234 => "1234"

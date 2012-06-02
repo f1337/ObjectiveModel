@@ -85,6 +85,11 @@
  *    as in above example). Defaults to <tt>lambda{ |value| value.split(//) }</tt>
  *    which counts individual characters.
  */
+/*!
+ * Specifies how to split up the attribute string.
+ * The OMLengthValidatorTokenizerBlock for tokenizing the attribute value.
+ */
+@property (copy) OMLengthValidatorTokenizerBlock tokenizer;
 
 
 

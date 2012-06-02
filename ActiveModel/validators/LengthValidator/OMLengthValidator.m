@@ -52,6 +52,7 @@
 @synthesize equals = _equals;
 @synthesize maximum = _maximum;
 @synthesize minimum = _minimum;
+@synthesize tokenizer = _tokenizer;
 @synthesize tooLongMessage = _tooLongMessage;
 @synthesize tooShortMessage = _tooShortMessage;
 @synthesize wrongLengthMessage = _wrongLengthMessage;
@@ -63,6 +64,7 @@
     [self setEquals:nil];
     [self setMaximum:nil];
     [self setMinimum:nil];
+    [self setTokenizer:nil];
     [self setTooLongMessage:nil];
     [self setTooShortMessage:nil];
     [self setWrongLengthMessage:nil];
@@ -167,6 +169,10 @@
     // split the string into tokens?
     // use case: counting words
     // value = tokenize(value)
+    if ( [self tokenizer] )
+    {
+        value = [self tokenizer](value);
+    }
 
     // value_length = value.respond_to?(:length) ? value.length : value.to_s.length
     NSNumber *valueLength;

@@ -39,7 +39,8 @@
 
 - (void)dealloc
 {
-    [_regularExpression release];
+    [self setBlock:nil];
+    [self setRegularExpression:nil];
     [super dealloc];
 }
 

@@ -27,7 +27,7 @@
 
 
 
-typedef NSArray *(^ OMLengthValidatorTokenizerBlock) (NSObject *);
+typedef NSArray *(^ OMLengthValidatorTokenizerBlock) (NSObject *value);
 
 
 
