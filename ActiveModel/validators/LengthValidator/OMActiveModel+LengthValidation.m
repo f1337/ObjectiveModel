@@ -38,9 +38,25 @@
 
 
 
++ (void)validatesLengthOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMLengthValidatorTokenizerBlock)block
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
+    [dictionary setObject:block forKey:@"block"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andOptions:dictionary];
+}
+
+
+
 + (void)validatesSizeOf:(NSObject *)properties withOptions:(NSDictionary *)options
 {
-    
+    [self validatesLengthOf:properties withOptions:options];
+}
+
+
+
++ (void)validatesSizeOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMLengthValidatorTokenizerBlock)block
+{
+    [self validatesLengthOf:properties withOptions:options andBlock:block];
 }
 
 

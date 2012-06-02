@@ -40,13 +40,7 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  * form, going by the regular expression provided.You can require that the
  * attribute matches the regular expression:
  * 
- *   @interface Person : OMActiveModel
- *		@property (assign) NSNumber *age;
- *   @end
- *
- *   @interface Person
- *		@synthesize firstName;
- *
+ *   @implementation Person
  *		+ (void)initialize
  *		{
  *	    	[self validatesFormatOf:@"email" withOptions:nil andPattern:@"\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z"];
@@ -56,13 +50,7 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  * Alternatively, you can require that the specified attribute does _not_
  * match the regular expression:
  * 
- *   @interface Person : OMActiveModel
- *		@property (assign) NSNumber *age;
- *   @end
- *
- *   @interface Person
- *		@synthesize firstName;
- *
+ *   @implementation Person
  *		+ (void)initialize
  *		{
  *	    	[self validatesFormatOf:@"email" withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"shouldMatchPattern", nil] andPattern:@"NOSPAM"];
@@ -72,13 +60,7 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  * You can also provide a block which will determine the regular
  * expression that will be used to validate the attribute.
  * 
- *   @interface Person : OMActiveModel
- *		@property (assign) NSNumber *age;
- *   @end
- *
  *   @interface Person
- *		@synthesize firstName;
- *
  *		+ (void)initialize
  *		{
  *	    	[self validatesFormatOf:@"nickName" withOptions:nil andBlock:^(id)person

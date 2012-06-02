@@ -34,13 +34,7 @@
  *
  * Validates that the specified attributes are not blank (as defined by NSObject+Blank). Example:
  *
- *   @interface Person : OMActiveModel
- *		@property (assign) NSString *firstName;
- *   @end
- *
- *   @interface Person
- *		@synthesize firstName;
- *
+ *   @implementation Person
  *		+ (void)initialize
  *		{
  *	    	[self validatesPresenceOf:@"firstName" withOptions:nil];
@@ -48,18 +42,6 @@
  *   @end
  *
  * The firstName property must be defined for the object and it cannot be nil or blank.
- *
- * Configuration options:
- * * <tt>"message"</tt> - A custom error message (default is: "can't be blank").
- * * TODO: <tt>"on"</tt> - Specifies when this validation is active. Runs in all
- *   validation contexts by default (+nil+), other options are <tt>"create"</tt>
- *   and <tt>"update"</tt>.
- * * TODO: <tt>"if"</tt> - Specifies a selector to call to determine if the validation should
- *   occur (e.g. <tt>"if" => @selector(allowValidation)</tt>. The selector should return YES or NO.
- * * TODO: <tt>"unless"</tt> - Specifies a selector to call to determine if the validation should
- *   not occur (e.g. <tt>"unless" => @selector(skipValidation)</tt>. The selector should return YES or NO.
- * * TODO: <tt>"strict"</tt> - YES or NO. Specifies whether the validator should throw a runtime exception
- *	 if the validation fails.
  */
 + (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 @end

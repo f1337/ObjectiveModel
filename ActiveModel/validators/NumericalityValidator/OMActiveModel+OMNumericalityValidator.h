@@ -39,13 +39,7 @@ typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
  * Validates whether the value of the specified property is numeric by trying to convert it to
  * an NSNumber.
  *
- *   @interface Person : OMActiveModel
- *		@property (assign) NSNumber *age;
- *   @end
- *
- *   @interface Person
- *		@synthesize firstName;
- *
+ *   @implementation Person
  *		+ (void)initialize
  *		{
  *	    	[self validatesNumericalityOf:@"age" withOptions:nil];

@@ -38,14 +38,14 @@
 /*!
  * If set to true, skips this validation if the attribute is blank (default is +false+).
  */
-@property (nonatomic, assign) BOOL allowBlank;
+@property (assign) BOOL allowBlank;
 
 
 
 /*!
  * If set to true, skips this validation if the attribute is +nil+ (default is +false+).
  */
-@property (nonatomic, assign) BOOL allowNil;
+@property (assign) BOOL allowNil;
 
 
 
@@ -67,9 +67,9 @@
  *
  * See: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW3
  *
- * @property (nonatomic, assign) BOOL validateForDelete;
- * @property (nonatomic, assign) BOOL validateForInsert;
- * @property (nonatomic, assign) BOOL validateForUpdate;
+ * @property (assign) BOOL validateForDelete;
+ * @property (assign) BOOL validateForInsert;
+ * @property (assign) BOOL validateForUpdate;
  */
 
 
@@ -82,7 +82,7 @@
  *
  * The selector should return YES or NO.
  *
- * @property (nonatomic, assign) SEL shouldApplyValidationSelector;
+ * @property (assign) SEL shouldApplyValidationSelector;
  */
 
 
@@ -99,7 +99,7 @@
  *
  * The selector should return YES or NO.
  *
- * @property (nonatomic, assign) OMValidatorConditionalBlock shouldApplyValidationBlock;
+ * @property (assign) OMValidatorConditionalBlock shouldApplyValidationBlock;
  */
 
 
@@ -111,13 +111,13 @@
  * YES or NO. Specifies whether the validator should throw a runtime exception
  * if the validation fails, instead of raising a user-friendly error.
  *
- * @property (nonatomic, readonly, assign) BOOL strict;
+ * @property (assign) BOOL strict;
  */
 
 
 /*!
  * TODO?: Per ~mlj's feedback, add error title?
- * @property (nonatomic, retain) NSString *title;
+ * @property (copy) NSString *title;
  */
 
 

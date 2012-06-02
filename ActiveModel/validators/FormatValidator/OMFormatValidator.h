@@ -32,7 +32,7 @@
 
 
 
-@property (nonatomic, readonly, copy) NSRegularExpression * (^ block) (OMActiveModel *);
+@property (copy) NSRegularExpression * (^ block) (OMActiveModel *);
 
 
 
@@ -41,11 +41,11 @@
  * successful validation. If set to NO, then if the attribute does not match the
  * pattern it will result in a successful validation.
  */
-@property (nonatomic, readonly, assign) BOOL shouldMatchPattern;
+@property (assign) BOOL shouldMatchPattern;
 
 
 
-@property (nonatomic, readonly, copy) NSRegularExpression *regularExpression;
+@property (copy) NSRegularExpression *regularExpression;
 
 
 
