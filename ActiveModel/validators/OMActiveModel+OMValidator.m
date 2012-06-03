@@ -60,7 +60,7 @@
 
 
 /*!
- * TODO: This method signature doesn't conform to Obj-C conventions. Consider
+ * TODO?: This method signature doesn't conform to Obj-C conventions. Consider
  * replacing w/ one method for each possible object type
  * (NSString, NSArray, NSDictionary) for "properties".
  */
@@ -195,7 +195,6 @@
 
 
 
- // TODO: move into isValid?
 - (BOOL)validate:(NSError **)errors
 {
     BOOL valid = YES;

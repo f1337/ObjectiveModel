@@ -36,14 +36,14 @@
 @synthesize allowBlank = _allowBlank;
 @synthesize allowNil = _allowNil;
 @synthesize message = _message;
-@synthesize options = _options;
+//@synthesize options = _options;
 
 
 
 - (void)dealloc
 {
     [_message release];
-    [_options release];
+//    [_options release];
     [super dealloc];
 }
 
@@ -107,16 +107,17 @@
 
 - (void)setOptions:(NSDictionary *)options
 {
-    if ( _options != options )
-    {
-        [_options release];
-        _options = options;
-        [_options retain];
-
-        [self setAllowBlank:( [[_options objectForKey:@"allowBlank"] boolValue] ? YES : NO )];
-        [self setAllowNil:( [[_options objectForKey:@"allowNil"] boolValue] ? YES : NO )];
-        [self setMessage:[_options objectForKey:@"message"]];
-    }
+    // filter out the properties that require special attention
+    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
+    [filteredOptions removeObjectsForKeys:[NSMutableArray arrayWithObjects:@"allowBlank", @"allowNil", nil]];
+    
+    // this is where the magic happens: KVC, baby!
+    [self setValuesForKeysWithDictionary:filteredOptions];
+    
+    // apply the properties requiring special attention
+    [self setAllowBlank:( [[options objectForKey:@"allowBlank"] boolValue] ? YES : NO )];
+    [self setAllowNil:( [[options objectForKey:@"allowNil"] boolValue] ? YES : NO )];
+    [self setMessage:[options objectForKey:@"message"]];
 }
 
 

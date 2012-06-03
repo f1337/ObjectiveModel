@@ -46,19 +46,8 @@
 
 
 
-// TODO: move into OMValidator base class after refactoring other siblings
 - (void)setOptions:(NSDictionary *)options
 {
-    // filter out the properties that require special attention
-    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
-    NSMutableArray *keys = [NSMutableArray array];
-    [keys addObject:@"allowBlank"];
-    [keys addObject:@"allowNil"];
-    [keys addObject:@"shouldMatchPattern"];
-    // when this is moved into the base class, "message" no longer needs filtered
-    [keys addObject:@"message"];
-    [filteredOptions removeObjectsForKeys:keys];
-
     // "shouldMatchPattern" value should be a string "YES"/"NO"
     // or a numberWithBool.
     id shouldMatchPattern = [options objectForKey:@"shouldMatchPattern"];
@@ -71,11 +60,11 @@
         _shouldMatchPattern = YES;
     }
 
-    // this is where the magic happens: KVC, baby!
-    [self setValuesForKeysWithDictionary:filteredOptions];
-    
-    // and hit the superclass for the special handling of allowNil, allowBlank
-    [super setOptions:options];
+    // filter out "shouldMatchPattern"
+    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
+    [filteredOptions removeObjectsForKeys:[NSMutableArray arrayWithObjects:@"shouldMatchPattern", nil]];
+    // and hit the superclass for handling allowNil, allowBlank, and message
+    [super setOptions:filteredOptions];
 }
 
 

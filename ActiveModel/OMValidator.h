@@ -55,9 +55,9 @@
 
 
 /*!
- * TODO: make this private, or readonly? The validation options.
+ * Convenience method for mass-assignment of validation options/properties.
  */
-@property (nonatomic, retain) NSDictionary *options;
+- (void)setOptions:(NSDictionary *)options;
 
 
 
@@ -70,19 +70,6 @@
  * @property (assign) BOOL validateForDelete;
  * @property (assign) BOOL validateForInsert;
  * @property (assign) BOOL validateForUpdate;
- */
-
-
-/*!
- * TODO: shouldApplyValidationSelector
- *
- * Specifies a selector to call to determine if the validation should occur.
- *
- *   [model setShouldApplyValidationSelector:@selector(allowValidation)];
- *
- * The selector should return YES or NO.
- *
- * @property (assign) SEL shouldApplyValidationSelector;
  */
 
 
@@ -105,6 +92,20 @@
 
 
 /*!
+ * TODO: shouldApplyValidationSelector
+ *
+ * Specifies a selector to call to determine if the validation should occur.
+ *
+ *   [model setShouldApplyValidationSelector:@selector(allowValidation)];
+ *
+ * The selector should return YES or NO.
+ *
+ * @property (assign) SEL shouldApplyValidationSelector;
+ */
+
+
+
+/*!
  * TODO?: Specifies whether validation should be strict.
  * ~mrf: This seems like overkill for now.
  *
@@ -113,6 +114,7 @@
  *
  * @property (assign) BOOL strict;
  */
+
 
 
 /*!

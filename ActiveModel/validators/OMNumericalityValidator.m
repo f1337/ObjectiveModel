@@ -169,50 +169,39 @@
 
 - (void)setOptions:(NSDictionary *)options
 {
-    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
-    NSMutableArray *keys = [NSMutableArray array];
-    [keys addObject:@"allowBlank"];
-    [keys addObject:@"allowNil"];
-    [keys addObject:@"message"];
-    [filteredOptions removeObjectsForKeys:keys];
+    // we still want to retain the unfiltered options hash
+    [super setOptions:options];
 
-
-    // this is where the magic happens: KVC, baby!
-    [self setValuesForKeysWithDictionary:filteredOptions];
-
-
-    // verify options input
-    for (NSString *key in filteredOptions)
+    for (NSString *key in options)
     {
-        if ( [[[self class] constraints] objectForKey:key] )
+        if ( [self respondsToSelector:NSSelectorFromString(key)] )
         {
-            id value = [filteredOptions objectForKey:key];
-
-            // value must be an NSNumber, a block, or a selector string
-            if (
-                [value isKindOfClass:[NSNumber class]]
-                ||
-                [value isKindOfClass:NSClassFromString(@"NSBlock")]
-                ||
-                ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
-            )
+            if ( [[[self class] constraints] objectForKey:key] )
             {
-                // all is well
-            }
-            else
-            {
-                [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) value (%@) is not an NSNumber, block, or selector.", key, value];
+                id value = [options objectForKey:key];
+                
+                // value must be an NSNumber, a block, or a selector string
+                if (
+                    [value isKindOfClass:[NSNumber class]]
+                    ||
+                    [value isKindOfClass:NSClassFromString(@"NSBlock")]
+                    ||
+                    ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
+                    )
+                {
+                    // all is well
+                }
+                else
+                {
+                    [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) value (%@) is not an NSNumber, block, or selector.", key, value];
+                }
             }
         }
         else
         {
-            [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) is not a valid NSNumber constraint.", key];
+            [NSException raise:NSInvalidArgumentException format:@"OMNumericalityValidator option (%@) is not a valid property.", key];
         }
     }
-
-    
-    // we still want to retain the unfiltered options hash
-    [super setOptions:options];
 }
 
 

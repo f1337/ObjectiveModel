@@ -137,27 +137,6 @@
 
 
 
-// TODO: move into OMValidator base class after refactoring other siblings
-- (void)setOptions:(NSDictionary *)options
-{
-    // filter out the properties that require special attention
-    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
-    NSMutableArray *keys = [NSMutableArray array];
-    [keys addObject:@"allowBlank"];
-    [keys addObject:@"allowNil"];
-    // when this is moved into the base class, "message" no longer needs filtered
-    [keys addObject:@"message"];
-    [filteredOptions removeObjectsForKeys:keys];
-
-    // this is where the magic happens: KVC, baby!
-    [self setValuesForKeysWithDictionary:filteredOptions];
-
-    // and hit the superclass for the special handling of allowNil, allowBlank
-    [super setOptions:options];
-}
-
-
-
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
     // the superclass' validation will return YES if validation is to be skipped

@@ -198,7 +198,9 @@
 {
     // Topic.validates_format_of(:title, :without => /foo/, :message => "should not contain foo")
     [Topic validatesFormatOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"N", @"shouldMatchPattern", @"should not contain foo", @"message", nil]
+                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                              @"N", @"shouldMatchPattern",
+                              @"should not contain foo", @"message", nil]
                   andPattern:@"foo"];
 
     // t = Topic.new
