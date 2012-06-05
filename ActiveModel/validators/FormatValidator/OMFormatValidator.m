@@ -46,13 +46,18 @@
 
 
 
-- (void)setOptions:(NSDictionary *)options
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
-    // set default value for shouldMatchPattern
-    _shouldMatchPattern = YES;
-
-    // and hit the superclass for handling allowNil, allowBlank, and message
-    [super setOptions:options];
+    if ( (self = [super initWithDictionary:dictionary]) )
+    {
+        // shouldMatchPattern defaults to YES
+        if ( ! [dictionary objectForKey:@"shouldMatchPattern"] )
+        {
+            _shouldMatchPattern = YES;
+        }
+    }
+    
+    return self;
 }
 
 

@@ -167,41 +167,36 @@
 
 
 
-- (void)setOptions:(NSDictionary *)options
+- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key
 {
-    // we still want to retain the unfiltered options hash
-    [super setOptions:options];
-
-    for (NSString *key in options)
+    if ( [self respondsToSelector:NSSelectorFromString(key)] )
     {
-        if ( [self respondsToSelector:NSSelectorFromString(key)] )
+        if ( [[[self class] constraints] objectForKey:key] )
         {
-            if ( [[[self class] constraints] objectForKey:key] )
+            // value must be an NSNumber, a block, or a selector string
+            if (
+                [value isKindOfClass:[NSNumber class]]
+                ||
+                [value isKindOfClass:NSClassFromString(@"NSBlock")]
+                ||
+                ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
+                )
             {
-                id value = [options objectForKey:key];
-                
-                // value must be an NSNumber, a block, or a selector string
-                if (
-                    [value isKindOfClass:[NSNumber class]]
-                    ||
-                    [value isKindOfClass:NSClassFromString(@"NSBlock")]
-                    ||
-                    ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
-                    )
-                {
-                    // all is well
-                }
-                else
-                {
-                    [NSException raise:NSInvalidArgumentException format:@"NumericalityValidator option (%@) value (%@) is not an NSNumber, block, or selector.", key, value];
-                }
+                // all is well
+                return nil;
+            }
+            else
+            {
+                return [NSString stringWithFormat:@"Value (%@) is not an NSNumber, block, or selector.", value];
             }
         }
-        else
-        {
-            [NSException raise:NSInvalidArgumentException format:@"OMNumericalityValidator option (%@) is not a valid property.", key];
-        }
     }
+    else
+    {
+        return [NSString stringWithFormat:@"Key (%@) is not a valid property name.", key];
+    }
+
+    return nil;
 }
 
 

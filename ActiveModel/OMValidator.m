@@ -29,6 +29,22 @@
 
 
 
+@interface OMValidator (Private)
+
+
+
+/*!
+ * Private convenience method for mass-assignment of validation
+ * options/properties.
+ */
+- (void)setOptions:(NSDictionary *)options;
+
+
+
+@end
+
+
+
 @implementation OMValidator
 
 
@@ -36,14 +52,12 @@
 @synthesize allowBlank = _allowBlank;
 @synthesize allowNil = _allowNil;
 @synthesize message = _message;
-//@synthesize options = _options;
 
 
 
 - (void)dealloc
 {
     [_message release];
-//    [_options release];
     [super dealloc];
 }
 
@@ -57,6 +71,13 @@
     }
 
     return self;
+}
+
+
+
+- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key
+{
+    return nil;
 }
 
 
@@ -110,7 +131,18 @@
     // filter out the properties that require special attention
     NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
     [filteredOptions removeObjectsForKeys:[NSMutableArray arrayWithObjects:@"allowBlank", @"allowNil", nil]];
-    
+
+    // validate options
+    for (NSString *key in filteredOptions)
+    {
+        id value = [options objectForKey:key];
+        NSString *errorMessage = [self checkOptionValidityWithValue:value forKey:key];
+        if ( [errorMessage length] )
+        {
+            [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! %@", NSStringFromClass([self class]), errorMessage, nil];
+        }
+    }
+
     // this is where the magic happens: KVC, baby!
     [self setValuesForKeysWithDictionary:filteredOptions];
     

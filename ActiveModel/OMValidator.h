@@ -55,13 +55,6 @@
 
 
 /*!
- * Convenience method for mass-assignment of validation options/properties.
- */
-- (void)setOptions:(NSDictionary *)options;
-
-
-
-/*!
  * TODO?: validateForUpdate, validateForInsert, validateForDelete
  * ~mrf: May provide value with CoreData implementations.
  *
@@ -124,6 +117,7 @@
 
 
 
+- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key;
 - (void)errorWithOriginalError:(NSError **)originalError
                          value:(NSObject *)value
                         forKey:(NSString *)inKey
