@@ -59,6 +59,10 @@
 
 
 
+#pragma mark - INIT & DEALLOC
+
+
+
 - (void)dealloc
 {
     [self setEquals:nil];
@@ -70,6 +74,10 @@
     [self setWrongLengthMessage:nil];
     [super dealloc];
 }
+
+
+
+#pragma mark - STATIC METHODS
 
 
 
@@ -111,13 +119,6 @@
 
 
 
-- (NSString *)message
-{
-    return [super message];
-}
-
-
-
 + (NSDictionary *)messageKeys
 {
     static NSDictionary *messageKeys;
@@ -133,6 +134,93 @@
     });
     
     return messageKeys;
+}
+
+
+
+#pragma mark - INSTANCE METHODS
+
+
+
+- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key
+{
+    if ( [self respondsToSelector:NSSelectorFromString(key)] )
+    {
+        if ( [[[self class] constraints] objectForKey:key] )
+        {
+            // value must be an NSNumber, a block, or a selector string
+            if (
+                [value isKindOfClass:[NSNumber class]]
+                ||
+                [value isKindOfClass:NSClassFromString(@"NSBlock")]
+                ||
+                ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
+                )
+            {
+                // all is well
+                return nil;
+            }
+            else
+            {
+                return [NSString stringWithFormat:@"Value (%@) is not an NSNumber, block, or selector.", value];
+            }
+        }
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"Key (%@) is not a valid property name.", key];
+    }
+    
+    return nil;
+}
+
+
+
+- (NSString *)message
+{
+    return [super message];
+}
+
+
+
+- (void)setEquals:(NSNumber *)equals
+{
+    if ( [equals isLessThanNumber:[NSNumber numberWithInt:0]] )
+    {
+        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) must be a positive NSNumber.", NSStringFromClass([self class]), equals, nil];
+        return;
+    }
+
+    [_equals release];
+    _equals = [equals copy];
+}
+
+
+
+- (void)setMaximum:(NSNumber *)maximum
+{
+    if ( [maximum isLessThanNumber:[NSNumber numberWithInt:0]] )
+    {
+        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) must be a positive NSNumber.", NSStringFromClass([self class]), maximum, nil];
+        return;
+    }
+    
+    [_maximum release];
+    _maximum = [maximum copy];
+}
+
+
+
+- (void)setMinimum:(NSNumber *)minimum
+{
+    if ( [minimum isLessThanNumber:[NSNumber numberWithInt:0]] )
+    {
+        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) must be a positive NSNumber.", NSStringFromClass([self class]), minimum, nil];
+        return;
+    }
+    
+    [_minimum release];
+    _minimum = [minimum copy];
 }
 
 

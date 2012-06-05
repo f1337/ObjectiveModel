@@ -36,14 +36,14 @@
 /*!
  * The exact size of the attribute.
  */
-@property (assign) NSNumber *equals;
+@property (nonatomic, copy) NSNumber *equals;
 
 
 
 /*!
  * The maximum size of the attribute.
  */
-@property (assign) NSNumber *maximum;
+@property (nonatomic, copy) NSNumber *maximum;
 
 
 
@@ -58,7 +58,7 @@
 /*!
  * The minimum size of the attribute.
  */
-@property (assign) NSNumber *minimum;
+@property (nonatomic, copy) NSNumber *minimum;
 
 
 
