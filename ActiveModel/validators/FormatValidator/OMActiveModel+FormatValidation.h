@@ -53,7 +53,7 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  *   @implementation Person
  *		+ (void)initialize
  *		{
- *	    	[self validatesFormatOf:@"email" withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"shouldMatchPattern", nil] andPattern:@"NOSPAM"];
+ *	    	[self validatesFormatOf:@"email" withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"shouldMatchPattern", nil] andPattern:@"NOSPAM"];
  *		}
  *   @end
  *

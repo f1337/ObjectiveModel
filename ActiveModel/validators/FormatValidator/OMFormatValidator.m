@@ -48,23 +48,11 @@
 
 - (void)setOptions:(NSDictionary *)options
 {
-    // "shouldMatchPattern" value should be a string "YES"/"NO"
-    // or a numberWithBool.
-    id shouldMatchPattern = [options objectForKey:@"shouldMatchPattern"];
-    if ( [shouldMatchPattern respondsToSelector:@selector(boolValue)] )
-    {
-        _shouldMatchPattern = [shouldMatchPattern boolValue];
-    }
-    else
-    {
-        _shouldMatchPattern = YES;
-    }
+    // set default value for shouldMatchPattern
+    _shouldMatchPattern = YES;
 
-    // filter out "shouldMatchPattern"
-    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
-    [filteredOptions removeObjectsForKeys:[NSMutableArray arrayWithObjects:@"shouldMatchPattern", nil]];
     // and hit the superclass for handling allowNil, allowBlank, and message
-    [super setOptions:filteredOptions];
+    [super setOptions:options];
 }
 
 
