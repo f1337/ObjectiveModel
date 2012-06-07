@@ -27,12 +27,12 @@
 
 
 
-#import "OMAcceptanceValidatorTest.h"
+#import "AcceptanceValidationTest.h"
 #import "OMAcceptanceValidator.h"
 
 
 
-@implementation OMAcceptanceValidatorTest
+@implementation AcceptanceValidationTest
 
 
 

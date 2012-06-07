@@ -27,12 +27,12 @@
 
 
 
-#import "OMPresenceValidatorTest.h"
+#import "PresenceValidationTest.h"
 #import <CoreData/CoreData.h>
 
 
 
-@implementation OMPresenceValidatorTest
+@implementation PresenceValidationTest
 
 
 

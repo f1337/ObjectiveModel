@@ -27,13 +27,13 @@
 
 
 
-#import "OMLengthValidatorTest.h"
+#import "LengthValidationTest.h"
 #import "OMLengthValidator.h"
 #import "Topic.h"
 
 
 
-@implementation OMLengthValidatorTest
+@implementation LengthValidationTest
 
 
 

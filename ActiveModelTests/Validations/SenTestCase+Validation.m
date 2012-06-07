@@ -23,12 +23,12 @@
 
 
 
-#import "OMValidatorTestCase.h"
+#import "SenTestCase+Validation.h"
 #import <CoreData/CoreData.h>
 
 
 
-@implementation OMValidatorTestCase
+@implementation SenTestCase (Validation)
 
 
 
@@ -152,7 +152,7 @@
 
 
 
-@implementation OMActiveModel (ValidatorTests)
+@implementation OMActiveModel (Validation)
 
 
 

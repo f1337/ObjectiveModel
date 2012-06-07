@@ -23,13 +23,8 @@
 
 
 
-#import "Person.h"
 #import "SenTestCase+Validation.h"
 
+@interface FormatValidationTest : SenTestCase
 
-
-@interface OMValidatorTest : SenTestCase
-{
-    Person *model;    
-}
 @end

@@ -27,13 +27,13 @@
 
 
 
-#import "OMFormatValidatorTest.h"
+#import "FormatValidationTest.h"
 #import "OMFormatValidator.h"
 #import "Topic.h"
 
 
 
-@implementation OMFormatValidatorTest
+@implementation FormatValidationTest
 
 
 

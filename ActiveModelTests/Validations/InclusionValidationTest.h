@@ -2,7 +2,7 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/acceptance_validation_test.rb
+ * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/inclusion_validation_test.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -27,16 +27,15 @@
 
 
 
-#import "OMValidatorTestCase.h"
+#import "SenTestCase+Validation.h"
 #import "Topic.h"
 
 
 
-@interface OMAcceptanceValidatorTest : OMValidatorTestCase
+@interface InclusionValidationTest : SenTestCase
 
 
 
-@property (retain) Topic *topic;
 
 
 

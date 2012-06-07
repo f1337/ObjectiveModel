@@ -27,13 +27,13 @@
 
 
 
-#import "OMNumericalityValidatorTest.h"
+#import "NumericalityValidationTest.h"
 #import "OMNumericalityValidator.h"
 #import "Topic.h"
 
 
 
-@interface OMNumericalityValidatorTest (Private)
+@interface NumericalityValidationTest (Private)
 
 
 
@@ -46,7 +46,7 @@
 
 
 
-@implementation OMNumericalityValidatorTest
+@implementation NumericalityValidationTest
 
 
 

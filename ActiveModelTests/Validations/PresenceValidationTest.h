@@ -24,12 +24,12 @@
 
 
 #import "Person.h"
-#import "OMValidatorTestCase.h"
+#import "SenTestCase+Validation.h"
 #import "OMActiveModel+OMPresenceValidator.h"
 
 
 
-@interface OMPresenceValidatorTest : OMValidatorTestCase
+@interface PresenceValidationTest : SenTestCase
 {
     Person *model;    
 }

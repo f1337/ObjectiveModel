@@ -23,11 +23,17 @@
 
 
 
-#import "Person.h"
-#import "OMValidatorTestCase.h"
+#import "SenTestCase+Validation.h"
+#import "Topic.h"
 
 
 
-@interface OMNumericalityValidatorTest : OMValidatorTestCase
+@interface LengthValidationTest : SenTestCase
+
+
+
+@property (assign) Topic *topic;
+
+
 
 @end
