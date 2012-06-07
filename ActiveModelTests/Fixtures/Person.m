@@ -24,8 +24,6 @@
 
 
 #import "Person.h"
-#import "OMNumericalityValidator.h"
-#import "OMPresenceValidator.h"
 
 
 
