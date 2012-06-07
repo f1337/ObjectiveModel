@@ -23,27 +23,16 @@
 
 
 
+#import "ValidatorTestCase.h"
 #import "Topic.h"
 
-
-
-@implementation Topic
-
-
-
-@synthesize approved;
-@synthesize authorName;
-@synthesize content;
-@synthesize title;
-@synthesize titleConfirmation;
+@interface OMConfirmationValidatorTest : ValidatorTestCase
 
 
 
-- (NSNumber *)maxApproved
-{
-    return [NSNumber numberWithInt:5];
-}
+@property (retain) Topic *topic;
 
 
 
 @end
+

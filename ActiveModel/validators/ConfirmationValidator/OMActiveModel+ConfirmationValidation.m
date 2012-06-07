@@ -23,25 +23,18 @@
 
 
 
-#import "Topic.h"
+#import "OMConfirmationValidator.h"
 
 
 
-@implementation Topic
+@implementation OMActiveModel (ConfirmationValidation)
 
 
 
-@synthesize approved;
-@synthesize authorName;
-@synthesize content;
-@synthesize title;
-@synthesize titleConfirmation;
-
-
-
-- (NSNumber *)maxApproved
++ (void)validatesConfirmationOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 {
-    return [NSNumber numberWithInt:5];
+    
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMConfirmationValidator class]] andOptions:options];
 }
 
 

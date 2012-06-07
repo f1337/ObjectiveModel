@@ -27,19 +27,37 @@
 
 
 
-@interface Topic : OMActiveModel
+@interface OMActiveModel (ConfirmationValidation)
 
 
 
-@property (assign) NSNumber *approved;
-@property (assign) NSString *authorName;
-@property (assign) NSString *content;
-@property (assign) NSString *title;
-@property (assign) NSString *titleConfirmation;
-
-
-
-- (NSNumber*)maxApproved;
+/*!
+ * Encapsulates the pattern of wanting to validate a password or email
+ * address field with a confirmation.
+ *
+ *   Model:
+ *     class Person < ActiveRecord::Base
+ *       validates_confirmation_of :user_name, :password
+ *       validates_confirmation_of :email_address,
+ *                                 :message => "should match confirmation"
+ *     end
+ *
+ *   View:
+ *     <%= password_field "person", "password" %>
+ *     <%= password_field "person", "password_confirmation" %>
+ *
+ * The added +password_confirmation+ attribute is virtual; it exists only
+ * as an in-memory attribute for validating the password. To achieve this,
+ * the validation adds accessors to the model for the confirmation
+ * attribute.
+ *
+ * NOTE: This check is performed only if +password_confirmation+ is not
+ * +nil+. To require confirmation, make sure
+ * to add a presence check for the confirmation attribute:
+ *
+ *   validates_presence_of :password_confirmation, :if => :password_changed?
+ */
++ (void)validatesConfirmationOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 
 
 
