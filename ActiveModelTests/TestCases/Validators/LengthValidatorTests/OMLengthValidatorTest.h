@@ -23,28 +23,16 @@
 
 
 
+#import "OMValidatorTestCase.h"
 #import "Topic.h"
 
 
 
-@implementation Topic
+@interface OMLengthValidatorTest : OMValidatorTestCase
 
 
 
-@synthesize approved;
-@synthesize authorName;
-@synthesize content;
-@synthesize EULA;
-@synthesize termsOfService;
-@synthesize title;
-@synthesize titleConfirmation;
-
-
-
-- (NSNumber *)maxApproved
-{
-    return [NSNumber numberWithInt:5];
-}
+@property (assign) Topic *topic;
 
 
 

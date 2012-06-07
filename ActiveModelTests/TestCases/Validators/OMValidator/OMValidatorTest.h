@@ -24,11 +24,11 @@
 
 
 #import "Person.h"
-#import "ValidatorTestCase.h"
+#import "OMValidatorTestCase.h"
 
 
 
-@interface OMValidatorTest : ValidatorTestCase
+@interface OMValidatorTest : OMValidatorTestCase
 {
     Person *model;    
 }

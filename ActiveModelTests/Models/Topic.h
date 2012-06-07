@@ -31,11 +31,13 @@
 
 
 
-@property (assign) NSNumber *approved;
-@property (assign) NSString *authorName;
-@property (assign) NSString *content;
-@property (assign) NSString *title;
-@property (assign) NSString *titleConfirmation;
+@property (copy) NSNumber *approved;
+@property (copy) NSString *authorName;
+@property (copy) NSString *content;
+@property (copy) NSNumber *EULA;
+@property (copy) NSString *termsOfService;
+@property (copy) NSString *title;
+@property (copy) NSString *titleConfirmation;
 
 
 

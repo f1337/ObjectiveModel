@@ -34,7 +34,7 @@
 
 
 /*!
- * A custom error message (default is: "can't be blank").
+ * A custom error message (default is: "cannot be blank").
  */
 - (NSString *)message;
 

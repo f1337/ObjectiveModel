@@ -23,28 +23,34 @@
 
 
 
-#import "Topic.h"
+#import "OMActiveModel.h"
+#import "OMValidator.h"
 
 
 
-@implementation Topic
+@interface OMValidatorTestCase : SenTestCase
 
 
 
-@synthesize approved;
-@synthesize authorName;
-@synthesize content;
-@synthesize EULA;
-@synthesize termsOfService;
-@synthesize title;
-@synthesize titleConfirmation;
+- (void)assertModelIsInvalid:(OMActiveModel *)model withErrorMessage:(NSString *)message forKeys:(NSArray *)keys;
+- (void)assertModelIsValid:(OMActiveModel *)model;
+- (void)assertPropertyIsValid:(NSString *)property forModel:(OMActiveModel *)model;
+- (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model withErrorMessage:(NSString *)message;
 
 
 
-- (NSNumber *)maxApproved
-{
-    return [NSNumber numberWithInt:5];
-}
+@end
+
+
+
+@interface OMActiveModel (ValidatorTests)
+
+
+
+/*!
+ * @brief Removes all validators defined for the model.
+ */
++ (void)removeAllValidations;
 
 
 

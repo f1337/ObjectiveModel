@@ -118,7 +118,7 @@
 
 - (NSString *)message
 {
-    return ( [[super message] length] ? [super message] : @"is not a valid number" );
+    return ( [[super message] length] ? [super message] : @"is not a number" );
 }
 
 

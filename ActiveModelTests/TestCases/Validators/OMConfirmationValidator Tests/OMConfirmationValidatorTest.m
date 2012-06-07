@@ -2,7 +2,7 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://raw.github.com/rails/rails/master/activemodel/test/cases/validations/confirmation_validation_test.rb
+ * https://github.com/rails/rails/master/activemodel/test/cases/validations/confirmation_validation_test.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -78,7 +78,7 @@
     //t.title_confirmation = "Parallel Lives"
     [_topic setTitleConfirmation:@"Parallel Lives"];
     //assert t.invalid?
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    [self assertModelIsInvalid:_topic withErrorMessage:@"does not match confirmation" forKeys:[NSArray arrayWithObject:@"title"]];
 
     //t.title_confirmation = nil
     [_topic setTitleConfirmation:nil];
@@ -98,13 +98,13 @@
 - (void)testTitleConfirmation
 {
     //Topic.validates_confirmation_of(:title)
-    [Topic validatesConfirmationOf:@"title" withOptions:nil];
+    [Topic validatesConfirmationOf:@"title" withOptions:[NSDictionary dictionaryWithObject:@"and confirmation do not match" forKey:@"message"]];;
 
     //t = Topic.new("title" => "We should be confirmed","title_confirmation" => "")
     [_topic setTitle:@"We should be confirmed"];
     [_topic setTitleConfirmation:@""];
     //assert t.invalid?
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    [self assertModelIsInvalid:_topic withErrorMessage:@"and confirmation do not match" forKeys:[NSArray arrayWithObject:@"title"]];
 
     //t.title_confirmation = "We should be confirmed"
     [_topic setTitleConfirmation:@"We should be confirmed"];

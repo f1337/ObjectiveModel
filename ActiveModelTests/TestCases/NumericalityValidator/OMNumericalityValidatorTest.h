@@ -23,29 +23,11 @@
 
 
 
-#import "Topic.h"
+#import "Person.h"
+#import "OMValidatorTestCase.h"
 
 
 
-@implementation Topic
-
-
-
-@synthesize approved;
-@synthesize authorName;
-@synthesize content;
-@synthesize EULA;
-@synthesize termsOfService;
-@synthesize title;
-@synthesize titleConfirmation;
-
-
-
-- (NSNumber *)maxApproved
-{
-    return [NSNumber numberWithInt:5];
-}
-
-
+@interface OMNumericalityValidatorTest : OMValidatorTestCase
 
 @end

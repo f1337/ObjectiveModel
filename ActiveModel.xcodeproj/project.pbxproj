@@ -16,8 +16,8 @@
 		AC17480A1562EA2900A56648 /* NSError+ValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */; };
 		AC17480D1562EF5500A56648 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC17480C1562EF5500A56648 /* CoreData.framework */; };
 		AC23542E15502B62005AC17D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC23542D15502B62005AC17D /* README.md */; };
-		AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543215502E05005AC17D /* NumericalityValidatorTest.m */; };
-		AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543515517DF4005AC17D /* ValidatorTestCase.m */; };
+		AC23543315502E05005AC17D /* OMNumericalityValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543215502E05005AC17D /* OMNumericalityValidatorTest.m */; };
+		AC23543615517DF4005AC17D /* OMValidatorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23543515517DF4005AC17D /* OMValidatorTestCase.m */; };
 		AC2354461551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */; };
 		AC2354491551B746005AC17D /* NSNumber+ComparisonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2354481551B746005AC17D /* NSNumber+ComparisonMethods.m */; };
 		AC23544D1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23544C1551B880005AC17D /* OMActiveModel+OMPresenceValidator.m */; };
@@ -34,18 +34,21 @@
 		AC672F3814488A2300BA34CA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3414488A2300BA34CA /* MainWindow.xib */; };
 		AC672F3914488A2300BA34CA /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3614488A2300BA34CA /* RootViewController.xib */; };
 		AC672F3E14488A7400BA34CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC672F3C14488A7400BA34CA /* InfoPlist.strings */; };
-		AC672F441448D93800BA34CA /* PresenceValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F431448D93800BA34CA /* PresenceValidatorTest.m */; };
+		AC672F441448D93800BA34CA /* OMPresenceValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC672F431448D93800BA34CA /* OMPresenceValidatorTest.m */; };
 		AC6F9E511449CE84006BDA00 /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E501449CE84006BDA00 /* OMPresenceValidator.m */; };
 		AC6F9E541449CEEB006BDA00 /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E531449CEEB006BDA00 /* OMValidator.m */; };
 		AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E74144A4F6D006BDA00 /* BlankTest.m */; };
 		AC6F9E7D144A504A006BDA00 /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6F9E7C144A504A006BDA00 /* NSObject+Blank.m */; };
 		AC732424144CBD1000CF9DE8 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */; };
 		AC7816FA1563FCCC009B5B54 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7816F71563FA6F009B5B54 /* Topic.m */; };
-		AC7B5E71156EA9E300214CAF /* LengthValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B5E70156EA9E300214CAF /* LengthValidatorTest.m */; };
+		AC7B5E71156EA9E300214CAF /* OMLengthValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B5E70156EA9E300214CAF /* OMLengthValidatorTest.m */; };
 		AC7B5E75156EAB9100214CAF /* OMLengthValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B5E74156EAB9100214CAF /* OMLengthValidator.m */; };
 		AC7B5E78156EAD2F00214CAF /* OMActiveModel+LengthValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B5E77156EAD2F00214CAF /* OMActiveModel+LengthValidation.m */; };
+		AC7F9D4115812B6F0074F422 /* OMAcceptanceValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7F9D4015812B6F0074F422 /* OMAcceptanceValidatorTest.m */; };
+		AC7F9D4515812C940074F422 /* OMAcceptanceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7F9D4415812C940074F422 /* OMAcceptanceValidator.m */; };
+		AC7F9D4815812CAE0074F422 /* OMActiveModel+AcceptanceValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7F9D4715812CAE0074F422 /* OMActiveModel+AcceptanceValidation.m */; };
 		ACAA50B215631E1000111FBD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC17480C1562EF5500A56648 /* CoreData.framework */; };
-		ACE78066156AB8B300570CFB /* FormatValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE78064156AB7A700570CFB /* FormatValidatorTest.m */; };
+		ACE78066156AB8B300570CFB /* OMFormatValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE78064156AB7A700570CFB /* OMFormatValidatorTest.m */; };
 		ACE7806A156ABD6500570CFB /* OMFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE78069156ABD6500570CFB /* OMFormatValidator.m */; };
 		ACE7806D156ABDC200570CFB /* OMActiveModel+FormatValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE7806C156ABDC200570CFB /* OMActiveModel+FormatValidation.m */; };
 		ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC78531561A8D400B29DFE /* OMValidatorTest.m */; };
@@ -71,10 +74,10 @@
 		AC1748091562EA2900A56648 /* NSError+ValidationErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSError+ValidationErrors.m"; path = "ActiveModel/NSExtensions/NSError+ValidationErrors.m"; sourceTree = SOURCE_ROOT; };
 		AC17480C1562EF5500A56648 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AC23542D15502B62005AC17D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
-		AC23543115502E05005AC17D /* NumericalityValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumericalityValidatorTest.h; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.h; sourceTree = SOURCE_ROOT; };
-		AC23543215502E05005AC17D /* NumericalityValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumericalityValidatorTest.m; path = ActiveModelTests/TestCases/NumericalityValidator/NumericalityValidatorTest.m; sourceTree = SOURCE_ROOT; };
-		AC23543415517DF4005AC17D /* ValidatorTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidatorTestCase.h; path = ActiveModelTests/TestCases/Validators/ValidatorTestCase.h; sourceTree = SOURCE_ROOT; };
-		AC23543515517DF4005AC17D /* ValidatorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ValidatorTestCase.m; path = ActiveModelTests/TestCases/Validators/ValidatorTestCase.m; sourceTree = SOURCE_ROOT; };
+		AC23543115502E05005AC17D /* OMNumericalityValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMNumericalityValidatorTest.h; path = ActiveModelTests/TestCases/NumericalityValidator/OMNumericalityValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		AC23543215502E05005AC17D /* OMNumericalityValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMNumericalityValidatorTest.m; path = ActiveModelTests/TestCases/NumericalityValidator/OMNumericalityValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC23543415517DF4005AC17D /* OMValidatorTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMValidatorTestCase.h; path = ActiveModelTests/TestCases/Validators/OMValidatorTestCase.h; sourceTree = SOURCE_ROOT; };
+		AC23543515517DF4005AC17D /* OMValidatorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMValidatorTestCase.m; path = ActiveModelTests/TestCases/Validators/OMValidatorTestCase.m; sourceTree = SOURCE_ROOT; };
 		AC2354441551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+OMNumericalityValidator.h"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.h"; sourceTree = SOURCE_ROOT; };
 		AC2354451551B66E005AC17D /* OMActiveModel+OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+OMNumericalityValidator.m"; path = "ActiveModel/validators/NumericalityValidator/OMActiveModel+OMNumericalityValidator.m"; sourceTree = SOURCE_ROOT; };
 		AC2354471551B746005AC17D /* NSNumber+ComparisonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+ComparisonMethods.h"; path = "ActiveModel/validators/NumericalityValidator/NSNumber+ComparisonMethods.h"; sourceTree = SOURCE_ROOT; };
@@ -106,8 +109,8 @@
 		AC672F3A14488A6300BA34CA /* ActiveModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ActiveModelTests-Info.plist"; path = "ActiveModelTests/ActiveModelTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		AC672F3B14488A6300BA34CA /* ActiveModelTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ActiveModelTests-Prefix.pch"; path = "ActiveModelTests/ActiveModelTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		AC672F3D14488A7400BA34CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ActiveModelTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		AC672F421448D93800BA34CA /* PresenceValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PresenceValidatorTest.h; path = ActiveModelTests/PresenceValidatorTest.h; sourceTree = SOURCE_ROOT; };
-		AC672F431448D93800BA34CA /* PresenceValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PresenceValidatorTest.m; path = ActiveModelTests/PresenceValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC672F421448D93800BA34CA /* OMPresenceValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMPresenceValidatorTest.h; path = ActiveModelTests/OMPresenceValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		AC672F431448D93800BA34CA /* OMPresenceValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMPresenceValidatorTest.m; path = ActiveModelTests/OMPresenceValidatorTest.m; sourceTree = SOURCE_ROOT; };
 		AC6F9E4F1449CE84006BDA00 /* OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMPresenceValidator.h; path = ActiveModel/validators/OMPresenceValidator.h; sourceTree = SOURCE_ROOT; };
 		AC6F9E501449CE84006BDA00 /* OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMPresenceValidator.m; path = ActiveModel/validators/OMPresenceValidator.m; sourceTree = SOURCE_ROOT; };
 		AC6F9E521449CEEB006BDA00 /* OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMValidator.h; path = ActiveModel/OMValidator.h; sourceTree = SOURCE_ROOT; };
@@ -120,14 +123,20 @@
 		AC732423144CBD1000CF9DE8 /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMNumericalityValidator.m; path = ActiveModel/validators/OMNumericalityValidator.m; sourceTree = SOURCE_ROOT; };
 		AC7816F61563FA6F009B5B54 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = ActiveModelTests/Models/Topic.h; sourceTree = SOURCE_ROOT; };
 		AC7816F71563FA6F009B5B54 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = ActiveModelTests/Models/Topic.m; sourceTree = SOURCE_ROOT; };
-		AC7B5E6F156EA9E300214CAF /* LengthValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LengthValidatorTest.h; path = ActiveModelTests/TestCases/Validators/LengthValidatorTests/LengthValidatorTest.h; sourceTree = SOURCE_ROOT; };
-		AC7B5E70156EA9E300214CAF /* LengthValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LengthValidatorTest.m; path = ActiveModelTests/TestCases/Validators/LengthValidatorTests/LengthValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC7B5E6F156EA9E300214CAF /* OMLengthValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMLengthValidatorTest.h; path = ActiveModelTests/TestCases/Validators/LengthValidatorTests/OMLengthValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		AC7B5E70156EA9E300214CAF /* OMLengthValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMLengthValidatorTest.m; path = ActiveModelTests/TestCases/Validators/LengthValidatorTests/OMLengthValidatorTest.m; sourceTree = SOURCE_ROOT; };
 		AC7B5E73156EAB9100214CAF /* OMLengthValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMLengthValidator.h; path = ActiveModel/validators/LengthValidator/OMLengthValidator.h; sourceTree = SOURCE_ROOT; };
 		AC7B5E74156EAB9100214CAF /* OMLengthValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMLengthValidator.m; path = ActiveModel/validators/LengthValidator/OMLengthValidator.m; sourceTree = SOURCE_ROOT; };
 		AC7B5E76156EAD2F00214CAF /* OMActiveModel+LengthValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+LengthValidation.h"; path = "ActiveModel/validators/LengthValidator/OMActiveModel+LengthValidation.h"; sourceTree = SOURCE_ROOT; };
 		AC7B5E77156EAD2F00214CAF /* OMActiveModel+LengthValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+LengthValidation.m"; path = "ActiveModel/validators/LengthValidator/OMActiveModel+LengthValidation.m"; sourceTree = SOURCE_ROOT; };
-		ACE78063156AB7A700570CFB /* FormatValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormatValidatorTest.h; path = ActiveModelTests/TestCases/FormatValidatorTests/FormatValidatorTest.h; sourceTree = SOURCE_ROOT; };
-		ACE78064156AB7A700570CFB /* FormatValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormatValidatorTest.m; path = ActiveModelTests/TestCases/FormatValidatorTests/FormatValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC7F9D3F15812B6F0074F422 /* OMAcceptanceValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMAcceptanceValidatorTest.h; path = ActiveModelTests/TestCases/Validators/OMAcceptanceValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		AC7F9D4015812B6F0074F422 /* OMAcceptanceValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMAcceptanceValidatorTest.m; path = ActiveModelTests/TestCases/Validators/OMAcceptanceValidatorTest.m; sourceTree = SOURCE_ROOT; };
+		AC7F9D4315812C940074F422 /* OMAcceptanceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMAcceptanceValidator.h; path = ActiveModel/validators/AcceptanceValidator/OMAcceptanceValidator.h; sourceTree = SOURCE_ROOT; };
+		AC7F9D4415812C940074F422 /* OMAcceptanceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMAcceptanceValidator.m; path = ActiveModel/validators/AcceptanceValidator/OMAcceptanceValidator.m; sourceTree = SOURCE_ROOT; };
+		AC7F9D4615812CAE0074F422 /* OMActiveModel+AcceptanceValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+AcceptanceValidation.h"; sourceTree = SOURCE_ROOT; };
+		AC7F9D4715812CAE0074F422 /* OMActiveModel+AcceptanceValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+AcceptanceValidation.m"; sourceTree = SOURCE_ROOT; };
+		ACE78063156AB7A700570CFB /* OMFormatValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMFormatValidatorTest.h; path = ActiveModelTests/TestCases/FormatValidatorTests/OMFormatValidatorTest.h; sourceTree = SOURCE_ROOT; };
+		ACE78064156AB7A700570CFB /* OMFormatValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMFormatValidatorTest.m; path = ActiveModelTests/TestCases/FormatValidatorTests/OMFormatValidatorTest.m; sourceTree = SOURCE_ROOT; };
 		ACE78068156ABD6500570CFB /* OMFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMFormatValidator.h; path = ActiveModel/validators/FormatValidator/OMFormatValidator.h; sourceTree = SOURCE_ROOT; };
 		ACE78069156ABD6500570CFB /* OMFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMFormatValidator.m; path = ActiveModel/validators/FormatValidator/OMFormatValidator.m; sourceTree = SOURCE_ROOT; };
 		ACE7806B156ABDC200570CFB /* OMActiveModel+FormatValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+FormatValidation.h"; path = "ActiveModel/validators/FormatValidator/OMActiveModel+FormatValidation.h"; sourceTree = SOURCE_ROOT; };
@@ -244,15 +253,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AC23543015502C98005AC17D /* NumericalityValidator Tests */ = {
-			isa = PBXGroup;
-			children = (
-				AC23543115502E05005AC17D /* NumericalityValidatorTest.h */,
-				AC23543215502E05005AC17D /* NumericalityValidatorTest.m */,
-			);
-			name = "NumericalityValidator Tests";
-			sourceTree = "<group>";
-		};
 		AC2354371551B5E0005AC17D /* NumericalityValidator */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,15 +275,6 @@
 			name = PresenceValidator;
 			sourceTree = "<group>";
 		};
-		AC4BF30915802C6B00575C4A /* ConfirmationValidator Tests */ = {
-			isa = PBXGroup;
-			children = (
-				AC4BF30B15802D0D00575C4A /* OMConfirmationValidatorTest.h */,
-				AC4BF30C15802D0D00575C4A /* OMConfirmationValidatorTest.m */,
-			);
-			name = "ConfirmationValidator Tests";
-			sourceTree = "<group>";
-		};
 		AC4BF30E15802ED400575C4A /* ConfirmationValidator */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +293,7 @@
 				AC6F9E531449CEEB006BDA00 /* OMValidator.m */,
 				AC23544E1552DB50005AC17D /* OMActiveModel+OMValidator.h */,
 				AC23544F1552DB50005AC17D /* OMActiveModel+OMValidator.m */,
+				AC7F9D4215812C490074F422 /* AcceptanceValidator */,
 				AC4BF30E15802ED400575C4A /* ConfirmationValidator */,
 				ACE78067156ABB0200570CFB /* FormatValidator */,
 				AC7B5E72156EAB2700214CAF /* LengthValidator */,
@@ -324,15 +316,6 @@
 			name = NSExtensions;
 			sourceTree = "<group>";
 		};
-		AC7B5E6D156EA9A100214CAF /* LengthValidator Tests */ = {
-			isa = PBXGroup;
-			children = (
-				AC7B5E6F156EA9E300214CAF /* LengthValidatorTest.h */,
-				AC7B5E70156EA9E300214CAF /* LengthValidatorTest.m */,
-			);
-			name = "LengthValidator Tests";
-			sourceTree = "<group>";
-		};
 		AC7B5E72156EAB2700214CAF /* LengthValidator */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,13 +327,15 @@
 			name = LengthValidator;
 			sourceTree = "<group>";
 		};
-		ACE78062156AB76400570CFB /* FormatValidator Tests */ = {
+		AC7F9D4215812C490074F422 /* AcceptanceValidator */ = {
 			isa = PBXGroup;
 			children = (
-				ACE78063156AB7A700570CFB /* FormatValidatorTest.h */,
-				ACE78064156AB7A700570CFB /* FormatValidatorTest.m */,
+				AC7F9D4315812C940074F422 /* OMAcceptanceValidator.h */,
+				AC7F9D4415812C940074F422 /* OMAcceptanceValidator.m */,
+				AC7F9D4615812CAE0074F422 /* OMActiveModel+AcceptanceValidation.h */,
+				AC7F9D4715812CAE0074F422 /* OMActiveModel+AcceptanceValidation.m */,
 			);
-			name = "FormatValidator Tests";
+			name = AcceptanceValidator;
 			sourceTree = "<group>";
 		};
 		ACE78067156ABB0200570CFB /* FormatValidator */ = {
@@ -364,38 +349,28 @@
 			name = FormatValidator;
 			sourceTree = "<group>";
 		};
-		ACEC78561561A8DA00B29DFE /* OMValidator Tests */ = {
-			isa = PBXGroup;
-			children = (
-				ACEC78521561A8D400B29DFE /* OMValidatorTest.h */,
-				ACEC78531561A8D400B29DFE /* OMValidatorTest.m */,
-			);
-			name = "OMValidator Tests";
-			sourceTree = "<group>";
-		};
 		ACF16CCA15502063002A4124 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
-				AC23543415517DF4005AC17D /* ValidatorTestCase.h */,
-				AC23543515517DF4005AC17D /* ValidatorTestCase.m */,
 				ACF16CCC15502094002A4124 /* Fixtures */,
-				ACEC78561561A8DA00B29DFE /* OMValidator Tests */,
-				AC4BF30915802C6B00575C4A /* ConfirmationValidator Tests */,
-				ACE78062156AB76400570CFB /* FormatValidator Tests */,
-				AC7B5E6D156EA9A100214CAF /* LengthValidator Tests */,
-				AC23543015502C98005AC17D /* NumericalityValidator Tests */,
-				ACF16CCB15502074002A4124 /* PresenceValidator Tests */,
+				AC23543415517DF4005AC17D /* OMValidatorTestCase.h */,
+				AC23543515517DF4005AC17D /* OMValidatorTestCase.m */,
+				ACEC78521561A8D400B29DFE /* OMValidatorTest.h */,
+				ACEC78531561A8D400B29DFE /* OMValidatorTest.m */,
+				AC7F9D3F15812B6F0074F422 /* OMAcceptanceValidatorTest.h */,
+				AC7F9D4015812B6F0074F422 /* OMAcceptanceValidatorTest.m */,
+				AC4BF30B15802D0D00575C4A /* OMConfirmationValidatorTest.h */,
+				AC4BF30C15802D0D00575C4A /* OMConfirmationValidatorTest.m */,
+				ACE78063156AB7A700570CFB /* OMFormatValidatorTest.h */,
+				ACE78064156AB7A700570CFB /* OMFormatValidatorTest.m */,
+				AC7B5E6F156EA9E300214CAF /* OMLengthValidatorTest.h */,
+				AC7B5E70156EA9E300214CAF /* OMLengthValidatorTest.m */,
+				AC23543115502E05005AC17D /* OMNumericalityValidatorTest.h */,
+				AC23543215502E05005AC17D /* OMNumericalityValidatorTest.m */,
+				AC672F421448D93800BA34CA /* OMPresenceValidatorTest.h */,
+				AC672F431448D93800BA34CA /* OMPresenceValidatorTest.m */,
 			);
 			name = Validators;
-			sourceTree = "<group>";
-		};
-		ACF16CCB15502074002A4124 /* PresenceValidator Tests */ = {
-			isa = PBXGroup;
-			children = (
-				AC672F421448D93800BA34CA /* PresenceValidatorTest.h */,
-				AC672F431448D93800BA34CA /* PresenceValidatorTest.m */,
-			);
-			name = "PresenceValidator Tests";
 			sourceTree = "<group>";
 		};
 		ACF16CCC15502094002A4124 /* Fixtures */ = {
@@ -547,6 +522,8 @@
 				AC7B5E78156EAD2F00214CAF /* OMActiveModel+LengthValidation.m in Sources */,
 				AC4BF31115802F3500575C4A /* OMConfirmationValidator.m in Sources */,
 				AC4BF31415802F6000575C4A /* OMActiveModel+ConfirmationValidation.m in Sources */,
+				AC7F9D4515812C940074F422 /* OMAcceptanceValidator.m in Sources */,
+				AC7F9D4815812CAE0074F422 /* OMActiveModel+AcceptanceValidation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,15 +531,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC672F441448D93800BA34CA /* PresenceValidatorTest.m in Sources */,
+				AC672F441448D93800BA34CA /* OMPresenceValidatorTest.m in Sources */,
 				AC6F9E75144A4F6D006BDA00 /* BlankTest.m in Sources */,
-				AC23543315502E05005AC17D /* NumericalityValidatorTest.m in Sources */,
-				AC23543615517DF4005AC17D /* ValidatorTestCase.m in Sources */,
+				AC23543315502E05005AC17D /* OMNumericalityValidatorTest.m in Sources */,
+				AC23543615517DF4005AC17D /* OMValidatorTestCase.m in Sources */,
 				ACEC78541561A8D400B29DFE /* OMValidatorTest.m in Sources */,
 				AC7816FA1563FCCC009B5B54 /* Topic.m in Sources */,
-				ACE78066156AB8B300570CFB /* FormatValidatorTest.m in Sources */,
-				AC7B5E71156EA9E300214CAF /* LengthValidatorTest.m in Sources */,
+				ACE78066156AB8B300570CFB /* OMFormatValidatorTest.m in Sources */,
+				AC7B5E71156EA9E300214CAF /* OMLengthValidatorTest.m in Sources */,
 				AC4BF30D15802D0D00575C4A /* OMConfirmationValidatorTest.m in Sources */,
+				AC7F9D4115812B6F0074F422 /* OMAcceptanceValidatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
