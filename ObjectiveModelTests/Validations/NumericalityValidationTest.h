@@ -23,7 +23,6 @@
 
 
 
-#import "Person.h"
 #import "SenTestCase+Validation.h"
 
 

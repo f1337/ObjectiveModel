@@ -28,7 +28,7 @@
 
 
 #import "ConfirmationValidationTest.h"
-#import "OMConfirmationValidator.h"
+#import <ObjectiveModel/Validations.h>
 
 
 

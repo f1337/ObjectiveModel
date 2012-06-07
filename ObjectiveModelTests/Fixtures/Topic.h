@@ -23,7 +23,7 @@
 
 
 
-#import "OMActiveModel.h"
+#import <ObjectiveModel/ObjectiveModel.h>
 
 
 

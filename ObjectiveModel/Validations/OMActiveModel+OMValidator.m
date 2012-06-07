@@ -24,7 +24,6 @@
 
 
 #import "OMActiveModel+OMValidator.h"
-#import <CoreData/CoreData.h>
 #import "NSError+ValidationErrors.h"
 
 

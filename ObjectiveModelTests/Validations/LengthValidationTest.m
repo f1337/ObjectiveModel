@@ -28,8 +28,7 @@
 
 
 #import "LengthValidationTest.h"
-#import "OMLengthValidator.h"
-#import "Topic.h"
+#import <ObjectiveModel/Validations.h>
 
 
 

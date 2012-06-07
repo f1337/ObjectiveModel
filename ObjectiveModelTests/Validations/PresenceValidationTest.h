@@ -25,7 +25,6 @@
 
 #import "Person.h"
 #import "SenTestCase+Validation.h"
-#import "OMActiveModel+OMPresenceValidator.h"
 
 
 

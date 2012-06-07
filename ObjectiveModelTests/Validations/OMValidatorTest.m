@@ -24,13 +24,15 @@
 
 
 #import "OMValidatorTest.h"
-#import "OMActiveModel+OMNumericalityValidator.h"
+#import <ObjectiveModel/Validations.h>
 
 
 
 @implementation OMValidatorTest
 
 
+
+#warning This test class should be removed once RoR tests have all been imported.
 
 #pragma mark - SETUP/TEARDOWN
 

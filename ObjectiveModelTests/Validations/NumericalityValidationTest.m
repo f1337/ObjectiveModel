@@ -28,8 +28,8 @@
 
 
 #import "NumericalityValidationTest.h"
-#import "OMNumericalityValidator.h"
 #import "Topic.h"
+#import <ObjectiveModel/Validations.h>
 
 
 

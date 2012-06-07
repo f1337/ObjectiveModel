@@ -28,7 +28,7 @@
 
 
 #import "PresenceValidationTest.h"
-#import <CoreData/CoreData.h>
+#import <ObjectiveModel/Validations.h>
 
 
 

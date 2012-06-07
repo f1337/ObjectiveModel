@@ -28,8 +28,8 @@
 
 
 #import "FormatValidationTest.h"
-#import "OMFormatValidator.h"
 #import "Topic.h"
+#import <ObjectiveModel/Validations.h>
 
 
 

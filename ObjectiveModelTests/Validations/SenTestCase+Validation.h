@@ -23,8 +23,7 @@
 
 
 
-#import "OMActiveModel.h"
-#import "OMValidator.h"
+#import <ObjectiveModel/Validations.h>
 #import <SenTestingKit/SenTestingKit.h>
 
 
