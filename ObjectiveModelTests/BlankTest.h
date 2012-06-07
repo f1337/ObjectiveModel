@@ -24,6 +24,7 @@
 
 
 #import "NSObject+Blank.h"
+#import <SenTestingKit/SenTestingKit.h>
 
 
 

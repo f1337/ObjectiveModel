@@ -1,0 +1,785 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC09CD9615815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CD9415815E59008E581C /* InfoPlist.strings */; };
+		AC09CDA015815E59008E581C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC09CD9F15815E59008E581C /* SenTestingKit.framework */; };
+		AC09CDA215815E59008E581C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC09CDA115815E59008E581C /* UIKit.framework */; };
+		AC09CDA715815E59008E581C /* ObjectiveModel.framework in Resources */ = {isa = PBXBuildFile; fileRef = AC09CD8F15815E59008E581C /* ObjectiveModel.framework */; };
+		AC09CDAD15815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CDAB15815E59008E581C /* InfoPlist.strings */; };
+		AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBC15815F73008E581C /* NSObject+Blank.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDE815815F73008E581C /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDBD15815F73008E581C /* NSObject+Blank.m */; };
+		AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBE15815F73008E581C /* OMActiveModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDEA15815F73008E581C /* OMActiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDBF15815F73008E581C /* OMActiveModel.m */; };
+		AC09CDEB15815F73008E581C /* OMAcceptanceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC215815F73008E581C /* OMAcceptanceValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDEC15815F73008E581C /* OMAcceptanceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC315815F73008E581C /* OMAcceptanceValidator.m */; };
+		AC09CDED15815F73008E581C /* OMActiveModel+AcceptanceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC415815F73008E581C /* OMActiveModel+AcceptanceValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDEE15815F73008E581C /* OMActiveModel+AcceptanceValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC515815F73008E581C /* OMActiveModel+AcceptanceValidation.m */; };
+		AC09CDEF15815F73008E581C /* OMActiveModel+ConfirmationValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDF015815F73008E581C /* OMActiveModel+ConfirmationValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */; };
+		AC09CDF115815F73008E581C /* OMConfirmationValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC915815F73008E581C /* OMConfirmationValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDF215815F73008E581C /* OMConfirmationValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCA15815F73008E581C /* OMConfirmationValidator.m */; };
+		AC09CDF315815F73008E581C /* OMActiveModel+FormatValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDF415815F73008E581C /* OMActiveModel+FormatValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */; };
+		AC09CDF515815F73008E581C /* OMFormatValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCE15815F73008E581C /* OMFormatValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDF615815F73008E581C /* OMFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCF15815F73008E581C /* OMFormatValidator.m */; };
+		AC09CDF715815F73008E581C /* OMActiveModel+LengthValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDF815815F73008E581C /* OMActiveModel+LengthValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */; };
+		AC09CDF915815F73008E581C /* OMLengthValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD315815F73008E581C /* OMLengthValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDFA15815F73008E581C /* OMLengthValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD415815F73008E581C /* OMLengthValidator.m */; };
+		AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDFC15815F73008E581C /* NSError+ValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */; };
+		AC09CDFD15815F73008E581C /* NSNumber+ComparisonMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CDFE15815F73008E581C /* NSNumber+ComparisonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */; };
+		AC09CDFF15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDA15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CE0015815F73008E581C /* OMActiveModel+OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDB15815F73008E581C /* OMActiveModel+OMNumericalityValidator.m */; };
+		AC09CE0115815F73008E581C /* OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CE0215815F73008E581C /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */; };
+		AC09CE0315815F73008E581C /* OMActiveModel+OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDE15815F73008E581C /* OMActiveModel+OMValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CE0415815F73008E581C /* OMActiveModel+OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDF15815F73008E581C /* OMActiveModel+OMValidator.m */; };
+		AC09CE0515815F73008E581C /* OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE015815F73008E581C /* OMValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CE0615815F73008E581C /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE115815F73008E581C /* OMValidator.m */; };
+		AC09CE0715815F73008E581C /* OMActiveModel+OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE315815F73008E581C /* OMActiveModel+OMPresenceValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CE0815815F73008E581C /* OMActiveModel+OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE415815F73008E581C /* OMActiveModel+OMPresenceValidator.m */; };
+		AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE515815F73008E581C /* OMPresenceValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC09CE0A15815F73008E581C /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE615815F73008E581C /* OMPresenceValidator.m */; };
+		AC09CE2615815F87008E581C /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE0D15815F87008E581C /* BlankTest.m */; };
+		AC09CE2715815F87008E581C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1015815F87008E581C /* Person.m */; };
+		AC09CE2815815F87008E581C /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1215815F87008E581C /* Topic.m */; };
+		AC09CE2915815F87008E581C /* AcceptanceValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */; };
+		AC09CE2A15815F87008E581C /* ConfirmationValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */; };
+		AC09CE2B15815F87008E581C /* FormatValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1915815F87008E581C /* FormatValidationTest.m */; };
+		AC09CE2C15815F87008E581C /* InclusionValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1B15815F87008E581C /* InclusionValidationTest.m */; };
+		AC09CE2D15815F87008E581C /* LengthValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1D15815F87008E581C /* LengthValidationTest.m */; };
+		AC09CE2E15815F87008E581C /* NumericalityValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */; };
+		AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2115815F87008E581C /* OMValidatorTest.m */; };
+		AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2315815F87008E581C /* PresenceValidationTest.m */; };
+		AC09CE3115815F87008E581C /* SenTestCase+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2515815F87008E581C /* SenTestCase+Validation.m */; };
+		AC09CE3315816020008E581C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC09CE3215816020008E581C /* CoreData.framework */; };
+		AC09CE391581627B008E581C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC09CE381581627B008E581C /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC09CDA515815E59008E581C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC09CD8215815E59008E581C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC09CD8E15815E59008E581C;
+			remoteInfo = ObjectiveModel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AC09CD8F15815E59008E581C /* ObjectiveModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC09CD9315815E59008E581C /* ObjectiveModel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveModel-Info.plist"; sourceTree = "<group>"; };
+		AC09CD9515815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AC09CD9715815E59008E581C /* ObjectiveModel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveModel-Prefix.pch"; sourceTree = "<group>"; };
+		AC09CD9D15815E59008E581C /* ObjectiveModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC09CD9F15815E59008E581C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		AC09CDA115815E59008E581C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		AC09CDAA15815E59008E581C /* ObjectiveModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveModelTests-Info.plist"; sourceTree = "<group>"; };
+		AC09CDAC15815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AC09CDBC15815F73008E581C /* NSObject+Blank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blank.h"; sourceTree = "<group>"; };
+		AC09CDBD15815F73008E581C /* NSObject+Blank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blank.m"; sourceTree = "<group>"; };
+		AC09CDBE15815F73008E581C /* OMActiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMActiveModel.h; sourceTree = "<group>"; };
+		AC09CDBF15815F73008E581C /* OMActiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMActiveModel.m; sourceTree = "<group>"; };
+		AC09CDC215815F73008E581C /* OMAcceptanceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAcceptanceValidator.h; sourceTree = "<group>"; };
+		AC09CDC315815F73008E581C /* OMAcceptanceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMAcceptanceValidator.m; sourceTree = "<group>"; };
+		AC09CDC415815F73008E581C /* OMActiveModel+AcceptanceValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+AcceptanceValidation.h"; sourceTree = "<group>"; };
+		AC09CDC515815F73008E581C /* OMActiveModel+AcceptanceValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+AcceptanceValidation.m"; sourceTree = "<group>"; };
+		AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+ConfirmationValidation.h"; sourceTree = "<group>"; };
+		AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+ConfirmationValidation.m"; sourceTree = "<group>"; };
+		AC09CDC915815F73008E581C /* OMConfirmationValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMConfirmationValidator.h; sourceTree = "<group>"; };
+		AC09CDCA15815F73008E581C /* OMConfirmationValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMConfirmationValidator.m; sourceTree = "<group>"; };
+		AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+FormatValidation.h"; sourceTree = "<group>"; };
+		AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+FormatValidation.m"; sourceTree = "<group>"; };
+		AC09CDCE15815F73008E581C /* OMFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMFormatValidator.h; sourceTree = "<group>"; };
+		AC09CDCF15815F73008E581C /* OMFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMFormatValidator.m; sourceTree = "<group>"; };
+		AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+LengthValidation.h"; sourceTree = "<group>"; };
+		AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+LengthValidation.m"; sourceTree = "<group>"; };
+		AC09CDD315815F73008E581C /* OMLengthValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMLengthValidator.h; sourceTree = "<group>"; };
+		AC09CDD415815F73008E581C /* OMLengthValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMLengthValidator.m; sourceTree = "<group>"; };
+		AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ValidationErrors.h"; sourceTree = "<group>"; };
+		AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ValidationErrors.m"; sourceTree = "<group>"; };
+		AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ComparisonMethods.h"; sourceTree = "<group>"; };
+		AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ComparisonMethods.m"; sourceTree = "<group>"; };
+		AC09CDDA15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+OMNumericalityValidator.h"; sourceTree = "<group>"; };
+		AC09CDDB15815F73008E581C /* OMActiveModel+OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+OMNumericalityValidator.m"; sourceTree = "<group>"; };
+		AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMNumericalityValidator.h; sourceTree = "<group>"; };
+		AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMNumericalityValidator.m; sourceTree = "<group>"; };
+		AC09CDDE15815F73008E581C /* OMActiveModel+OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+OMValidator.h"; sourceTree = "<group>"; };
+		AC09CDDF15815F73008E581C /* OMActiveModel+OMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+OMValidator.m"; sourceTree = "<group>"; };
+		AC09CDE015815F73008E581C /* OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMValidator.h; sourceTree = "<group>"; };
+		AC09CDE115815F73008E581C /* OMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMValidator.m; sourceTree = "<group>"; };
+		AC09CDE315815F73008E581C /* OMActiveModel+OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+OMPresenceValidator.h"; sourceTree = "<group>"; };
+		AC09CDE415815F73008E581C /* OMActiveModel+OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+OMPresenceValidator.m"; sourceTree = "<group>"; };
+		AC09CDE515815F73008E581C /* OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMPresenceValidator.h; sourceTree = "<group>"; };
+		AC09CDE615815F73008E581C /* OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMPresenceValidator.m; sourceTree = "<group>"; };
+		AC09CE0C15815F87008E581C /* BlankTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankTest.h; sourceTree = "<group>"; };
+		AC09CE0D15815F87008E581C /* BlankTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankTest.m; sourceTree = "<group>"; };
+		AC09CE0F15815F87008E581C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		AC09CE1015815F87008E581C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		AC09CE1115815F87008E581C /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
+		AC09CE1215815F87008E581C /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
+		AC09CE1415815F87008E581C /* AcceptanceValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptanceValidationTest.h; sourceTree = "<group>"; };
+		AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptanceValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1615815F87008E581C /* ConfirmationValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmationValidationTest.h; sourceTree = "<group>"; };
+		AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmationValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1815815F87008E581C /* FormatValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatValidationTest.h; sourceTree = "<group>"; };
+		AC09CE1915815F87008E581C /* FormatValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1A15815F87008E581C /* InclusionValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InclusionValidationTest.h; sourceTree = "<group>"; };
+		AC09CE1B15815F87008E581C /* InclusionValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InclusionValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1C15815F87008E581C /* LengthValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LengthValidationTest.h; sourceTree = "<group>"; };
+		AC09CE1D15815F87008E581C /* LengthValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LengthValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1E15815F87008E581C /* NumericalityValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericalityValidationTest.h; sourceTree = "<group>"; };
+		AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericalityValidationTest.m; sourceTree = "<group>"; };
+		AC09CE2015815F87008E581C /* OMValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMValidatorTest.h; sourceTree = "<group>"; };
+		AC09CE2115815F87008E581C /* OMValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMValidatorTest.m; sourceTree = "<group>"; };
+		AC09CE2215815F87008E581C /* PresenceValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceValidationTest.h; sourceTree = "<group>"; };
+		AC09CE2315815F87008E581C /* PresenceValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceValidationTest.m; sourceTree = "<group>"; };
+		AC09CE2415815F87008E581C /* SenTestCase+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+Validation.h"; sourceTree = "<group>"; };
+		AC09CE2515815F87008E581C /* SenTestCase+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+Validation.m"; sourceTree = "<group>"; };
+		AC09CE3215816020008E581C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AC09CE381581627B008E581C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC09CD8915815E59008E581C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC09CD9915815E59008E581C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC09CE391581627B008E581C /* Foundation.framework in Frameworks */,
+				AC09CE3315816020008E581C /* CoreData.framework in Frameworks */,
+				AC09CDA015815E59008E581C /* SenTestingKit.framework in Frameworks */,
+				AC09CDA215815E59008E581C /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC09CD8015815E59008E581C = {
+			isa = PBXGroup;
+			children = (
+				AC09CD9115815E59008E581C /* ObjectiveModel */,
+				AC09CDA815815E59008E581C /* ObjectiveModelTests */,
+				AC09CD9E15815E59008E581C /* Frameworks */,
+				AC09CD9015815E59008E581C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AC09CD9015815E59008E581C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CD8F15815E59008E581C /* ObjectiveModel.framework */,
+				AC09CD9D15815E59008E581C /* ObjectiveModelTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC09CD9115815E59008E581C /* ObjectiveModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDBC15815F73008E581C /* NSObject+Blank.h */,
+				AC09CDBD15815F73008E581C /* NSObject+Blank.m */,
+				AC09CDBE15815F73008E581C /* OMActiveModel.h */,
+				AC09CDBF15815F73008E581C /* OMActiveModel.m */,
+				AC09CDC015815F73008E581C /* Validations */,
+				AC09CD9215815E59008E581C /* Supporting Files */,
+			);
+			path = ObjectiveModel;
+			sourceTree = "<group>";
+		};
+		AC09CD9215815E59008E581C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CD9315815E59008E581C /* ObjectiveModel-Info.plist */,
+				AC09CD9415815E59008E581C /* InfoPlist.strings */,
+				AC09CD9715815E59008E581C /* ObjectiveModel-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC09CD9E15815E59008E581C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CE381581627B008E581C /* Foundation.framework */,
+				AC09CE3215816020008E581C /* CoreData.framework */,
+				AC09CD9F15815E59008E581C /* SenTestingKit.framework */,
+				AC09CDA115815E59008E581C /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC09CDA815815E59008E581C /* ObjectiveModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CE0C15815F87008E581C /* BlankTest.h */,
+				AC09CE0D15815F87008E581C /* BlankTest.m */,
+				AC09CE0E15815F87008E581C /* Fixtures */,
+				AC09CE1315815F87008E581C /* Validations */,
+				AC09CDA915815E59008E581C /* Supporting Files */,
+			);
+			path = ObjectiveModelTests;
+			sourceTree = "<group>";
+		};
+		AC09CDA915815E59008E581C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDAA15815E59008E581C /* ObjectiveModelTests-Info.plist */,
+				AC09CDAB15815E59008E581C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC09CDC015815F73008E581C /* Validations */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDC115815F73008E581C /* AcceptanceValidator */,
+				AC09CDC615815F73008E581C /* ConfirmationValidator */,
+				AC09CDCB15815F73008E581C /* FormatValidator */,
+				AC09CDD015815F73008E581C /* LengthValidator */,
+				AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */,
+				AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */,
+				AC09CDD715815F73008E581C /* NumericalityValidator */,
+				AC09CDDE15815F73008E581C /* OMActiveModel+OMValidator.h */,
+				AC09CDDF15815F73008E581C /* OMActiveModel+OMValidator.m */,
+				AC09CDE015815F73008E581C /* OMValidator.h */,
+				AC09CDE115815F73008E581C /* OMValidator.m */,
+				AC09CDE215815F73008E581C /* PresenceValidator */,
+			);
+			path = Validations;
+			sourceTree = "<group>";
+		};
+		AC09CDC115815F73008E581C /* AcceptanceValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDC215815F73008E581C /* OMAcceptanceValidator.h */,
+				AC09CDC315815F73008E581C /* OMAcceptanceValidator.m */,
+				AC09CDC415815F73008E581C /* OMActiveModel+AcceptanceValidation.h */,
+				AC09CDC515815F73008E581C /* OMActiveModel+AcceptanceValidation.m */,
+			);
+			path = AcceptanceValidator;
+			sourceTree = "<group>";
+		};
+		AC09CDC615815F73008E581C /* ConfirmationValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */,
+				AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */,
+				AC09CDC915815F73008E581C /* OMConfirmationValidator.h */,
+				AC09CDCA15815F73008E581C /* OMConfirmationValidator.m */,
+			);
+			path = ConfirmationValidator;
+			sourceTree = "<group>";
+		};
+		AC09CDCB15815F73008E581C /* FormatValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */,
+				AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */,
+				AC09CDCE15815F73008E581C /* OMFormatValidator.h */,
+				AC09CDCF15815F73008E581C /* OMFormatValidator.m */,
+			);
+			path = FormatValidator;
+			sourceTree = "<group>";
+		};
+		AC09CDD015815F73008E581C /* LengthValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */,
+				AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */,
+				AC09CDD315815F73008E581C /* OMLengthValidator.h */,
+				AC09CDD415815F73008E581C /* OMLengthValidator.m */,
+			);
+			path = LengthValidator;
+			sourceTree = "<group>";
+		};
+		AC09CDD715815F73008E581C /* NumericalityValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */,
+				AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */,
+				AC09CDDA15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h */,
+				AC09CDDB15815F73008E581C /* OMActiveModel+OMNumericalityValidator.m */,
+				AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */,
+				AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */,
+			);
+			path = NumericalityValidator;
+			sourceTree = "<group>";
+		};
+		AC09CDE215815F73008E581C /* PresenceValidator */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CDE315815F73008E581C /* OMActiveModel+OMPresenceValidator.h */,
+				AC09CDE415815F73008E581C /* OMActiveModel+OMPresenceValidator.m */,
+				AC09CDE515815F73008E581C /* OMPresenceValidator.h */,
+				AC09CDE615815F73008E581C /* OMPresenceValidator.m */,
+			);
+			path = PresenceValidator;
+			sourceTree = "<group>";
+		};
+		AC09CE0E15815F87008E581C /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CE0F15815F87008E581C /* Person.h */,
+				AC09CE1015815F87008E581C /* Person.m */,
+				AC09CE1115815F87008E581C /* Topic.h */,
+				AC09CE1215815F87008E581C /* Topic.m */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		AC09CE1315815F87008E581C /* Validations */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CE1415815F87008E581C /* AcceptanceValidationTest.h */,
+				AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */,
+				AC09CE1615815F87008E581C /* ConfirmationValidationTest.h */,
+				AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */,
+				AC09CE1815815F87008E581C /* FormatValidationTest.h */,
+				AC09CE1915815F87008E581C /* FormatValidationTest.m */,
+				AC09CE1A15815F87008E581C /* InclusionValidationTest.h */,
+				AC09CE1B15815F87008E581C /* InclusionValidationTest.m */,
+				AC09CE1C15815F87008E581C /* LengthValidationTest.h */,
+				AC09CE1D15815F87008E581C /* LengthValidationTest.m */,
+				AC09CE1E15815F87008E581C /* NumericalityValidationTest.h */,
+				AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */,
+				AC09CE2015815F87008E581C /* OMValidatorTest.h */,
+				AC09CE2115815F87008E581C /* OMValidatorTest.m */,
+				AC09CE2215815F87008E581C /* PresenceValidationTest.h */,
+				AC09CE2315815F87008E581C /* PresenceValidationTest.m */,
+				AC09CE2415815F87008E581C /* SenTestCase+Validation.h */,
+				AC09CE2515815F87008E581C /* SenTestCase+Validation.m */,
+			);
+			path = Validations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AC09CD8A15815E59008E581C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */,
+				AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */,
+				AC09CDEB15815F73008E581C /* OMAcceptanceValidator.h in Headers */,
+				AC09CDED15815F73008E581C /* OMActiveModel+AcceptanceValidation.h in Headers */,
+				AC09CDEF15815F73008E581C /* OMActiveModel+ConfirmationValidation.h in Headers */,
+				AC09CDF115815F73008E581C /* OMConfirmationValidator.h in Headers */,
+				AC09CDF315815F73008E581C /* OMActiveModel+FormatValidation.h in Headers */,
+				AC09CDF515815F73008E581C /* OMFormatValidator.h in Headers */,
+				AC09CDF715815F73008E581C /* OMActiveModel+LengthValidation.h in Headers */,
+				AC09CDF915815F73008E581C /* OMLengthValidator.h in Headers */,
+				AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */,
+				AC09CDFD15815F73008E581C /* NSNumber+ComparisonMethods.h in Headers */,
+				AC09CDFF15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h in Headers */,
+				AC09CE0115815F73008E581C /* OMNumericalityValidator.h in Headers */,
+				AC09CE0315815F73008E581C /* OMActiveModel+OMValidator.h in Headers */,
+				AC09CE0515815F73008E581C /* OMValidator.h in Headers */,
+				AC09CE0715815F73008E581C /* OMActiveModel+OMPresenceValidator.h in Headers */,
+				AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AC09CD8E15815E59008E581C /* ObjectiveModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC09CDB315815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModel" */;
+			buildPhases = (
+				AC09CD8715815E59008E581C /* ShellScript */,
+				AC09CD8815815E59008E581C /* Sources */,
+				AC09CD8915815E59008E581C /* Frameworks */,
+				AC09CD8A15815E59008E581C /* Headers */,
+				AC09CD8B15815E59008E581C /* Resources */,
+				AC09CD8C15815E59008E581C /* ShellScript */,
+				AC09CD8D15815E59008E581C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObjectiveModel;
+			productName = ObjectiveModel;
+			productReference = AC09CD8F15815E59008E581C /* ObjectiveModel.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
+		AC09CD9C15815E59008E581C /* ObjectiveModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC09CDB615815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModelTests" */;
+			buildPhases = (
+				AC09CD9815815E59008E581C /* Sources */,
+				AC09CD9915815E59008E581C /* Frameworks */,
+				AC09CD9A15815E59008E581C /* Resources */,
+				AC09CD9B15815E59008E581C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC09CDA615815E59008E581C /* PBXTargetDependency */,
+			);
+			name = ObjectiveModelTests;
+			productName = ObjectiveModelTests;
+			productReference = AC09CD9D15815E59008E581C /* ObjectiveModelTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC09CD8215815E59008E581C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Michael R. Fleet";
+			};
+			buildConfigurationList = AC09CD8515815E59008E581C /* Build configuration list for PBXProject "ObjectiveModel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AC09CD8015815E59008E581C;
+			productRefGroup = AC09CD9015815E59008E581C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC09CD8E15815E59008E581C /* ObjectiveModel */,
+				AC09CD9C15815E59008E581C /* ObjectiveModelTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC09CD8B15815E59008E581C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC09CD9615815E59008E581C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC09CD9A15815E59008E581C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC09CDA715815E59008E581C /* ObjectiveModel.framework in Resources */,
+				AC09CDAD15815E59008E581C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AC09CD8715815E59008E581C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n";
+		};
+		AC09CD8C15815E59008E581C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "HEADERS_ROOT=$SRCROOT/$PRODUCT_NAME\nFRAMEWORK_HEADERS_DIR=\"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Versions/$FRAMEWORK_VERSION/Headers\"\n\n## only header files expected at this point\nPUBLIC_HEADERS=$(find $FRAMEWORK_HEADERS_DIR/. -not -type d 2> /dev/null | sed -e \"s@.*/@@g\")\n\nFIND_OPTS=\"\"\nfor PUBLIC_HEADER in $PUBLIC_HEADERS; do\n  if [ -n \"$FIND_OPTS\" ]; then\n    FIND_OPTS=\"$FIND_OPTS -o\"\n  fi\n  FIND_OPTS=\"$FIND_OPTS -name '$PUBLIC_HEADER'\"\ndone\n\nif [ -n \"$FIND_OPTS\" ]; then\n  for ORIG_HEADER in $(eval \"find $HEADERS_ROOT/. $FIND_OPTS\" 2> /dev/null | sed -e \"s@^$HEADERS_ROOT/./@@g\"); do\n    PUBLIC_HEADER=$(basename $ORIG_HEADER)\n    RELATIVE_PATH=$(dirname $ORIG_HEADER)\n    if [ -e $FRAMEWORK_HEADERS_DIR/$PUBLIC_HEADER ]; then\n      mkdir -p \"$FRAMEWORK_HEADERS_DIR/$RELATIVE_PATH\"\n      mv \"$FRAMEWORK_HEADERS_DIR/$PUBLIC_HEADER\" \"$FRAMEWORK_HEADERS_DIR/$RELATIVE_PATH/$PUBLIC_HEADER\"\n    fi\n  done\nfi\n";
+		};
+		AC09CD8D15815E59008E581C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n\necho \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build framework structure\n\necho \"Build symlinks\"\n\necho ln -sfh A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\nln -sfh A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\necho ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\nln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\necho ln -sfh Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\nln -sfh Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\necho ln -sfh \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\nln -sfh \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\n\n\n# Link to binary for unit tests\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework\"\nln -sfh \"../${WRAPPER_NAME}/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework/.fake_fw_testing\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
+		};
+		AC09CD9B15815E59008E581C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC09CD8815815E59008E581C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC09CDE815815F73008E581C /* NSObject+Blank.m in Sources */,
+				AC09CDEA15815F73008E581C /* OMActiveModel.m in Sources */,
+				AC09CDEC15815F73008E581C /* OMAcceptanceValidator.m in Sources */,
+				AC09CDEE15815F73008E581C /* OMActiveModel+AcceptanceValidation.m in Sources */,
+				AC09CDF015815F73008E581C /* OMActiveModel+ConfirmationValidation.m in Sources */,
+				AC09CDF215815F73008E581C /* OMConfirmationValidator.m in Sources */,
+				AC09CDF415815F73008E581C /* OMActiveModel+FormatValidation.m in Sources */,
+				AC09CDF615815F73008E581C /* OMFormatValidator.m in Sources */,
+				AC09CDF815815F73008E581C /* OMActiveModel+LengthValidation.m in Sources */,
+				AC09CDFA15815F73008E581C /* OMLengthValidator.m in Sources */,
+				AC09CDFC15815F73008E581C /* NSError+ValidationErrors.m in Sources */,
+				AC09CDFE15815F73008E581C /* NSNumber+ComparisonMethods.m in Sources */,
+				AC09CE0015815F73008E581C /* OMActiveModel+OMNumericalityValidator.m in Sources */,
+				AC09CE0215815F73008E581C /* OMNumericalityValidator.m in Sources */,
+				AC09CE0415815F73008E581C /* OMActiveModel+OMValidator.m in Sources */,
+				AC09CE0615815F73008E581C /* OMValidator.m in Sources */,
+				AC09CE0815815F73008E581C /* OMActiveModel+OMPresenceValidator.m in Sources */,
+				AC09CE0A15815F73008E581C /* OMPresenceValidator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC09CD9815815E59008E581C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC09CE2615815F87008E581C /* BlankTest.m in Sources */,
+				AC09CE2715815F87008E581C /* Person.m in Sources */,
+				AC09CE2815815F87008E581C /* Topic.m in Sources */,
+				AC09CE2915815F87008E581C /* AcceptanceValidationTest.m in Sources */,
+				AC09CE2A15815F87008E581C /* ConfirmationValidationTest.m in Sources */,
+				AC09CE2B15815F87008E581C /* FormatValidationTest.m in Sources */,
+				AC09CE2C15815F87008E581C /* InclusionValidationTest.m in Sources */,
+				AC09CE2D15815F87008E581C /* LengthValidationTest.m in Sources */,
+				AC09CE2E15815F87008E581C /* NumericalityValidationTest.m in Sources */,
+				AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */,
+				AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */,
+				AC09CE3115815F87008E581C /* SenTestCase+Validation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC09CDA615815E59008E581C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC09CD8E15815E59008E581C /* ObjectiveModel */;
+			targetProxy = AC09CDA515815E59008E581C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AC09CD9415815E59008E581C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC09CD9515815E59008E581C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AC09CDAB15815E59008E581C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC09CDAC15815E59008E581C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AC09CDB115815E59008E581C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AC09CDB215815E59008E581C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AC09CDB415815E59008E581C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
+				DEAD_CODE_STRIPPING = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObjectiveModel/ObjectiveModel-Prefix.pch";
+				INFOPLIST_FILE = "ObjectiveModel/ObjectiveModel-Info.plist";
+				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		AC09CDB515815E59008E581C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
+				DEAD_CODE_STRIPPING = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObjectiveModel/ObjectiveModel-Prefix.pch";
+				INFOPLIST_FILE = "ObjectiveModel/ObjectiveModel-Info.plist";
+				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		AC09CDB715815E59008E581C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObjectiveModel/ObjectiveModel-Prefix.pch";
+				INFOPLIST_FILE = "ObjectiveModelTests/ObjectiveModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					.fake_fw_testing,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		AC09CDB815815E59008E581C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObjectiveModel/ObjectiveModel-Prefix.pch";
+				INFOPLIST_FILE = "ObjectiveModelTests/ObjectiveModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					.fake_fw_testing,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC09CD8515815E59008E581C /* Build configuration list for PBXProject "ObjectiveModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC09CDB115815E59008E581C /* Debug */,
+				AC09CDB215815E59008E581C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC09CDB315815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC09CDB415815E59008E581C /* Debug */,
+				AC09CDB515815E59008E581C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC09CDB615815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC09CDB715815E59008E581C /* Debug */,
+				AC09CDB815815E59008E581C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC09CD8215815E59008E581C /* Project object */;
+}

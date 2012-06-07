@@ -25,6 +25,7 @@
 
 #import "OMActiveModel.h"
 #import "OMValidator.h"
+#import <SenTestingKit/SenTestingKit.h>
 
 
 
