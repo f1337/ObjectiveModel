@@ -239,8 +239,7 @@
 				ACF16CCA15502063002A4124 /* Validators */,
 				AC13D3B214476F0E004BAB74 /* Supporting Files */,
 			);
-			name = ActiveModelTests;
-			path = ActiveResourceTests;
+			path = ActiveModelTests;
 			sourceTree = "<group>";
 		};
 		AC13D3B214476F0E004BAB74 /* Supporting Files */ = {
