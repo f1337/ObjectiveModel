@@ -56,6 +56,7 @@
 
 /*!
  * TODO?: validateForUpdate, validateForInsert, validateForDelete
+ * see RoR's "ValidationContextTest"
  * ~mrf: May provide value with CoreData implementations.
  *
  * See: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreData/Articles/cdValidation.html#//apple_ref/doc/uid/TP40004807-SW3
@@ -69,6 +70,7 @@
 
 /*!
  * TODO: shouldApplyValidationBlock
+ * See RoR's: ConditionalValidationTest
  *
  * Specifies a block to call to determine if the validation should occur.
  *
@@ -86,6 +88,7 @@
 
 /*!
  * TODO: shouldApplyValidationSelector
+ * See RoR's: ConditionalValidationTest
  *
  * Specifies a selector to call to determine if the validation should occur.
  *
