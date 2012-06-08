@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'ActiveModelTests' target in the 'ActiveModelTests' project
-//
-
-#ifdef __OBJC__
-    #import <SenTestingKit/SenTestingKit.h>
-#endif

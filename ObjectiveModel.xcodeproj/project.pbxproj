@@ -79,7 +79,6 @@
 		AC09CD9515815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC09CD9715815E59008E581C /* ObjectiveModel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveModel-Prefix.pch"; sourceTree = "<group>"; };
 		AC09CD9D15815E59008E581C /* ObjectiveModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC09CD9F15815E59008E581C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		AC09CDAA15815E59008E581C /* ObjectiveModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveModelTests-Info.plist"; sourceTree = "<group>"; };
 		AC09CDAC15815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC09CDBC15815F73008E581C /* NSObject+Blank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blank.h"; sourceTree = "<group>"; };
@@ -216,7 +215,6 @@
 			children = (
 				AC09CE381581627B008E581C /* Foundation.framework */,
 				AC09CE3215816020008E581C /* CoreData.framework */,
-				AC09CD9F15815E59008E581C /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
