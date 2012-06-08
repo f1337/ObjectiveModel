@@ -23,30 +23,18 @@
 
 
 
-#import "OMActiveModel.h"
+#import "OMPresenceValidator.h"
 
 
 
-typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
+@implementation OMActiveModel (PresenceValidation)
 
 
 
-@interface OMActiveModel (OMNumericalityValidator)
-
-
-
-/*!
- * Validates whether the value of the specified property is numeric by trying to convert it to
- * an NSNumber.
- *
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *	    	[self validatesNumericalityOf:@"age" withOptions:nil];
- *		}
- *   @end
- */
-+ (void)validatesNumericalityOf:(NSObject *)properties withOptions:(NSDictionary *)options;
++ (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options
+{
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMPresenceValidator class]] andOptions:options];
+}
 
 
 

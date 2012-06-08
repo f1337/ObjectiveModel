@@ -24,7 +24,7 @@
 
 
 #import "OMValidator.h"
-#import "OMActiveModel+OMNumericalityValidator.h"
+#import "OMActiveModel+NumericalityValidation.h"
 #import "NSNumber+ComparisonMethods.h"
 
 

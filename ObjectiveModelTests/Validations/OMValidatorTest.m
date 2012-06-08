@@ -32,7 +32,7 @@
 
 
 
-#warning This test class should be removed once RoR tests have all been imported.
+// TODO: This test class should be removed once RoR tests have all been imported.
 
 #pragma mark - SETUP/TEARDOWN
 

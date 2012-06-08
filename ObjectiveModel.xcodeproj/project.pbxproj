@@ -33,16 +33,16 @@
 		AC09CDFC15815F73008E581C /* NSError+ValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */; };
 		AC09CDFD15815F73008E581C /* NSNumber+ComparisonMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC09CDFE15815F73008E581C /* NSNumber+ComparisonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */; };
-		AC09CDFF15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDA15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		AC09CE0015815F73008E581C /* OMActiveModel+OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDB15815F73008E581C /* OMActiveModel+OMNumericalityValidator.m */; };
+		AC09CDFF15815F73008E581C /* OMActiveModel+NumericalityValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0015815F73008E581C /* OMActiveModel+NumericalityValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */; };
 		AC09CE0115815F73008E581C /* OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		AC09CE0215815F73008E581C /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */; };
-		AC09CE0315815F73008E581C /* OMActiveModel+OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDE15815F73008E581C /* OMActiveModel+OMValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		AC09CE0415815F73008E581C /* OMActiveModel+OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDF15815F73008E581C /* OMActiveModel+OMValidator.m */; };
+		AC09CE0315815F73008E581C /* OMActiveModel+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0415815F73008E581C /* OMActiveModel+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */; };
 		AC09CE0515815F73008E581C /* OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE015815F73008E581C /* OMValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		AC09CE0615815F73008E581C /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE115815F73008E581C /* OMValidator.m */; };
-		AC09CE0715815F73008E581C /* OMActiveModel+OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE315815F73008E581C /* OMActiveModel+OMPresenceValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		AC09CE0815815F73008E581C /* OMActiveModel+OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE415815F73008E581C /* OMActiveModel+OMPresenceValidator.m */; };
+		AC09CE0715815F73008E581C /* OMActiveModel+PresenceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0815815F73008E581C /* OMActiveModel+PresenceValidationr.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidationr.m */; };
 		AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE515815F73008E581C /* OMPresenceValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		AC09CE0A15815F73008E581C /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE615815F73008E581C /* OMPresenceValidator.m */; };
 		AC09CE2615815F87008E581C /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE0D15815F87008E581C /* BlankTest.m */; };
@@ -106,16 +106,16 @@
 		AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ValidationErrors.m"; sourceTree = "<group>"; };
 		AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ComparisonMethods.h"; sourceTree = "<group>"; };
 		AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ComparisonMethods.m"; sourceTree = "<group>"; };
-		AC09CDDA15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+OMNumericalityValidator.h"; sourceTree = "<group>"; };
-		AC09CDDB15815F73008E581C /* OMActiveModel+OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+OMNumericalityValidator.m"; sourceTree = "<group>"; };
+		AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+NumericalityValidation.h"; sourceTree = "<group>"; };
+		AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+NumericalityValidation.m"; sourceTree = "<group>"; };
 		AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMNumericalityValidator.h; sourceTree = "<group>"; };
 		AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMNumericalityValidator.m; sourceTree = "<group>"; };
-		AC09CDDE15815F73008E581C /* OMActiveModel+OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+OMValidator.h"; sourceTree = "<group>"; };
-		AC09CDDF15815F73008E581C /* OMActiveModel+OMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+OMValidator.m"; sourceTree = "<group>"; };
+		AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+Validation.h"; sourceTree = "<group>"; };
+		AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+Validation.m"; sourceTree = "<group>"; };
 		AC09CDE015815F73008E581C /* OMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMValidator.h; sourceTree = "<group>"; };
 		AC09CDE115815F73008E581C /* OMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMValidator.m; sourceTree = "<group>"; };
-		AC09CDE315815F73008E581C /* OMActiveModel+OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+OMPresenceValidator.h"; sourceTree = "<group>"; };
-		AC09CDE415815F73008E581C /* OMActiveModel+OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+OMPresenceValidator.m"; sourceTree = "<group>"; };
+		AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMActiveModel+PresenceValidation.h"; sourceTree = "<group>"; };
+		AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidationr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+PresenceValidationr.m"; sourceTree = "<group>"; };
 		AC09CDE515815F73008E581C /* OMPresenceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMPresenceValidator.h; sourceTree = "<group>"; };
 		AC09CDE615815F73008E581C /* OMPresenceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMPresenceValidator.m; sourceTree = "<group>"; };
 		AC09CE0C15815F87008E581C /* BlankTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankTest.h; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 				AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */,
 				AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */,
 				AC09CDD715815F73008E581C /* NumericalityValidator */,
-				AC09CDDE15815F73008E581C /* OMActiveModel+OMValidator.h */,
-				AC09CDDF15815F73008E581C /* OMActiveModel+OMValidator.m */,
+				AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */,
+				AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */,
 				AC09CDE015815F73008E581C /* OMValidator.h */,
 				AC09CDE115815F73008E581C /* OMValidator.m */,
 				AC09CDE215815F73008E581C /* PresenceValidator */,
@@ -311,8 +311,8 @@
 			children = (
 				AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */,
 				AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */,
-				AC09CDDA15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h */,
-				AC09CDDB15815F73008E581C /* OMActiveModel+OMNumericalityValidator.m */,
+				AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */,
+				AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */,
 				AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */,
 				AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */,
 			);
@@ -322,8 +322,8 @@
 		AC09CDE215815F73008E581C /* PresenceValidator */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CDE315815F73008E581C /* OMActiveModel+OMPresenceValidator.h */,
-				AC09CDE415815F73008E581C /* OMActiveModel+OMPresenceValidator.m */,
+				AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */,
+				AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidationr.m */,
 				AC09CDE515815F73008E581C /* OMPresenceValidator.h */,
 				AC09CDE615815F73008E581C /* OMPresenceValidator.m */,
 			);
@@ -379,13 +379,13 @@
 				AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */,
 				AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */,
 				AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */,
-				AC09CE0315815F73008E581C /* OMActiveModel+OMValidator.h in Headers */,
+				AC09CE0315815F73008E581C /* OMActiveModel+Validation.h in Headers */,
 				AC09CDED15815F73008E581C /* OMActiveModel+AcceptanceValidation.h in Headers */,
 				AC09CDEF15815F73008E581C /* OMActiveModel+ConfirmationValidation.h in Headers */,
 				AC09CDF315815F73008E581C /* OMActiveModel+FormatValidation.h in Headers */,
 				AC09CDF715815F73008E581C /* OMActiveModel+LengthValidation.h in Headers */,
-				AC09CDFF15815F73008E581C /* OMActiveModel+OMNumericalityValidator.h in Headers */,
-				AC09CE0715815F73008E581C /* OMActiveModel+OMPresenceValidator.h in Headers */,
+				AC09CDFF15815F73008E581C /* OMActiveModel+NumericalityValidation.h in Headers */,
+				AC09CE0715815F73008E581C /* OMActiveModel+PresenceValidation.h in Headers */,
 				AC09CE0515815F73008E581C /* OMValidator.h in Headers */,
 				AC09CDEB15815F73008E581C /* OMAcceptanceValidator.h in Headers */,
 				AC09CDF115815F73008E581C /* OMConfirmationValidator.h in Headers */,
@@ -557,11 +557,11 @@
 				AC09CDFA15815F73008E581C /* OMLengthValidator.m in Sources */,
 				AC09CDFC15815F73008E581C /* NSError+ValidationErrors.m in Sources */,
 				AC09CDFE15815F73008E581C /* NSNumber+ComparisonMethods.m in Sources */,
-				AC09CE0015815F73008E581C /* OMActiveModel+OMNumericalityValidator.m in Sources */,
+				AC09CE0015815F73008E581C /* OMActiveModel+NumericalityValidation.m in Sources */,
 				AC09CE0215815F73008E581C /* OMNumericalityValidator.m in Sources */,
-				AC09CE0415815F73008E581C /* OMActiveModel+OMValidator.m in Sources */,
+				AC09CE0415815F73008E581C /* OMActiveModel+Validation.m in Sources */,
 				AC09CE0615815F73008E581C /* OMValidator.m in Sources */,
-				AC09CE0815815F73008E581C /* OMActiveModel+OMPresenceValidator.m in Sources */,
+				AC09CE0815815F73008E581C /* OMActiveModel+PresenceValidationr.m in Sources */,
 				AC09CE0A15815F73008E581C /* OMPresenceValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

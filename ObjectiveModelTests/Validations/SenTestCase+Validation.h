@@ -28,7 +28,7 @@
 
 
 
-@interface SenTestCase (Validation)
+@interface SenTestCase (ValidationTests)
 
 
 
@@ -43,7 +43,7 @@
 
 
 
-@interface OMActiveModel (Validation)
+@interface OMActiveModel (ValidationTests)
 
 
 

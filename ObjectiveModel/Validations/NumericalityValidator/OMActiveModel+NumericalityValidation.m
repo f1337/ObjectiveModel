@@ -23,25 +23,19 @@
 
 
 
-#import "OMActiveModel.h"
+#import "OMNumericalityValidator.h"
 
 
 
-@interface OMActiveModel (OMPresenceValidator)
-/*!
- * @param properties A string property name OR
- * a collection of string property names conforming to NSFastEnumeration.
- *
- * Validates that the specified attributes are not blank (as defined by NSObject+Blank). Example:
- *
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *	    	[self validatesPresenceOf:@"firstName" withOptions:nil];
- *		}
- *   @end
- *
- * The firstName property must be defined for the object and it cannot be nil or blank.
- */
-+ (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options;
+@implementation OMActiveModel (NumericalityValidation)
+
+
+
++ (void)validatesNumericalityOf:(NSObject *)properties withOptions:(NSDictionary *)options
+{
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMNumericalityValidator class]] andOptions:options];
+}
+
+
+
 @end

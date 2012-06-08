@@ -24,53 +24,29 @@
 
 
 #import "OMActiveModel.h"
-#import "OMValidator.h"
 
 
 
-@interface OMActiveModel (OMValidator)
+typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
 
 
 
-/*!
- * @brief Triggers validations and returns YES if any validation fails, else NO
- */
-- (BOOL)isInvalid:(NSError **)errors;
+@interface OMActiveModel (NumericalityValidation)
 
 
 
 /*!
- * @brief Triggers validations and returns YES if all validations pass, else NO
+ * Validates whether the value of the specified property is numeric by trying to convert it to
+ * an NSNumber.
+ *
+ *   @implementation Person
+ *		+ (void)initialize
+ *		{
+ *	    	[self validatesNumericalityOf:@"age" withOptions:nil];
+ *		}
+ *   @end
  */
-- (BOOL)isValid:(NSError **)errors;
-
-
-
-/*!
- * @brief Executes all validators defined for the model. See isValid.
- */
-- (BOOL)validate:(NSError **)errors;
-
-
-
-/*!
- * @param properties An NSString property name OR an NSArray of NSString property names
- * @param validators An NSArray containing one or more of the following:
- * "acceptance"
- * "confirmation"
- * "exclusion"
- * "format"
- * "inclusion"
- * "length" => OMLengthValidator
- * "numercality" => OMNumericalityValidator
- * "presence" => OMPresenceValidator
- * @param options A dictionary with one or more of the following keys/value pairs:
- */
-+ (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
-
-
-
-+ (NSMutableDictionary *)validations;
++ (void)validatesNumericalityOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 
 
 

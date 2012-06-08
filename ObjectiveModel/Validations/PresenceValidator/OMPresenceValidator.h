@@ -24,7 +24,7 @@
 
 
 #import "OMValidator.h"
-#import "OMActiveModel+OMPresenceValidator.h"
+#import "OMActiveModel+PresenceValidation.h"
 
 
 

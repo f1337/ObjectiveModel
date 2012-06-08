@@ -23,7 +23,7 @@
 
 
 
-#import "OMActiveModel+OMValidator.h"
+#import "OMActiveModel+Validation.h"
 #import "NSError+ValidationErrors.h"
 
 
@@ -36,7 +36,7 @@
 
 
 
-@implementation OMActiveModel (OMValidator)
+@implementation OMActiveModel (Validation)
 
 
 

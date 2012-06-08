@@ -23,7 +23,7 @@
 
 
 
-#import "OMActiveModel+OMValidator.h"
+#import "OMActiveModel+Validation.h"
 
 
 

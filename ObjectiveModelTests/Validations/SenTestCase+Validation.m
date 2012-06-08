@@ -28,7 +28,7 @@
 
 
 
-@implementation SenTestCase (Validation)
+@implementation SenTestCase (ValidationTests)
 
 
 
@@ -152,7 +152,7 @@
 
 
 
-@implementation OMActiveModel (Validation)
+@implementation OMActiveModel (ValidationTests)
 
 
 
