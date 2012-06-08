@@ -440,9 +440,8 @@
     STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
     
     // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :minimum => "a") }
-//    options = [NSDictionary dictionaryWithObjectsAndKeys:@"a", @"minimum", nil];
-//    STAssertThrows([Topic validatesLengthOf:@"title" withOptions:options], @"An NSInvalidArgumentException should have been raised, but was not.");
-//    STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+    options = [NSDictionary dictionaryWithObjectsAndKeys:@"a", @"minimum", nil];
+    STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
     
     // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :maximum => "a") }
     options = [NSDictionary dictionaryWithObjectsAndKeys:@"a", @"maximum", nil];
