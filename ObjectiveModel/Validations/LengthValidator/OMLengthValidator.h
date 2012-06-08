@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
@@ -33,58 +33,65 @@
 
 
 
+/*!
+ * @class OMLengthValidator
+ */
 @interface OMLengthValidator : OMValidator
 
 
 
 /*!
- * The exact size of the attribute.
+ * @brief The exact size of the attribute.
  */
 @property (nonatomic, copy) NSNumber *equals;
 
 
 
 /*!
- * The maximum size of the attribute.
+ * @brief The maximum size of the attribute.
  */
 @property (nonatomic, copy) NSNumber *maximum;
 
 
 
 /*!
- * The error message to use for a minimum, maximum, or equals violation.
- * An alias of the tooLongMessage, tooShortMessage, and wrongLengthMessage.
+ * @brief The error message to use for a minimum, maximum, or equals violation.
+ * @discussion If defined, overrides the default tooLongMessage,
+ * tooShortMessage, and wrongLengthMessage.
  */
 - (NSString *)message;
 
 
 
 /*!
- * The minimum size of the attribute.
+ * @brief The minimum size of the attribute.
  */
 @property (nonatomic, copy) NSNumber *minimum;
 
 
 
 /*!
- * The error message if the attribute goes over the maximum
- * (default is: "is too long (maximum is %{count} characters)").
+ * @brief The error message if the attribute goes over the maximum.
+ * @discussion The default mesage is: "is too long (maximum is %{count} characters)".
  */
 @property (copy) NSString *tooLongMessage;
                                           
                                           
                                           
 /*!
- * The error message if the attribute goes under the minimum
- * (default is: "is too short (minimum is %{count} characters)").
+ * @brief The error message if the attribute goes under the minimum.
+ * @discussion The default mesage is: "is too short (minimum is %{count} characters)".
  */
 @property (copy) NSString *tooShortMessage;
                                           
                                           
                                           
 /*!
- * Specifies how to split up the attribute string, e.g.:
- *
+ * @brief Specifies how to split up the attribute string.
+ * @discussion Defaults to counting individual characters.
+ * To count words, for example:
+ * <pre>
+ * @textblock
  * [Topic validatesLengthOf:@"content"
  *              withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
  *                           [NSNumber numberWithInt:5], @"minimum",
@@ -96,17 +103,16 @@
  *      NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:@"\\w+" options:0 error:nil];
  *      return [pattern matchesInString:stringValue options:NSMatchingReportCompletion range:NSMakeRange(0, [stringValue length])];
  *  }];
- *
- * ...to count words as in above example.
- * Defaults to counting individual characters.
+ * @/textblock
+ * </pre>
  */
 @property (copy) OMLengthValidatorTokenizerBlock tokenizer;
 
 
 
 /*!
- * The error message if using @"equals" and the attribute is the wrong size
- * (default is: "is the wrong length (should be is %{count} characters)").
+ * @brief The error message if using <code>equals</code> and the attribute is the wrong size.
+ * @discussion The default mesage is: "is the wrong length (should be is %{count} characters)".
  */
 @property (copy) NSString *wrongLengthMessage;
 

@@ -145,6 +145,8 @@
 		AC09CE381581627B008E581C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AC09CE4815817096008E581C /* ObjectiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveModel.h; sourceTree = "<group>"; };
 		AC09CE4A158170E1008E581C /* Validations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validations.h; sourceTree = "<group>"; };
+		AC09CE4D15818E7D008E581C /* headerdoc-footer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = "headerdoc-footer.html"; sourceTree = "<group>"; };
+		AC09CE4E15818E7D008E581C /* headerdoc.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = headerdoc.conf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				AC09CDA815815E59008E581C /* ObjectiveModelTests */,
 				AC09CD9E15815E59008E581C /* Frameworks */,
 				AC09CD9015815E59008E581C /* Products */,
+				AC09CE4C15818E08008E581C /* Documentation */,
 			);
 			sourceTree = "<group>";
 		};
@@ -362,6 +365,15 @@
 				AC09CE2515815F87008E581C /* SenTestCase+Validation.m */,
 			);
 			path = Validations;
+			sourceTree = "<group>";
+		};
+		AC09CE4C15818E08008E581C /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				AC09CE4E15818E7D008E581C /* headerdoc.conf */,
+				AC09CE4D15818E7D008E581C /* headerdoc-footer.html */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
