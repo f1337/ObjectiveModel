@@ -75,13 +75,6 @@
 
 
 
-- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key
-{
-    return nil;
-}
-
-
-
 - (void)errorWithOriginalError:(NSError **)originalError
                          value:(NSObject *)value
                         forKey:(NSString *)inKey
@@ -132,24 +125,12 @@
     NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
     [filteredOptions removeObjectsForKeys:[NSMutableArray arrayWithObjects:@"allowBlank", @"allowNil", nil]];
 
-    // validate options
-    for (NSString *key in filteredOptions)
-    {
-        id value = [options objectForKey:key];
-        NSString *errorMessage = [self checkOptionValidityWithValue:value forKey:key];
-        if ( [errorMessage length] )
-        {
-            [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! %@", NSStringFromClass([self class]), errorMessage, nil];
-        }
-    }
-
     // this is where the magic happens: KVC, baby!
     [self setValuesForKeysWithDictionary:filteredOptions];
     
     // apply the properties requiring special attention
     [self setAllowBlank:( [[options objectForKey:@"allowBlank"] boolValue] ? YES : NO )];
     [self setAllowNil:( [[options objectForKey:@"allowNil"] boolValue] ? YES : NO )];
-    [self setMessage:[options objectForKey:@"message"]];
 }
 
 

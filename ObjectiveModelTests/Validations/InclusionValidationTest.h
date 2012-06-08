@@ -36,6 +36,7 @@
 
 
 
+@property (retain) Topic *topic;
 
 
 

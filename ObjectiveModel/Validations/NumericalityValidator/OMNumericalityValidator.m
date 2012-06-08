@@ -36,6 +36,7 @@
 
 
 
+- (BOOL)checkArgumentValidityForValue:(id)value;
 - (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number;
 
 
@@ -60,6 +61,10 @@
 
 
 
+#pragma mark - INIT & DEALLOC
+
+
+
 - (void)dealloc
 {
     [self setEven:nil];
@@ -73,6 +78,10 @@
     [self setOdd:nil];
     [super dealloc];
 }
+
+
+
+#pragma mark - STATIC METHODS
 
 
 
@@ -116,6 +125,82 @@
 
 
 
+#pragma mark - INSTANCE METHODS
+
+
+
+- (BOOL)checkArgumentValidityForValue:(id)value
+{
+    // value must be an NSNumber, a block, or a selector string
+    if (
+        [value isKindOfClass:[NSNumber class]]
+        ||
+        [value isKindOfClass:NSClassFromString(@"NSBlock")]
+        ||
+        ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
+        )
+    {
+        return YES;
+    }
+    else
+    {
+        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) is not an NSNumber, block, or selector.", NSStringFromClass([self class]), value, nil];
+        return NO;
+    }
+}
+
+
+
+- (void)setEqualTo:(id)equalTo
+{
+    if ( [self checkArgumentValidityForValue:equalTo] )
+    {
+        _equalTo = equalTo;
+    }
+}
+
+
+
+- (void)setGreaterThan:(id)greaterThan
+{
+    if ( [self checkArgumentValidityForValue:greaterThan] )
+    {
+        _greaterThan = greaterThan;
+    }
+}
+
+
+
+- (void)setGreaterThanOrEqualTo:(id)greaterThanOrEqualTo
+{
+    if ( [self checkArgumentValidityForValue:greaterThanOrEqualTo] )
+    {
+        _greaterThanOrEqualTo = greaterThanOrEqualTo;
+    }
+}
+
+
+
+- (void)setLessThan:(id)lessThan
+{
+    if ( [self checkArgumentValidityForValue:lessThan] )
+    {
+        _lessThan = lessThan;
+    }
+}
+
+
+
+- (void)setLessThanOrEqualTo:(id)lessThanOrEqualTo
+{
+    if ( [self checkArgumentValidityForValue:lessThanOrEqualTo] )
+    {
+        _lessThanOrEqualTo = lessThanOrEqualTo;
+    }
+}
+
+
+
 - (NSString *)message
 {
     return ( [[super message] length] ? [super message] : @"is not a number" );
@@ -126,7 +211,7 @@
 - (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number
 {
     NSString *message = nil;
-
+    
     // only construct a specific default message if a custom message has not been defined
     if ( [[super message] length] )
     {
@@ -161,42 +246,18 @@
     {
         message = [message stringByReplacingOccurrencesOfString:@"%{count}" withString:[number stringValue]];
     }
-
+    
     return message;
 }
 
 
 
-- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key
+- (void)setNotEqualTo:(id)notEqualTo
 {
-    if ( [self respondsToSelector:NSSelectorFromString(key)] )
+    if ( [self checkArgumentValidityForValue:notEqualTo] )
     {
-        if ( [[[self class] constraints] objectForKey:key] )
-        {
-            // value must be an NSNumber, a block, or a selector string
-            if (
-                [value isKindOfClass:[NSNumber class]]
-                ||
-                [value isKindOfClass:NSClassFromString(@"NSBlock")]
-                ||
-                ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
-                )
-            {
-                // all is well
-                return nil;
-            }
-            else
-            {
-                return [NSString stringWithFormat:@"Value (%@) is not an NSNumber, block, or selector.", value];
-            }
-        }
+        _notEqualTo = notEqualTo;
     }
-    else
-    {
-        return [NSString stringWithFormat:@"Key (%@) is not a valid property name.", key];
-    }
-
-    return nil;
 }
 
 

@@ -37,7 +37,6 @@
 
 + (void)validatesConfirmationOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 {
-    
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMConfirmationValidator class]] andOptions:options];
 }
 

@@ -1,6 +1,10 @@
 /*!
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
+ * Portions of this software were transliterated from Ruby on Rails.
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
+ * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -23,19 +27,34 @@
 
 
 
-#ifndef ObjectiveModel_Validations_h
-#define ObjectiveModel_Validations_h
+#import "OMValidator.h"
+#import "OMActiveModel+InclusionValidation.h"
 
 
 
-#import "OMAcceptanceValidator.h"
-#import "OMConfirmationValidator.h"
-#import "OMFormatValidator.h"
-#import "OMInclusionValidator.h"
-#import "OMLengthValidator.h"
-#import "OMNumericalityValidator.h"
-#import "OMPresenceValidator.h"
+@protocol OMEnumerable <NSObject>
 
 
 
-#endif
+- (BOOL)containsObject:(id)object;
+
+
+
+@end
+
+
+
+@interface OMInclusionValidator : OMValidator
+
+
+
+/*!
+ * @brief An enumerable object of valid values.
+ * @discussion May be supplied as a block which returns an enumerable object.
+ * The enumerable object must implement the <OMEnumerable> protocol.
+ */
+@property (assign) id <OMEnumerable> set;
+
+
+
+@end

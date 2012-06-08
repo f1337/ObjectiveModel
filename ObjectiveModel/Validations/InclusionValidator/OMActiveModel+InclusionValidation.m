@@ -1,6 +1,10 @@
 /*!
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
+ * Portions of this software were transliterated from Ruby on Rails.
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
+ * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -23,19 +27,21 @@
 
 
 
-#ifndef ObjectiveModel_Validations_h
-#define ObjectiveModel_Validations_h
-
-
-
-#import "OMAcceptanceValidator.h"
-#import "OMConfirmationValidator.h"
-#import "OMFormatValidator.h"
 #import "OMInclusionValidator.h"
-#import "OMLengthValidator.h"
-#import "OMNumericalityValidator.h"
-#import "OMPresenceValidator.h"
 
 
 
-#endif
+@implementation OMActiveModel (InclusionValidation)
+
+
+
++ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options inArray:(NSArray *)array
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
+    [dictionary setObject:array forKey:@"set"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andOptions:dictionary];
+}
+
+
+
+@end

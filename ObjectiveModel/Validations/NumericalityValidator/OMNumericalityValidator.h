@@ -44,7 +44,7 @@
  * Specifies the value must be equal to the supplied value.
  * May be an NSNumber, or a block or selector which returns an NSNumber.
  */
-@property (assign) id equalTo;
+@property (nonatomic, assign) id equalTo;
 
 
 
@@ -52,7 +52,7 @@
  * Specifies the value must be greater than the supplied value.
  * May be an NSNumber, or a block or selector which returns an NSNumber.
  */
-@property (assign) id greaterThan;
+@property (nonatomic, assign) id greaterThan;
 
 
 
@@ -60,7 +60,7 @@
  * Specifies the value must be greater than or equal the supplied value.
  * May be an NSNumber, or a block or selector which returns an NSNumber.
  */
-@property (assign) id greaterThanOrEqualTo;
+@property (nonatomic, assign) id greaterThanOrEqualTo;
 
 
 
@@ -76,7 +76,7 @@
  * Specifies the value must be less than the supplied value.
  * May be an NSNumber, or a block or selector which returns an NSNumber.
  */
-@property (assign) id lessThan;
+@property (nonatomic, assign) id lessThan;
 
 
 
@@ -84,7 +84,7 @@
  * Specifies the value must be less than or equal the supplied value.
  * May be an NSNumber, or a block or selector which returns an NSNumber.
  */
-@property (assign) id lessThanOrEqualTo;
+@property (nonatomic, assign) id lessThanOrEqualTo;
 
 
 
@@ -99,7 +99,7 @@
  * Specifies the value must be other than the supplied value.
  * May be an NSNumber, or a block or selector which returns an NSNumber.
  */
-@property (assign) id notEqualTo;
+@property (nonatomic, assign) id notEqualTo;
 
 
 

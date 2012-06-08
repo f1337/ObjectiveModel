@@ -120,7 +120,6 @@
 
 
 
-- (NSString *)checkOptionValidityWithValue:(id)value forKey:(NSString *)key;
 - (void)errorWithOriginalError:(NSError **)originalError
                          value:(NSObject *)value
                         forKey:(NSString *)inKey
