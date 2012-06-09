@@ -2,7 +2,7 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/exclusion.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -27,11 +27,11 @@
 
 
 
-#import "OMInclusionValidator.h"
+#import "OMExclusionValidator.h"
 
 
 
-@implementation OMInclusionValidator
+@implementation OMExclusionValidator
 
 
 
@@ -42,7 +42,7 @@
 
 - (NSString *)message
 {
-    return ( [[super message] length] ? [super message] : @"is not included in the list" );
+    return ( [[super message] length] ? [super message] : @"is reserved" );
 }
 
 
@@ -50,7 +50,7 @@
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
     id <OMCollection> set;
-
+    
     if ( _block )
     {
         set = _block(model);
@@ -59,16 +59,16 @@
     {
         set = _set;
     }
-
+    
     // unless include?(record, value)
-    BOOL valid = [set containsObject:value];
-
+    BOOL valid = (! [set containsObject:value]);
+    
     if ( ! valid )
     {
         // record.errors.add(attribute, :inclusion, options.except(:in).merge!(:value => value))
         [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
     }
-
+    
     return valid;
 }
 

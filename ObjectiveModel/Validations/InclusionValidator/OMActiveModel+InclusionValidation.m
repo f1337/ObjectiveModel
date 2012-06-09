@@ -27,11 +27,30 @@
 
 
 
+#import "OMExclusionValidator.h"
 #import "OMInclusionValidator.h"
 
 
 
 @implementation OMActiveModel (InclusionValidation)
+
+
+
++ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
+    [dictionary setObject:set forKey:@"set"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andOptions:dictionary];
+}
+
+
+
++ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMInclusionValidatorCollectionBlock)block
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
+    [dictionary setObject:block forKey:@"block"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andOptions:dictionary];
+}
 
 
 

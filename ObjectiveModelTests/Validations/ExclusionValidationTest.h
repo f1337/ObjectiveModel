@@ -2,7 +2,7 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
+ * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/exclusion_validation_test.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -27,50 +27,16 @@
 
 
 
-#import "OMInclusionValidator.h"
+#import "SenTestCase+Validation.h"
+#import "Topic.h"
 
 
 
-@implementation OMInclusionValidator
+@interface ExclusionValidationTest : SenTestCase
 
 
 
-@synthesize block = _block;
-@synthesize collection = _set;
-
-
-
-- (NSString *)message
-{
-    return ( [[super message] length] ? [super message] : @"is not included in the list" );
-}
-
-
-
-- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
-{
-    id <OMCollection> set;
-
-    if ( _block )
-    {
-        set = _block(model);
-    }
-    else
-    {
-        set = _set;
-    }
-
-    // unless include?(record, value)
-    BOOL valid = [set containsObject:value];
-
-    if ( ! valid )
-    {
-        // record.errors.add(attribute, :inclusion, options.except(:in).merge!(:value => value))
-        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
-    }
-
-    return valid;
-}
+@property (retain) Topic *topic;
 
 
 

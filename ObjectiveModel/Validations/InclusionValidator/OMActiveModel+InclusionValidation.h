@@ -40,6 +40,21 @@ typedef id <OMCollection>(^ OMInclusionValidatorCollectionBlock) (OMActiveModel 
 
 
 
+// Validates that the value of the specified attribute is not in a
+// particular enumerable object.
+// 
+//   class Person < ActiveRecord::Base
+//     validates_exclusion_of :username, :in => %w( admin superuser ), :message => "You don't belong here"
+//     validates_exclusion_of :age, :in => 30..60, :message => "This site is only for under 30 and over 60"
+//     validates_exclusion_of :format, :in => %w( mov avi ), :message => "extension %{value} is not allowed"
+//     validates_exclusion_of :password, :in => lambda { |p| [p.username, p.first_name] },
+//                            :message => "should not be the same as your username or first name"
+//   end
++ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set;
++ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMInclusionValidatorCollectionBlock)block;
+
+
+
 // Validates whether the value of the specified attribute is available in a
 // particular enumerable object.
 //
@@ -49,8 +64,6 @@ typedef id <OMCollection>(^ OMInclusionValidatorCollectionBlock) (OMActiveModel 
 //     validates_inclusion_of :format, :in => %w( jpg gif png ), :message => "extension %{value} is not included in the list"
 //     validates_inclusion_of :states, :in => lambda{ |person| STATES[person.country] }
 //   end
-
-
 + (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set;
 + (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMInclusionValidatorCollectionBlock)block;
 

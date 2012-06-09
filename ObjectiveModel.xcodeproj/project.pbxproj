@@ -67,6 +67,9 @@
 		AC2A2F23158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F21158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m */; };
 		ACE55FBB1583EF62001DA475 /* OMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE55FB91583EF62001DA475 /* OMCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FBA1583EF62001DA475 /* OMCollection.m */; };
+		ACE55FC01583FC76001DA475 /* ExclusionValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FBF1583FC76001DA475 /* ExclusionValidationTest.m */; };
+		ACE55FC31583FE8C001DA475 /* OMExclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE55FC11583FE8C001DA475 /* OMExclusionValidator.h */; };
+		ACE55FC41583FE8C001DA475 /* OMExclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FC21583FE8C001DA475 /* OMExclusionValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +162,10 @@
 		AC2A2F21158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+InclusionValidation.m"; path = "InclusionValidator/OMActiveModel+InclusionValidation.m"; sourceTree = "<group>"; };
 		ACE55FB91583EF62001DA475 /* OMCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMCollection.h; path = InclusionValidator/OMCollection.h; sourceTree = "<group>"; };
 		ACE55FBA1583EF62001DA475 /* OMCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMCollection.m; path = InclusionValidator/OMCollection.m; sourceTree = "<group>"; };
+		ACE55FBE1583FC76001DA475 /* ExclusionValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExclusionValidationTest.h; sourceTree = "<group>"; };
+		ACE55FBF1583FC76001DA475 /* ExclusionValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExclusionValidationTest.m; sourceTree = "<group>"; };
+		ACE55FC11583FE8C001DA475 /* OMExclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMExclusionValidator.h; path = InclusionValidator/OMExclusionValidator.h; sourceTree = "<group>"; };
+		ACE55FC21583FE8C001DA475 /* OMExclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMExclusionValidator.m; path = InclusionValidator/OMExclusionValidator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +369,8 @@
 				AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */,
 				AC09CE1615815F87008E581C /* ConfirmationValidationTest.h */,
 				AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */,
+				ACE55FBE1583FC76001DA475 /* ExclusionValidationTest.h */,
+				ACE55FBF1583FC76001DA475 /* ExclusionValidationTest.m */,
 				AC09CE1815815F87008E581C /* FormatValidationTest.h */,
 				AC09CE1915815F87008E581C /* FormatValidationTest.m */,
 				AC09CE1A15815F87008E581C /* InclusionValidationTest.h */,
@@ -392,6 +401,8 @@
 		AC2A2F1B1582608500C5AF8E /* InclusionValidator */ = {
 			isa = PBXGroup;
 			children = (
+				ACE55FC11583FE8C001DA475 /* OMExclusionValidator.h */,
+				ACE55FC21583FE8C001DA475 /* OMExclusionValidator.m */,
 				AC2A2F1C158260B400C5AF8E /* OMInclusionValidator.h */,
 				AC2A2F1D158260B400C5AF8E /* OMInclusionValidator.m */,
 				AC2A2F20158260CD00C5AF8E /* OMActiveModel+InclusionValidation.h */,
@@ -432,6 +443,7 @@
 				AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */,
 				AC2A2F1E158260B400C5AF8E /* OMInclusionValidator.h in Headers */,
 				AC2A2F22158260CD00C5AF8E /* OMActiveModel+InclusionValidation.h in Headers */,
+				ACE55FC31583FE8C001DA475 /* OMExclusionValidator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +617,7 @@
 				AC2A2F1F158260B400C5AF8E /* OMInclusionValidator.m in Sources */,
 				AC2A2F23158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m in Sources */,
 				ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */,
+				ACE55FC41583FE8C001DA475 /* OMExclusionValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +637,7 @@
 				AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */,
 				AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */,
 				AC09CE3115815F87008E581C /* SenTestCase+Validation.m in Sources */,
+				ACE55FC01583FC76001DA475 /* ExclusionValidationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

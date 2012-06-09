@@ -37,10 +37,19 @@
 
 
 /*!
- * The OMFormatValidatorRegularExpressionBlock for generating the
- * regular expression to apply to the attribute value.
+ * @brief An OMInclusionValidatorCollectionBlock which returns an enumerable
+ * object of valid values.
+ * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
 @property (copy) OMInclusionValidatorCollectionBlock block;
+
+
+
+/*!
+ * @brief An enumerable object of valid values.
+ * @discussion The enumerable object must implement the <OMCollection> protocol.
+ */
+@property (assign) id <OMCollection> collection;
 
 
 
@@ -49,15 +58,6 @@
  * @discussion The default mesage is: "is not included in the list".
  */
 - (NSString *)message;
-
-
-
-/*!
- * @brief An enumerable object of valid values.
- * @discussion May be supplied as a block which returns an enumerable object.
- * The enumerable object must implement the <OMEnumerable> protocol.
- */
-@property (assign) id <OMCollection> set;
 
 
 
