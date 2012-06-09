@@ -35,41 +35,21 @@
 
 
 
-@synthesize block = _block;
-@synthesize collection = _set;
+@dynamic block;
+@dynamic collection;
+@dynamic message;
 
 
 
-- (NSString *)message
+- (instancetype)init
 {
-    return ( [[super message] length] ? [super message] : @"is reserved" );
-}
-
-
-
-- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
-{
-    id <OMCollection> set;
-    
-    if ( _block )
+    if ( (self = [super init]) )
     {
-        set = _block(model);
-    }
-    else
-    {
-        set = _set;
+        [self setMessage:@"is reserved"];
+        [self setMode:OMMembershipValidationExclusion];
     }
     
-    // unless include?(record, value)
-    BOOL valid = (! [set containsObject:value]);
-    
-    if ( ! valid )
-    {
-        // record.errors.add(attribute, :inclusion, options.except(:in).merge!(:value => value))
-        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
-    }
-    
-    return valid;
+    return self;
 }
 
 

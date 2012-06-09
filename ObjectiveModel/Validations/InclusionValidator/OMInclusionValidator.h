@@ -32,6 +32,14 @@
 
 
 
+typedef enum
+{
+    OMMembershipValidationInclusion,
+    OMMembershipValidationExclusion
+} OMMembershipValidationMode;
+
+
+
 @interface OMInclusionValidator : OMValidator
 
 
@@ -58,6 +66,14 @@
  * @discussion The default mesage is: "is not included in the list".
  */
 - (NSString *)message;
+
+
+
+/*!
+ * @brief The validation mode: inclusion or exclusion.
+ * @discussion OMMembershipValidationMode
+ */
+@property (assign) OMMembershipValidationMode mode;
 
 
 

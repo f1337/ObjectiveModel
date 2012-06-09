@@ -36,7 +36,20 @@
 
 
 @synthesize block = _block;
-@synthesize collection = _set;
+@synthesize collection = _collection;
+@synthesize mode = _mode;
+
+
+
+- (instancetype)init
+{
+    if ( (self = [super init]) )
+    {
+        [self setMode:OMMembershipValidationInclusion];
+    }
+
+    return self;
+}
 
 
 
@@ -57,11 +70,16 @@
     }
     else
     {
-        set = _set;
+        set = _collection;
     }
 
     // unless include?(record, value)
     BOOL valid = [set containsObject:value];
+
+    if ( _mode == OMMembershipValidationExclusion )
+    {
+        valid = (! valid);
+    }
 
     if ( ! valid )
     {

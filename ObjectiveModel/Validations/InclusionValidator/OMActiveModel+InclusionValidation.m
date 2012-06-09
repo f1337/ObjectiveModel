@@ -39,7 +39,7 @@
 + (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:set forKey:@"set"];
+    [dictionary setObject:set forKey:@"collection"];
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andOptions:dictionary];
 }
 
@@ -57,7 +57,7 @@
 + (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:set forKey:@"set"];
+    [dictionary setObject:set forKey:@"collection"];
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andOptions:dictionary];
 }
 

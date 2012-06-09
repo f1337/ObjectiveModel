@@ -27,12 +27,12 @@
 
 
 
-#import "OMValidator.h"
+#import "OMInclusionValidator.h"
 #import "OMActiveModel+InclusionValidation.h"
 
 
 
-@interface OMExclusionValidator : OMValidator
+@interface OMExclusionValidator : OMInclusionValidator
 
 
 
@@ -57,7 +57,7 @@
  * @brief Specifies a custom error message.
  * @discussion The default mesage is: "is reserved".
  */
-- (NSString *)message;
+@property (nonatomic, copy) NSString *message;
 
 
 
