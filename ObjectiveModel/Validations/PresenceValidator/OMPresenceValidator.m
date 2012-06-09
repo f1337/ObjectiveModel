@@ -31,9 +31,18 @@
 
 
 
-- (NSString *)message
+@dynamic message;
+
+
+
+- (instancetype)init
 {
-    return ( [[super message] length] ? [super message] : @"cannot be blank" );
+    if ( (self = [super init]) )
+    {
+        [self setMessage:@"cannot be blank"];
+    }
+    
+    return self;
 }
 
 

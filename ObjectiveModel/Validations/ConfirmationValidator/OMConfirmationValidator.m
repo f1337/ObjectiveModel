@@ -35,9 +35,18 @@
 
 
 
-- (NSString *)message
+@dynamic message;
+
+
+
+- (instancetype)init
 {
-    return ( [[super message] length] ? [super message] : @"does not match confirmation" );
+    if ( (self = [super init]) )
+    {
+        [self setMessage:@"does not match confirmation"];
+    }
+    
+    return self;
 }
 
 

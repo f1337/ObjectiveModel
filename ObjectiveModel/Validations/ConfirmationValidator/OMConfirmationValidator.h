@@ -39,7 +39,7 @@
 /*!
  * A custom error message (default is: "does not match confirmation").
  */
-- (NSString *)message;
+@property (nonatomic, copy) NSString *message;
 
 
 

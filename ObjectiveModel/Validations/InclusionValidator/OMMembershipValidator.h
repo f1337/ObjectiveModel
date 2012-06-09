@@ -2,7 +2,8 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/acceptance.rb
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/exclusion.rb
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -28,26 +29,54 @@
 
 
 #import "OMValidator.h"
-#import "OMActiveModel+AcceptanceValidation.h"
+#import "OMActiveModel+InclusionValidation.h"
 
 
 
-@interface OMAcceptanceValidator : OMValidator
+typedef enum
+{
+    OMMembershipValidationInclusion,
+    OMMembershipValidationExclusion
+} OMMembershipValidationMode;
+
+
+
+@interface OMMembershipValidator : OMValidator
 
 
 
 /*!
- * If set, the value will be compared to this string to determine acceptance.
- * If nil, the default behavior mimics NSString's boolValue.
+ * @brief An OMInclusionValidatorCollectionBlock which returns an enumerable
+ * object of values for comparison.
+ * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
-@property (copy) NSString *accept;
+@property (copy) OMInclusionValidatorCollectionBlock block;
 
 
 
 /*!
- * A custom error message (default is: "must be accepted").
+ * @brief An enumerable object of values for comparison.
+ * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
-@property (nonatomic, copy) NSString *message;
+@property (assign) id <OMCollection> collection;
+
+
+
+/*!
+ * @brief Specifies a custom error message.
+ * @discussion If mode is set to OMMembershipValidationInclusion, the default
+ * mesage is: "is not included in the list". If mode is set to
+ * OMMembershipValidationExclusion, the default mesage is: "is reserved".
+ */
+- (NSString *)message;
+
+
+
+/*!
+ * @brief The validation mode: inclusion or exclusion.
+ * @discussion OMMembershipValidationMode
+ */
+@property (assign) OMMembershipValidationMode mode;
 
 
 

@@ -27,12 +27,12 @@
 
 
 
-#import "OMInclusionValidator.h"
+#import "OMMembershipValidator.h"
 #import "OMActiveModel+InclusionValidation.h"
 
 
 
-@interface OMExclusionValidator : OMInclusionValidator
+@interface OMExclusionValidator : OMMembershipValidator
 
 
 

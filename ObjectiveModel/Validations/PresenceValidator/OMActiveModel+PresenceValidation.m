@@ -23,20 +23,18 @@
 
 
 
-#import "OMValidator.h"
-#import "OMActiveModel+PresenceValidation.h"
+#import "OMPresenceValidator.h"
 
 
 
-@interface OMPresenceValidator : OMValidator
+@implementation OMActiveModel (PresenceValidation)
 
 
 
-
-/*!
- * A custom error message (default is: "cannot be blank").
- */
-@property (nonatomic, copy) NSString *message;
++ (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options
+{
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMPresenceValidator class]] andOptions:options];
+}
 
 
 

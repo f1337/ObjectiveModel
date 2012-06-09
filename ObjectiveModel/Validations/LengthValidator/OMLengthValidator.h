@@ -59,7 +59,7 @@
  * @discussion If defined, overrides the default tooLongMessage,
  * tooShortMessage, and wrongLengthMessage.
  */
-- (NSString *)message;
+@property (nonatomic, copy) NSString *message;
 
 
 

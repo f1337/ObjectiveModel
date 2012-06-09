@@ -2,7 +2,8 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/acceptance.rb
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/exclusion.rb
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -27,26 +28,25 @@
 
 
 
-#import "OMAcceptanceValidator.h"
+#import "OMMembershipValidator.h"
 
 
 
-@implementation OMAcceptanceValidator
+@implementation OMMembershipValidator
 
 
 
-@synthesize accept = _accept;
+@synthesize block = _block;
+@synthesize collection = _collection;
 @dynamic message;
-
-
-
-#pragma mark - INIT & DEALLOC
+@synthesize mode = _mode;
 
 
 
 - (void)dealloc
 {
-    [self setAccept:nil];
+    [self setBlock:nil];
+    [self setCollection:nil];
     [super dealloc];
 }
 
@@ -56,38 +56,62 @@
 {
     if ( (self = [super init]) )
     {
-        [self setMessage:@"must be accepted"];
+        [self setMode:OMMembershipValidationInclusion];
     }
-    
+
     return self;
 }
 
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
+- (NSString *)message
 {
-    //super(options.reverse_merge(:allow_nil => true, :accept => "1"))
-    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    [options setObject:[NSNumber numberWithBool:YES] forKey:@"allowNil"];
-    return [super initWithDictionary:options];
+    NSString *message = [super message];
+
+    if ( ! [message length] )
+    {
+        if ( _mode == OMMembershipValidationExclusion )
+        {
+            message = @"is reserved";
+        }
+        else if ( _mode == OMMembershipValidationInclusion )
+        {
+            message = @"is not included in the list";
+        }
+    }
+
+    return message;
 }
-
-
-
-#pragma mark - INSTANCE METHODS
 
 
 
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
-    //unless value == options[:accept]
-    NSString *stringValue = [value description];
-    BOOL valid = (_accept ? [stringValue isEqualToString:_accept] : [stringValue boolValue]);
+    id <OMCollection> set;
+
+    if ( _block )
+    {
+        set = _block(model);
+    }
+    else
+    {
+        set = _collection;
+    }
+
+    // unless include?(record, value)
+    BOOL valid = [set containsObject:value];
+
+    if ( _mode == OMMembershipValidationExclusion )
+    {
+        valid = (! valid);
+    }
+
     if ( ! valid )
     {
-        //record.errors.add(attribute, :accepted, options.except(:accept, :allow_nil))
+        // record.errors.add(attribute, :inclusion, options.except(:in).merge!(:value => value))
         [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
     }
+
     return valid;
 }
 

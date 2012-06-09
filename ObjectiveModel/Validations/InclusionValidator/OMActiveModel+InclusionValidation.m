@@ -2,6 +2,7 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
+ * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/exclusion.rb
  * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
@@ -27,8 +28,8 @@
 
 
 
-#import "OMExclusionValidator.h"
-#import "OMInclusionValidator.h"
+//#import "OMExclusionValidator.h"
+#import "OMMembershipValidator.h"
 
 
 
@@ -40,7 +41,8 @@
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
     [dictionary setObject:set forKey:@"collection"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andOptions:dictionary];
+    [dictionary setObject:[NSNumber numberWithInt:OMMembershipValidationExclusion] forKey:@"mode"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andOptions:dictionary];
 }
 
 
@@ -49,7 +51,8 @@
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
     [dictionary setObject:block forKey:@"block"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andOptions:dictionary];
+    [dictionary setObject:[NSNumber numberWithInt:OMMembershipValidationExclusion] forKey:@"mode"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andOptions:dictionary];
 }
 
 
@@ -58,7 +61,7 @@
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
     [dictionary setObject:set forKey:@"collection"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andOptions:dictionary];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andOptions:dictionary];
 }
 
 
@@ -67,7 +70,7 @@
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
     [dictionary setObject:block forKey:@"block"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andOptions:dictionary];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andOptions:dictionary];
 }
 
 

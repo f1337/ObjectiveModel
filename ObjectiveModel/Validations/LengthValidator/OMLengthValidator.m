@@ -55,6 +55,7 @@
 
 @synthesize equals = _equals;
 @synthesize maximum = _maximum;
+@dynamic message;
 @synthesize minimum = _minimum;
 @synthesize tokenizer = _tokenizer;
 @synthesize tooLongMessage = _tooLongMessage;
@@ -157,13 +158,6 @@
     {
         return YES;
     }
-}
-
-
-
-- (NSString *)message
-{
-    return [super message];
 }
 
 
