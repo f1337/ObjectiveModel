@@ -29,7 +29,7 @@
 
 
 #import "OMValidator.h"
-#import "OMActiveModel+InclusionValidation.h"
+#import "OMActiveModel+MembershipValidation.h"
 
 
 
@@ -46,11 +46,11 @@ typedef enum
 
 
 /*!
- * @brief An OMInclusionValidatorCollectionBlock which returns an enumerable
+ * @brief An OMMembershipValidatorCollectionBlock which returns an enumerable
  * object of values for comparison.
  * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
-@property (copy) OMInclusionValidatorCollectionBlock block;
+@property (copy) OMMembershipValidatorCollectionBlock block;
 
 
 

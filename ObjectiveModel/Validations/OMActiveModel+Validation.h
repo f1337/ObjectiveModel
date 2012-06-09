@@ -56,11 +56,11 @@
 /*!
  * @param properties An NSString property name OR an NSArray of NSString property names
  * @param validators An NSArray containing one or more of the following:
- * "acceptance"
- * "confirmation"
- * "exclusion"
- * "format"
- * "inclusion"
+ * "acceptance" => OMAcceptanceValidator
+ * "confirmation" => OMConfirmationValidator
+ * "exclusion" => OMMembershipValidator
+ * "format" => OMFormatValidator
+ * "inclusion" => OMMembershipValidator
  * "length" => OMLengthValidator
  * "numercality" => OMNumericalityValidator
  * "presence" => OMPresenceValidator

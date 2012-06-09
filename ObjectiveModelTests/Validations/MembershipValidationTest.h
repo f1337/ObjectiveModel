@@ -2,7 +2,8 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
+ * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/exclusion_validation_test.rb
+ * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/inclusion_validation_test.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -27,53 +28,16 @@
 
 
 
-#import "OMValidator.h"
-#import "OMActiveModel+InclusionValidation.h"
+#import "SenTestCase+Validation.h"
+#import "Topic.h"
 
 
 
-typedef enum
-{
-    OMMembershipValidationInclusion,
-    OMMembershipValidationExclusion
-} OMMembershipValidationMode;
+@interface MembershipValidationTest : SenTestCase
 
 
 
-@interface OMInclusionValidator : OMValidator
-
-
-
-/*!
- * @brief An OMInclusionValidatorCollectionBlock which returns an enumerable
- * object of valid values.
- * @discussion The enumerable object must implement the <OMCollection> protocol.
- */
-@property (copy) OMInclusionValidatorCollectionBlock block;
-
-
-
-/*!
- * @brief An enumerable object of valid values.
- * @discussion The enumerable object must implement the <OMCollection> protocol.
- */
-@property (assign) id <OMCollection> collection;
-
-
-
-/*!
- * @brief Specifies a custom error message.
- * @discussion The default mesage is: "is not included in the list".
- */
-- (NSString *)message;
-
-
-
-/*!
- * @brief The validation mode: inclusion or exclusion.
- * @discussion OMMembershipValidationMode
- */
-@property (assign) OMMembershipValidationMode mode;
+@property (retain) Topic *topic;
 
 
 
