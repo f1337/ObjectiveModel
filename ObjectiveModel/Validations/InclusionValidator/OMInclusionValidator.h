@@ -32,19 +32,23 @@
 
 
 
-@protocol OMEnumerable <NSObject>
-
-
-
-- (BOOL)containsObject:(id)object;
-
-
-
-@end
-
-
-
 @interface OMInclusionValidator : OMValidator
+
+
+
+/*!
+ * The OMFormatValidatorRegularExpressionBlock for generating the
+ * regular expression to apply to the attribute value.
+ */
+@property (copy) OMInclusionValidatorCollectionBlock block;
+
+
+
+/*!
+ * @brief Specifies a custom error message.
+ * @discussion The default mesage is: "is not included in the list".
+ */
+- (NSString *)message;
 
 
 
@@ -53,7 +57,7 @@
  * @discussion May be supplied as a block which returns an enumerable object.
  * The enumerable object must implement the <OMEnumerable> protocol.
  */
-@property (assign) id <OMEnumerable> set;
+@property (assign) id <OMCollection> set;
 
 
 

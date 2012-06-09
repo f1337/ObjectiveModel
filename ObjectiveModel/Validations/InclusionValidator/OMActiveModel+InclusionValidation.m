@@ -35,10 +35,19 @@
 
 
 
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options inArray:(NSArray *)array
++ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:array forKey:@"set"];
+    [dictionary setObject:set forKey:@"set"];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andOptions:dictionary];
+}
+
+
+
++ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMInclusionValidatorCollectionBlock)block
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
+    [dictionary setObject:block forKey:@"block"];
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andOptions:dictionary];
 }
 

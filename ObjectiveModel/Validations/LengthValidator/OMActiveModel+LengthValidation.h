@@ -101,7 +101,7 @@ typedef NSArray *(^ OMLengthValidatorTokenizerBlock) (NSObject *value);
  *                              [NSNumber numberWithInt:100], @"minimum",
  *                              @"Your essay must be at least %{count} words.", @"tooShortMessage",
  *                              nil]
- *                    andBlock:^(id)value
+ *                    andBlock:^(NSObject *)value
  *      {
  *          NSString *stringValue = [value description];
  *          return [stringValue componentsSeparatedByString:@" "];

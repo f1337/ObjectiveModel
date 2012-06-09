@@ -28,6 +28,7 @@
 
 
 #import "OMInclusionValidator.h"
+#import "OMCollection.h"
 
 
 
@@ -35,14 +36,33 @@
 
 
 
+@synthesize block = _block;
 @synthesize set = _set;
+
+
+
+- (NSString *)message
+{
+    return ( [[super message] length] ? [super message] : @"is not included in the list" );
+}
 
 
 
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
+    id <OMCollection> set;
+
+    if ( _block )
+    {
+        set = _block(model);
+    }
+    else
+    {
+        set = _set;
+    }
+
     // unless include?(record, value)
-    BOOL valid = [_set containsObject:value];
+    BOOL valid = [set containsObject:value];
 
     if ( ! valid )
     {

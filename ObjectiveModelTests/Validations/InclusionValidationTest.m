@@ -29,6 +29,7 @@
 
 #import "InclusionValidationTest.h"
 #import <ObjectiveModel/Validations.h>
+#import <ObjectiveModel/OMCollection.h>
 
 
 
@@ -65,22 +66,83 @@
 
 
 
-// def test_validates_inclusion_of_range
-//   Topic.validates_inclusion_of( :title, :in => 'aaa'..'bbb' )
-//   assert Topic.new("title" => "bbc", "content" => "abc").invalid?
-//   assert Topic.new("title" => "aa", "content" => "abc").invalid?
-//   assert Topic.new("title" => "aaa", "content" => "abc").valid?
-//   assert Topic.new("title" => "abc", "content" => "abc").valid?
-//   assert Topic.new("title" => "bbb", "content" => "abc").valid?
-// end
-// 
+- (void)testValidatesInclusionInDictionary
+{
+    //Topic.validates_inclusion_of( :title, :in => 'aaa'..'bbb' )
+    [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSDictionary dictionaryWithObjectsAndKeys:@"aaa", @"bbc", @"abc", @"aa", @"bbb", @"zz", nil]];
+    //assert Topic.new("title" => "bbc", "content" => "abc").invalid?
+    [_topic setTitle:@"bbc"];
+    [_topic setContent:@"abc"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    //assert Topic.new("title" => "aa", "content" => "abc").invalid?
+    [_topic setTitle:@"aa"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    //assert Topic.new("title" => "aaa", "content" => "abc").valid?
+    [_topic setTitle:@"aaa"];
+    [self assertModelIsValid:_topic];
+    //assert Topic.new("title" => "abc", "content" => "abc").valid?
+    [_topic setTitle:@"abc"];
+    [self assertModelIsValid:_topic];
+    //assert Topic.new("title" => "bbb", "content" => "abc").valid?
+    [_topic setTitle:@"bbb"];
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesInclusionInSet
+{
+    //Topic.validates_inclusion_of( :title, :in => 'aaa'..'bbb' )
+    [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSSet setWithObjects:@"aaa", @"abc", @"bbb", nil]];
+    //assert Topic.new("title" => "bbc", "content" => "abc").invalid?
+    [_topic setTitle:@"bbc"];
+    [_topic setContent:@"abc"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    //assert Topic.new("title" => "aa", "content" => "abc").invalid?
+    [_topic setTitle:@"aa"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    //assert Topic.new("title" => "aaa", "content" => "abc").valid?
+    [_topic setTitle:@"aaa"];
+    [self assertModelIsValid:_topic];
+    //assert Topic.new("title" => "abc", "content" => "abc").valid?
+    [_topic setTitle:@"abc"];
+    [self assertModelIsValid:_topic];
+    //assert Topic.new("title" => "bbb", "content" => "abc").valid?
+    [_topic setTitle:@"bbb"];
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesInclusionInString
+{
+    [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithString:@"hi!"]];
+
+    [_topic setTitle:@"ghi"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+
+    [_topic setTitle:@"hit"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    
+    [_topic setTitle:@"hi"];
+    [self assertModelIsValid:_topic];
+
+    [_topic setTitle:@"i"];
+    [self assertModelIsValid:_topic];
+
+    [_topic setTitle:@"i!"];
+    [self assertModelIsValid:_topic];
+
+    [_topic setTitle:@"hi!"];
+    [self assertModelIsValid:_topic];
+}
 
 
 
 - (void)testValidatesInclusionOf
 {
     //Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ) )
-    [Topic validatesInclusionOf:@"title" withOptions:nil inArray:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
+    [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
 
     //assert Topic.new("title" => "a!", "content" => "abc").invalid?
     [_topic setTitle:@"a!"];
@@ -100,64 +162,97 @@
     //assert t.valid?
     [self assertModelIsValid:_topic];
     //t.title = "uhoh"
+    [_topic setTitle:@"uhoh"];
     //assert t.invalid?
     //assert t.errors[:title].any?
     //assert_equal ["is not included in the list"], t.errors[:title]
-    //
+    [self assertModelIsInvalid:_topic withErrorMessage:@"is not included in the list" forKeys:[NSArray arrayWithObject:@"title"]];
+
     //assert_raise(ArgumentError) { Topic.validates_inclusion_of( :title, :in => nil ) }
+    STAssertThrowsSpecificNamed([Topic validatesInclusionOf:@"title" withOptions:nil andSet:nil], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
     //assert_raise(ArgumentError) { Topic.validates_inclusion_of( :title, :in => 0) }
-    //
+    STAssertThrowsSpecificNamed([Topic validatesInclusionOf:@"title" withOptions:nil andSet:0], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
+
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => "hi!" ) }
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithString:@"hi!"]], @"An unexpected exception was raised!.");
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => {} ) }
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSSet set]], @"An unexpected exception was raised!.");
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSDictionary dictionary]], @"An unexpected exception was raised!.");
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => [] ) }
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSArray array]], @"An unexpected exception was raised!.");
 }
 
 
 
-// def test_validates_inclusion_of_with_allow_nil
-//   Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ), :allow_nil => true )
-// 
-//   assert Topic.new("title" => "a!", "content" => "abc").invalid?
-//   assert Topic.new("title" => "",   "content" => "abc").invalid?
-//   assert Topic.new("title" => nil,  "content" => "abc").valid?
-// end
-// 
-// def test_validates_inclusion_of_with_formatted_message
-//   Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ), :message => "option %{value} is not in the list" )
-// 
-//   assert Topic.new("title" => "a", "content" => "abc").valid?
-// 
-//   t = Topic.new("title" => "uhoh", "content" => "abc")
-//   assert t.invalid?
-//   assert t.errors[:title].any?
-//   assert_equal ["option uhoh is not in the list"], t.errors[:title]
-// end
-// 
-// def test_validates_inclusion_of_for_ruby_class
-//   Person.validates_inclusion_of :karma, :in => %w( abe monkey )
-// 
-//   p = Person.new
-//   p.karma = "Lifo"
-//   assert p.invalid?
-// 
-//   assert_equal ["is not included in the list"], p.errors[:karma]
-// 
-//   p.karma = "monkey"
-//   assert p.valid?
-// ensure
-//   Person.reset_callbacks(:validate)
-// end
-// 
-// def test_validates_inclusion_of_with_lambda
-//   Topic.validates_inclusion_of :title, :in => lambda{ |topic| topic.author_name == "sikachu" ? %w( monkey elephant ) : %w( abe wasabi ) }
-// 
-//   t = Topic.new
-//   t.title = "wasabi"
-//   t.author_name = "sikachu"
-//   assert t.invalid?
-// 
-//   t.title = "elephant"
-//   assert t.valid?
-// end
+- (void)testValidatesInclusionWithAllowNil
+{
+    //Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ), :allow_nil => true )
+    [Topic validatesInclusionOf:@"title" withOptions:[NSDictionary dictionaryWithObject:@"Y" forKey:@"allowNil"] andSet:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
+
+    //assert Topic.new("title" => "a!", "content" => "abc").invalid?
+    [_topic setTitle:@"a!"];
+    [_topic setContent:@"abc"];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    //assert Topic.new("title" => "",   "content" => "abc").invalid?
+    [_topic setTitle:@""];
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    //assert Topic.new("title" => nil,  "content" => "abc").valid?
+    [_topic setTitle:nil];
+    [self assertModelIsValid:_topic];
+}
+
+
+
+- (void)testValidatesInclusionWithFormattedMessage
+{
+    //Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ), :message => "option %{value} is not in the list" )
+    [Topic validatesInclusionOf:@"title" withOptions:[NSDictionary dictionaryWithObject:@"option %{value} is not in the list" forKey:@"message"] andSet:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
+
+    //assert Topic.new("title" => "a", "content" => "abc").valid?
+    [_topic setTitle:@"a"];
+    [_topic setContent:@"abc"];
+    [self assertModelIsValid:_topic];
+    //t = Topic.new("title" => "uhoh", "content" => "abc")
+    [_topic setTitle:@"uhoh"];
+    //assert t.invalid?
+    //assert t.errors[:title].any?
+    //assert_equal ["option uhoh is not in the list"], t.errors[:title]
+    [self assertModelIsInvalid:_topic withErrorMessage:@"option uhoh is not in the list" forKeys:[NSArray arrayWithObject:@"title"]];
+}
+
+
+
+- (void)testValidatesInclusionWithBlock
+{
+    //Topic.validates_inclusion_of :title, :in => lambda{ |topic| topic.author_name == "sikachu" ? %w( monkey elephant ) : %w( abe wasabi ) }
+    [Topic validatesInclusionOf:@"title"
+                    withOptions:nil
+                       andBlock:^id<OMCollection>(id topic)
+     {
+         if ( [[topic authorName] isEqualToString:@"sikachu"] )
+         {
+             return [NSArray arrayWithObjects:@"monkey", @"elephant", nil];
+         }
+         else {
+             return [NSArray arrayWithObjects:@"abe", @"wasabi", nil];
+         }
+     }
+     ];
+
+    //t = Topic.new
+    //t.title = "wasabi"
+    [_topic setTitle:@"wasabi"];
+    //t.author_name = "sikachu"
+    [_topic setAuthorName:@"sikachu"];
+    //assert t.invalid?
+    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+
+    //t.title = "elephant"
+    [_topic setTitle:@"elephant"];
+    //assert t.valid?
+    [self assertModelIsValid:_topic];
+}
+
+
 
 @end

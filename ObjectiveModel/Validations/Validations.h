@@ -32,6 +32,7 @@
 #import "OMConfirmationValidator.h"
 #import "OMFormatValidator.h"
 #import "OMInclusionValidator.h"
+#import "OMActiveModel+InclusionValidation.h"
 #import "OMLengthValidator.h"
 #import "OMNumericalityValidator.h"
 #import "OMPresenceValidator.h"

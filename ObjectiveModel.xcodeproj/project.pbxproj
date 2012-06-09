@@ -65,6 +65,8 @@
 		AC2A2F1F158260B400C5AF8E /* OMInclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F1D158260B400C5AF8E /* OMInclusionValidator.m */; };
 		AC2A2F22158260CD00C5AF8E /* OMActiveModel+InclusionValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC2A2F20158260CD00C5AF8E /* OMActiveModel+InclusionValidation.h */; };
 		AC2A2F23158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F21158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m */; };
+		ACE55FBB1583EF62001DA475 /* OMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE55FB91583EF62001DA475 /* OMCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FBA1583EF62001DA475 /* OMCollection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,8 @@
 		AC2A2F1D158260B400C5AF8E /* OMInclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMInclusionValidator.m; path = InclusionValidator/OMInclusionValidator.m; sourceTree = "<group>"; };
 		AC2A2F20158260CD00C5AF8E /* OMActiveModel+InclusionValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+InclusionValidation.h"; path = "InclusionValidator/OMActiveModel+InclusionValidation.h"; sourceTree = "<group>"; };
 		AC2A2F21158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+InclusionValidation.m"; path = "InclusionValidator/OMActiveModel+InclusionValidation.m"; sourceTree = "<group>"; };
+		ACE55FB91583EF62001DA475 /* OMCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMCollection.h; path = InclusionValidator/OMCollection.h; sourceTree = "<group>"; };
+		ACE55FBA1583EF62001DA475 /* OMCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMCollection.m; path = InclusionValidator/OMCollection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +396,8 @@
 				AC2A2F1D158260B400C5AF8E /* OMInclusionValidator.m */,
 				AC2A2F20158260CD00C5AF8E /* OMActiveModel+InclusionValidation.h */,
 				AC2A2F21158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m */,
+				ACE55FB91583EF62001DA475 /* OMCollection.h */,
+				ACE55FBA1583EF62001DA475 /* OMCollection.m */,
 			);
 			name = InclusionValidator;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 				AC09CE4915817096008E581C /* ObjectiveModel.h in Headers */,
 				AC09CDFD15815F73008E581C /* NSNumber+ComparisonMethods.h in Headers */,
 				AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */,
+				ACE55FBB1583EF62001DA475 /* OMCollection.h in Headers */,
 				AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */,
 				AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */,
 				AC09CE0315815F73008E581C /* OMActiveModel+Validation.h in Headers */,
@@ -597,6 +604,7 @@
 				AC09CE0A15815F73008E581C /* OMPresenceValidator.m in Sources */,
 				AC2A2F1F158260B400C5AF8E /* OMInclusionValidator.m in Sources */,
 				AC2A2F23158260CD00C5AF8E /* OMActiveModel+InclusionValidation.m in Sources */,
+				ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

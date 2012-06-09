@@ -1,10 +1,6 @@
 /*!
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
- * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
- * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
- *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -27,32 +23,53 @@
 
 
 
-#import "OMActiveModel.h"
 #import "OMCollection.h"
 
 
 
-typedef id <OMCollection>(^ OMInclusionValidatorCollectionBlock) (OMActiveModel *model);
+@implementation NSDictionary (ContainsObject)
 
 
 
-@interface OMActiveModel (InclusionValidation)
+- (BOOL)containsObject:(id)object
+{
+    if ( object )
+    {
+        NSEnumerator *enumerator = [self objectEnumerator];
+        id value;
+        while ( (value = [enumerator nextObject]) )
+        {
+            if ( [value isEqual:object] )
+            {
+                return YES;
+                break;
+            }
+        }
+    }
+
+    return NO;
+}
 
 
 
-// Validates whether the value of the specified attribute is available in a
-// particular enumerable object.
-//
-//   class Person < ActiveRecord::Base
-//     validates_inclusion_of :gender, :in => %w( m f )
-//     validates_inclusion_of :age, :in => a..z
-//     validates_inclusion_of :format, :in => %w( jpg gif png ), :message => "extension %{value} is not included in the list"
-//     validates_inclusion_of :states, :in => lambda{ |person| STATES[person.country] }
-//   end
+@end
 
 
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set;
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMInclusionValidatorCollectionBlock)block;
+
+@implementation NSString (ContainsObject)
+
+
+
+- (BOOL)containsObject:(id)object
+{
+    if ( object && [object respondsToSelector:@selector(description)] )
+    {
+        NSRange range = [self rangeOfString:[object description]];
+        return ( range.location != NSNotFound );
+    }
+
+    return NO;
+}
 
 
 
