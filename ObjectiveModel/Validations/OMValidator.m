@@ -52,12 +52,14 @@
 @synthesize allowBlank = _allowBlank;
 @synthesize allowNil = _allowNil;
 @synthesize message = _message;
+@synthesize shouldValidate = _shouldValidate;
 
 
 
 - (void)dealloc
 {
-    [_message release];
+    [self setMessage:nil];
+    [self setShouldValidate:nil];
     [super dealloc];
 }
 
@@ -135,6 +137,13 @@
 
 
 
+- (BOOL)shouldApplyValidationForModel:(OMActiveModel *)model
+{
+    return ( _shouldValidate ? _shouldValidate(model) : YES );
+}
+
+
+
 - (BOOL)shouldSkipValidationForValue:(NSObject *)value
 {
     if (
@@ -143,7 +152,7 @@
         || 
         // skip validation if value is blank and allowBlank is true
         ( _allowBlank && (value == nil || [value isBlank]) )
-        )
+    )
     {
         return YES;
     }
@@ -157,15 +166,8 @@
 
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
-    if ( [self shouldSkipValidationForValue:value] )
-    {
-        return YES;
-    }
-    else
-    {
-        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
-        return NO;
-    }
+    [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+    return NO;
 }
 
 

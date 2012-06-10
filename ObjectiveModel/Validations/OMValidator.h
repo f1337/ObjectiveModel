@@ -27,7 +27,7 @@
 
 
 
-// typedef BOOL (^ OMValidatorConditionalBlock) (id);
+typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 
@@ -69,9 +69,6 @@
 
 
 /*!
- * TODO: shouldApplyValidationBlock
- * See RoR's: ConditionalValidationTest
- *
  * Specifies a block to call to determine if the validation should occur.
  *
  *   [model setShouldApplyValidationBlock:^(id)model
@@ -80,9 +77,8 @@
  *   }];
  *
  * The block should return YES or NO.
- *
- * @property (assign) OMValidatorConditionalBlock shouldApplyValidationBlock;
  */
+@property (assign) OMValidatorConditionalBlock shouldValidate;
 
 
 
@@ -110,6 +106,7 @@
                         forKey:(NSString *)inKey
                        message:(NSString *)message;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (BOOL)shouldApplyValidationForModel:(OMActiveModel *)model;
 - (BOOL)shouldSkipValidationForValue:(NSObject *)value;
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError;
 

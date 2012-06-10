@@ -27,7 +27,7 @@
 
 
 
-typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
+typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (OMActiveModel *model);
 
 
 
@@ -63,7 +63,9 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (id);
  *   @interface Person
  *		+ (void)initialize
  *		{
- *	    	[self validatesFormatOf:@"nickName" withOptions:nil andBlock:^(id)person
+ *          [self validatesFormatOf:@"nickName"
+ *                    withOptions:nil
+ *                       andBlock:^NSRegularExpression *(id person)
  *          {
  *              NSString *pattern;
  *

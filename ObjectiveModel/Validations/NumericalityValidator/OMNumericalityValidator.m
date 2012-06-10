@@ -266,13 +266,6 @@
 
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
-    // the superclass' validation will return YES if validation is to be skipped
-    if ( [self shouldSkipValidationForValue:value] )
-    {
-        return YES;
-    }
-
-
     // >>> PART I: Sanitize value
     NSString *message = [self message];
     // sanitize value: should be a number or string

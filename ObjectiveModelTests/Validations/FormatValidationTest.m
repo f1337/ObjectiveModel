@@ -226,11 +226,11 @@
     // Topic.validates_format_of :content, :with => lambda{ |topic| topic.title == "digit" ? /\A\d+\Z/ : /\A\S+\Z/ }
     [Topic validatesFormatOf:@"content"
                  withOptions:nil
-                  andBlock:^NSRegularExpression *(id topic)
-                  {
-                      NSString *pattern = ( [[topic title] isEqualToString:@"digit"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
-                      return [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
-                  }];
+                    andBlock:^NSRegularExpression *(id topic)
+     {
+         NSString *pattern = ( [[topic title] isEqualToString:@"digit"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
+         return [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+     }];
 
     // t = Topic.new
     Topic *topic = [[Topic alloc] init];

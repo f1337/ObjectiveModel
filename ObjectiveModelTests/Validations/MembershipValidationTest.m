@@ -117,8 +117,7 @@
          else {
              return [NSArray arrayWithObjects:@"abe", @"wasabi", nil];
          }
-     }
-     ];
+     }];
     
     //t = Topic.new
     //t.title = "elephant"
@@ -306,8 +305,7 @@
          else {
              return [NSArray arrayWithObjects:@"abe", @"wasabi", nil];
          }
-     }
-     ];
+     }];
 
     //t = Topic.new
     //t.title = "wasabi"

@@ -392,7 +392,7 @@
 - (void)testValidatesNumericalityWithBlock
 {
     // Topic.send(:define_method, :min_approved, lambda { 5 })
-    id block = ^NSNumber *(id topic)
+    OMNumericalityValidatorNumberBlock block = ^NSNumber *(id topic)
     {
         return [NSNumber numberWithInt:5];
     };
@@ -416,7 +416,7 @@
 {
     // Topic.send(:define_method, :max_approved, lambda { 5 })
     // Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
-    id block = ^NSNumber *(id topic)
+    OMNumericalityValidatorNumberBlock block = ^NSNumber *(id topic)
     {
         return [topic maxApproved];
     };

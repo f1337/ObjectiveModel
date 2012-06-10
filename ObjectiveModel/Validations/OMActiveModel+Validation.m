@@ -245,8 +245,8 @@
 
         for (OMValidator *validator in validators)
         {
-            // skip validation?
-            if ( ! [validator shouldSkipValidationForValue:*ioValue] )
+            // apply validation?
+            if ( (! [validator shouldSkipValidationForValue:*ioValue]) && [validator shouldApplyValidationForModel:self] )
             {
                 if ( ! [validator validateModel:self withValue:*ioValue forKey:inKey error:outError] )
                 {

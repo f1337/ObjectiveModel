@@ -427,7 +427,6 @@
 
 
 
-// TODO: testValidatesLengthUsingNastyOptions
 - (void)testValidatesLengthUsingNastyOptions
 {
     // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }

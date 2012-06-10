@@ -64,6 +64,7 @@
 		AC2A2F1F158260B400C5AF8E /* OMMembershipValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F1D158260B400C5AF8E /* OMMembershipValidator.m */; };
 		AC2A2F22158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC2A2F20158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h */; };
 		AC2A2F23158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F21158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m */; };
+		AC2B08491584EBA800FE661F /* ConditionalValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B08481584EBA800FE661F /* ConditionalValidationTest.m */; };
 		ACE55FBB1583EF62001DA475 /* OMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE55FB91583EF62001DA475 /* OMCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FBA1583EF62001DA475 /* OMCollection.m */; };
 		ACE55FC515841574001DA475 /* MembershipValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1B15815F87008E581C /* MembershipValidationTest.m */; };
@@ -157,6 +158,8 @@
 		AC2A2F1D158260B400C5AF8E /* OMMembershipValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMMembershipValidator.m; path = InclusionValidator/OMMembershipValidator.m; sourceTree = "<group>"; };
 		AC2A2F20158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+MembershipValidation.h"; path = "InclusionValidator/OMActiveModel+MembershipValidation.h"; sourceTree = "<group>"; };
 		AC2A2F21158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OMActiveModel+MembershipValidation.m"; path = "InclusionValidator/OMActiveModel+MembershipValidation.m"; sourceTree = "<group>"; };
+		AC2B08471584EBA800FE661F /* ConditionalValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionalValidationTest.h; sourceTree = "<group>"; };
+		AC2B08481584EBA800FE661F /* ConditionalValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionalValidationTest.m; sourceTree = "<group>"; };
 		ACE55FB91583EF62001DA475 /* OMCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMCollection.h; path = InclusionValidator/OMCollection.h; sourceTree = "<group>"; };
 		ACE55FBA1583EF62001DA475 /* OMCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMCollection.m; path = InclusionValidator/OMCollection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -360,6 +363,8 @@
 			children = (
 				AC09CE1415815F87008E581C /* AcceptanceValidationTest.h */,
 				AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */,
+				AC2B08471584EBA800FE661F /* ConditionalValidationTest.h */,
+				AC2B08481584EBA800FE661F /* ConditionalValidationTest.m */,
 				AC09CE1615815F87008E581C /* ConfirmationValidationTest.h */,
 				AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */,
 				AC09CE1815815F87008E581C /* FormatValidationTest.h */,
@@ -624,6 +629,7 @@
 				AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */,
 				AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */,
 				AC09CE3115815F87008E581C /* SenTestCase+Validation.m in Sources */,
+				AC2B08491584EBA800FE661F /* ConditionalValidationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

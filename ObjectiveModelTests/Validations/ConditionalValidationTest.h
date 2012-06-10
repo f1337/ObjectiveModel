@@ -1,6 +1,10 @@
 /*!
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
+ * Portions of this software were transliterated from Ruby on Rails.
+ * https://github.com/rails/rails/blob/master/activemodel/test/cases/validations/conditional_validation_test.rb
+ * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -23,27 +27,16 @@
 
 
 
-#import <ObjectiveModel/ObjectiveModel.h>
+#import "SenTestCase+Validation.h"
+#import "Topic.h"
 
 
 
-@interface Topic : OMActiveModel
+@interface ConditionalValidationTest : SenTestCase
 
 
 
-@property (copy) NSNumber *approved;
-@property (copy) NSString *authorName;
-@property (copy) NSString *content;
-@property (copy) NSNumber *EULA;
-@property (copy) NSString *termsOfService;
-@property (copy) NSString *title;
-@property (copy) NSString *titleConfirmation;
-
-
-
-- (BOOL)conditionIsTrue;
-- (BOOL)conditionIsTrueButItsNot;
-- (NSNumber*)maxApproved;
+@property (retain) Topic *topic;
 
 
 

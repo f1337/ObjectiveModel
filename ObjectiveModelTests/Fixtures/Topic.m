@@ -41,6 +41,20 @@
 
 
 
+- (BOOL)conditionIsTrue
+{
+    return YES;
+}
+
+
+
+- (BOOL)conditionIsTrueButItsNot
+{
+    return NO;
+}
+
+
+
 - (NSNumber *)maxApproved
 {
     return [NSNumber numberWithInt:5];

@@ -31,7 +31,7 @@
 
 
 
-+ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(NSRegularExpression * (^) (id))block
++ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMFormatValidatorRegularExpressionBlock)block
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
     [dictionary setObject:block forKey:@"block"];
