@@ -41,4 +41,11 @@
 
 
 
+- (NSNumber *)maxApproved
+{
+    return [NSNumber numberWithInt:5];
+}
+
+
+
 @end

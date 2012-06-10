@@ -79,24 +79,9 @@
  *      return ( [[model property] length] ? YES : NO );
  *   }];
  *
- * The selector should return YES or NO.
+ * The block should return YES or NO.
  *
  * @property (assign) OMValidatorConditionalBlock shouldApplyValidationBlock;
- */
-
-
-
-/*!
- * TODO: shouldApplyValidationSelector
- * See RoR's: ConditionalValidationTest
- *
- * Specifies a selector to call to determine if the validation should occur.
- *
- *   [model setShouldApplyValidationSelector:@selector(allowValidation)];
- *
- * The selector should return YES or NO.
- *
- * @property (assign) SEL shouldApplyValidationSelector;
  */
 
 

@@ -412,6 +412,28 @@
 
 
 
+- (void)testValidatesNumericalityWithMethodInBlock
+{
+    // Topic.send(:define_method, :max_approved, lambda { 5 })
+    // Topic.validates_numericality_of :approved, :less_than_or_equal_to => :max_approved
+    id block = ^NSNumber *(id topic)
+    {
+        return [topic maxApproved];
+    };
+    [Topic validatesNumericalityOf:@"approved"
+                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    block, @"lessThanOrEqualTo",
+                                    nil]];
+    
+    // invalid!([6])
+    OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:6]]), @"");
+    
+    // valid!([4, 5])
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:5], nil]));
+}
+
+
+
 - (void)testValidatesNumericalityWithNumericMessage
 {
     // Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
