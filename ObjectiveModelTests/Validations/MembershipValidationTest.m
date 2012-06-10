@@ -75,10 +75,10 @@
     //assert Topic.new("title" => "something", "content" => "abc").valid?
     [_topic setTitle:@"something"];
     [_topic setContent:@"abc"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //assert Topic.new("title" => "monkey", "content" => "abc").invalid?
     [_topic setTitle:@"monkey"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
 }
 
 
@@ -91,14 +91,14 @@
     //assert Topic.new("title" => "something", "content" => "abc")
     [_topic setTitle:@"something"];
     [_topic setContent:@"abc"];
-    [self assertModelIsValid:_topic];
-    
+    OMAssertModelIsValid(_topic);
+
     //t = Topic.new("title" => "monkey")
     [_topic setTitle:@"monkey"];
     //assert t.invalid?
     //assert t.errors[:title].any?
     //assert_equal ["option monkey is restricted"], t.errors[:title]
-    [self assertModelIsInvalid:_topic withErrorMessage:@"option monkey is restricted" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"option monkey is restricted", [NSArray arrayWithObject:@"title"]);
 }
 
 
@@ -126,12 +126,12 @@
     //t.author_name = "sikachu"
     [_topic setAuthorName:@"sikachu"];
     //assert t.invalid?
-    [self assertModelIsInvalid:_topic withErrorMessage:@"is reserved" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"is reserved", [NSArray arrayWithObject:@"title"]);
     
     //t.title = "wasabi"
     [_topic setTitle:@"wasabi"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -143,19 +143,19 @@
     //assert Topic.new("title" => "bbc", "content" => "abc").invalid?
     [_topic setTitle:@"bbc"];
     [_topic setContent:@"abc"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => "aa", "content" => "abc").invalid?
     [_topic setTitle:@"aa"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => "aaa", "content" => "abc").valid?
     [_topic setTitle:@"aaa"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //assert Topic.new("title" => "abc", "content" => "abc").valid?
     [_topic setTitle:@"abc"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //assert Topic.new("title" => "bbb", "content" => "abc").valid?
     [_topic setTitle:@"bbb"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -167,19 +167,19 @@
     //assert Topic.new("title" => "bbc", "content" => "abc").invalid?
     [_topic setTitle:@"bbc"];
     [_topic setContent:@"abc"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => "aa", "content" => "abc").invalid?
     [_topic setTitle:@"aa"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => "aaa", "content" => "abc").valid?
     [_topic setTitle:@"aaa"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //assert Topic.new("title" => "abc", "content" => "abc").valid?
     [_topic setTitle:@"abc"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //assert Topic.new("title" => "bbb", "content" => "abc").valid?
     [_topic setTitle:@"bbb"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -189,22 +189,22 @@
     [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithString:@"hi!"]];
 
     [_topic setTitle:@"ghi"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
 
     [_topic setTitle:@"hit"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     
     [_topic setTitle:@"hi"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 
     [_topic setTitle:@"i"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 
     [_topic setTitle:@"i!"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 
     [_topic setTitle:@"hi!"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -217,26 +217,26 @@
     //assert Topic.new("title" => "a!", "content" => "abc").invalid?
     [_topic setTitle:@"a!"];
     [_topic setContent:@"abc"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => "a b", "content" => "abc").invalid?
     [_topic setTitle:@"a b"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => nil, "content" => "def").invalid?
     [_topic setTitle:nil];
     [_topic setContent:@"def"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
 
     //t = Topic.new("title" => "a", "content" => "I know you are but what am I?")
     [_topic setTitle:@"a"];
     [_topic setContent:@"I know you are but what am I?"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //t.title = "uhoh"
     [_topic setTitle:@"uhoh"];
     //assert t.invalid?
     //assert t.errors[:title].any?
     //assert_equal ["is not included in the list"], t.errors[:title]
-    [self assertModelIsInvalid:_topic withErrorMessage:@"is not included in the list" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"is not included in the list", [NSArray arrayWithObject:@"title"]);
 
     //assert_raise(ArgumentError) { Topic.validates_inclusion_of( :title, :in => nil ) }
     STAssertThrowsSpecificNamed([Topic validatesInclusionOf:@"title" withOptions:nil andSet:nil], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
@@ -262,13 +262,13 @@
     //assert Topic.new("title" => "a!", "content" => "abc").invalid?
     [_topic setTitle:@"a!"];
     [_topic setContent:@"abc"];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => "",   "content" => "abc").invalid?
     [_topic setTitle:@""];
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
     //assert Topic.new("title" => nil,  "content" => "abc").valid?
     [_topic setTitle:nil];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -281,13 +281,13 @@
     //assert Topic.new("title" => "a", "content" => "abc").valid?
     [_topic setTitle:@"a"];
     [_topic setContent:@"abc"];
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
     //t = Topic.new("title" => "uhoh", "content" => "abc")
     [_topic setTitle:@"uhoh"];
     //assert t.invalid?
     //assert t.errors[:title].any?
     //assert_equal ["option uhoh is not in the list"], t.errors[:title]
-    [self assertModelIsInvalid:_topic withErrorMessage:@"option uhoh is not in the list" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"option uhoh is not in the list", [NSArray arrayWithObject:@"title"]);
 }
 
 
@@ -315,12 +315,12 @@
     //t.author_name = "sikachu"
     [_topic setAuthorName:@"sikachu"];
     //assert t.invalid?
-    [self assertModelIsInvalid:_topic withErrorMessage:nil forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
 
     //t.title = "elephant"
     [_topic setTitle:@"elephant"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 

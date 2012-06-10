@@ -33,19 +33,6 @@
 
 
 
-@interface NumericalityValidationTest (Private)
-
-
-
-- (void)assertValuesAreInvalid:(NSArray *)values withErrorMessage:(NSString *)message;
-- (void)assertValuesAreValid:(NSArray *)values;
-
-
-
-@end
-
-
-
 @implementation NumericalityValidationTest
 
 
@@ -170,15 +157,15 @@
     [Topic validatesNumericalityOf:@"approved" withOptions:nil];
 
     // invalid!(NIL + BLANK + JUNK)
-    [self assertValuesAreInvalid:[self null] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:nil];
+    OMAssertValuesAreInvalid(([self null]), @"");
+    OMAssertValuesAreInvalid(([self blankStrings]), @"");
+    OMAssertValuesAreInvalid(([self junkStrings]), @"");
 
     // valid!(FLOATS + INTEGERS + BIGDECIMAL + INFINITY)
-    [self assertValuesAreValid:[self floats]];
-    [self assertValuesAreValid:[self integers]];
-    [self assertValuesAreValid:[self bigDecimals]];
-    [self assertValuesAreValid:[self infinity]];
+    OMAssertValuesAreValid([self floats]);
+    OMAssertValuesAreValid([self integers]);
+    OMAssertValuesAreValid([self bigDecimals]);
+    OMAssertValuesAreValid([self infinity]);
 }
 
 
@@ -190,15 +177,15 @@
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"allowNil", nil]];
 
     // invalid!(JUNK + BLANK)
-    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:nil];
-    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:nil];
+    OMAssertValuesAreInvalid(([self blankStrings]), @"");
+    OMAssertValuesAreInvalid(([self junkStrings]), @"");
 
     // valid!(NIL + FLOATS + INTEGERS + BIGDECIMAL + INFINITY)
-    [self assertValuesAreValid:[self null]];
-    [self assertValuesAreValid:[self floats]];
-    [self assertValuesAreValid:[self integers]];
-    [self assertValuesAreValid:[self bigDecimals]];
-    [self assertValuesAreValid:[self infinity]];
+    OMAssertValuesAreValid([self null]);
+    OMAssertValuesAreValid([self floats]);
+    OMAssertValuesAreValid([self integers]);
+    OMAssertValuesAreValid([self bigDecimals]);
+    OMAssertValuesAreValid([self infinity]);
 }
 
 
@@ -210,15 +197,15 @@
                        withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"integer", nil]];
 
     // invalid!(NIL + BLANK + JUNK + FLOATS + BIGDECIMAL + INFINITY)
-    [self assertValuesAreInvalid:[self null] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self floats] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self bigDecimals] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self infinity] withErrorMessage:@"must be an integer"];
+    OMAssertValuesAreInvalid(([self null]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self blankStrings]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self junkStrings]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self floats]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self bigDecimals]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self infinity]), @"must be an integer");
 
     // valid!(INTEGERS)
-    [self assertValuesAreValid:[self integers]];
+    OMAssertValuesAreValid([self integers]);
 }
 
 
@@ -233,15 +220,15 @@
                                     nil]];
 
     // invalid!(JUNK + BLANK + FLOATS + BIGDECIMAL + INFINITY)
-    [self assertValuesAreInvalid:[self blankStrings] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self junkStrings] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self floats] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self bigDecimals] withErrorMessage:@"must be an integer"];
-    [self assertValuesAreInvalid:[self infinity] withErrorMessage:@"must be an integer"];
+    OMAssertValuesAreInvalid(([self blankStrings]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self junkStrings]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self floats]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self bigDecimals]), @"must be an integer");
+    OMAssertValuesAreInvalid(([self infinity]), @"must be an integer");
 
     // valid!(NIL + INTEGERS)
-    [self assertValuesAreValid:[self null]];
-    [self assertValuesAreValid:[self integers]];
+    OMAssertValuesAreValid([self null]);
+    OMAssertValuesAreValid([self integers]);
 }
 
 
@@ -255,11 +242,10 @@
                                     nil]];
 
     // invalid!([-10, 10], 'must be greater than 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:10], nil]
-                withErrorMessage:@"must be greater than 10"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:10], nil]), @"must be greater than 10");
 
     // valid!([11])
-    [self assertValuesAreValid:[NSArray arrayWithObject:[NSNumber numberWithInt:11]]];
+    OMAssertValuesAreValid([NSArray arrayWithObject:[NSNumber numberWithInt:11]]);
 }
 
 
@@ -273,11 +259,10 @@
                                     nil]];
 
     // invalid!([-9, 9], 'must be greater than or equal to 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-9], [NSNumber numberWithInt:9], nil]
-                withErrorMessage:@"must be greater than or equal to 10"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-9], [NSNumber numberWithInt:9], nil]), @"must be greater than or equal to 10");
 
     // valid!([10])
-    [self assertValuesAreValid:[NSArray arrayWithObject:[NSNumber numberWithInt:10]]];
+    OMAssertValuesAreValid([NSArray arrayWithObject:[NSNumber numberWithInt:10]]);
 }
 
 
@@ -291,13 +276,11 @@
                                     nil]];
 
     // invalid!([-10, 11] + INFINITY, 'must be equal to 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:11], nil]
-                withErrorMessage:@"must be equal to 10"];
-    [self assertValuesAreInvalid:[self infinity]
-                withErrorMessage:@"must be equal to 10"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:11], nil]), @"must be equal to 10");
+    OMAssertValuesAreInvalid(([self infinity]), @"must be equal to 10");
 
     // valid!([10])
-    [self assertValuesAreValid:[NSArray arrayWithObject:[NSNumber numberWithInt:10]]];
+    OMAssertValuesAreValid([NSArray arrayWithObject:[NSNumber numberWithInt:10]]);
 }
 
 
@@ -311,11 +294,10 @@
                                     nil]];
     
     // invalid!([10], 'must be less than 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObject:[NSNumber numberWithInt:10]]
-                withErrorMessage:@"must be less than 10"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:10]]), @"must be less than 10");
 
     // valid!([-9, 9])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-9], [NSNumber numberWithInt:9], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-9], [NSNumber numberWithInt:9], nil]));
 }
 
 
@@ -329,11 +311,10 @@
                                     nil]];
     
     // invalid!([11], 'must be less than or equal to 10')
-    [self assertValuesAreInvalid:[NSArray arrayWithObject:[NSNumber numberWithInt:11]]
-                withErrorMessage:@"must be less than or equal to 10"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:11]]), @"must be less than or equal to 10");
     
     // valid!([-10, 10])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:10], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:10], nil]));
 }
 
 
@@ -347,11 +328,10 @@
                                     nil]];
     
     // invalid!([-2, 2], 'must be odd')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]
-                withErrorMessage:@"must be odd"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]), @"must be odd");
     
     // valid!([-1, 1])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]));
 }
 
 
@@ -365,11 +345,10 @@
                                     nil]];
     
     // invalid!([-1, 1], 'must be even')
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]
-                withErrorMessage:@"must be even"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]), @"must be even");
 
     // valid!([-2, 2])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]));
 }
 
 
@@ -385,11 +364,10 @@
                                     nil]];
     
     // invalid!([1, 3, 4])
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:3], [NSNumber numberWithInt:4], nil]
-                withErrorMessage:nil];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:3], [NSNumber numberWithInt:4], nil]), @"");
     
     // valid!([2])
-    [self assertValuesAreValid:[NSArray arrayWithObject:[NSNumber numberWithInt:2]]];
+    OMAssertValuesAreValid(([NSArray arrayWithObject:[NSNumber numberWithInt:2]]));
 }
 
 
@@ -403,11 +381,10 @@
                                     nil]];
     
     // invalid!([0, 0.0])
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithDouble:0.0], nil]
-                withErrorMessage:@"must not be equal to 0"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithDouble:0.0], nil]), @"must not be equal to 0");
     
     // valid!([-1, 42])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:42], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:42], nil]));
 }
 
 
@@ -427,11 +404,10 @@
                                     nil]];
 
     // invalid!([3, 4])
-    [self assertValuesAreInvalid:[NSArray arrayWithObjects:[NSNumber numberWithInt:3], [NSNumber numberWithInt:4], nil]
-                withErrorMessage:@"must be greater than or equal to 5"];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:3], [NSNumber numberWithDouble:4], nil]), @"must be greater than or equal to 5");
 
     // valid!([5, 6])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:6], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:6], nil]));
 }
 
 
@@ -446,10 +422,10 @@
                                     nil]];
     
     // invalid!([6])
-    [self assertValuesAreInvalid:[NSArray arrayWithObject:[NSNumber numberWithInt:6]] withErrorMessage:nil];
+    OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:6]]), @"");
     
     // valid!([4, 5])
-    [self assertValuesAreValid:[NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:5], nil]];
+    OMAssertValuesAreValid(([NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:5], nil]));
 }
 
 
@@ -470,7 +446,7 @@
     
     // assert !topic.valid?
     // assert_equal ["smaller than 4"], topic.errors[:approved]
-    [self assertModelIsInvalid:topic withErrorMessage:@"smaller than 4" forKeys:[NSArray arrayWithObject:@"approved"]];
+    OMAssertModelIsInvalid(topic, @"smaller than 4", [NSArray arrayWithObject:@"approved"]);
     [topic release];
     
 
@@ -488,7 +464,7 @@
 
     // assert !topic.valid?
     // assert_equal ["greater than 4"], topic.errors[:approved]
-    [self assertModelIsInvalid:topic withErrorMessage:@"bigger than 4" forKeys:[NSArray arrayWithObject:@"approved"]];
+    OMAssertModelIsInvalid(topic, @"bigger than 4", [NSArray arrayWithObject:@"approved"]);
     [topic release];
 }
 
@@ -515,58 +491,6 @@
     // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
     options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"equalTo", nil];
     STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-}
-
-
-
-#pragma mark - PRIVATE
-
-
-
-// def invalid!(values, error = nil)
-- (void)assertValuesAreInvalid:(NSArray *)values withErrorMessage:(NSString *)message
-{
-    // with_each_topic_approved_value(values) do |topic, value|
-    // topic = Topic.new(:title => "numeric test", :content => "whatever")
-    Topic *topic = [[Topic alloc] init];
-    [topic setTitle:@"numeric test"];
-    [topic setContent:@"whatever"];
-
-    // values.each do |value|
-    for (id value in values)
-    {
-        // topic.approved = value
-        [topic setApproved:value];
-        // assert topic.invalid?, "#{value.inspect} not rejected as a number"
-        // assert topic.errors[:approved].any?, "FAILED for #{value.inspect}"
-        // assert_equal error, topic.errors[:approved].first if error
-        [self assertModelIsInvalid:topic withErrorMessage:message forKeys:[NSArray arrayWithObject:@"approved"]];
-    }
-
-    [topic release];
-}
-
-
-
-// def invalid!(values, error = nil)
-- (void)assertValuesAreValid:(NSArray *)values
-{
-    // with_each_topic_approved_value(values) do |topic, value|
-    // topic = Topic.new(:title => "numeric test", :content => "whatever")
-    Topic *topic = [[Topic alloc] init];
-    [topic setTitle:@"numeric test"];
-    [topic setContent:@"whatever"];
-    
-    // values.each do |value|
-    for (id value in values)
-    {
-        // topic.approved = value
-        [topic setApproved:value];
-        // assert topic.valid?, "#{value.inspect} not accepted as a number"
-        [self assertModelIsValid:topic];
-    }
-
-    [topic release];
 }
 
 

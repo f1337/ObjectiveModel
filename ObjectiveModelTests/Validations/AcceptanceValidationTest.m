@@ -73,7 +73,7 @@
     //t = Topic.new("title" => "We should not be confirmed")
     [_topic setTitle:@"We should not be confirmed"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -88,12 +88,12 @@
     [_topic setTermsOfService:@""];
     //assert t.invalid?
     //assert_equal ["must be accepted"], t.errors[:terms_of_service]
-    [self assertModelIsInvalid:_topic withErrorMessage:@"must be accepted" forKeys:[NSArray arrayWithObject:@"termsOfService"]];
+    OMAssertModelIsInvalid(_topic, @"must be accepted", [NSArray arrayWithObject:@"termsOfService"]);
 
     //t.terms_of_service = "1"
     [_topic setTermsOfService:@"Y"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -108,12 +108,12 @@
     [_topic setEULA:[NSNumber numberWithBool:NO]];
     //assert t.invalid?
     //assert_equal ["must be abided"], t.errors[:eula]
-    [self assertModelIsInvalid:_topic withErrorMessage:@"must be abided" forKeys:[NSArray arrayWithObject:@"EULA"]];
+    OMAssertModelIsInvalid(_topic, @"must be abided", [NSArray arrayWithObject:@"EULA"]);
 
     //t.eula = "1"
     [_topic setEULA:[NSNumber numberWithBool:YES]];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -128,12 +128,12 @@
     [_topic setTermsOfService:@""];
     //assert t.invalid?
     //assert_equal ["must be accepted"], t.errors[:terms_of_service]
-    [self assertModelIsInvalid:_topic withErrorMessage:@"must be accepted" forKeys:[NSArray arrayWithObject:@"termsOfService"]];
+    OMAssertModelIsInvalid(_topic, @"must be accepted", [NSArray arrayWithObject:@"termsOfService"]);
 
     //t.terms_of_service = "I agree."
     [_topic setTermsOfService:@"I agree."];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 

@@ -131,8 +131,12 @@
 
 - (BOOL)checkArgumentValidityForValue:(id)value
 {
+    if ( value == nil )
+    {
+        return YES;
+    }
     // value must be an NSNumber, a block, or a selector string
-    if (
+    else if (
         [value isKindOfClass:[NSNumber class]]
         ||
         [value isKindOfClass:NSClassFromString(@"NSBlock")]

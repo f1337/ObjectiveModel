@@ -67,18 +67,17 @@
 
     // assert t.invalid?, "Shouldn't be valid"
     // assert_equal ["is bad data"], t.errors[:title]
-    [self assertModelIsInvalid:topic withErrorMessage:@"is bad data" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is bad data", [NSArray arrayWithObject:@"title"]);
     // assert t.errors[:content].empty?
-    [self assertPropertyIsValid:@"content" forModel:topic];
-
+    OMAssertPropertyIsValid(@"content", topic);
 
     // t.title = "Validation macros rule!"
     [topic setTitle:@"Validation macros rule!"];
 
     // assert t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
     // assert t.errors[:title].empty?
-    [self assertPropertyIsValid:@"title" forModel:topic];
+    OMAssertPropertyIsValid(@"title", topic);
 }
 
 
@@ -93,25 +92,25 @@
     // assert Topic.new("title" => "Shouldn't be valid").invalid?
     Topic *topic = [[Topic alloc] init];
     [topic setTitle:@"i'm incorrect"];
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"title"]);
     [topic release];
 
     // assert Topic.new("title" => "").valid?
     topic = [[Topic alloc] init];
     [topic setTitle:@""];
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
     [topic release];
 
     // assert Topic.new("title" => nil).valid?
     topic = [[Topic alloc] init];
     [topic setTitle:nil];
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
     [topic release];
 
     // assert Topic.new("title" => "Validation macros rule!").valid?    
     topic = [[Topic alloc] init];
     [topic setTitle:@"Validation macros rule!"];
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
     [topic release];
 }
 
@@ -131,36 +130,36 @@
 
     // assert t.invalid?, "Shouldn't be valid"
     // assert_equal ["is bad data"], t.errors[:title]
-    [self assertModelIsInvalid:topic withErrorMessage:@"is bad data" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is bad data", [NSArray arrayWithObject:@"title"]);
     // assert t.errors[:content].empty?
-    [self assertPropertyIsValid:@"content" forModel:topic];
+    OMAssertPropertyIsValid(@"content", topic);
 
     // t.title = "-11"
     [topic setTitle:@"-11"];
     // assert t.invalid?, "Shouldn't be valid"
-    [self assertModelIsInvalid:topic withErrorMessage:@"is bad data" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is bad data", [NSArray arrayWithObject:@"title"]);
 
     // t.title = "03"
     [topic setTitle:@"03"];
     // assert t.invalid?, "Shouldn't be valid"
-    [self assertModelIsInvalid:topic withErrorMessage:@"is bad data" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is bad data", [NSArray arrayWithObject:@"title"]);
 
     //t.title = "z44"
     [topic setTitle:@"z44"];
     // assert t.invalid?, "Shouldn't be valid"
-    [self assertModelIsInvalid:topic withErrorMessage:@"is bad data" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is bad data", [NSArray arrayWithObject:@"title"]);
 
     // t.title = "5v7"
     [topic setTitle:@"5v7"];
     // assert t.invalid?, "Shouldn't be valid"
-    [self assertModelIsInvalid:topic withErrorMessage:@"is bad data" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is bad data", [NSArray arrayWithObject:@"title"]);
 
     // t.title = "1"
     [topic setTitle:@"1"];
     // assert t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
     // assert t.errors[:title].empty?
-    [self assertPropertyIsValid:@"title" forModel:topic];
+    OMAssertPropertyIsValid(@"title", topic);
 }
 
 
@@ -172,7 +171,7 @@
                   andPattern:@"^Valid Title$"];
     
     Topic *topic = [[Topic alloc] init];
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"title"]);
 }
 
 
@@ -189,7 +188,7 @@
     [topic setTitle:@"Invalid title"];
     // assert t.invalid?
     // assert_equal ["can't be Invalid title"], t.errors[:title]
-    [self assertModelIsInvalid:topic withErrorMessage:@"can't be Invalid title" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"can't be Invalid title", [NSArray arrayWithObject:@"title"]);
 }
 
 
@@ -210,14 +209,14 @@
     [topic setTitle:@"foobar"];
     // t.valid?
     // assert_equal ["should not contain foo"], t.errors[:title]
-    [self assertModelIsInvalid:topic withErrorMessage:@"should not contain foo" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(topic, @"should not contain foo", [NSArray arrayWithObject:@"title"]);
     
     // t.title = "something else"
     [topic setTitle:@"something else"];
     // t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
     // assert_equal [], t.errors[:title]
-    [self assertPropertyIsValid:@"title" forModel:topic];
+    OMAssertPropertyIsValid(@"title", topic);
 }
 
 
@@ -241,12 +240,12 @@
     // t.content = "Pixies"
     [topic setContent:@"Pixies"];
     // assert t.invalid?
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"content"]];
+    OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"content"]);
 
     // t.content = "1234"
     [topic setContent:@"1234"];
     // assert t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
 }
 
 
@@ -279,12 +278,12 @@
     // t.content = "1234"
     [topic setContent:@"1234"];
     // assert t.invalid?
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"content"]];
+    OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"content"]);
     
     // t.content = "Pixies"
     [topic setContent:@"Pixies"];
     // assert t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
 }
 
 
@@ -301,12 +300,12 @@
     // t.content = "Pixies"
     [topic setContent:@"Pixies"];
     // assert t.invalid?
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"content"]];
+    OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"content"]);
     
     // t.content = "1234"
     [topic setContent:@"1234"];
     // assert t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
 }
 
 
@@ -323,12 +322,12 @@
     // t.content = "1234"
     [topic setContent:@"1234"];
     // assert t.invalid?
-    [self assertModelIsInvalid:topic withErrorMessage:@"is invalid" forKeys:[NSArray arrayWithObject:@"content"]];
+    OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"content"]);
     
     // t.content = "Pixies"
     [topic setContent:@"Pixies"];
     // assert t.valid?
-    [self assertModelIsValid:topic];
+    OMAssertModelIsValid(topic);
 }
 
 

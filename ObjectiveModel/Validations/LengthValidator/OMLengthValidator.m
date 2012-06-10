@@ -149,7 +149,11 @@
 
 - (BOOL)checkArgumentValidityForNumber:(NSNumber *)number
 {
-    if ( (! [number respondsToSelector:@selector(isLessThanNumber:)] ) || [number isLessThanNumber:[NSNumber numberWithInt:0]] )
+    if ( number == nil )
+    {
+        return YES;
+    }
+    else if ( (! [number respondsToSelector:@selector(isLessThanNumber:)] ) || [number isLessThanNumber:[NSNumber numberWithInt:0]] )
     {
         [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) must be a positive NSNumber.", NSStringFromClass([self class]), number, nil];
         return NO;

@@ -32,6 +32,10 @@
 
 
 
+@synthesize model = _model;
+
+
+
 // TODO: This test class should be removed once RoR tests have all been imported.
 
 #pragma mark - SETUP/TEARDOWN
@@ -59,14 +63,14 @@
                                    @"T", @"allowBlank",
                                    nil]];
 
-    model = [[Person alloc] init];
+    [self setModel:[[Person alloc] init]];
 }
 
 
 
 - (void)tearDown
 {
-    [model release];
+    [self setModel:nil];
     [Person removeAllValidations];
     [super tearDown];
 }
@@ -79,46 +83,46 @@
 
 - (void)testAnUnsetValueForFirstNameShouldBeValid
 {
-    [self assertPropertyIsValid:@"firstName" forModel:model];
+    OMAssertPropertyIsValid(@"firstName", _model);
 }
 
 
 
 - (void)testANilValueForFirstNameShouldBeValid
 {
-    [model setFirstName:nil];
-    [self assertPropertyIsValid:@"firstName" forModel:model];
+    [_model setFirstName:nil];
+    OMAssertPropertyIsValid(@"firstName", _model);
 }
 
 
 
 - (void)testABlankValueForLastNameShouldBeValid
 {
-    [model setLastName:@""];
-    [self assertPropertyIsValid:@"lastName" forModel:model];
+    [_model setLastName:@""];
+    OMAssertPropertyIsValid(@"lastName", _model);
 }
 
 
 
 - (void)testAnUnsetValueForTitleShouldBeValid
 {
-    [self assertPropertyIsValid:@"title" forModel:model];
+    OMAssertPropertyIsValid(@"title", _model);
 }
 
 
 
 - (void)testANilValueForTitleShouldBeValid
 {
-    [model setTitle:nil];
-    [self assertPropertyIsValid:@"title" forModel:model];
+    [_model setTitle:nil];
+    OMAssertPropertyIsValid(@"title", _model);
 }
 
 
 
 - (void)testABlankValueForTitleShouldBeValid
 {
-    [model setTitle:@""];
-    [self assertPropertyIsValid:@"title" forModel:model];
+    [_model setTitle:@""];
+    OMAssertPropertyIsValid(@"title", _model);
 }
 
 

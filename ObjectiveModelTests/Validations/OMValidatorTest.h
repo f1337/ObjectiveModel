@@ -29,7 +29,7 @@
 
 
 @interface OMValidatorTest : SenTestCase
-{
-    Person *model;    
-}
+
+@property (retain) Person *model;
+
 @end

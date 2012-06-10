@@ -36,6 +36,10 @@
 
 
 
+@synthesize model = _model;
+
+
+
 #pragma mark - SETUP/TEARDOWN
 
 
@@ -43,14 +47,14 @@
 - (void)setUp
 {
     [super setUp];
-    model = [[Person alloc] init];
+    [self setModel:[[Person alloc] init]];
 }
 
 
 
 - (void)tearDown
 {
-    [model release];
+    [self setModel:nil];
     [Person removeAllValidations];
     [super tearDown];
 }
@@ -67,16 +71,16 @@
     [Person validatesPresenceOf:[NSArray arrayWithObjects:@"firstName", @"lastName", nil] withOptions:nil];
 
     // assert both properties invalid
-    [self assertModelIsInvalid:model withErrorMessage:@"cannot be blank" forKeys:[NSArray arrayWithObjects:@"firstName", @"lastName", nil]];
+    OMAssertModelIsInvalid(_model, @"cannot be blank", ([NSArray arrayWithObjects:@"firstName", @"lastName", nil]));
 
     // assert one property invalid
-    [model setFirstName:@"Robert"];
-    [model setLastName:@"     "];
-    [self assertModelIsInvalid:model withErrorMessage:@"cannot be blank" forKeys:[NSArray arrayWithObjects:@"lastName", nil]];
+    [_model setFirstName:@"Robert"];
+    [_model setLastName:@"     "];
+    OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"lastName"]);
 
     // assert both properties valid
-    [model setLastName:@"Tabula Rasa"];
-    [self assertModelIsValid:model];
+    [_model setLastName:@"Tabula Rasa"];
+    OMAssertModelIsValid(_model);
 }
 
 
@@ -87,11 +91,11 @@
     [Person validatesPresenceOf:@"firstName" withOptions:nil];
 
     // assert property is invalid
-    [self assertModelIsInvalid:model withErrorMessage:@"cannot be blank" forKeys:[NSArray arrayWithObjects:@"firstName", nil]];
+    OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 
     // assert property is valid
-    [model setFirstName:@"Yoda"];
-    [self assertModelIsValid:model];
+    [_model setFirstName:@"Yoda"];
+    OMAssertModelIsValid(_model);
 }
 
 
@@ -105,7 +109,7 @@
                     withOptions:[NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil]];
     
     // assert property is invalid
-    [self assertModelIsInvalid:model withErrorMessage:message forKeys:[NSArray arrayWithObjects:@"firstName", nil]];
+    OMAssertModelIsInvalid(_model, @"This string contains 'single' and \"double\" quotes", [NSArray arrayWithObject:@"firstName"]);
 }
 
 
@@ -113,8 +117,8 @@
 - (void)testIfValueIsNilItShouldBeInvalid
 {
     [Person validatesPresenceOf:@"firstName" withOptions:nil];
-    [model setFirstName:nil];
-    [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
+    [_model setFirstName:nil];
+    OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 }
 
 
@@ -126,8 +130,8 @@
 - (void)testIfValueIsEmptyStringItShouldBeInvalid
 {
     [Person validatesPresenceOf:@"firstName" withOptions:nil];
-    [model setFirstName:@""];
-    [self assertPropertyIsInvalid:@"firstName" forModel:model withErrorMessage:@"cannot be blank"];
+    [_model setFirstName:@""];
+    OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 }
 
 

@@ -25,21 +25,91 @@
 
 #import <ObjectiveModel/Validations.h>
 #import <SenTestingKit/SenTestingKit.h>
+#import <CoreData/CoreData.h>
 
 
 
-@interface SenTestCase (ValidationTests)
+#define OMAssertModelIsInvalid(m, e, k) \
+do { \
+    @try { \
+        OMActiveModel *model = m; \
+        NSString *message = e; \
+        NSArray *keys = k; \
+        NSError *error = nil; \
+        STAssertTrue([model isInvalid:&error], @"Model (%@) expected to be invalid, but returned valid.", model); \
+        STAssertNotNil(error, @"Error expected to be non-nil."); \
+        if ( [error code] == NSValidationMultipleErrorsError ) \
+        { \
+            NSArray *errors = [[error userInfo] objectForKey:NSDetailedErrorsKey]; \
+            STAssertTrue([errors count], @"Expected a non-empty errors array"); \
+            for (NSString *key in keys) \
+            { \
+                NSUInteger index = NSNotFound; \
+                NSError *subError; \
+                for (NSUInteger i = 0; i < [errors count]; i++) \
+                { \
+                    subError = [errors objectAtIndex:i]; \
+                    if ( [[[subError userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:key] ) \
+                    { \
+                        index = i; \
+                        break; \
+                    } \
+                } \
+                if ( index == NSNotFound ) \
+                { \
+                    STFail(@"Unable to locate NSValidationKeyErrorKey value in errors array: %@", key); \
+                } \
+                else if ( [message length] ) \
+                { \
+                    subError = [errors objectAtIndex:index]; \
+                    STAssertTrue([[subError localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [subError localizedDescription]); \
+                } \
+            } \
+        } \
+        else \
+        { \
+            STAssertTrue([[[error userInfo] objectForKey:NSValidationKeyErrorKey] isEqualToString:[keys objectAtIndex:0]], @"Unexpected NSValidationErrorKey value. Expected: %@. Received: %@.", [keys objectAtIndex:0], [[error userInfo] objectForKey:NSValidationKeyErrorKey]); \
+            if ( [message length] ) \
+            { \
+                STAssertTrue([[error localizedDescription] isEqualToString:message], @"Unexpected error message from model! Expected: '%@', received: '%@'", message, [error localizedDescription]); \
+            } \
+        } \
+    } \
+    @catch (id anythingElse) {\
+        ; \
+    }\
+} while (0)
 
 
 
-- (void)assertModelIsInvalid:(OMActiveModel *)model withErrorMessage:(NSString *)message forKeys:(NSArray *)keys;
-- (void)assertModelIsValid:(OMActiveModel *)model;
-- (void)assertPropertyIsValid:(NSString *)property forModel:(OMActiveModel *)model;
-- (void)assertPropertyIsInvalid:(NSString *)property forModel:(OMActiveModel *)model withErrorMessage:(NSString *)message;
+#define OMAssertModelIsValid(m) \
+do { \
+    @try { \
+        OMActiveModel *model = m; \
+        NSError *error = nil; \
+        STAssertTrue([model isValid:&error], @"Model (%@) expected to be valid, but returned invalid. Error: %@", model, error); \
+        STAssertNil(error, @"Error expected to be nil."); \
+    } \
+    @catch (id anythingElse) {\
+        ; \
+    }\
+} while (0)
 
 
 
-@end
+#define OMAssertPropertyIsValid(p, m) \
+do { \
+    @try { \
+        NSString *property = p; \
+        OMActiveModel *model = m; \
+        id value = [model valueForKey:property]; \
+        NSError *error = nil; \
+        STAssertTrue([model validateValue:&value forKey:property error:&error], @"Model property '%@' is invalid, but expected to be valid. Error: %@.", property, error); \
+    } \
+    @catch (id anythingElse) {\
+        ; \
+    }\
+} while (0)
 
 
 

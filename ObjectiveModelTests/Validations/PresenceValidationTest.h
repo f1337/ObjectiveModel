@@ -29,7 +29,9 @@
 
 
 @interface PresenceValidationTest : SenTestCase
-{
-    Person *model;    
-}
+
+
+@property (retain) Person *model;
+
+
 @end

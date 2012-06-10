@@ -27,6 +27,48 @@
 
 
 
+#define OMAssertValuesAreInvalid(v, m) \
+do { \
+    @try { \
+        NSArray *values = v; \
+        Topic *topic = [[Topic alloc] init]; \
+        [topic setTitle:@"numeric test"]; \
+        [topic setContent:@"whatever"]; \
+        for (id value in values) \
+        { \
+            [topic setApproved:value]; \
+            OMAssertModelIsInvalid(topic, m, [NSArray arrayWithObject:@"approved"]); \
+        } \
+        [topic release]; \
+    } \
+    @catch (id anythingElse) {\
+        ; \
+    }\
+} while (0)
+
+
+
+#define OMAssertValuesAreValid(v) \
+do { \
+    @try { \
+        NSArray *values = v; \
+        Topic *topic = [[Topic alloc] init]; \
+        [topic setTitle:@"numeric test"]; \
+        [topic setContent:@"whatever"]; \
+        for (id value in values) \
+        { \
+            [topic setApproved:value]; \
+            OMAssertModelIsValid(topic); \
+        } \
+        [topic release]; \
+    } \
+    @catch (id anythingElse) {\
+        ; \
+    }\
+} while (0)
+
+
+
 @interface NumericalityValidationTest : SenTestCase
 
 @end

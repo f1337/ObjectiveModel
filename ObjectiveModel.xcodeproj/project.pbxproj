@@ -51,7 +51,6 @@
 		AC09CE2915815F87008E581C /* AcceptanceValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */; };
 		AC09CE2A15815F87008E581C /* ConfirmationValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */; };
 		AC09CE2B15815F87008E581C /* FormatValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1915815F87008E581C /* FormatValidationTest.m */; };
-		AC09CE2C15815F87008E581C /* MembershipValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1B15815F87008E581C /* MembershipValidationTest.m */; };
 		AC09CE2D15815F87008E581C /* LengthValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1D15815F87008E581C /* LengthValidationTest.m */; };
 		AC09CE2E15815F87008E581C /* NumericalityValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */; };
 		AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2115815F87008E581C /* OMValidatorTest.m */; };
@@ -67,6 +66,7 @@
 		AC2A2F23158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F21158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m */; };
 		ACE55FBB1583EF62001DA475 /* OMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE55FB91583EF62001DA475 /* OMCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FBA1583EF62001DA475 /* OMCollection.m */; };
+		ACE55FC515841574001DA475 /* MembershipValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1B15815F87008E581C /* MembershipValidationTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,9 +130,9 @@
 		AC09CE1115815F87008E581C /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
 		AC09CE1215815F87008E581C /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		AC09CE1415815F87008E581C /* AcceptanceValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptanceValidationTest.h; sourceTree = "<group>"; };
-		AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptanceValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1515815F87008E581C /* AcceptanceValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AcceptanceValidationTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC09CE1615815F87008E581C /* ConfirmationValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmationValidationTest.h; sourceTree = "<group>"; };
-		AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmationValidationTest.m; sourceTree = "<group>"; };
+		AC09CE1715815F87008E581C /* ConfirmationValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ConfirmationValidationTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC09CE1815815F87008E581C /* FormatValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatValidationTest.h; sourceTree = "<group>"; };
 		AC09CE1915815F87008E581C /* FormatValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatValidationTest.m; sourceTree = "<group>"; };
 		AC09CE1A15815F87008E581C /* MembershipValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembershipValidationTest.h; sourceTree = "<group>"; };
@@ -618,8 +618,8 @@
 				AC09CE2915815F87008E581C /* AcceptanceValidationTest.m in Sources */,
 				AC09CE2A15815F87008E581C /* ConfirmationValidationTest.m in Sources */,
 				AC09CE2B15815F87008E581C /* FormatValidationTest.m in Sources */,
-				AC09CE2C15815F87008E581C /* MembershipValidationTest.m in Sources */,
 				AC09CE2D15815F87008E581C /* LengthValidationTest.m in Sources */,
+				ACE55FC515841574001DA475 /* MembershipValidationTest.m in Sources */,
 				AC09CE2E15815F87008E581C /* NumericalityValidationTest.m in Sources */,
 				AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */,
 				AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */,

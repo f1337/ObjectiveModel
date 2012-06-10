@@ -73,24 +73,24 @@
     //t = Topic.new(:author_name => "Plutarch")
     [_topic setAuthorName:@"Plutarch"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 
     //t.title_confirmation = "Parallel Lives"
     [_topic setTitleConfirmation:@"Parallel Lives"];
     //assert t.invalid?
-    [self assertModelIsInvalid:_topic withErrorMessage:@"does not match confirmation" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"does not match confirmation", [NSArray arrayWithObject:@"title"]);
 
     //t.title_confirmation = nil
     [_topic setTitleConfirmation:nil];
     //t.title = "Parallel Lives"
     [_topic setTitle:@"Parallel Lives"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 
     //t.title_confirmation = "Parallel Lives"
     [_topic setTitleConfirmation:@"Parallel Lives"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
@@ -104,12 +104,12 @@
     [_topic setTitle:@"We should be confirmed"];
     [_topic setTitleConfirmation:@""];
     //assert t.invalid?
-    [self assertModelIsInvalid:_topic withErrorMessage:@"and confirmation do not match" forKeys:[NSArray arrayWithObject:@"title"]];
+    OMAssertModelIsInvalid(_topic, @"and confirmation do not match", [NSArray arrayWithObject:@"title"]);
 
     //t.title_confirmation = "We should be confirmed"
     [_topic setTitleConfirmation:@"We should be confirmed"];
     //assert t.valid?
-    [self assertModelIsValid:_topic];
+    OMAssertModelIsValid(_topic);
 }
 
 
