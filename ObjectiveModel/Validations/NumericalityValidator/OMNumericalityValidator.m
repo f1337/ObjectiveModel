@@ -135,20 +135,18 @@
     {
         return YES;
     }
-    // value must be an NSNumber, a block, or a selector string
+    // value must be an NSNumber or an OMNumericalityValidatorNumberBlock
     else if (
         [value isKindOfClass:[NSNumber class]]
         ||
         [value isKindOfClass:NSClassFromString(@"NSBlock")]
-        ||
-        ( [value isKindOfClass:[NSValue class]] && [value pointerValue] && strcmp([value objCType], @encode(SEL)) == 0)
-        )
+    )
     {
         return YES;
     }
     else
     {
-        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) is not an NSNumber, block, or selector.", NSStringFromClass([self class]), value, nil];
+        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) is not an NSNumber or an OMNumericalityValidatorNumberBlock.", NSStringFromClass([self class]), value, nil];
         return NO;
     }
 }
@@ -364,22 +362,6 @@
                 {
                     OMNumericalityValidatorNumberBlock block = [self valueForKey:option];
                     optionValue = (NSNumber *)block(model);
-                }
-                // if optionValue is an NSValue (but not an NSNumber), invoke the wrapped selector
-                else if ( (! [optionValue isKindOfClass:[NSNumber class]]) && [optionValue isKindOfClass:[NSValue class]] )
-                {
-                    SEL optionValueSelector;
-                    NSValue *optionValueWrapper = [self valueForKey:option];
-                    [optionValueWrapper getValue:&optionValueSelector];
-
-                    if ( optionValueSelector && [model respondsToSelector:optionValueSelector] )
-                    {
-                        optionValue = (NSNumber *)[model performSelector:optionValueSelector];
-                    }
-                    else
-                    {
-                        optionValue = nil;
-                    }
                 }
 
                 valid = (BOOL)[numericValue performSelector:selector withObject:optionValue];

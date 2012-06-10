@@ -41,8 +41,4 @@
 
 
 
-- (NSNumber*)maxApproved;
-
-
-
 @end

@@ -42,7 +42,7 @@
 
 /*!
  * Specifies the value must be equal to the supplied value.
- * May be an NSNumber, or a block or selector which returns an NSNumber.
+ * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
 @property (nonatomic, assign) id equalTo;
 
@@ -50,7 +50,7 @@
 
 /*!
  * Specifies the value must be greater than the supplied value.
- * May be an NSNumber, or a block or selector which returns an NSNumber.
+ * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
 @property (nonatomic, assign) id greaterThan;
 
@@ -58,7 +58,7 @@
 
 /*
  * Specifies the value must be greater than or equal the supplied value.
- * May be an NSNumber, or a block or selector which returns an NSNumber.
+ * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
 @property (nonatomic, assign) id greaterThanOrEqualTo;
 
@@ -74,7 +74,7 @@
 
 /*!
  * Specifies the value must be less than the supplied value.
- * May be an NSNumber, or a block or selector which returns an NSNumber.
+ * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
 @property (nonatomic, assign) id lessThan;
 
@@ -82,7 +82,7 @@
 
 /*
  * Specifies the value must be less than or equal the supplied value.
- * May be an NSNumber, or a block or selector which returns an NSNumber.
+ * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
 @property (nonatomic, assign) id lessThanOrEqualTo;
 
@@ -97,7 +97,7 @@
 
 /*
  * Specifies the value must be other than the supplied value.
- * May be an NSNumber, or a block or selector which returns an NSNumber.
+ * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
 @property (nonatomic, assign) id notEqualTo;
 
