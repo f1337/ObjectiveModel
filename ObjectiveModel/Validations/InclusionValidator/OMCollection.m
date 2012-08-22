@@ -36,7 +36,7 @@
     if ( object )
     {
         NSEnumerator *enumerator = [self objectEnumerator];
-        id value;
+        id value = nil;
         while ( (value = [enumerator nextObject]) )
         {
             if ( [value isEqual:object] )
