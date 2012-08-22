@@ -185,7 +185,7 @@
 
 - (void)testValidatesInclusionInString
 {
-    [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithString:@"hi!"]];
+    [Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithFormat:@"hi!"]];
 
     [_topic setTitle:@"ghi"];
     OMAssertModelIsInvalid(_topic, @"", [NSArray arrayWithObject:@"title"]);
@@ -243,7 +243,7 @@
     STAssertThrowsSpecificNamed([Topic validatesInclusionOf:@"title" withOptions:nil andSet:0], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
 
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => "hi!" ) }
-    STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithString:@"hi!"]], @"An unexpected exception was raised!.");
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSString stringWithFormat:@"hi!"]], @"An unexpected exception was raised!.");
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => {} ) }
     STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSSet set]], @"An unexpected exception was raised!.");
     STAssertNoThrow([Topic validatesInclusionOf:@"title" withOptions:nil andSet:[NSDictionary dictionary]], @"An unexpected exception was raised!.");

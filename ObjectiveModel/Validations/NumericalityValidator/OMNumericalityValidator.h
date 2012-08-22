@@ -36,7 +36,7 @@
 /*!
  * Specifies the value must be an even number.
  */
-@property (assign) NSNumber *even;
+@property (copy) NSNumber *even;
 
 
 
@@ -68,7 +68,7 @@
  * Specifies whether the value has to be an integer, e.g. an integral value
  * (default is +false+).
  */
-@property (assign) NSNumber *integer;
+@property (copy) NSNumber *integer;
 
 
 
@@ -106,7 +106,7 @@
 /*!
  * Specifies the value must be an odd number.
  */
-@property (assign) NSNumber *odd;
+@property (copy) NSNumber *odd;
 
 
 

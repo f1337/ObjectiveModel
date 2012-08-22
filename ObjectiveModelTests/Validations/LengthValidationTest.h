@@ -32,7 +32,7 @@
 
 
 
-@property (assign) Topic *topic;
+@property (retain) Topic *topic;
 
 
 

@@ -58,7 +58,7 @@ typedef enum
  * @brief An enumerable object of values for comparison.
  * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
-@property (assign) id <OMCollection> collection;
+@property (retain) NSObject <OMCollection> *collection;
 
 
 

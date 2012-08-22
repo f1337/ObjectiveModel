@@ -137,21 +137,21 @@
 
 - (void)testEmptyNSStringShouldBeBlank
 {
-    STAssertTrue([[NSString stringWithString:@""] isBlank], @"NSString -isBlank should return YES for empty string, but returned NO.");
+    STAssertTrue([@"" isBlank], @"NSString -isBlank should return YES for empty string, but returned NO.");
 }
 
 
 
 - (void)testWhitespaceNSStringShouldBeBlank
 {
-    STAssertTrue([[NSString stringWithString:@"   "] isBlank], @"NSString -isBlank should return YES for a whitespace string, but returned NO.");
+    STAssertTrue([@"   " isBlank], @"NSString -isBlank should return YES for a whitespace string, but returned NO.");
 }
 
 
 
 - (void)testNSStringWithNonWhitespaceCharactersShouldNotBeBlank
 {
-    STAssertFalse([[NSString stringWithString:@" some text"] isBlank], @"NSString -isBlank should return NO for a string containing non-whitespace characters, but returned YES.");
+    STAssertFalse([@" some text" isBlank], @"NSString -isBlank should return NO for a string containing non-whitespace characters, but returned YES.");
 }
 
 

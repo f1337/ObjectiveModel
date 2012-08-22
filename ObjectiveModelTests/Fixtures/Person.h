@@ -31,9 +31,9 @@
 
 
 
-@property (assign) NSString *firstName;
-@property (assign) NSString *lastName;
-@property (assign) NSString *title;
+@property (copy) NSString *firstName;
+@property (copy) NSString *lastName;
+@property (copy) NSString *title;
 
 
 
