@@ -36,7 +36,6 @@
 
 
 
-- (BOOL)checkArgumentValidityForValue:(id)value;
 - (NSString *)messageForSelectorString:(NSString *)selectorString withNumber:(NSNumber *)number;
 
 
@@ -50,14 +49,19 @@
 
 
 @synthesize even = _even;
-@synthesize equalTo = _equalTo;
-@synthesize greaterThan = _greaterThan;
+@synthesize equalToBlock = _equalToBlock;
+@synthesize equalToNumber = _equalToNumber;
+@synthesize greaterThanBlock = _greaterThanBlock;
+@synthesize greaterThanNumber = _greaterThanNumber;
 @synthesize greaterThanOrEqualToBlock = _greaterThanOrEqualToBlock;
 @synthesize greaterThanOrEqualToNumber = _greaterThanOrEqualToNumber;
 @synthesize integer = _integer;
-@synthesize lessThan = _lessThan;
-@synthesize lessThanOrEqualTo = _lessThanOrEqualTo;
-@synthesize notEqualTo = _notEqualTo;
+@synthesize lessThanBlock = _lessThanBlock;
+@synthesize lessThanNumber = _lessThanNumber;
+@synthesize lessThanOrEqualToBlock = _lessThanOrEqualToBlock;
+@synthesize lessThanOrEqualToNumber = _lessThanOrEqualToNumber;
+@synthesize notEqualToBlock = _notEqualToBlock;
+@synthesize notEqualToNumber = _notEqualToNumber;
 @synthesize odd = _odd;
 
 
@@ -69,14 +73,19 @@
 - (void)dealloc
 {
     [self setEven:nil];
-    [self setEqualTo:nil];
-    [self setGreaterThan:nil];
+    [self setEqualToBlock:nil];
+    [self setEqualToNumber:nil];
+    [self setGreaterThanBlock:nil];
+    [self setGreaterThanNumber:nil];
     [self setGreaterThanOrEqualToBlock:nil];
     [self setGreaterThanOrEqualToNumber:nil];
     [self setInteger:nil];
-    [self setLessThan:nil];
-    [self setLessThanOrEqualTo:nil];
-    [self setNotEqualTo:nil];
+    [self setLessThanBlock:nil];
+    [self setLessThanNumber:nil];
+    [self setLessThanOrEqualToBlock:nil];
+    [self setLessThanOrEqualToNumber:nil];
+    [self setNotEqualToBlock:nil];
+    [self setNotEqualToNumber:nil];
     [self setOdd:nil];
     [super dealloc];
 }
@@ -95,14 +104,19 @@
     dispatch_once(&onceToken, ^{
         constraints = [NSDictionary dictionaryWithObjectsAndKeys:
                        @"isEven", @"even",
-                       @"isEqualToNumber:", @"equalTo",
-                       @"isGreaterThanNumber:", @"greaterThan",
+                       @"isEqualToNumber:", @"equalToBlock",
+                       @"isEqualToNumber:", @"equalToNumber",
+                       @"isGreaterThanNumber:", @"greaterThanBlock",
+                       @"isGreaterThanNumber:", @"greaterThanNumber",
                        @"isGreaterThanOrEqualToNumber:", @"greaterThanOrEqualToBlock",
                        @"isGreaterThanOrEqualToNumber:", @"greaterThanOrEqualToNumber",
                        @"isInteger", @"integer",
-                       @"isLessThanNumber:", @"lessThan",
-                       @"isLessThanOrEqualToNumber:", @"lessThanOrEqualTo",
-                       @"isNotEqualToNumber:", @"notEqualTo",
+                       @"isLessThanNumber:", @"lessThanBlock",
+                       @"isLessThanNumber:", @"lessThanNumber",
+                       @"isLessThanOrEqualToNumber:", @"lessThanOrEqualToBlock",
+                       @"isLessThanOrEqualToNumber:", @"lessThanOrEqualToNumber",
+                       @"isNotEqualToNumber:", @"notEqualToBlock",
+                       @"isNotEqualToNumber:", @"notEqualToNumber",
                        @"isOdd", @"odd",
                        nil];
         [constraints retain];
@@ -129,80 +143,6 @@
 
 
 #pragma mark - INSTANCE METHODS
-
-
-
-- (BOOL)checkArgumentValidityForValue:(id)value
-{
-    if ( value == nil )
-    {
-        return YES;
-    }
-    // value must be an NSNumber or an OMNumericalityValidatorNumberBlock
-    else if (
-        [value isKindOfClass:[NSNumber class]]
-        ||
-        [value isKindOfClass:NSClassFromString(@"NSBlock")]
-    )
-    {
-        return YES;
-    }
-    else
-    {
-        [NSException raise:NSInvalidArgumentException format:@"%@ Invalid Argument! Value (%@) is not an NSNumber or an OMNumericalityValidatorNumberBlock.", NSStringFromClass([self class]), value, nil];
-        return NO;
-    }
-}
-
-
-
-- (void)setEqualTo:(id)equalTo
-{
-    if ( [self checkArgumentValidityForValue:equalTo] )
-    {
-        _equalTo = [equalTo copy];
-    }
-}
-
-
-
-- (void)setGreaterThan:(id)greaterThan
-{
-    if ( [self checkArgumentValidityForValue:greaterThan] )
-    {
-        _greaterThan = [greaterThan copy];
-    }
-}
-
-
-
-//- (void)setGreaterThanOrEqualTo:(id)greaterThanOrEqualTo
-//{
-//    if ( [self checkArgumentValidityForValue:greaterThanOrEqualTo] )
-//    {
-//        _greaterThanOrEqualTo = [greaterThanOrEqualTo copy];
-//    }
-//}
-
-
-
-- (void)setLessThan:(id)lessThan
-{
-    if ( [self checkArgumentValidityForValue:lessThan] )
-    {
-        _lessThan = [lessThan copy];
-    }
-}
-
-
-
-- (void)setLessThanOrEqualTo:(id)lessThanOrEqualTo
-{
-    if ( [self checkArgumentValidityForValue:lessThanOrEqualTo] )
-    {
-        _lessThanOrEqualTo = [lessThanOrEqualTo copy];
-    }
-}
 
 
 
@@ -253,16 +193,6 @@
     }
     
     return message;
-}
-
-
-
-- (void)setNotEqualTo:(id)notEqualTo
-{
-    if ( [self checkArgumentValidityForValue:notEqualTo] )
-    {
-        _notEqualTo = [notEqualTo copy];
-    }
 }
 
 

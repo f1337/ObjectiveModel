@@ -245,7 +245,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setGreaterThan:[NSNumber numberWithInt:10]];
+         [myValidator setGreaterThanNumber:[NSNumber numberWithInt:10]];
      }];
 
     // invalid!([-10, 10], 'must be greater than 10')
@@ -281,7 +281,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setEqualTo:[NSNumber numberWithInt:10]];
+         [myValidator setEqualToNumber:[NSNumber numberWithInt:10]];
      }];
 
     // invalid!([-10, 11] + INFINITY, 'must be equal to 10')
@@ -300,7 +300,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setLessThan:[NSNumber numberWithInt:10]];
+         [myValidator setLessThanNumber:[NSNumber numberWithInt:10]];
      }];
     
     // invalid!([10], 'must be less than 10')
@@ -318,7 +318,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setLessThanOrEqualTo:[NSNumber numberWithInt:10]];
+         [myValidator setLessThanOrEqualToNumber:[NSNumber numberWithInt:10]];
      }];
     
     // invalid!([11], 'must be less than or equal to 10')
@@ -372,8 +372,8 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setGreaterThan:[NSNumber numberWithInt:1]];
-         [myValidator setLessThan:[NSNumber numberWithInt:4]];
+         [myValidator setGreaterThanNumber:[NSNumber numberWithInt:1]];
+         [myValidator setLessThanNumber:[NSNumber numberWithInt:4]];
          [myValidator setEven:[NSNumber numberWithBool:YES]];
      }];
     
@@ -392,7 +392,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setNotEqualTo:[NSNumber numberWithInt:0]];
+         [myValidator setNotEqualToNumber:[NSNumber numberWithInt:0]];
      }];
     
     // invalid!([0, 0.0])
@@ -439,7 +439,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setLessThanOrEqualTo:block];
+         [myValidator setLessThanOrEqualToNumber:block];
      }];
     
     // invalid!([6])
@@ -457,7 +457,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setLessThan:[NSNumber numberWithInt:4]];
+         [myValidator setLessThanNumber:[NSNumber numberWithInt:4]];
          [myValidator setMessage:@"smaller than %{count}"];
      }];
 
@@ -476,7 +476,7 @@
     [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
-         [myValidator setGreaterThan:[NSNumber numberWithInt:4]];
+         [myValidator setGreaterThanNumber:[NSNumber numberWithInt:4]];
          [myValidator setMessage:@"bigger than %{count}"];
      }];
     
