@@ -51,9 +51,7 @@ typedef id <OMCollection>(^ OMMembershipValidatorCollectionBlock) (OMActiveModel
 //     validates_exclusion_of :password, :in => lambda { |p| [p.username, p.first_name] },
 //                            :message => "should not be the same as your username or first name"
 //   end
-+ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set;
-+ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMMembershipValidatorCollectionBlock)block;
-
++ (void)validatesExclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
 
 
 // Validates whether the value of the specified attribute is available in a
@@ -65,8 +63,7 @@ typedef id <OMCollection>(^ OMMembershipValidatorCollectionBlock) (OMActiveModel
 //     validates_inclusion_of :format, :in => %w( jpg gif png ), :message => "extension %{value} is not included in the list"
 //     validates_inclusion_of :states, :in => lambda{ |person| STATES[person.country] }
 //   end
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set;
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMMembershipValidatorCollectionBlock)block;
++ (void)validatesInclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
 
 
 

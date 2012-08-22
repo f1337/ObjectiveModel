@@ -35,23 +35,9 @@
 
 
 
-+ (void)validatesLengthOf:(NSObject *)properties withOptions:(NSDictionary *)options
-{
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andOptions:options];
-}
-
-
-
 + (void)validatesLengthOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andBlock:block];
-}
-
-
-
-+ (void)validatesSizeOf:(NSObject *)properties withOptions:(NSDictionary *)options
-{
-    [self validatesLengthOf:properties withOptions:options];
 }
 
 

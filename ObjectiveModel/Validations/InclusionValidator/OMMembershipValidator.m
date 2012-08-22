@@ -36,8 +36,8 @@
 
 
 
-@synthesize block = _block;
 @synthesize collection = _collection;
+@synthesize collectionBlock = _collectionBlock;
 @dynamic message;
 @synthesize mode = _mode;
 
@@ -45,8 +45,8 @@
 
 - (void)dealloc
 {
-    [self setBlock:nil];
     [self setCollection:nil];
+    [self setCollectionBlock:nil];
     [super dealloc];
 }
 
@@ -89,9 +89,9 @@
 {
     id <OMCollection> set;
 
-    if ( _block )
+    if ( _collectionBlock )
     {
-        set = _block(model);
+        set = _collectionBlock(model);
     }
     else
     {

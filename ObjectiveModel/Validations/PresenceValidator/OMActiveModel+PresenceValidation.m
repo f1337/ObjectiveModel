@@ -31,13 +31,6 @@
 
 
 
-+ (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options
-{
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMPresenceValidator class]] andOptions:options];
-}
-
-
-
 + (void)validatesPresenceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMPresenceValidator class]] andBlock:block];

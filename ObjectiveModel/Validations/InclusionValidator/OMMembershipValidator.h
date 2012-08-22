@@ -46,19 +46,19 @@ typedef enum
 
 
 /*!
- * @brief An OMMembershipValidatorCollectionBlock which returns an enumerable
- * object of values for comparison.
- * @discussion The enumerable object must implement the <OMCollection> protocol.
- */
-@property (copy) OMMembershipValidatorCollectionBlock block;
-
-
-
-/*!
  * @brief An enumerable object of values for comparison.
  * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
 @property (retain) NSObject <OMCollection> *collection;
+
+
+
+/*!
+ * @brief An OMMembershipValidatorCollectionBlock which returns an enumerable
+ * object of values for comparison.
+ * @discussion The enumerable object must implement the <OMCollection> protocol.
+ */
+@property (copy) OMMembershipValidatorCollectionBlock collectionBlock;
 
 
 

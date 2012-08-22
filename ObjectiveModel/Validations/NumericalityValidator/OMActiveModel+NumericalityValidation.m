@@ -31,13 +31,6 @@
 
 
 
-+ (void)validatesNumericalityOf:(NSObject *)properties withOptions:(NSDictionary *)options
-{
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMNumericalityValidator class]] andOptions:options];
-}
-
-
-
 + (void)validatesNumericalityOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMNumericalityValidator class]] andBlock:block];

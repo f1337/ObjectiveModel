@@ -46,7 +46,6 @@
  *
  * The firstName property must be defined for the object and it cannot be nil or blank.
  */
-+ (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 + (void)validatesPresenceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
 
 

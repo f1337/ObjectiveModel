@@ -28,6 +28,7 @@
 
 
 
+#import "OMExclusionValidator.h"
 #import "OMMembershipValidator.h"
 
 
@@ -36,38 +37,16 @@
 
 
 
-+ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set
++ (void)validatesExclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:[NSNumber numberWithInt:OMMembershipValidationExclusion] forKey:@"mode"];
-    [self validatesInclusionOf:properties withOptions:dictionary andSet:set];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andBlock:block];
 }
 
 
 
-+ (void)validatesExclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMMembershipValidatorCollectionBlock)block
++ (void)validatesInclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:[NSNumber numberWithInt:OMMembershipValidationExclusion] forKey:@"mode"];
-    [self validatesInclusionOf:properties withOptions:dictionary andBlock:block];
-}
-
-
-
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andSet:(id <OMCollection>)set
-{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:set forKey:@"collection"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andOptions:dictionary];
-}
-
-
-
-+ (void)validatesInclusionOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMMembershipValidatorCollectionBlock)block
-{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:block forKey:@"block"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andOptions:dictionary];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMMembershipValidator class]] andBlock:block];
 }
 
 
