@@ -2,7 +2,6 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/exclusion.rb
  * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
@@ -28,27 +27,11 @@
 
 
 
-#import "OMExclusionValidator.h"
-#import "OMInclusionValidator.h"
 #import "OMMembershipValidator.h"
 
 
 
-@implementation OMActiveModel (MembershipValidation)
-
-
-
-+ (void)validatesExclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
-{
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andBlock:block];
-}
-
-
-
-+ (void)validatesInclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
-{
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andBlock:block];
-}
+@interface OMInclusionValidator : OMMembershipValidator
 
 
 

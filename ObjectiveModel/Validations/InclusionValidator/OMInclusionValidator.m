@@ -2,7 +2,6 @@
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
- * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/exclusion.rb
  * https://github.com/rails/rails/blob/master/activemodel/lib/active_model/validations/inclusion.rb
  * Ruby on Rails is Copyright © 2004-2012 David Heinemeier Hansson.
  *
@@ -28,26 +27,38 @@
 
 
 
-#import "OMExclusionValidator.h"
 #import "OMInclusionValidator.h"
-#import "OMMembershipValidator.h"
 
 
 
-@implementation OMActiveModel (MembershipValidation)
+@implementation OMInclusionValidator
 
 
 
-+ (void)validatesExclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
+- (instancetype)init
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMExclusionValidator class]] andBlock:block];
+    if ( (self = [super init]) )
+    {
+        [self setMessage:@"is not included in the list"];
+    }
+    
+    return self;
 }
 
 
 
-+ (void)validatesInclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
+- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMInclusionValidator class]] andBlock:block];
+    // unless include?(record, value)
+    BOOL included = [super validateModel:model withValue:value forKey:inKey error:outError];
+    
+    if ( ! included )
+    {
+        // record.errors.add(attribute, :inclusion, options.except(:in).merge!(:value => value))
+        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+    }
+    
+    return included;
 }
 
 

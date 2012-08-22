@@ -39,7 +39,6 @@
 @synthesize collection = _collection;
 @synthesize collectionBlock = _collectionBlock;
 @dynamic message;
-@synthesize mode = _mode;
 
 
 
@@ -48,39 +47,6 @@
     [self setCollection:nil];
     [self setCollectionBlock:nil];
     [super dealloc];
-}
-
-
-
-- (instancetype)init
-{
-    if ( (self = [super init]) )
-    {
-        [self setMode:OMMembershipValidationInclusion];
-    }
-
-    return self;
-}
-
-
-
-- (NSString *)message
-{
-    NSString *message = [super message];
-
-    if ( ! [message length] )
-    {
-        if ( _mode == OMMembershipValidationExclusion )
-        {
-            message = @"is reserved";
-        }
-        else if ( _mode == OMMembershipValidationInclusion )
-        {
-            message = @"is not included in the list";
-        }
-    }
-
-    return message;
 }
 
 
@@ -99,20 +65,7 @@
     }
 
     // unless include?(record, value)
-    BOOL valid = [set containsObject:value];
-
-    if ( _mode == OMMembershipValidationExclusion )
-    {
-        valid = (! valid);
-    }
-
-    if ( ! valid )
-    {
-        // record.errors.add(attribute, :inclusion, options.except(:in).merge!(:value => value))
-        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
-    }
-
-    return valid;
+    return [set containsObject:value];
 }
 
 

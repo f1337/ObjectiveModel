@@ -11,6 +11,8 @@
 		3AA12B6A15E531E1004A7AA2 /* ValidationDemoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B6915E531E1004A7AA2 /* ValidationDemoTest.m */; };
 		3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */; };
 		3AA12B7215E5937A004A7AA2 /* OMExclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */; };
+		3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */; };
+		3AA12B7615E59DA3004A7AA2 /* OMInclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7415E59DA3004A7AA2 /* OMInclusionValidator.m */; };
 		AC09CD9615815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CD9415815E59008E581C /* InfoPlist.strings */; };
 		AC09CDAD15815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CDAB15815E59008E581C /* InfoPlist.strings */; };
 		AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBC15815F73008E581C /* NSObject+Blank.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,6 +92,8 @@
 		3AA12B6915E531E1004A7AA2 /* ValidationDemoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationDemoTest.m; sourceTree = "<group>"; };
 		3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMExclusionValidator.h; path = InclusionValidator/OMExclusionValidator.h; sourceTree = "<group>"; };
 		3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMExclusionValidator.m; path = InclusionValidator/OMExclusionValidator.m; sourceTree = "<group>"; };
+		3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMInclusionValidator.h; path = InclusionValidator/OMInclusionValidator.h; sourceTree = "<group>"; };
+		3AA12B7415E59DA3004A7AA2 /* OMInclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMInclusionValidator.m; path = InclusionValidator/OMInclusionValidator.m; sourceTree = "<group>"; };
 		AC09CD8F15815E59008E581C /* ObjectiveModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC09CD9315815E59008E581C /* ObjectiveModel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveModel-Info.plist"; sourceTree = "<group>"; };
 		AC09CD9515815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -408,6 +412,8 @@
 			children = (
 				3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */,
 				3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */,
+				3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */,
+				3AA12B7415E59DA3004A7AA2 /* OMInclusionValidator.m */,
 				AC2A2F1C158260B400C5AF8E /* OMMembershipValidator.h */,
 				AC2A2F1D158260B400C5AF8E /* OMMembershipValidator.m */,
 				AC2A2F20158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h */,
@@ -449,6 +455,7 @@
 				AC2A2F1E158260B400C5AF8E /* OMMembershipValidator.h in Headers */,
 				AC2A2F22158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h in Headers */,
 				3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */,
+				3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +630,7 @@
 				AC2A2F23158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m in Sources */,
 				ACE55FBC1583EF62001DA475 /* OMCollection.m in Sources */,
 				3AA12B7215E5937A004A7AA2 /* OMExclusionValidator.m in Sources */,
+				3AA12B7615E59DA3004A7AA2 /* OMInclusionValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

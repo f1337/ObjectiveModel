@@ -33,14 +33,6 @@
 
 
 
-typedef enum
-{
-    OMMembershipValidationInclusion,
-    OMMembershipValidationExclusion
-} OMMembershipValidationMode;
-
-
-
 @interface OMMembershipValidator : OMValidator
 
 
@@ -59,24 +51,6 @@ typedef enum
  * @discussion The enumerable object must implement the <OMCollection> protocol.
  */
 @property (copy) OMMembershipValidatorCollectionBlock collectionBlock;
-
-
-
-/*!
- * @brief Specifies a custom error message.
- * @discussion If mode is set to OMMembershipValidationInclusion, the default
- * mesage is: "is not included in the list". If mode is set to
- * OMMembershipValidationExclusion, the default mesage is: "is reserved".
- */
-- (NSString *)message;
-
-
-
-/*!
- * @brief The validation mode: inclusion or exclusion.
- * @discussion OMMembershipValidationMode
- */
-@property (assign) OMMembershipValidationMode mode;
 
 
 

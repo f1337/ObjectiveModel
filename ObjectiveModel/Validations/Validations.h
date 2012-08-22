@@ -33,6 +33,7 @@
 #import "OMConfirmationValidator.h"
 #import "OMExclusionValidator.h"
 #import "OMFormatValidator.h"
+#import "OMInclusionValidator.h"
 #import "OMMembershipValidator.h"
 #import "OMLengthValidator.h"
 #import "OMNumericalityValidator.h"
