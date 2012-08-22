@@ -38,4 +38,11 @@
 
 
 
++ (void)validatesPresenceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
+{
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMPresenceValidator class]] andBlock:block];
+}
+
+
+
 @end

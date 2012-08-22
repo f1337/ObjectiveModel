@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AA12B6615E531D7004A7AA2 /* ValidationDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B6515E531D7004A7AA2 /* ValidationDemo.m */; };
+		3AA12B6A15E531E1004A7AA2 /* ValidationDemoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B6915E531E1004A7AA2 /* ValidationDemoTest.m */; };
 		AC09CD9615815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CD9415815E59008E581C /* InfoPlist.strings */; };
 		AC09CDAD15815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CDAB15815E59008E581C /* InfoPlist.strings */; };
 		AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBC15815F73008E581C /* NSObject+Blank.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,7 +55,6 @@
 		AC09CE2B15815F87008E581C /* FormatValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1915815F87008E581C /* FormatValidationTest.m */; };
 		AC09CE2D15815F87008E581C /* LengthValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1D15815F87008E581C /* LengthValidationTest.m */; };
 		AC09CE2E15815F87008E581C /* NumericalityValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */; };
-		AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2115815F87008E581C /* OMValidatorTest.m */; };
 		AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2315815F87008E581C /* PresenceValidationTest.m */; };
 		AC09CE3115815F87008E581C /* SenTestCase+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE2515815F87008E581C /* SenTestCase+Validation.m */; };
 		AC09CE3315816020008E581C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC09CE3215816020008E581C /* CoreData.framework */; };
@@ -81,6 +82,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3AA12B6415E531D7004A7AA2 /* ValidationDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationDemo.h; sourceTree = "<group>"; };
+		3AA12B6515E531D7004A7AA2 /* ValidationDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationDemo.m; sourceTree = "<group>"; };
+		3AA12B6815E531E1004A7AA2 /* ValidationDemoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationDemoTest.h; sourceTree = "<group>"; };
+		3AA12B6915E531E1004A7AA2 /* ValidationDemoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationDemoTest.m; sourceTree = "<group>"; };
 		AC09CD8F15815E59008E581C /* ObjectiveModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC09CD9315815E59008E581C /* ObjectiveModel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveModel-Info.plist"; sourceTree = "<group>"; };
 		AC09CD9515815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -142,8 +147,6 @@
 		AC09CE1D15815F87008E581C /* LengthValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LengthValidationTest.m; sourceTree = "<group>"; };
 		AC09CE1E15815F87008E581C /* NumericalityValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumericalityValidationTest.h; sourceTree = "<group>"; };
 		AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericalityValidationTest.m; sourceTree = "<group>"; };
-		AC09CE2015815F87008E581C /* OMValidatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMValidatorTest.h; sourceTree = "<group>"; };
-		AC09CE2115815F87008E581C /* OMValidatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMValidatorTest.m; sourceTree = "<group>"; };
 		AC09CE2215815F87008E581C /* PresenceValidationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceValidationTest.h; sourceTree = "<group>"; };
 		AC09CE2315815F87008E581C /* PresenceValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceValidationTest.m; sourceTree = "<group>"; };
 		AC09CE2415815F87008E581C /* SenTestCase+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+Validation.h"; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 		AC09CDA815815E59008E581C /* ObjectiveModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				3AA12B6815E531E1004A7AA2 /* ValidationDemoTest.h */,
+				3AA12B6915E531E1004A7AA2 /* ValidationDemoTest.m */,
 				AC09CE0C15815F87008E581C /* BlankTest.h */,
 				AC09CE0D15815F87008E581C /* BlankTest.m */,
 				AC09CE0E15815F87008E581C /* Fixtures */,
@@ -350,6 +355,8 @@
 		AC09CE0E15815F87008E581C /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				3AA12B6415E531D7004A7AA2 /* ValidationDemo.h */,
+				3AA12B6515E531D7004A7AA2 /* ValidationDemo.m */,
 				AC09CE0F15815F87008E581C /* Person.h */,
 				AC09CE1015815F87008E581C /* Person.m */,
 				AC09CE1115815F87008E581C /* Topic.h */,
@@ -375,8 +382,6 @@
 				AC09CE1D15815F87008E581C /* LengthValidationTest.m */,
 				AC09CE1E15815F87008E581C /* NumericalityValidationTest.h */,
 				AC09CE1F15815F87008E581C /* NumericalityValidationTest.m */,
-				AC09CE2015815F87008E581C /* OMValidatorTest.h */,
-				AC09CE2115815F87008E581C /* OMValidatorTest.m */,
 				AC09CE2215815F87008E581C /* PresenceValidationTest.h */,
 				AC09CE2315815F87008E581C /* PresenceValidationTest.m */,
 				AC09CE2415815F87008E581C /* SenTestCase+Validation.h */,
@@ -626,10 +631,11 @@
 				AC09CE2D15815F87008E581C /* LengthValidationTest.m in Sources */,
 				ACE55FC515841574001DA475 /* MembershipValidationTest.m in Sources */,
 				AC09CE2E15815F87008E581C /* NumericalityValidationTest.m in Sources */,
-				AC09CE2F15815F87008E581C /* OMValidatorTest.m in Sources */,
 				AC09CE3015815F87008E581C /* PresenceValidationTest.m in Sources */,
 				AC09CE3115815F87008E581C /* SenTestCase+Validation.m in Sources */,
 				AC2B08491584EBA800FE661F /* ConditionalValidationTest.m in Sources */,
+				3AA12B6615E531D7004A7AA2 /* ValidationDemo.m in Sources */,
+				3AA12B6A15E531E1004A7AA2 /* ValidationDemoTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

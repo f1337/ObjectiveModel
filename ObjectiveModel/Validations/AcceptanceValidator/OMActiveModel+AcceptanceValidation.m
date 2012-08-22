@@ -35,9 +35,16 @@
 
 
 
-+ (void)validatesAcceptanceOf:(NSObject *)properties withOptions:(NSDictionary *)options;
++ (void)validatesAcceptanceOf:(NSObject *)properties withOptions:(NSDictionary *)options
 {
     [self validates:properties withValidators:[NSArray arrayWithObject:[OMAcceptanceValidator class]] andOptions:options];
+}
+
+
+
++ (void)validatesAcceptanceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
+{
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMAcceptanceValidator class]] andBlock:block];
 }
 
 

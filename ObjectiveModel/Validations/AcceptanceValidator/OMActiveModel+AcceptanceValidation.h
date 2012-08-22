@@ -49,6 +49,7 @@
  * is not +nil+ and by default on save.
  */
 + (void)validatesAcceptanceOf:(NSObject *)properties withOptions:(NSDictionary *)options;
++ (void)validatesAcceptanceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
 
 
 

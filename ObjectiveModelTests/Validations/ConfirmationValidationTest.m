@@ -68,7 +68,7 @@
 - (void)testNoTitleConfirmation
 {
     //Topic.validates_confirmation_of(:title)
-    [Topic validatesConfirmationOf:@"title" withOptions:nil];
+    [Topic validatesConfirmationOf:@"title" withBlock:nil];
 
     //t = Topic.new(:author_name => "Plutarch")
     [_topic setAuthorName:@"Plutarch"];
@@ -98,7 +98,9 @@
 - (void)testTitleConfirmation
 {
     //Topic.validates_confirmation_of(:title)
-    [Topic validatesConfirmationOf:@"title" withOptions:[NSDictionary dictionaryWithObject:@"and confirmation do not match" forKey:@"message"]];;
+    [Topic validatesConfirmationOf:@"title" withBlock:^(OMValidator *validator) {
+        [validator setMessage:@"and confirmation do not match"];
+    }];
 
     //t = Topic.new("title" => "We should be confirmed","title_confirmation" => "")
     [_topic setTitle:@"We should be confirmed"];

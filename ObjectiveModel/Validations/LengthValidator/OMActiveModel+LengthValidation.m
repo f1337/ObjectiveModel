@@ -42,11 +42,9 @@
 
 
 
-+ (void)validatesLengthOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMLengthValidatorTokenizerBlock)block
++ (void)validatesLengthOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:block forKey:@"tokenizer"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andOptions:dictionary];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andBlock:block];
 }
 
 
@@ -58,9 +56,9 @@
 
 
 
-+ (void)validatesSizeOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMLengthValidatorTokenizerBlock)block
++ (void)validatesSizeOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    [self validatesLengthOf:properties withOptions:options andBlock:block];
+    [self validatesLengthOf:properties withBlock:block];
 }
 
 

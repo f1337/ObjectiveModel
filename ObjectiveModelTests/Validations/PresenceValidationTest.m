@@ -68,7 +68,7 @@
 - (void)testAcceptsMultipleProperties
 {
     // define validation
-    [Person validatesPresenceOf:[NSArray arrayWithObjects:@"firstName", @"lastName", nil] withOptions:nil];
+    [Person validatesPresenceOf:[NSArray arrayWithObjects:@"firstName", @"lastName", nil] withBlock:nil];
 
     // assert both properties invalid
     OMAssertModelIsInvalid(_model, @"cannot be blank", ([NSArray arrayWithObjects:@"firstName", @"lastName", nil]));
@@ -88,7 +88,7 @@
 - (void)testAcceptsSingleProperty
 {
     // define validation
-    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [Person validatesPresenceOf:@"firstName" withBlock:nil];
 
     // assert property is invalid
     OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
@@ -105,8 +105,9 @@
     // define custom message
     NSString *message = @"This string contains 'single' and \"double\" quotes";
     // define validation
-    [Person validatesPresenceOf:@"firstName"
-                    withOptions:[NSDictionary dictionaryWithObjectsAndKeys:message, @"message", nil]];
+    [Person validatesPresenceOf:@"firstName" withBlock:^(OMValidator *validator) {
+        [validator setMessage:message];
+    }];
     
     // assert property is invalid
     OMAssertModelIsInvalid(_model, @"This string contains 'single' and \"double\" quotes", [NSArray arrayWithObject:@"firstName"]);
@@ -116,7 +117,7 @@
 
 - (void)testIfValueIsNilItShouldBeInvalid
 {
-    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [Person validatesPresenceOf:@"firstName" withBlock:nil];
     [_model setFirstName:nil];
     OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 }
@@ -129,7 +130,7 @@
 
 - (void)testIfValueIsEmptyStringItShouldBeInvalid
 {
-    [Person validatesPresenceOf:@"firstName" withOptions:nil];
+    [Person validatesPresenceOf:@"firstName" withBlock:nil];
     [_model setFirstName:@""];
     OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 }

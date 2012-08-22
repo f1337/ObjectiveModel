@@ -28,6 +28,9 @@
 
 
 @interface OMActiveModel (PresenceValidation)
+
+
+
 /*!
  * @param properties A string property name OR
  * a collection of string property names conforming to NSFastEnumeration.
@@ -44,4 +47,8 @@
  * The firstName property must be defined for the object and it cannot be nil or blank.
  */
 + (void)validatesPresenceOf:(NSObject *)properties withOptions:(NSDictionary *)options;
++ (void)validatesPresenceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
+
+
+
 @end
