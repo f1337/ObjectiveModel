@@ -46,15 +46,11 @@
 
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
+- (instancetype)init
 {
-    if ( (self = [super initWithDictionary:dictionary]) )
+    if ( (self = [super init]) )
     {
-        // shouldMatchPattern defaults to YES
-        if ( ! [dictionary objectForKey:@"shouldMatchPattern"] )
-        {
-            _shouldMatchPattern = YES;
-        }
+        [self setShouldMatchPattern:YES];
     }
     
     return self;

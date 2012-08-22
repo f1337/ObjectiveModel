@@ -69,6 +69,14 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 /*!
+ * Private convenience method for mass-assignment of validation
+ * options/properties.
+ */
+- (void)setOptions:(NSDictionary *)options;
+
+
+
+/*!
  * Specifies a block to call to determine if the validation should occur.
  *
  *   [model setShouldApplyValidationBlock:^(id)model
@@ -105,7 +113,6 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
                          value:(NSObject *)value
                         forKey:(NSString *)inKey
                        message:(NSString *)message;
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (BOOL)shouldApplyValidationForModel:(OMActiveModel *)model;
 - (BOOL)shouldSkipValidationForValue:(NSObject *)value;
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError;

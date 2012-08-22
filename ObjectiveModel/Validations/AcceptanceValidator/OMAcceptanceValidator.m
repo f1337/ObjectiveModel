@@ -64,17 +64,14 @@
 
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    //super(options.reverse_merge(:allow_nil => true, :accept => "1"))
-    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    [options setObject:[NSNumber numberWithBool:YES] forKey:@"allowNil"];
-    return [super initWithDictionary:options];
-}
-
-
-
 #pragma mark - INSTANCE METHODS
+
+
+
+- (BOOL)allowNil
+{
+    return YES;
+}
 
 
 

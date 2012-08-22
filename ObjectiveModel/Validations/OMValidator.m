@@ -29,22 +29,6 @@
 
 
 
-@interface OMValidator (Private)
-
-
-
-/*!
- * Private convenience method for mass-assignment of validation
- * options/properties.
- */
-- (void)setOptions:(NSDictionary *)options;
-
-
-
-@end
-
-
-
 @implementation OMValidator
 
 
@@ -61,18 +45,6 @@
     [self setMessage:nil];
     [self setShouldValidate:nil];
     [super dealloc];
-}
-
-
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    if ( (self = [self init]) )
-    {
-        [self setOptions:dictionary];
-    }
-
-    return self;
 }
 
 
@@ -148,10 +120,10 @@
 {
     if (
         // skip validation if value is nil or NSNull and allowNil is true
-        ( _allowNil && (value == nil || [value isKindOfClass:[NSNull class]]) )
+        ( [self allowNil] && (value == nil || [value isKindOfClass:[NSNull class]]) )
         || 
         // skip validation if value is blank and allowBlank is true
-        ( _allowBlank && (value == nil || [value isBlank]) )
+        ( [self allowBlank] && (value == nil || [value isBlank]) )
     )
     {
         return YES;
