@@ -154,7 +154,7 @@
 - (void)testDefaultValidatesNumericalityOf
 {
     // Topic.validates_numericality_of :approved
-    [Topic validatesNumericalityOf:@"approved" withOptions:nil];
+    [Topic validatesNumericalityOf:@"approved" withBlock:nil];
 
     // invalid!(NIL + BLANK + JUNK)
     OMAssertValuesAreInvalid(([self null]), @"");
@@ -173,8 +173,10 @@
 - (void)testValidatesNumericalityOfWithNilAllowed
 {
     // Topic.validates_numericality_of :approved, :allow_nil => true
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"allowNil", nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         [validator setAllowNil:YES];
+     }];
 
     // invalid!(JUNK + BLANK)
     OMAssertValuesAreInvalid(([self blankStrings]), @"");
@@ -193,8 +195,11 @@
 - (void)testValidatesNumericalityOfWithIntegerOnly
 {
     // Topic.validates_numericality_of :approved, :only_integer => true
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"integer", nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setInteger:[NSNumber numberWithBool:YES]];
+     }];
 
     // invalid!(NIL + BLANK + JUNK + FLOATS + BIGDECIMAL + INFINITY)
     OMAssertValuesAreInvalid(([self null]), @"must be an integer");
@@ -213,11 +218,12 @@
 - (void)testValidatesNumericalityOfWithIntegerOnlyAndNilAllowed
 {
     // Topic.validates_numericality_of :approved, :only_integer => true, :allow_nil => true
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithBool:YES], @"allowNil",
-                                    [NSNumber numberWithBool:YES], @"integer",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         [validator setAllowNil:YES];
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setInteger:[NSNumber numberWithBool:YES]];
+     }];
 
     // invalid!(JUNK + BLANK + FLOATS + BIGDECIMAL + INFINITY)
     OMAssertValuesAreInvalid(([self blankStrings]), @"must be an integer");
@@ -236,10 +242,11 @@
 - (void)testValidatesNumericalityWithGreaterThan
 {
     // Topic.validates_numericality_of :approved, :greater_than => 10
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:10], @"greaterThan",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setGreaterThan:[NSNumber numberWithInt:10]];
+     }];
 
     // invalid!([-10, 10], 'must be greater than 10')
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:10], nil]), @"must be greater than 10");
@@ -253,10 +260,11 @@
 - (void)testValidatesNumericalityWithGreaterThanOrEqual
 {
     // Topic.validates_numericality_of :approved, :greater_than_or_equal_to => 10
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:10], @"greaterThanOrEqualTo",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setGreaterThanOrEqualToNumber:[NSNumber numberWithInt:10]];
+     }];
 
     // invalid!([-9, 9], 'must be greater than or equal to 10')
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-9], [NSNumber numberWithInt:9], nil]), @"must be greater than or equal to 10");
@@ -270,10 +278,11 @@
 -(void)testValidatesNumericalityWithEqualTo
 {
     // Topic.validates_numericality_of :approved, :equal_to => 10
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:10], @"equalTo",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setEqualTo:[NSNumber numberWithInt:10]];
+     }];
 
     // invalid!([-10, 11] + INFINITY, 'must be equal to 10')
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-10], [NSNumber numberWithInt:11], nil]), @"must be equal to 10");
@@ -288,10 +297,11 @@
 - (void)testValidatesNumericalityWithLessThan
 {
     // Topic.validates_numericality_of :approved, :less_than => 10
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:10], @"lessThan",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setLessThan:[NSNumber numberWithInt:10]];
+     }];
     
     // invalid!([10], 'must be less than 10')
     OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:10]]), @"must be less than 10");
@@ -305,10 +315,11 @@
 - (void)testValidatesNumericalityWithLessThanOrEqualTo
 {
     // Topic.validates_numericality_of :approved, :less_than_or_equal_to => 10
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:10], @"lessThanOrEqualTo",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setLessThanOrEqualTo:[NSNumber numberWithInt:10]];
+     }];
     
     // invalid!([11], 'must be less than or equal to 10')
     OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:11]]), @"must be less than or equal to 10");
@@ -322,10 +333,11 @@
 - (void)testValidatesNumericalityWithOdd
 {
     // Topic.validates_numericality_of :approved, :odd => true
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithBool:YES], @"odd",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setOdd:[NSNumber numberWithBool:YES]];
+     }];
     
     // invalid!([-2, 2], 'must be odd')
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-2], [NSNumber numberWithInt:2], nil]), @"must be odd");
@@ -339,10 +351,11 @@
 - (void)testValidatesNumericalityWithEven
 {
     // Topic.validates_numericality_of :approved, :even => true
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithBool:YES], @"even",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setEven:[NSNumber numberWithBool:YES]];
+     }];
     
     // invalid!([-1, 1], 'must be even')
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:-1], [NSNumber numberWithInt:1], nil]), @"must be even");
@@ -356,12 +369,13 @@
 - (void)testValidatesNumericalityWithGreaterThanLessThanAndEven
 {
     // Topic.validates_numericality_of :approved, :greater_than => 1, :less_than => 4, :even => true
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:1], @"greaterThan",
-                                    [NSNumber numberWithInt:4], @"lessThan",
-                                    [NSNumber numberWithBool:YES], @"even",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setGreaterThan:[NSNumber numberWithInt:1]];
+         [myValidator setLessThan:[NSNumber numberWithInt:4]];
+         [myValidator setEven:[NSNumber numberWithBool:YES]];
+     }];
     
     // invalid!([1, 3, 4])
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:3], [NSNumber numberWithInt:4], nil]), @"");
@@ -375,10 +389,11 @@
 - (void)testValidatesNumericalityWithIsNotEqualTo
 {
     // Topic.validates_numericality_of :approved, :other_than => 0
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:0], @"notEqualTo",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setNotEqualTo:[NSNumber numberWithInt:0]];
+     }];
     
     // invalid!([0, 0.0])
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithDouble:0.0], nil]), @"must not be equal to 0");
@@ -398,10 +413,11 @@
     };
 
     // Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    block, @"greaterThanOrEqualTo",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setGreaterThanOrEqualToBlock:block];
+     }];
 
     // invalid!([3, 4])
     OMAssertValuesAreInvalid(([NSArray arrayWithObjects:[NSNumber numberWithInt:3], [NSNumber numberWithDouble:4], nil]), @"must be greater than or equal to 5");
@@ -420,10 +436,11 @@
     {
         return [topic maxApproved];
     };
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    block, @"lessThanOrEqualTo",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setLessThanOrEqualTo:block];
+     }];
     
     // invalid!([6])
     OMAssertValuesAreInvalid(([NSArray arrayWithObject:[NSNumber numberWithInt:6]]), @"");
@@ -437,11 +454,12 @@
 - (void)testValidatesNumericalityWithNumericMessage
 {
     // Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:4], @"lessThan",
-                                    @"smaller than %{count}", @"message",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setLessThan:[NSNumber numberWithInt:4]];
+         [myValidator setMessage:@"smaller than %{count}"];
+     }];
 
     // topic = Topic.new("title" => "numeric test", "approved" => 10)
     Topic *topic = [[Topic alloc] init];
@@ -455,11 +473,12 @@
     
 
     // Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
-    [Topic validatesNumericalityOf:@"approved"
-                       withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:4], @"greaterThan",
-                                    @"bigger than %{count}", @"message",
-                                    nil]];
+    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+     {
+         OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
+         [myValidator setGreaterThan:[NSNumber numberWithInt:4]];
+         [myValidator setMessage:@"bigger than %{count}"];
+     }];
     
     // topic = Topic.new("title" => "numeric test", "approved" => 1)
     topic = [[Topic alloc] init];
@@ -470,31 +489,6 @@
     // assert_equal ["greater than 4"], topic.errors[:approved]
     OMAssertModelIsInvalid(topic, @"bigger than 4", [NSArray arrayWithObject:@"approved"]);
     [topic release];
-}
-
-
-
-- (void)testValidatesNumericalityWithInvalidArgs
-{
-    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than_or_equal_to => "foo" }
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"greaterThanOrEqualTo", nil];
-    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-
-    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than_or_equal_to => "foo" }
-    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"lessThanOrEqualTo", nil];
-    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-
-    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :greater_than => "foo" }
-    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"greaterThan", nil];
-    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-    
-    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :less_than => "foo" }
-    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"lessThan", nil];
-    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-    
-    // assert_raise(ArgumentError){ Topic.validates_numericality_of :approved, :equal_to => "foo" }
-    options = [NSDictionary dictionaryWithObjectsAndKeys:@"foo", @"equalTo", nil];
-    STAssertThrowsSpecificNamed([Topic validatesNumericalityOf:@"approved" withOptions:options], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
 }
 
 

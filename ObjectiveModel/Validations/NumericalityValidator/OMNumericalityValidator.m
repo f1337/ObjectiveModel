@@ -52,7 +52,8 @@
 @synthesize even = _even;
 @synthesize equalTo = _equalTo;
 @synthesize greaterThan = _greaterThan;
-@synthesize greaterThanOrEqualTo = _greaterThanOrEqualTo;
+@synthesize greaterThanOrEqualToBlock = _greaterThanOrEqualToBlock;
+@synthesize greaterThanOrEqualToNumber = _greaterThanOrEqualToNumber;
 @synthesize integer = _integer;
 @synthesize lessThan = _lessThan;
 @synthesize lessThanOrEqualTo = _lessThanOrEqualTo;
@@ -70,7 +71,8 @@
     [self setEven:nil];
     [self setEqualTo:nil];
     [self setGreaterThan:nil];
-    [self setGreaterThanOrEqualTo:nil];
+    [self setGreaterThanOrEqualToBlock:nil];
+    [self setGreaterThanOrEqualToNumber:nil];
     [self setInteger:nil];
     [self setLessThan:nil];
     [self setLessThanOrEqualTo:nil];
@@ -95,7 +97,8 @@
                        @"isEven", @"even",
                        @"isEqualToNumber:", @"equalTo",
                        @"isGreaterThanNumber:", @"greaterThan",
-                       @"isGreaterThanOrEqualToNumber:", @"greaterThanOrEqualTo",
+                       @"isGreaterThanOrEqualToNumber:", @"greaterThanOrEqualToBlock",
+                       @"isGreaterThanOrEqualToNumber:", @"greaterThanOrEqualToNumber",
                        @"isInteger", @"integer",
                        @"isLessThanNumber:", @"lessThan",
                        @"isLessThanOrEqualToNumber:", @"lessThanOrEqualTo",
@@ -173,13 +176,13 @@
 
 
 
-- (void)setGreaterThanOrEqualTo:(id)greaterThanOrEqualTo
-{
-    if ( [self checkArgumentValidityForValue:greaterThanOrEqualTo] )
-    {
-        _greaterThanOrEqualTo = [greaterThanOrEqualTo copy];
-    }
-}
+//- (void)setGreaterThanOrEqualTo:(id)greaterThanOrEqualTo
+//{
+//    if ( [self checkArgumentValidityForValue:greaterThanOrEqualTo] )
+//    {
+//        _greaterThanOrEqualTo = [greaterThanOrEqualTo copy];
+//    }
+//}
 
 
 
@@ -351,9 +354,9 @@
                 optionValue = [self valueForKey:option];
 
                 // if optionValue is a block, invoke block and expect NSNumber result
-                if ( [optionValue isKindOfClass:NSClassFromString(@"NSBlock")] )
+                if ( ! [optionValue isKindOfClass:[NSNumber class]] )
                 {
-                    OMNumericalityValidatorNumberBlock block = [self valueForKey:option];
+                    OMNumericalityValidatorNumberBlock block = (OMNumericalityValidatorNumberBlock)optionValue;
                     optionValue = (NSNumber *)block(model);
                 }
 

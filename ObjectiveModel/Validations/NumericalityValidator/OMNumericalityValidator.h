@@ -60,7 +60,8 @@
  * Specifies the value must be greater than or equal the supplied value.
  * May be an NSNumber or an OMNumericalityValidatorNumberBlock.
  */
-@property (nonatomic, copy) id greaterThanOrEqualTo;
+@property (nonatomic, copy) OMNumericalityValidatorNumberBlock greaterThanOrEqualToBlock;
+@property (nonatomic, copy) NSNumber *greaterThanOrEqualToNumber;
 
 
 

@@ -107,6 +107,55 @@
 
 
 
++ (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andBlock:(OMValidatorInitBlock)block;
+{
+    if ( [validators isBlank] )
+    {
+        [NSException raise:NSInvalidArgumentException format:@"You must provide at least one validator to apply."];
+    }
+    
+    NSArray *propertySet = nil;
+    
+    if ( [properties isBlank] )
+    {
+        [NSException raise:NSInvalidArgumentException format:@"You must provide at least one property to validate."];
+    }
+    else if ( [properties isKindOfClass:[NSString class]] )
+    {
+        propertySet = [NSArray arrayWithObject:properties];
+    }
+    else if ( [properties isKindOfClass:[NSArray class]] )
+    {
+        propertySet = (NSArray *) properties;
+    }
+    
+    if ( propertySet )
+    {
+        // add the validators to the validations array for this class
+        for (Class validator in validators)
+        {
+            for (NSString *property in propertySet)
+            {
+                OMValidator *myValidator = [[validator alloc] init];
+                // invoke the block to set the validator properties:
+                if ( block )
+                {
+                    block(myValidator);
+                }
+                NSMutableArray *validationsForKey = [self validatorsForKey:property];
+                [validationsForKey addObject:myValidator];
+                [myValidator release];
+            }
+        }
+    }
+    else
+    {
+        [NSException raise:NSInvalidArgumentException format:@"Expected properties (%@) to be NSString or implement the NSFastEnumeration protocol.", properties];
+    }
+}
+
+
+
 /*!
  * Validators are stored in a nested dictionary + array structure like so:
  * {

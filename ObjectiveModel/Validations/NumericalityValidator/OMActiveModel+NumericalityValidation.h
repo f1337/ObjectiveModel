@@ -42,10 +42,11 @@ typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
  *   @implementation Person
  *		+ (void)initialize
  *		{
- *	    	[self validatesNumericalityOf:@"age" withOptions:nil];
+ *	    	[self validatesNumericalityOf:@"age" withBlock:nil];
  *		}
  *   @end
  */
++ (void)validatesNumericalityOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
 + (void)validatesNumericalityOf:(NSObject *)properties withOptions:(NSDictionary *)options;
 
 
