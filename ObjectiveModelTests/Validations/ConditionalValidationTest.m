@@ -68,16 +68,16 @@
 - (void)testIfValidationUsingMethodTrue
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}", :if => :condition_is_true )
-    OMValidatorConditionalBlock block = ^BOOL (id topic)
-    {
-        return [topic conditionIsTrue];
-    };
-    [Topic validatesLengthOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:5], @"maximum",
-                              @"hoo %{count}", @"tooLongMessage",
-                              block, @"shouldValidate",
-                              nil]];
+    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+     {
+         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
+         [myValidator setMaximum:[NSNumber numberWithInt:5]];
+         [myValidator setTooLongMessage:@"hoo %{count}"];
+         [myValidator setShouldValidate:^BOOL (id topic)
+          {
+              return [topic conditionIsTrue];
+          }];
+     }];
 
     //t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
     [_topic setTitle:@"uhohuhoh"];
@@ -93,16 +93,17 @@
 - (void)testIfValidationUsingMethodFalse
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}", :if => :condition_is_true_but_its_not )
-    OMValidatorConditionalBlock block = ^BOOL (id topic)
-    {
-        return [topic conditionIsTrueButItsNot];
-    };
-    [Topic validatesLengthOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:5], @"maximum",
-                              @"hoo %{count}", @"tooLongMessage",
-                              block, @"shouldValidate",
-                              nil]];
+    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+     {
+         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
+         [myValidator setMaximum:[NSNumber numberWithInt:5]];
+         [myValidator setTooLongMessage:@"hoo %{count}"];
+         [myValidator setShouldValidate:^BOOL (id topic)
+          {
+              return [topic conditionIsTrueButItsNot];
+          }];
+     }];
+
     //t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
     [_topic setTitle:@"uhohuhoh"];
     [_topic setContent:@"whatever"];
@@ -117,16 +118,16 @@
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}",
     // :if => Proc.new { |r| r.content.size > 4 } )
-    OMValidatorConditionalBlock block = ^BOOL (id topic)
-    {
-        return ( [[topic content] length] > 4 );
-    };
-    [Topic validatesLengthOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:5], @"maximum",
-                              @"hoo %{count}", @"tooLongMessage",
-                              block, @"shouldValidate",
-                              nil]];
+    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+     {
+         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
+         [myValidator setMaximum:[NSNumber numberWithInt:5]];
+         [myValidator setTooLongMessage:@"hoo %{count}"];
+         [myValidator setShouldValidate:^BOOL (id topic)
+          {
+              return ( [[topic content] length] > 4 );
+          }];
+     }];
 
     //t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
     [_topic setTitle:@"uhohuhoh"];
@@ -143,16 +144,16 @@
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}",
     // :if => Proc.new { |r| r.title != "uhohuhoh"} )
-    OMValidatorConditionalBlock block = ^BOOL (id topic)
-    {
-        return ( ! [[topic title] isEqualToString:@"uhohuhoh"]);
-    };
-    [Topic validatesLengthOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:5], @"maximum",
-                              @"hoo %{count}", @"tooLongMessage",
-                              block, @"shouldValidate",
-                              nil]];
+    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+     {
+         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
+         [myValidator setMaximum:[NSNumber numberWithInt:5]];
+         [myValidator setTooLongMessage:@"hoo %{count}"];
+         [myValidator setShouldValidate:^BOOL (id topic)
+          {
+              return ( ! [[topic title] isEqualToString:@"uhohuhoh"]);
+          }];
+     }];
     
     //t = Topic.new("title" => "uhohuhoh", "content" => "whatever")
     [_topic setTitle:@"uhohuhoh"];

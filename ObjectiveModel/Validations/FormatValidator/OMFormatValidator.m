@@ -31,7 +31,7 @@
 
 
 
-@synthesize block = _block;
+@synthesize regularExpressionBlock = _regularExpressionBlock;
 @synthesize shouldMatchPattern = _shouldMatchPattern;
 @synthesize regularExpression = _regularExpression;
 
@@ -39,8 +39,8 @@
 
 - (void)dealloc
 {
-    [self setBlock:nil];
     [self setRegularExpression:nil];
+    [self setRegularExpressionBlock:nil];
     [super dealloc];
 }
 
@@ -58,6 +58,13 @@
 
 
 
+- (void)setPattern:(NSString *)pattern
+{
+    [self setRegularExpression:[NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil]];
+}
+
+
+
 - (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
 {
     NSRegularExpression *regularExpression;
@@ -68,9 +75,10 @@
     if ( valid )
     {
         // is there a block to apply?
-        if ( _block )
+        // block trupms regularExpression
+        if ( _regularExpressionBlock )
         {
-            regularExpression = _block(model);
+            regularExpression = _regularExpressionBlock(model);
         }
         else
         {

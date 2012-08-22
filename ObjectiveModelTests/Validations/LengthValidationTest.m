@@ -442,7 +442,7 @@
 - (void)testValidatesLengthUsingNastyOptions
 {
     // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }
-     STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:-6]];
     }], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");

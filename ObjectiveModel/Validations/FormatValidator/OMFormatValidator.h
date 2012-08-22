@@ -33,14 +33,6 @@
 
 
 /*!
- * The OMFormatValidatorRegularExpressionBlock for generating the
- * regular expression to apply to the attribute value.
- */
-@property (copy) OMFormatValidatorRegularExpressionBlock block;
-
-
-
-/*!
  * If set to YES, then if the attribute matches the pattern it will result in a
  * successful validation. If set to NO, then if the attribute does not match the
  * pattern it will result in a successful validation.
@@ -50,9 +42,27 @@
 
 
 /*!
- * The regular expression to apply to the attribute value.
+ * A regular expression to apply to the attribute value.
  */
 @property (copy) NSRegularExpression *regularExpression;
+
+
+
+/*!
+ * An OMFormatValidatorRegularExpressionBlock for generating the
+ * regular expression to apply to the attribute value.
+ * Supersedes the regularExpression property.
+ */
+@property (copy) OMFormatValidatorRegularExpressionBlock regularExpressionBlock;
+
+
+
+/*!
+ * A string to be converted to a regular expression and applied to the attribute
+ * value.
+ * Updates the regularExpression property.
+ */
+- (void)setPattern:(NSString *)pattern;
 
 
 

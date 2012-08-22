@@ -56,9 +56,11 @@
 - (void)testValidatesFormat
 {
     // Topic.validates_format_of(:title, :content, :with => /^Validation\smacros \w+!$/, :message => "is bad data")
-    [Topic validatesFormatOf:[NSArray arrayWithObjects:@"title", @"content", nil]
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"is bad data", @"message", nil]
-                  andPattern:@"^Validation\\smacros \\w+!$"];
+    [Topic validatesFormatOf:[NSArray arrayWithObjects:@"title", @"content", nil] withBlock:^(OMValidator *validator) {
+        OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+        [myValidator setPattern:@"^Validation\\smacros \\w+!$"];
+        [myValidator setMessage:@"is bad data"];
+    }];
 
     // t = Topic.new("title" => "i'm incorrect", "content" => "Validation macros rule!")
     Topic *topic = [[Topic alloc] init];
@@ -85,9 +87,11 @@
 - (void)testValidateFormatWithAllowBlank
 {
     // Topic.validates_format_of(:title, :with => /^Validation\smacros \w+!$/, :allow_blank => true)
-    [Topic validatesFormatOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"YES", @"allowBlank", nil]
-                  andPattern:@"^Validation\\smacros \\w+!$"];
+    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+        OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+        [myValidator setAllowBlank:YES];
+        [myValidator setPattern:@"^Validation\\smacros \\w+!$"];
+    }];
 
     // assert Topic.new("title" => "Shouldn't be valid").invalid?
     Topic *topic = [[Topic alloc] init];
@@ -119,9 +123,11 @@
 - (void)testValidateFormatNumeric
 {
     // Topic.validates_format_of(:title, :content, :with => /^[1-9][0-9]*$/, :message => "is bad data")
-    [Topic validatesFormatOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"is bad data", @"message", nil]
-                  andPattern:@"^[1-9][0-9]*$"];
+    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+        OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+        [myValidator setPattern:@"^[1-9][0-9]*$"];
+        [myValidator setMessage:@"is bad data"];
+    }];
 
     // t = Topic.new("title" => "72x", "content" => "6789")
     Topic *topic = [[Topic alloc] init];
@@ -166,9 +172,10 @@
 
 - (void)testValidateFormatWithNilValue
 {
-    [Topic validatesFormatOf:@"title"
-                 withOptions:nil
-                  andPattern:@"^Valid Title$"];
+    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+        OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+        [myValidator setPattern:@"^Valid Title$"];
+    }];
     
     Topic *topic = [[Topic alloc] init];
     OMAssertModelIsInvalid(topic, @"is invalid", [NSArray arrayWithObject:@"title"]);
@@ -179,9 +186,11 @@
 - (void)testValidateFormatWithFormattedMessage
 {
     // Topic.validates_format_of(:title, :with => /^Valid Title$/, :message => "can't be %{value}")
-    [Topic validatesFormatOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:@"can't be %{value}", @"message", nil]
-                  andPattern:@"^Valid Title$"];
+    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+        OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+        [myValidator setPattern:@"^Valid Title$"];
+        [myValidator setMessage:@"can't be %{value}"];
+    }];
 
     // t = Topic.new(:title => 'Invalid title')
     Topic *topic = [[Topic alloc] init];
@@ -196,11 +205,12 @@
 - (void)testValidateFormatWithShouldMatchPatternNO
 {
     // Topic.validates_format_of(:title, :without => /foo/, :message => "should not contain foo")
-    [Topic validatesFormatOf:@"title"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithBool:NO], @"shouldMatchPattern",
-                              @"should not contain foo", @"message", nil]
-                  andPattern:@"foo"];
+    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+        OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+        [myValidator setShouldMatchPattern:NO];
+        [myValidator setPattern:@"foo"];
+        [myValidator setMessage:@"should not contain foo"];
+    }];
 
     // t = Topic.new
     Topic *topic = [[Topic alloc] init];
@@ -224,12 +234,14 @@
 - (void)testValidatesFormatWithBlock
 {
     // Topic.validates_format_of :content, :with => lambda{ |topic| topic.title == "digit" ? /\A\d+\Z/ : /\A\S+\Z/ }
-    [Topic validatesFormatOf:@"content"
-                 withOptions:nil
-                    andBlock:^NSRegularExpression *(id topic)
+    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
      {
-         NSString *pattern = ( [[topic title] isEqualToString:@"digit"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
-         return [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+         [myValidator setRegularExpressionBlock:^NSRegularExpression *(id topic)
+          {
+              NSString *pattern = ( [[topic title] isEqualToString:@"digit"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
+              return [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+          }];
      }];
 
     // t = Topic.new
@@ -250,24 +262,18 @@
 
 
 
-- (void)testValidatesFormatWithNilBlock
-{
-    STAssertThrowsSpecificNamed([Topic validatesFormatOf:@"content" withOptions:nil andBlock:nil], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-}
-
-
-
 - (void)testValidatesFormatWithBlockAndPatternMatchesNO
 {
     // Topic.validates_format_of :content, :without => lambda{ |topic| topic.title == "characters" ? /\A\d+\Z/ : /\A\S+\Z/ }
-    [Topic validatesFormatOf:@"content"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithBool:NO], @"shouldMatchPattern",
-                              nil]
-                    andBlock:^NSRegularExpression *(id topic)
+    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
      {
-         NSString *pattern = ( [[topic title] isEqualToString:@"characters"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
-         return [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+         [myValidator setShouldMatchPattern:NO];
+         [myValidator setRegularExpressionBlock:^NSRegularExpression *(id topic)
+          {
+              NSString *pattern = ( [[topic title] isEqualToString:@"characters"] ? @"\\A\\d+\\Z" : @"\\A\\S+\\Z" );
+              return [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+          }];
      }];
     
     // t = Topic.new
@@ -290,9 +296,11 @@
 
 - (void)testValidatesFormatWithRegularExpression
 {
-    [Topic validatesFormatOf:@"content"
-                 withOptions:nil
-        andRegularExpression:[NSRegularExpression regularExpressionWithPattern:@"\\A\\d+\\Z" options:0 error:nil]];
+    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
+     {
+         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+         [myValidator setRegularExpression:[NSRegularExpression regularExpressionWithPattern:@"\\A\\d+\\Z" options:0 error:nil]];
+     }];
     
     // t = Topic.new
     Topic *topic = [[Topic alloc] init];
@@ -312,9 +320,12 @@
 
 - (void)testValidatesFormatWithRegularExpressionAndPatternMatchesNO
 {
-    [Topic validatesFormatOf:@"content"
-                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"shouldMatchPattern", nil]
-        andRegularExpression:[NSRegularExpression regularExpressionWithPattern:@"\\A\\d+\\Z" options:0 error:nil]];
+    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
+     {
+         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
+         [myValidator setShouldMatchPattern:NO];
+         [myValidator setRegularExpression:[NSRegularExpression regularExpressionWithPattern:@"\\A\\d+\\Z" options:0 error:nil]];
+     }];
 
     // t = Topic.new
     Topic *topic = [[Topic alloc] init];
@@ -329,14 +340,6 @@
     // assert t.valid?
     OMAssertModelIsValid(topic);
 }
-
-
-
-- (void)testValidatesFormatWithNilRegularExpression
-{
-    STAssertThrowsSpecificNamed([Topic validatesFormatOf:@"content" withOptions:nil andRegularExpression:nil], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
-}
-
 
 
 

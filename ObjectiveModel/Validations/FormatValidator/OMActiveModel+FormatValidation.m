@@ -31,27 +31,9 @@
 
 
 
-+ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andBlock:(OMFormatValidatorRegularExpressionBlock)block
++ (void)validatesFormatOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:block forKey:@"block"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMFormatValidator class]] andOptions:dictionary];
-}
-
-
-
-+ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andPattern:(NSString *)pattern
-{
-    [self validatesFormatOf:properties withOptions:options andRegularExpression:[NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil]];
-}
-
-
-
-+ (void)validatesFormatOf:(NSObject *)properties withOptions:(NSDictionary *)options andRegularExpression:(NSRegularExpression *)regularExpression
-{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:options];
-    [dictionary setObject:regularExpression forKey:@"regularExpression"];
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMFormatValidator class]] andOptions:dictionary];
+    [self validates:properties withValidators:[NSArray arrayWithObject:[OMFormatValidator class]] andBlock:block];
 }
 
 
