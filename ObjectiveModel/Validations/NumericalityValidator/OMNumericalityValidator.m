@@ -157,7 +157,7 @@
 {
     if ( [self checkArgumentValidityForValue:equalTo] )
     {
-        _equalTo = equalTo;
+        _equalTo = [equalTo copy];
     }
 }
 
@@ -167,7 +167,7 @@
 {
     if ( [self checkArgumentValidityForValue:greaterThan] )
     {
-        _greaterThan = greaterThan;
+        _greaterThan = [greaterThan copy];
     }
 }
 
@@ -177,7 +177,7 @@
 {
     if ( [self checkArgumentValidityForValue:greaterThanOrEqualTo] )
     {
-        _greaterThanOrEqualTo = greaterThanOrEqualTo;
+        _greaterThanOrEqualTo = [greaterThanOrEqualTo copy];
     }
 }
 
@@ -187,7 +187,7 @@
 {
     if ( [self checkArgumentValidityForValue:lessThan] )
     {
-        _lessThan = lessThan;
+        _lessThan = [lessThan copy];
     }
 }
 
@@ -197,7 +197,7 @@
 {
     if ( [self checkArgumentValidityForValue:lessThanOrEqualTo] )
     {
-        _lessThanOrEqualTo = lessThanOrEqualTo;
+        _lessThanOrEqualTo = [lessThanOrEqualTo copy];
     }
 }
 
@@ -258,7 +258,7 @@
 {
     if ( [self checkArgumentValidityForValue:notEqualTo] )
     {
-        _notEqualTo = notEqualTo;
+        _notEqualTo = [notEqualTo copy];
     }
 }
 
@@ -332,7 +332,7 @@
 
     for (NSString *option in constraints)
     {
-        NSNumber *optionValue;
+        NSNumber *optionValue = nil;
 
         // skip constraint if it wasn't set by user
         if ( [self valueForKey:option] == nil)

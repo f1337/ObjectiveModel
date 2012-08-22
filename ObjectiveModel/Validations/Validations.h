@@ -28,6 +28,7 @@
 
 
 
+#import "OMValidator.h"
 #import "OMAcceptanceValidator.h"
 #import "OMConfirmationValidator.h"
 #import "OMFormatValidator.h"
