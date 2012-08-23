@@ -30,6 +30,7 @@
 
 #import "OMValidator.h"
 #import "OMAcceptanceValidator.h"
+#import "OMBlockValidator.h"
 #import "OMConfirmationValidator.h"
 #import "OMExclusionValidator.h"
 #import "OMFormatValidator.h"
