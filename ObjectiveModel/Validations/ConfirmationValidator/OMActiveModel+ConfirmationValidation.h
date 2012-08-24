@@ -36,31 +36,32 @@
 
 
 /*!
- * Encapsulates the pattern of wanting to validate a password or email
- * address field with a confirmation.
- *
- *   Model:
- *     class Person < ActiveRecord::Base
- *       validates_confirmation_of :user_name, :password
- *       validates_confirmation_of :email_address,
- *                                 :message => "should match confirmation"
- *     end
- *
- *   View:
- *     <%= password_field "person", "password" %>
- *     <%= password_field "person", "password_confirmation" %>
- *
- * The added +password_confirmation+ attribute is virtual; it exists only
- * as an in-memory attribute for validating the password. To achieve this,
- * the validation adds accessors to the model for the confirmation
- * attribute.
- *
- * NOTE: This check is performed only if +password_confirmation+ is not
- * +nil+. To require confirmation, make sure
- * to add a presence check for the confirmation attribute:
- *
- *   validates_presence_of :password_confirmation, :if => :password_changed?
- */
+Encapsulates the pattern of wanting to validate a password or email
+address field with a confirmation.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesConfirmationOf:[NSArray arrayWithObjects:@"userName", @"password", nil] withInitBlock:nil];
+            [self validatesConfirmationOf:@"email" withInitBlock:^(OMValidator *validator)
+            {
+                [validator setMessage:@"should match confirmation"];
+            }];
+        }
+    @end
+
+NOTE: This check is performed only if `[person passwordConfirmation]` is not
+`nil`. To require confirmation, make sure
+to add a presence check for the confirmation attribute:
+
+    [self validatesPresenceOf:@"passwordConfirmation" withInitBlock:^(OMValidator *validator)
+    {
+        [validator setShouldApplyValidationBlock:^BOOL (id person)
+        {
+            return [person hasChangedPassword];
+        }];
+    }];
+*/
 + (void)validatesConfirmationOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 

@@ -321,10 +321,10 @@
 		AC09CDC615815F73008E581C /* ConfirmationValidator */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */,
-				AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */,
 				AC09CDC915815F73008E581C /* OMConfirmationValidator.h */,
 				AC09CDCA15815F73008E581C /* OMConfirmationValidator.m */,
+				AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */,
+				AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */,
 			);
 			path = ConfirmationValidator;
 			sourceTree = "<group>";

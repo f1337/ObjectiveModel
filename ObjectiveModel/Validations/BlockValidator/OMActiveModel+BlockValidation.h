@@ -35,7 +35,7 @@
 
 
 
-typedef BOOL (^ OMBlockValidatorValidationBlock) (OMBlockValidator *validator, OMActiveModel *model);
+typedef BOOL (^ OMBlockValidatorValidationBlock) (OMBlockValidator *validator, OMActiveModel *model, NSObject *value);
 
 
 
@@ -44,18 +44,28 @@ typedef BOOL (^ OMBlockValidatorValidationBlock) (OMBlockValidator *validator, O
 
 
 /*!
- * Validates each attribute against a block.
- *
- *   class Person
- *     include ActiveModel::Validations
- *
- *     attr_accessor :first_name, :last_name
- *
- *     validates_each :first_name, :last_name, allow_blank: true do |record, attr, value|
- *       record.errors.add attr, 'starts with z.' if value.to_s[0] == ?z
- *     end
- *   end
- */
+Validates each attribute against the provided block.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesEach:[NSArray arrayWithObjects:@"firstName", @"lastName", nil]
+                      withBlock:^BOOL(OMBlockValidator *validator, OMActiveModel *model, NSObject *value)
+            {
+                NSString *stringValue = [value description];
+                if ( [stringValue hasPrefix:@"z"] )
+                {
+                    [validator setMessage:@"starts with z."];
+                    return NO;
+                }
+                else
+                {
+                    return YES;
+                }
+            }];
+        }
+    @end
+*/
 + (void)validatesEach:(NSObject *)properties withBlock:(OMBlockValidatorValidationBlock)block;
 
 

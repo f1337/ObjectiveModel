@@ -61,7 +61,7 @@
 
     if ( _validationBlock )
     {
-        valid = _validationBlock(self, model);
+        valid = _validationBlock(self, model, value);
     }
 
     if ( ! valid )

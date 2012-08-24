@@ -71,7 +71,7 @@
     __block uint hits = 0;
 
     //Topic.validates_each(:title, :content, [:title, :content]) do |record, attr|
-    [Topic validatesEach:[NSArray arrayWithObjects:@"title", @"content", nil] withBlock:^BOOL(OMBlockValidator *validator, OMActiveModel *model) {
+    [Topic validatesEach:[NSArray arrayWithObjects:@"title", @"content", nil] withBlock:^BOOL(OMBlockValidator *validator, OMActiveModel *model, NSObject *value) {
         //record.errors.add attr, 'gotcha'
         [validator setMessage:@"gotcha"];
         //hits += 1

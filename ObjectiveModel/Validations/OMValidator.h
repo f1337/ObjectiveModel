@@ -78,7 +78,7 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
  *
  * The block should return YES or NO.
  */
-@property (copy) OMValidatorConditionalBlock shouldValidate;
+@property (copy) OMValidatorConditionalBlock shouldApplyValidationBlock;
 
 
 

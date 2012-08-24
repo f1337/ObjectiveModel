@@ -36,14 +36,14 @@
 @synthesize allowBlank = _allowBlank;
 @synthesize allowNil = _allowNil;
 @synthesize message = _message;
-@synthesize shouldValidate = _shouldValidate;
+@synthesize shouldApplyValidationBlock = _shouldApplyValidationBlock;
 
 
 
 - (void)dealloc
 {
     [self setMessage:nil];
-    [self setShouldValidate:nil];
+    [self setShouldApplyValidationBlock:nil];
     [super dealloc];
 }
 
@@ -95,7 +95,7 @@
 
 - (BOOL)shouldApplyValidationForModel:(OMActiveModel *)model
 {
-    return ( _shouldValidate ? _shouldValidate(model) : YES );
+    return ( _shouldApplyValidationBlock ? _shouldApplyValidationBlock(model) : YES );
 }
 
 

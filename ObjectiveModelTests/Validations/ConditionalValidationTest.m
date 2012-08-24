@@ -73,7 +73,7 @@
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
          [myValidator setTooLongMessage:@"hoo %{count}"];
-         [myValidator setShouldValidate:^BOOL (id topic)
+         [myValidator setShouldApplyValidationBlock:^BOOL (id topic)
           {
               return [topic conditionIsTrue];
           }];
@@ -98,7 +98,7 @@
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
          [myValidator setTooLongMessage:@"hoo %{count}"];
-         [myValidator setShouldValidate:^BOOL (id topic)
+         [myValidator setShouldApplyValidationBlock:^BOOL (id topic)
           {
               return [topic conditionIsTrueButItsNot];
           }];
@@ -123,7 +123,7 @@
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
          [myValidator setTooLongMessage:@"hoo %{count}"];
-         [myValidator setShouldValidate:^BOOL (id topic)
+         [myValidator setShouldApplyValidationBlock:^BOOL (id topic)
           {
               return ( [[topic content] length] > 4 );
           }];
@@ -149,7 +149,7 @@
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
          [myValidator setTooLongMessage:@"hoo %{count}"];
-         [myValidator setShouldValidate:^BOOL (id topic)
+         [myValidator setShouldApplyValidationBlock:^BOOL (id topic)
           {
               return ( ! [[topic title] isEqualToString:@"uhohuhoh"]);
           }];
