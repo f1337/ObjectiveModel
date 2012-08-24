@@ -37,7 +37,7 @@
 
 + (void)validatesLengthOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMLengthValidator class]] andBlock:block];
+    [self validatesEach:properties withClass:[OMLengthValidator class] andInitBlock:block];
 }
 
 

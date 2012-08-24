@@ -37,7 +37,7 @@
 
 + (void)validatesEach:(NSObject *)properties withBlock:(OMBlockValidatorValidationBlock)block
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMBlockValidator class]] andBlock:^(OMValidator *validator) {
+    [self validatesEach:properties withClass:[OMBlockValidator class] andInitBlock:^(OMValidator *validator) {
         OMBlockValidator *blockValidator = (OMBlockValidator *)validator;
         [blockValidator setValidationBlock:block];
     }];

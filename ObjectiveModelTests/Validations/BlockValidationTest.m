@@ -65,7 +65,7 @@
 
 
 
-- (void)testValidatesEach
+- (void)testValidatesEachWithBlock
 {
     //hits = 0
     __block uint hits = 0;

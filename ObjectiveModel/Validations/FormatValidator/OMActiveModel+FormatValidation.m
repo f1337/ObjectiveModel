@@ -33,7 +33,7 @@
 
 + (void)validatesFormatOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMFormatValidator class]] andBlock:block];
+    [self validatesEach:properties withClass:[OMFormatValidator class] andInitBlock:block];
 }
 
 

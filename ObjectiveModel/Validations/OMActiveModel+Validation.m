@@ -62,22 +62,13 @@
  * TODO?: This method signature doesn't conform to Obj-C conventions. Consider
  * replacing w/ one method for each possible object type
  * (NSString, NSArray, NSDictionary) for "properties".
+ * OR, use OMCollection and add fast enumeration to NSString
  */
-+ (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
++ (void)validatesEach:(NSObject *)properties withClass:(Class)validationClass andInitBlock:(OMValidatorInitBlock)block;
 {
-    [self validates:properties withValidators:validators andBlock:^void (OMValidator *validator)
+    if ( ! validationClass )
     {
-        [validator setOptions:options];
-    }];
-}
-
-
-
-+ (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andBlock:(OMValidatorInitBlock)block;
-{
-    if ( [validators isBlank] )
-    {
-        [NSException raise:NSInvalidArgumentException format:@"You must provide at least one validator to apply."];
+        [NSException raise:NSInvalidArgumentException format:@"You must provide a validation class to apply."];
     }
     
     NSArray *propertySet = nil;
@@ -97,12 +88,14 @@
     
     if ( propertySet )
     {
-        // add the validators to the validations array for this class
-        for (Class validator in validators)
-        {
+        // LEAVE THIS HERE, COMMENTED OUT, FOR FUTURE REFERENCE ~mrf
+//        // add the validators to the validations array for this class
+//        for (Class validator in validators)
+//        {
+        // end ~mrf
             for (NSString *property in propertySet)
             {
-                OMValidator *myValidator = [[validator alloc] init];
+                OMValidator *myValidator = [[validationClass alloc] init];
                 // invoke the block to set the validator properties:
                 if ( block )
                 {
@@ -112,7 +105,9 @@
                 [validationsForKey addObject:myValidator];
                 [myValidator release];
             }
-        }
+        // LEAVE THIS HERE, COMMENTED OUT, FOR FUTURE REFERENCE ~mrf
+//        }
+        // end ~mrf
     }
     else
     {

@@ -37,7 +37,7 @@
 
 + (void)validatesConfirmationOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMConfirmationValidator class]] andBlock:block];
+    [self validatesEach:properties withClass:[OMConfirmationValidator class] andInitBlock:block];
 }
 
 

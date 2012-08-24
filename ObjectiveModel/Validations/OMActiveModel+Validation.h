@@ -74,8 +74,7 @@ typedef void (^ OMValidatorInitBlock) (OMValidator *validator);
  * "presence" => OMPresenceValidator
  * @param options A dictionary with one or more of the following keys/value pairs:
  */
-+ (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andBlock:(OMValidatorInitBlock)block;
-+ (void)validates:(NSObject *)properties withValidators:(NSArray *)validators andOptions:(NSDictionary *)options;
++ (void)validatesEach:(NSObject *)properties withClass:(Class)validationClass andInitBlock:(OMValidatorInitBlock)block;
 
 
 

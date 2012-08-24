@@ -33,7 +33,7 @@
 
 + (void)validatesPresenceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMPresenceValidator class]] andBlock:block];
+    [self validatesEach:properties withClass:[OMPresenceValidator class] andInitBlock:block];
 }
 
 

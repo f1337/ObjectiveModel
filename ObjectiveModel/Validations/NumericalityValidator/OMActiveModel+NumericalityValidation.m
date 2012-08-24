@@ -33,7 +33,7 @@
 
 + (void)validatesNumericalityOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
 {
-    [self validates:properties withValidators:[NSArray arrayWithObject:[OMNumericalityValidator class]] andBlock:block];
+    [self validatesEach:properties withClass:[OMNumericalityValidator class] andInitBlock:block];
 }
 
 
