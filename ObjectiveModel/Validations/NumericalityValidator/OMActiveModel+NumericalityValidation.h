@@ -41,7 +41,7 @@ typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
  *   @implementation Person
  *		+ (void)initialize
  *		{
- *          [self validatesNumericalityOf:@"age" withBlock:^void (OMValidator *validator)
+ *          [self validatesNumericalityOf:@"age" withInitBlock:^void (OMValidator *validator)
  *          {
  *              OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
  *              [myValidator setGreaterThanOrEqualToNumber:[NSNumber numberWithInt:13]];

@@ -36,14 +36,14 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 /*!
- * If set to true, skips this validation if the attribute is blank (default is +false+).
+ * If set to true, skips this validation if the attribute is blank (default is `false`).
  */
 @property (assign) BOOL allowBlank;
 
 
 
 /*!
- * If set to true, skips this validation if the attribute is +nil+ (default is +false+).
+ * If set to true, skips this validation if the attribute is `nil` (default is `false`).
  */
 @property (assign) BOOL allowNil;
 

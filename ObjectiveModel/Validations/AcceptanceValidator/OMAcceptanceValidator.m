@@ -79,12 +79,15 @@
 {
     //unless value == options[:accept]
     NSString *stringValue = [value description];
-    BOOL valid = (_accept ? [stringValue isEqualToString:_accept] : [stringValue boolValue]);
+    
+    BOOL valid = (_accept ? [stringValue isEqualToString:_accept] : [[stringValue substringToIndex:1] boolValue]);
+
     if ( ! valid )
     {
         //record.errors.add(attribute, :accepted, options.except(:accept, :allow_nil))
         [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
     }
+
     return valid;
 }
 
