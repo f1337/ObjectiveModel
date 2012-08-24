@@ -40,13 +40,13 @@
  *   @implementation Person
  *		+ (void)initialize
  *		{
- *	    	[self validatesPresenceOf:@"firstName" withOptions:nil];
+ *	    	[self validatesPresenceOf:@"firstName" withInitBlock:nil];
  *		}
  *   @end
  *
  * The firstName property must be defined for the object and it cannot be nil or blank.
  */
-+ (void)validatesPresenceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
++ (void)validatesPresenceOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
 

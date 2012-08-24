@@ -68,7 +68,7 @@
 - (void)testAcceptsMultipleProperties
 {
     // define validation
-    [Person validatesPresenceOf:[NSArray arrayWithObjects:@"firstName", @"lastName", nil] withBlock:nil];
+    [Person validatesPresenceOf:[NSArray arrayWithObjects:@"firstName", @"lastName", nil] withInitBlock:nil];
 
     // assert both properties invalid
     OMAssertModelIsInvalid(_model, @"cannot be blank", ([NSArray arrayWithObjects:@"firstName", @"lastName", nil]));
@@ -88,7 +88,7 @@
 - (void)testAcceptsSingleProperty
 {
     // define validation
-    [Person validatesPresenceOf:@"firstName" withBlock:nil];
+    [Person validatesPresenceOf:@"firstName" withInitBlock:nil];
 
     // assert property is invalid
     OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
@@ -105,7 +105,7 @@
     // define custom message
     NSString *message = @"This string contains 'single' and \"double\" quotes";
     // define validation
-    [Person validatesPresenceOf:@"firstName" withBlock:^(OMValidator *validator) {
+    [Person validatesPresenceOf:@"firstName" withInitBlock:^(OMValidator *validator) {
         [validator setMessage:message];
     }];
     
@@ -117,7 +117,7 @@
 
 - (void)testIfValueIsNilItShouldBeInvalid
 {
-    [Person validatesPresenceOf:@"firstName" withBlock:nil];
+    [Person validatesPresenceOf:@"firstName" withInitBlock:nil];
     [_model setFirstName:nil];
     OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 }
@@ -130,7 +130,7 @@
 
 - (void)testIfValueIsEmptyStringItShouldBeInvalid
 {
-    [Person validatesPresenceOf:@"firstName" withBlock:nil];
+    [Person validatesPresenceOf:@"firstName" withInitBlock:nil];
     [_model setFirstName:@""];
     OMAssertModelIsInvalid(_model, @"cannot be blank", [NSArray arrayWithObject:@"firstName"]);
 }

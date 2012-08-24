@@ -68,7 +68,7 @@
 - (void)testIfValidationUsingMethodTrue
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}", :if => :condition_is_true )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator)
      {
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -93,7 +93,7 @@
 - (void)testIfValidationUsingMethodFalse
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}", :if => :condition_is_true_but_its_not )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator)
      {
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -118,7 +118,7 @@
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}",
     // :if => Proc.new { |r| r.content.size > 4 } )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator)
      {
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -144,7 +144,7 @@
 {
     //Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}",
     // :if => Proc.new { |r| r.title != "uhohuhoh"} )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator)
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator)
      {
          OMLengthValidator *myValidator = (OMLengthValidator *)validator;
          [myValidator setMaximum:[NSNumber numberWithInt:5]];

@@ -90,7 +90,7 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (OMActi
  * http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40009708-CH1-SW53
  * 
  */
-+ (void)validatesFormatOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
++ (void)validatesFormatOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
 

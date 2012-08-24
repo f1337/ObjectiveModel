@@ -61,7 +61,7 @@
  *
  *   validates_presence_of :password_confirmation, :if => :password_changed?
  */
-+ (void)validatesConfirmationOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
++ (void)validatesConfirmationOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
 

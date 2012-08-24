@@ -68,7 +68,7 @@
 - (void)testTermsOfServiceAgreementNotAccepted
 {
     //Topic.validates_acceptance_of(:terms_of_service)
-    [Topic validatesAcceptanceOf:@"termsOfService" withBlock:nil];
+    [Topic validatesAcceptanceOf:@"termsOfService" withInitBlock:nil];
 
     //t = Topic.new("title" => "We should not be confirmed")
     [_topic setTitle:@"We should not be confirmed"];
@@ -81,7 +81,7 @@
 -(void)testTermsOfServiceAgreement
 {
     //Topic.validates_acceptance_of(:terms_of_service)
-    [Topic validatesAcceptanceOf:@"termsOfService" withBlock:nil];
+    [Topic validatesAcceptanceOf:@"termsOfService" withInitBlock:nil];
 
     //t = Topic.new("title" => "We should be confirmed","terms_of_service" => "")
     [_topic setTitle:@"We should be confirmed"];
@@ -101,7 +101,7 @@
 -(void)testEULA
 {
     //Topic.validates_acceptance_of(:eula, :message => "must be abided")
-    [Topic validatesAcceptanceOf:@"EULA" withBlock:^(OMValidator *validator) {
+    [Topic validatesAcceptanceOf:@"EULA" withInitBlock:^(OMValidator *validator) {
         [validator setMessage:@"must be abided"];
     }];
 
@@ -123,7 +123,7 @@
 - (void)testTermsOfServiceAgreementWithAcceptValue
 {
     //Topic.validates_acceptance_of(:terms_of_service, :accept => "I agree.")
-    [Topic validatesAcceptanceOf:@"termsOfService" withBlock:^(OMValidator *validator) {
+    [Topic validatesAcceptanceOf:@"termsOfService" withInitBlock:^(OMValidator *validator) {
         OMAcceptanceValidator *myValidator = (OMAcceptanceValidator *)validator;
         [myValidator setAccept:@"I agree."];
     }];

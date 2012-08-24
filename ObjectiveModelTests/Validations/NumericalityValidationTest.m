@@ -154,7 +154,7 @@
 - (void)testDefaultValidatesNumericalityOf
 {
     // Topic.validates_numericality_of :approved
-    [Topic validatesNumericalityOf:@"approved" withBlock:nil];
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:nil];
 
     // invalid!(NIL + BLANK + JUNK)
     OMAssertValuesAreInvalid(([self null]), @"");
@@ -173,7 +173,7 @@
 - (void)testValidatesNumericalityOfWithNilAllowed
 {
     // Topic.validates_numericality_of :approved, :allow_nil => true
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          [validator setAllowNil:YES];
      }];
@@ -195,7 +195,7 @@
 - (void)testValidatesNumericalityOfWithIntegerOnly
 {
     // Topic.validates_numericality_of :approved, :only_integer => true
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setInteger:[NSNumber numberWithBool:YES]];
@@ -218,7 +218,7 @@
 - (void)testValidatesNumericalityOfWithIntegerOnlyAndNilAllowed
 {
     // Topic.validates_numericality_of :approved, :only_integer => true, :allow_nil => true
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          [validator setAllowNil:YES];
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
@@ -242,7 +242,7 @@
 - (void)testValidatesNumericalityWithGreaterThan
 {
     // Topic.validates_numericality_of :approved, :greater_than => 10
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setGreaterThanNumber:[NSNumber numberWithInt:10]];
@@ -260,7 +260,7 @@
 - (void)testValidatesNumericalityWithGreaterThanOrEqual
 {
     // Topic.validates_numericality_of :approved, :greater_than_or_equal_to => 10
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setGreaterThanOrEqualToNumber:[NSNumber numberWithInt:10]];
@@ -278,7 +278,7 @@
 -(void)testValidatesNumericalityWithEqualTo
 {
     // Topic.validates_numericality_of :approved, :equal_to => 10
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setEqualToNumber:[NSNumber numberWithInt:10]];
@@ -297,7 +297,7 @@
 - (void)testValidatesNumericalityWithLessThan
 {
     // Topic.validates_numericality_of :approved, :less_than => 10
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setLessThanNumber:[NSNumber numberWithInt:10]];
@@ -315,7 +315,7 @@
 - (void)testValidatesNumericalityWithLessThanOrEqualTo
 {
     // Topic.validates_numericality_of :approved, :less_than_or_equal_to => 10
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setLessThanOrEqualToNumber:[NSNumber numberWithInt:10]];
@@ -333,7 +333,7 @@
 - (void)testValidatesNumericalityWithOdd
 {
     // Topic.validates_numericality_of :approved, :odd => true
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setOdd:[NSNumber numberWithBool:YES]];
@@ -351,7 +351,7 @@
 - (void)testValidatesNumericalityWithEven
 {
     // Topic.validates_numericality_of :approved, :even => true
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setEven:[NSNumber numberWithBool:YES]];
@@ -369,7 +369,7 @@
 - (void)testValidatesNumericalityWithGreaterThanLessThanAndEven
 {
     // Topic.validates_numericality_of :approved, :greater_than => 1, :less_than => 4, :even => true
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setGreaterThanNumber:[NSNumber numberWithInt:1]];
@@ -389,7 +389,7 @@
 - (void)testValidatesNumericalityWithIsNotEqualTo
 {
     // Topic.validates_numericality_of :approved, :other_than => 0
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setNotEqualToNumber:[NSNumber numberWithInt:0]];
@@ -413,7 +413,7 @@
     };
 
     // Topic.validates_numericality_of :approved, :greater_than_or_equal_to => Proc.new {|topic| topic.min_approved }
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setGreaterThanOrEqualToBlock:block];
@@ -436,7 +436,7 @@
     {
         return [topic maxApproved];
     };
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setLessThanOrEqualToNumber:block];
@@ -454,7 +454,7 @@
 - (void)testValidatesNumericalityWithNumericMessage
 {
     // Topic.validates_numericality_of :approved, :less_than => 4, :message => "smaller than %{count}"
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setLessThanNumber:[NSNumber numberWithInt:4]];
@@ -473,7 +473,7 @@
     
 
     // Topic.validates_numericality_of :approved, :greater_than => 4, :message => "greater than %{count}"
-    [Topic validatesNumericalityOf:@"approved" withBlock:^void (OMValidator *validator)
+    [Topic validatesNumericalityOf:@"approved" withInitBlock:^void (OMValidator *validator)
      {
          OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
          [myValidator setGreaterThanNumber:[NSNumber numberWithInt:4]];

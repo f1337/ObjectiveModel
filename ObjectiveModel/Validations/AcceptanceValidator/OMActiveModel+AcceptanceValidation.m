@@ -35,7 +35,7 @@
 
 
 
-+ (void)validatesAcceptanceOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesAcceptanceOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
     [self validatesEach:properties withClass:[OMAcceptanceValidator class] andInitBlock:block];
 }

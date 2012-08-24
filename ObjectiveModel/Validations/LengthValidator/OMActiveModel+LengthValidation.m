@@ -35,16 +35,16 @@
 
 
 
-+ (void)validatesLengthOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesLengthOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
     [self validatesEach:properties withClass:[OMLengthValidator class] andInitBlock:block];
 }
 
 
 
-+ (void)validatesSizeOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesSizeOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
-    [self validatesLengthOf:properties withBlock:block];
+    [self validatesLengthOf:properties withInitBlock:block];
 }
 
 

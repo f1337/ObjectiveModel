@@ -31,7 +31,7 @@
 
 
 
-+ (void)validatesFormatOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesFormatOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
     [self validatesEach:properties withClass:[OMFormatValidator class] andInitBlock:block];
 }

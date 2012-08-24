@@ -56,7 +56,7 @@
 - (void)testValidatesFormat
 {
     // Topic.validates_format_of(:title, :content, :with => /^Validation\smacros \w+!$/, :message => "is bad data")
-    [Topic validatesFormatOf:[NSArray arrayWithObjects:@"title", @"content", nil] withBlock:^(OMValidator *validator) {
+    [Topic validatesFormatOf:[NSArray arrayWithObjects:@"title", @"content", nil] withInitBlock:^(OMValidator *validator) {
         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
         [myValidator setPattern:@"^Validation\\smacros \\w+!$"];
         [myValidator setMessage:@"is bad data"];
@@ -87,7 +87,7 @@
 - (void)testValidateFormatWithAllowBlank
 {
     // Topic.validates_format_of(:title, :with => /^Validation\smacros \w+!$/, :allow_blank => true)
-    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesFormatOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
         [myValidator setAllowBlank:YES];
         [myValidator setPattern:@"^Validation\\smacros \\w+!$"];
@@ -123,7 +123,7 @@
 - (void)testValidateFormatNumeric
 {
     // Topic.validates_format_of(:title, :content, :with => /^[1-9][0-9]*$/, :message => "is bad data")
-    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesFormatOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
         [myValidator setPattern:@"^[1-9][0-9]*$"];
         [myValidator setMessage:@"is bad data"];
@@ -172,7 +172,7 @@
 
 - (void)testValidateFormatWithNilValue
 {
-    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesFormatOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
         [myValidator setPattern:@"^Valid Title$"];
     }];
@@ -186,7 +186,7 @@
 - (void)testValidateFormatWithFormattedMessage
 {
     // Topic.validates_format_of(:title, :with => /^Valid Title$/, :message => "can't be %{value}")
-    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesFormatOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
         [myValidator setPattern:@"^Valid Title$"];
         [myValidator setMessage:@"can't be %{value}"];
@@ -205,7 +205,7 @@
 - (void)testValidateFormatWithShouldMatchPatternNO
 {
     // Topic.validates_format_of(:title, :without => /foo/, :message => "should not contain foo")
-    [Topic validatesFormatOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesFormatOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMFormatValidator *myValidator = (OMFormatValidator *)validator;
         [myValidator setShouldMatchPattern:NO];
         [myValidator setPattern:@"foo"];
@@ -234,7 +234,7 @@
 - (void)testValidatesFormatWithBlock
 {
     // Topic.validates_format_of :content, :with => lambda{ |topic| topic.title == "digit" ? /\A\d+\Z/ : /\A\S+\Z/ }
-    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
+    [Topic validatesFormatOf:@"content" withInitBlock:^(OMValidator *validator)
      {
          OMFormatValidator *myValidator = (OMFormatValidator *)validator;
          [myValidator setRegularExpressionBlock:^NSRegularExpression *(id topic)
@@ -265,7 +265,7 @@
 - (void)testValidatesFormatWithBlockAndPatternMatchesNO
 {
     // Topic.validates_format_of :content, :without => lambda{ |topic| topic.title == "characters" ? /\A\d+\Z/ : /\A\S+\Z/ }
-    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
+    [Topic validatesFormatOf:@"content" withInitBlock:^(OMValidator *validator)
      {
          OMFormatValidator *myValidator = (OMFormatValidator *)validator;
          [myValidator setShouldMatchPattern:NO];
@@ -296,7 +296,7 @@
 
 - (void)testValidatesFormatWithRegularExpression
 {
-    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
+    [Topic validatesFormatOf:@"content" withInitBlock:^(OMValidator *validator)
      {
          OMFormatValidator *myValidator = (OMFormatValidator *)validator;
          [myValidator setRegularExpression:[NSRegularExpression regularExpressionWithPattern:@"\\A\\d+\\Z" options:0 error:nil]];
@@ -320,7 +320,7 @@
 
 - (void)testValidatesFormatWithRegularExpressionAndPatternMatchesNO
 {
-    [Topic validatesFormatOf:@"content" withBlock:^(OMValidator *validator)
+    [Topic validatesFormatOf:@"content" withInitBlock:^(OMValidator *validator)
      {
          OMFormatValidator *myValidator = (OMFormatValidator *)validator;
          [myValidator setShouldMatchPattern:NO];

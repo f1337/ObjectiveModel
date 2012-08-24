@@ -67,7 +67,7 @@
 - (void)testValidatesLengthWithAllowNil
 {
     // Topic.validates_length_of( :title, :is => 5, :allow_nil => true )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setAllowNil:YES];
         [myValidator setEquals:[NSNumber numberWithInt:5]];
@@ -109,7 +109,7 @@
 - (void)testValidatesLengthWithAllowBlank
 {
     // Topic.validates_length_of( :title, :is => 5, :allow_blank => true )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setAllowBlank:YES];
         [myValidator setEquals:[NSNumber numberWithInt:5]];
@@ -150,7 +150,7 @@
 - (void)testValidatesLengthUsingMinimum
 {
     // Topic.validates_length_of :title, :minimum => 5
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
     }];
@@ -188,7 +188,7 @@
 - (void)testValidatesLengthUsingMaximumShouldAllowNil
 {
     // Topic.validates_length_of :title, :maximum => 10
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithInt:10]];
     }];
@@ -207,7 +207,7 @@
 - (void)testOptionallyValidatesLengthUsingMinimum
 {
     // Topic.validates_length_of :title, :minimum => 5, :allow_nil => true
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setAllowNil:YES];
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
@@ -231,7 +231,7 @@
 - (void)testValidatesLengthUsingMaximum
 {
     // Topic.validates_length_of :title, :maximum => 5
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
     }];
@@ -260,7 +260,7 @@
 -(void)testOptionallyValidatesLengthUsingMaximum
 {
     // Topic.validates_length_of :title, :maximum => 5, :allow_nil => true
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setAllowNil:YES];
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -284,7 +284,7 @@
 {
     // Topic.validates_length_of(:title, :content, :within => 3..5)
     [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil]
-                   withBlock:^(OMValidator *validator) {
+                   withInitBlock:^(OMValidator *validator) {
                        OMLengthValidator *myValidator = (OMLengthValidator *)validator;
                        [myValidator setMinimum:[NSNumber numberWithInt:3]];
                        [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -323,7 +323,7 @@
 {
     // Topic.validates_length_of :title, :content, :within => 3..5, :allow_nil => true
     [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil]
-                   withBlock:^(OMValidator *validator) {
+                   withInitBlock:^(OMValidator *validator) {
                        OMLengthValidator *myValidator = (OMLengthValidator *)validator;
                        [myValidator setAllowNil:YES];
                        [myValidator setMinimum:[NSNumber numberWithInt:3]];
@@ -347,7 +347,7 @@
 - (void)testValidatesLengthUsingEquals
 {
     // Topic.validates_length_of :title, :is => 5
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:5]];
     }];
@@ -381,7 +381,7 @@
 - (void)testOptionallyValidatesLengthUsingEquals
 {
     // Topic.validates_length_of :title, :is => 5, :allow_nil => true
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setAllowNil:YES];
         [myValidator setEquals:[NSNumber numberWithInt:5]];
@@ -411,27 +411,27 @@
 
     // assert_nothing_raised do
     // Topic.validates_length_of :title, :is => bigmin + 5
-    STAssertNoThrow([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:(bigMin + 5)]];
     }], @"An exception should NOT have been raised.");
 
     // Topic.validates_length_of :title, :within => bigrange
     // Topic.validates_length_of :title, :in => bigrange
-    STAssertNoThrow([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:bigMin]];
         [myValidator setMaximum:[NSNumber numberWithInt:bigMax]];
     }], @"An exception should NOT have been raised.");
 
     // Topic.validates_length_of :title, :minimum => bigmin
-    STAssertNoThrow([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:bigMin]];
     }], @"An exception should NOT have been raised.");
 
     // Topic.validates_length_of :title, :maximum => bigmax
-    STAssertNoThrow([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithInt:bigMax]];
     }], @"An exception should NOT have been raised.");
@@ -442,7 +442,7 @@
 - (void)testValidatesLengthUsingNastyOptions
 {
     // assert_raise(ArgumentError) { Topic.validates_length_of(:title, :is => -6) }
-    STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertThrowsSpecificNamed([Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:-6]];
     }], NSException, NSInvalidArgumentException, @"An NSInvalidArgumentException should have been raised, but was not.");
@@ -453,7 +453,7 @@
 - (void)testValidatesLengthWithMinimumAndMessage
 {
     // Topic.validates_length_of( :title, :minimum => 5, :message => "boo %{count}" )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
         [myValidator setMessage:@"boo %{count}"];
@@ -473,7 +473,7 @@
 - (void)testValidatesLengthWithMinimumAndTooShortMessage
 {
     // Topic.validates_length_of( :title, :minimum => 5, :too_short => "hoo %{count}" )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
         [myValidator setTooShortMessage:@"hoo %{count}"];
@@ -493,7 +493,7 @@
 - (void)testValidatesLengthWithMaximumAndMessage
 {
     // Topic.validates_length_of( :title, :maximum => 5, :message => "boo %{count}" )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
         [myValidator setMessage:@"boo %{count}"];
@@ -513,7 +513,7 @@
 - (void)testValidatesLengthUsingMinimumAndMaximumWithMessage
 {
     // Topic.validates_length_of(:title, :in => 10..20, :message => "hoo %{count}")
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:10]];
         [myValidator setMaximum:[NSNumber numberWithInt:20]];
@@ -541,7 +541,7 @@
 - (void)testValidatesLengthWithMaximumAndTooLongMessage
 {
     // Topic.validates_length_of( :title, :maximum => 5, :too_long => "hoo %{count}" )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
         [myValidator setTooLongMessage:@"hoo %{count}"];
@@ -561,7 +561,7 @@
 - (void)testValidatesLengthWithTooShortAndTooLong
 {
     // Topic.validates_length_of :title, :minimum => 3, :maximum => 5, :too_short => 'too short', :too_long => 'too long'
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:3]];
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -589,7 +589,7 @@
 - (void)testValidatesLengthWithEqualsAndMessage
 {
     // Topic.validates_length_of( :title, :is => 5, :message => "boo %{count}" )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:5]];
         [myValidator setMessage:@"boo %{count}"];
@@ -609,7 +609,7 @@
 - (void)testValidatesLengthWithEqualsAndWrongLengthMessage
 {
     // Topic.validates_length_of( :title, :is => 5, :wrong_length => "hoo %{count}" )
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:5]];
         [myValidator setWrongLengthMessage:@"hoo %{count}"];
@@ -629,7 +629,7 @@
 - (void)testValidatesLengthUsingMinimumWithUTF8
 {
     // Topic.validates_length_of :title, :minimum => 5
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
     }];
@@ -653,7 +653,7 @@
 - (void)testValidatesLengthUsingMaximumWithUTF8
 {
     // Topic.validates_length_of :title, :minimum => 5
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
     }];
@@ -677,7 +677,7 @@
 - (void)testValidatesLengthUsingMinimumAndMaximumWithUTF8
 {
     // Topic.validates_length_of :title, :minimum => 5
-    [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil] withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:[NSArray arrayWithObjects:@"title", @"content", nil] withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:3]];
         [myValidator setMaximum:[NSNumber numberWithInt:5]];
@@ -705,7 +705,7 @@
 - (void)testOptionallyValidatesLengthUsingMinimumAndMaximumWithUTF8
 {
     // Topic.validates_length_of :title, :within => 3..5, :allow_nil => true
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setAllowNil:YES];
         [myValidator setMinimum:[NSNumber numberWithInt:3]];
@@ -733,7 +733,7 @@
 - (void)testValidatesLengthUsingEqualsWintUTF8
 {
     // Topic.validates_length_of :title, :is => 5
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:5]];
     }];
@@ -758,7 +758,7 @@
 {
     // Topic.validates_length_of :content, :minimum => 5, :too_short => "Your essay must be at least %{count} words.",
     // :tokenizer => lambda {|str| str.scan(/\w+/) }
-    [Topic validatesLengthOf:@"content" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"content" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
         [myValidator setTooShortMessage:@"Your essay must be at least %{count} words."];
@@ -789,7 +789,7 @@
 - (void)testValidatesLengthWithNumber
 {
     // Topic.validates_length_of(:approved, :is => 4)
-    [Topic validatesLengthOf:@"approved" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"approved" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setEquals:[NSNumber numberWithInt:4]];
     }];
@@ -813,7 +813,7 @@
 - (void)testValidatesLengthWithInfiniteMaximum
 {
     // Topic.validates_length_of(:title, :within => 5..Float::INFINITY)
-    [Topic validatesLengthOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMinimum:[NSNumber numberWithInt:5]];
         [myValidator setMaximum:[NSNumber numberWithFloat:INFINITY]];
@@ -831,7 +831,7 @@
     OMAssertModelIsValid(_topic);
 
     // Topic.validates_length_of(:author_name, :maximum => Float::INFINITY)
-    [Topic validatesLengthOf:@"authorName" withBlock:^(OMValidator *validator) {
+    [Topic validatesLengthOf:@"authorName" withInitBlock:^(OMValidator *validator) {
         OMLengthValidator *myValidator = (OMLengthValidator *)validator;
         [myValidator setMaximum:[NSNumber numberWithFloat:INFINITY]];
     }];

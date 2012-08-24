@@ -68,7 +68,7 @@
 - (void)testNoTitleConfirmation
 {
     //Topic.validates_confirmation_of(:title)
-    [Topic validatesConfirmationOf:@"title" withBlock:nil];
+    [Topic validatesConfirmationOf:@"title" withInitBlock:nil];
 
     //t = Topic.new(:author_name => "Plutarch")
     [_topic setAuthorName:@"Plutarch"];
@@ -98,7 +98,7 @@
 - (void)testTitleConfirmation
 {
     //Topic.validates_confirmation_of(:title)
-    [Topic validatesConfirmationOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesConfirmationOf:@"title" withInitBlock:^(OMValidator *validator) {
         [validator setMessage:@"and confirmation do not match"];
     }];
 

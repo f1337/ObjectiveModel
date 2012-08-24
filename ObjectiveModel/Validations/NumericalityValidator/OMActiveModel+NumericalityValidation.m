@@ -31,7 +31,7 @@
 
 
 
-+ (void)validatesNumericalityOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesNumericalityOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
     [self validatesEach:properties withClass:[OMNumericalityValidator class] andInitBlock:block];
 }

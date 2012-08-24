@@ -119,14 +119,14 @@ typedef NSArray *(^ OMLengthValidatorTokenizerBlock) (NSObject *value);
 /*!
  * @brief Validates that the specified property or properties matches the length restrictions supplied.
  */
-+ (void)validatesLengthOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
++ (void)validatesLengthOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
 
 /*!
  * @brief Alias of validatesLengthOf:withBlock:.
  */
-+ (void)validatesLengthOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block;
++ (void)validatesSizeOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
 

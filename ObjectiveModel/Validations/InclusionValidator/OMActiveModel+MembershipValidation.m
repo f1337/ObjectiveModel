@@ -38,14 +38,14 @@
 
 
 
-+ (void)validatesExclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesExclusionOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
     [self validatesEach:properties withClass:[OMExclusionValidator class] andInitBlock:block];
 }
 
 
 
-+ (void)validatesInclusionOf:(NSObject *)properties withBlock:(OMValidatorInitBlock)block
++ (void)validatesInclusionOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block
 {
     [self validatesEach:properties withClass:[OMInclusionValidator class] andInitBlock:block];
 }

@@ -70,7 +70,7 @@
 - (void)testValidatesExclusionOf
 {
     //Topic.validates_exclusion_of( :title, :in => %w( abe monkey ) )
-    [Topic validatesExclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesExclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMExclusionValidator *myValidator = (OMExclusionValidator *)validator;
         [myValidator setCollection:[NSArray arrayWithObjects:@"abe", @"monkey", nil]];
     }];
@@ -89,7 +89,7 @@
 - (void)testValidatesExclusionWithFormattedMessage
 {
     //Topic.validates_exclusion_of( :title, :in => %w( abe monkey ), :message => "option %{value} is restricted" )
-    [Topic validatesExclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesExclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMExclusionValidator *myValidator = (OMExclusionValidator *)validator;
         [myValidator setCollection:[NSArray arrayWithObjects:@"abe", @"monkey", nil]];
         [myValidator setMessage:@"option %{value} is restricted"];
@@ -113,7 +113,7 @@
 - (void)testValidatesExclusionWithBlock
 {
     //Topic.validates_exclusion_of :title, :in => lambda{ |topic| topic.author_name == "sikachu" ? %w( monkey elephant ) : %w( abe wasabi ) }
-    [Topic validatesExclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesExclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMExclusionValidator *myValidator = (OMExclusionValidator *)validator;
         [myValidator setCollectionBlock:^id<OMCollection>(id topic)
          {
@@ -146,7 +146,7 @@
 - (void)testValidatesInclusionInDictionary
 {
     //Topic.validates_inclusion_of( :title, :in => 'aaa'..'bbb' )
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSDictionary dictionaryWithObjectsAndKeys:@"aaa", @"bbc", @"abc", @"aa", @"bbb", @"zz", nil]];
     }];
@@ -174,7 +174,7 @@
 - (void)testValidatesInclusionInSet
 {
     //Topic.validates_inclusion_of( :title, :in => 'aaa'..'bbb' )
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSSet setWithObjects:@"aaa", @"abc", @"bbb", nil]];
     }];
@@ -201,7 +201,7 @@
 
 - (void)testValidatesInclusionInString
 {
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSString stringWithFormat:@"hi!"]];
     }];
@@ -230,7 +230,7 @@
 - (void)testValidatesInclusionOf
 {
     //Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ) )
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
     }];
@@ -260,21 +260,21 @@
     OMAssertModelIsInvalid(_topic, @"is not included in the list", [NSArray arrayWithObject:@"title"]);
 
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => "hi!" ) }
-    STAssertNoThrow([Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSString stringWithFormat:@"hi!"]];
     }], @"An unexpected exception was raised!.");
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => {} ) }
-    STAssertNoThrow([Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSSet set]];
     }], @"An unexpected exception was raised!.");
-    STAssertNoThrow([Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSDictionary dictionary]];
     }], @"An unexpected exception was raised!.");
     //assert_nothing_raised(ArgumentError) { Topic.validates_inclusion_of( :title, :in => [] ) }
-    STAssertNoThrow([Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    STAssertNoThrow([Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSArray array]];
     }], @"An unexpected exception was raised!.");
@@ -285,7 +285,7 @@
 - (void)testValidatesInclusionWithAllowNil
 {
     //Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ), :allow_nil => true )
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setAllowNil:YES];
         [myValidator setCollection:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
@@ -308,7 +308,7 @@
 - (void)testValidatesInclusionWithFormattedMessage
 {
     //Topic.validates_inclusion_of( :title, :in => %w( a b c d e f g ), :message => "option %{value} is not in the list" )
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollection:[NSArray arrayWithObjects:@"a", @"b", @"c", @"d", @"e", @"f", @"g", nil]];
         [myValidator setMessage:@"option %{value} is not in the list"];
@@ -331,7 +331,7 @@
 - (void)testValidatesInclusionWithBlock
 {
     //Topic.validates_inclusion_of :title, :in => lambda{ |topic| topic.author_name == "sikachu" ? %w( monkey elephant ) : %w( abe wasabi ) }
-    [Topic validatesInclusionOf:@"title" withBlock:^(OMValidator *validator) {
+    [Topic validatesInclusionOf:@"title" withInitBlock:^(OMValidator *validator) {
         OMInclusionValidator *myValidator = (OMInclusionValidator *)validator;
         [myValidator setCollectionBlock:^id<OMCollection>(id topic)
          {
