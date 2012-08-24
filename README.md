@@ -4,6 +4,12 @@ ObjectiveModel
 An ActiveModel implementation for Objective-C.
 
 
+Examples
+--------
+
+	[Topic validatesAcceptanceOf:@"termsOfService" withInitBlock:nil];
+
+
 
 License
 -------

@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -89,22 +89,6 @@
                                                     code:NSManagedObjectValidationError 
                                                 userInfo:userInfo];
     }
-}
-
-
-
-- (void)setOptions:(NSDictionary *)options
-{
-    // filter out the properties that require special attention
-    NSMutableDictionary *filteredOptions = [NSMutableDictionary dictionaryWithDictionary:options];
-    [filteredOptions removeObjectsForKeys:[NSMutableArray arrayWithObjects:@"allowBlank", @"allowNil", nil]];
-
-    // this is where the magic happens: KVC, baby!
-    [self setValuesForKeysWithDictionary:filteredOptions];
-    
-    // apply the properties requiring special attention
-    [self setAllowBlank:( [[options objectForKey:@"allowBlank"] boolValue] ? YES : NO )];
-    [self setAllowNil:( [[options objectForKey:@"allowNil"] boolValue] ? YES : NO )];
 }
 
 

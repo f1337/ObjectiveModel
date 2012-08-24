@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Permission is hereby granted, free of charge, to any person obtaining

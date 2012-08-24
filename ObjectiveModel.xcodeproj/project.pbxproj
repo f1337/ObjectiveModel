@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A8213D915E70DF800E975A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A8213D815E70DF800E975A3 /* README.md */; };
 		3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */; };
 		3AA12B7215E5937A004A7AA2 /* OMExclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */; };
 		3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */; };
@@ -89,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A8213D815E70DF800E975A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMExclusionValidator.h; path = InclusionValidator/OMExclusionValidator.h; sourceTree = "<group>"; };
 		3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMExclusionValidator.m; path = InclusionValidator/OMExclusionValidator.m; sourceTree = "<group>"; };
 		3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMInclusionValidator.h; path = InclusionValidator/OMInclusionValidator.h; sourceTree = "<group>"; };
@@ -168,8 +170,6 @@
 		AC09CE381581627B008E581C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AC09CE4815817096008E581C /* ObjectiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveModel.h; sourceTree = "<group>"; };
 		AC09CE4A158170E1008E581C /* Validations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validations.h; sourceTree = "<group>"; };
-		AC09CE4D15818E7D008E581C /* headerdoc-footer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html.documentation; path = "headerdoc-footer.html"; sourceTree = "<group>"; };
-		AC09CE4E15818E7D008E581C /* headerdoc.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = headerdoc.conf; sourceTree = "<group>"; };
 		AC2A2F1C158260B400C5AF8E /* OMMembershipValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMMembershipValidator.h; path = InclusionValidator/OMMembershipValidator.h; sourceTree = "<group>"; };
 		AC2A2F1D158260B400C5AF8E /* OMMembershipValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMMembershipValidator.m; path = InclusionValidator/OMMembershipValidator.m; sourceTree = "<group>"; };
 		AC2A2F20158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OMActiveModel+MembershipValidation.h"; path = "InclusionValidator/OMActiveModel+MembershipValidation.h"; sourceTree = "<group>"; };
@@ -416,8 +416,7 @@
 		AC09CE4C15818E08008E581C /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CE4E15818E7D008E581C /* headerdoc.conf */,
-				AC09CE4D15818E7D008E581C /* headerdoc-footer.html */,
+				3A8213D815E70DF800E975A3 /* README.md */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
@@ -552,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC09CD9615815E59008E581C /* InfoPlist.strings in Resources */,
+				3A8213D915E70DF800E975A3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

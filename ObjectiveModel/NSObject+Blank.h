@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -27,47 +27,54 @@
 
 
 
-/*!
- * An object is blank if it is false, empty, or a whitespace string.
- * For example, @“”, @“ ”, nil, [], and {} are all blank.
- *
- *
- * NSNull is always blank:
- *
- * [[NSNull null] isBlank] => YES
- *
- *
- * An NSArray is blank if it is empty:
- *
- * [[NSArray array] isBlank] => YES
- * [[NSArray arrayWithObjects:@"a", @"b", @"c", nil] isBlank] => NO
- *
- *
- * An NSDictionary is blank if it is empty:
- *
- * [[NSDictionary dictionary] isBlank] => YES
- * [[NSDictionary dictionaryWithObjectsAndKeys:@"value", @"key", nil] isBlank] => NO
- *
- *
- * An NSSet is blank if it is empty:
- *
- * [[NSSet set] isBlank] => YES
- * [[NSSet setWithObjects:@"a", @"b", @"c", nil] isBlank] => NO
- *
- *
- * An NSString is blank if it is empty or contains only whitespace:
- *
- * [[NSString stringWithString:@""] isBlank] => YES
- * [[NSString stringWithString:@"   "] isBlank] => YES
- * [[NSString stringWithString:@" some text"] isBlank] => NO
- *
- *
- * An NSNumber is never blank:
- *
- * [[NSNumber numberWithBool:0] isBlank] => NO
- * [[NSNumber numberWithInt:0] isBlank] => NO
- * [[NSNumber numberWithInteger:1] isBlank] => NO
- */
 @interface NSObject (Blank)
+
+
+
+/*!
+An object is blank if it is false, empty, or a whitespace string.
+For example, `@“”`, `@“ ”`, `nil`, `@[]`, and `@{}` are all blank.
+
+
+NSNull is always blank:
+
+    [[NSNull null] isBlank] == YES
+
+
+An NSArray is blank if it is empty:
+
+    [[NSArray array] isBlank] == YES
+    [[NSArray arrayWithObjects:@"a", @"b", @"c", nil] isBlank] == NO
+
+
+An NSDictionary is blank if it is empty:
+
+    [[NSDictionary dictionary] isBlank] == YES
+    [[NSDictionary dictionaryWithObjectsAndKeys:@"value", @"key", nil] isBlank] == NO
+
+
+An NSSet is blank if it is empty:
+
+    [[NSSet set] isBlank] == YES
+    [[NSSet setWithObjects:@"a", @"b", @"c", nil] isBlank] == NO
+
+
+An NSString is blank if it is empty or contains only whitespace:
+
+    [[NSString stringWithString:@""] isBlank] == YES
+    [[NSString stringWithString:@"   "] isBlank] == YES
+    [[NSString stringWithString:@" some text"] isBlank] == NO
+
+
+An NSNumber is never blank:
+
+    [[NSNumber numberWithBool:0] isBlank] == NO
+    [[NSNumber numberWithInt:0] isBlank] == NO
+    [[NSNumber numberWithInteger:1] isBlank] == NO
+
+*/
 - (BOOL)isBlank;
+
+
+
 @end

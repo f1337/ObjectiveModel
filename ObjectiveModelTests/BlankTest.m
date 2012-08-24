@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -95,13 +95,6 @@
 }
 
 
-
-/*!
- * An  is blank if it is empty:
- *
- * [NSSet set] isBlank] => YES
- * [NSSet setWithObjects:@"a", @"b", @"c", nil] isBlank] => NO
- */
 
 #pragma mark -
 #pragma mark NSSet

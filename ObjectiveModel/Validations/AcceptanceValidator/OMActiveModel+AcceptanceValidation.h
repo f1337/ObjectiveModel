@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright © 2011-2012 Michael R. Fleet (github.com/f1337)
  *
  * Portions of this software were transliterated from Ruby on Rails.
@@ -36,18 +36,22 @@
 
 
 /*!
- * Encapsulates the pattern of wanting to validate the acceptance of a
- * terms of service check box (or similar agreement).
- *
- *   class Person < ActiveRecord::Base
- *     validates_acceptance_of :terms_of_service
- *     validates_acceptance_of :eula, :message => "must be abided"
- *   end
- *
- * If the database column does not exist, the +terms_of_service+ attribute
- * is entirely virtual. This check is performed only if +terms_of_service+
- * is not +nil+ and by default on save.
- */
+Encapsulates the pattern of validating the acceptance of a terms of
+service check box, "enter initials to accept", or similar agreement.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesAcceptanceOf:@"termsOfService" withInitBlock:nil];
+            [self validatesAcceptanceOf:@"EULA" withInitBlock:^(OMValidator *validator)
+            {
+                OMAcceptanceValidator *acceptanceValidator = (OMAcceptanceValidator *)validator;
+                [acceptanceValidator setAccept:@"I agree."];
+                [acceptanceValidator setMessage:@"must be abided"];
+            }];
+        }
+    @end
+*/
 + (void)validatesAcceptanceOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
