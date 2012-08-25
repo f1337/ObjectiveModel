@@ -35,96 +35,91 @@ typedef NSArray *(^ OMLengthValidatorTokenizerBlock) (NSObject *value);
 
 
 
-/*!
- * @class OMActiveModel
- * @discussion Validates that the specified property or properties matches the length restrictions supplied.
- *
- * <pre>
- * @textblock
- * @implementation Person
- * + (void)initialize
- * {
- *     [self validatesLengthOf:@"firstName"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:30], @"maximum",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"lastName"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:30], @"maximum",
- *                              @"less than %{count} if you don't mind", @"message",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"fax"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:7], @"minimum",
- *                              [NSNumber numberWithInt:32], @"maximum",
- *                              @"Y", @"allowNil",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"phone"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:7], @"minimum",
- *                              [NSNumber numberWithInt:32], @"maximum",
- *                              @"Y", @"allowBlank",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"userName"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:6], @"minimum",
- *                              [NSNumber numberWithInt:20], @"maximum",
- *                              @"pick a shorter name", @"tooLongMessage",
- *                              @"pick a longer name", @"tooShortMessage",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"zipCode"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:5], @"minimum",
- *                              @"please enter at least %{count} characters", @"tooShortMessage",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"smurfLeader"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:4], @"equals",
- *                              @"papa is spelled with 4 characters... don't play me.", @"wrongLengthMessage",
- *                              nil]
- *     ];
- *     
- *     [self validatesLengthOf:@"essay"
- *                 withOptions:[NSDictionary dictionaryWithObjectsAndKeys:
- *                              [NSNumber numberWithInt:100], @"minimum",
- *                              @"Your essay must be at least %{count} words.", @"tooShortMessage",
- *                              nil]
- *                    andBlock:^(NSObject *)value
- *      {
- *          NSString *stringValue = [value description];
- *          return [stringValue componentsSeparatedByString:@" "];
- *      }
- *     ];
- * }
- * @end
- * @/textblock
- * </pre>
- */
 @interface OMActiveModel (LengthValidation)
 
 
 
 /*!
- * @brief Validates that the specified property or properties matches the length restrictions supplied.
- */
+Validates that the specified property or properties matches the length restrictions supplied.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesLengthOf:@"firstName" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setMaximum:[NSNumber numberWithInt:30]];
+            }];
+
+            [self validatesLengthOf:@"lastName" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setMaximum:[NSNumber numberWithInt:30]];
+                [lengthValidator setMessage:@"less than %{count} if you don't mind"]
+            }];
+
+            [self validatesLengthOf:@"fax" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setAllowNil:YES];
+                [lengthValidator setMinimum:[NSNumber numberWithInt:7]];
+                [lengthValidator setMaximum:[NSNumber numberWithInt:32]];
+            }];
+
+            [self validatesLengthOf:@"phone" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setAllowBlank:YES];
+                [lengthValidator setMinimum:[NSNumber numberWithInt:7]];
+                [lengthValidator setMaximum:[NSNumber numberWithInt:32]];
+            }];
+
+            [self validatesLengthOf:@"userName" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setMinimum:[NSNumber numberWithInt:6]];
+                [lengthValidator setTooShortMessage:@"pick a longer name"];
+                [lengthValidator setMaximum:[NSNumber numberWithInt:20]];
+                [lengthValidator setTooLongMessage:@"pick a shorter name"];
+            }];
+
+            [self validatesLengthOf:@"zipCode" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setMinimum:[NSNumber numberWithInt:5]];
+                [lengthValidator setTooShortMessage:@"please enter at least %{count} characters"];
+            }];
+
+            [self validatesLengthOf:@"smurfLeader" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setEquals:[NSNumber numberWithInt:4]];
+                [lengthValidator setWrongLengthMessage:@"papa is spelled with 4 characters... don't play me."];
+            }];
+
+            [self validatesLengthOf:@"essay" withInitBlock:^(OMValidator *validator)
+            {
+                OMLengthValidator *lengthValidator = (OMLengthValidator *)validator;
+                [lengthValidator setMinimum:[NSNumber numberWithInt:100]];
+                [lengthValidator setTooShortMessage:@"Your essay must be at least %{count} words."];
+                [lengthValidator setTokenizer:^NSArray *(NSObject *value)
+                {
+                    NSString *stringValue = [value description];
+                    return [stringValue componentsSeparatedByString:@" "];
+                }];
+            }];
+        }
+    @end
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesLengthOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
 
 /*!
- * @brief Alias of validatesLengthOf:withBlock:.
+ * Alias of validatesLengthOf:withInitBlock:.
  */
 + (void)validatesSizeOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 

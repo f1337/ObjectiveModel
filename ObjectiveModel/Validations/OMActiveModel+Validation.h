@@ -36,44 +36,92 @@ typedef void (^ OMValidatorInitBlock) (OMValidator *validator);
 
 
 
+/*!
+Provides a full validation framework to your objects.
+A minimal implementation could be:
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesEach:[NSArray arrayWithObjects:@"firstName", @"lastName", nil]
+                      withBlock:^BOOL(OMBlockValidator *validator, OMActiveModel *model, NSObject *value)
+            {
+                NSString *stringValue = [value description];
+                if ( [stringValue hasPrefix:@"z"] )
+                {
+                    [validator setMessage:@"starts with z."];
+                    return NO;
+                }
+                else
+                {
+                    return YES;
+                }
+            }];
+        }
+    @end
+
+Which provides you with the full standard validation stack:
+
+    Person *person = [[Person alloc] init];
+    NSError *error = nil;
+    [person isValid:&error]; // => YES
+    [person isInvalid:&error]; // => NO
+
+    [person setFirstName:@"zoolander"];
+    [person isValid:&error]; // => NO
+    [person isInvalid:&error]; // => YES
+    [[error userInfo]] objectForKey:NSValidationKeyErrorKey]; // => @"firstName"
+    [error localizedDescription]; // => @"starts with z."
+*/
 @interface OMActiveModel (Validation)
 
 
 
 /*!
- * @brief Triggers validations and returns YES if any validation fails, else NO
+ * Executes all validators defined for the model
+ * and returns YES if any validation fails, else NO
  */
 - (BOOL)isInvalid:(NSError **)errors;
 
 
 
 /*!
- * @brief Triggers validations and returns YES if all validations pass, else NO
+ * Executes all validators defined for the model
+ * and returns YES if all validations pass, else NO
  */
 - (BOOL)isValid:(NSError **)errors;
 
 
 
 /*!
- * @brief Executes all validators defined for the model. See isValid.
+ * Executes all validators defined for the model. See isValid.
  */
 - (BOOL)validate:(NSError **)errors;
 
 
 
 /*!
- * @param properties An NSString property name OR an NSArray of NSString property names
- * @param validators An NSArray containing one or more of the following:
- * "acceptance" => OMAcceptanceValidator
- * "confirmation" => OMConfirmationValidator
- * "exclusion" => OMMembershipValidator
- * "format" => OMFormatValidator
- * "inclusion" => OMMembershipValidator
- * "length" => OMLengthValidator
- * "numercality" => OMNumericalityValidator
- * "presence" => OMPresenceValidator
- * @param options A dictionary with one or more of the following keys/value pairs:
- */
+Instantiates a validator for each property, using the validator class provided,
+then yields each instance to the init block for setup.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesEach:[NSArray arrayWithObjects:@"termsOfService", @"EULA", nil] withClass:[OMAcceptanceValidator class] andInitBlock:nil];
+
+            [self validatesEach:@"termsOfService" withClass:[OMAcceptanceValidator class] andInitBlock:^(OMValidator *validator)
+            {
+                OMAcceptanceValidator *acceptanceValidator = (OMAcceptanceValidator *)validator;
+                [acceptanceValidator setAccept:@"I agree."];
+                [acceptanceValidator setMessage:@"must be abided"];
+            }];
+        }
+    @end
+
+@param properties An NSString property name OR an NSArray of NSString property names
+@param validationClass An OMValidator class to be instantiated for each property.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesEach:(NSObject *)properties withClass:(Class)validationClass andInitBlock:(OMValidatorInitBlock)block;
 
 

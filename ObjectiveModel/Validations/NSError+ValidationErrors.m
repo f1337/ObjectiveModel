@@ -56,7 +56,6 @@
         
         if ( [originalError code] == NSValidationMultipleErrorsError )
         {
-            
             [userInfo addEntriesFromDictionary:[originalError userInfo]];
             [errors addObjectsFromArray:[userInfo objectForKey:NSDetailedErrorsKey]];
         }

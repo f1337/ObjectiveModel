@@ -36,20 +36,23 @@ typedef NSNumber *(^ OMNumericalityValidatorNumberBlock) (id);
 
 
 /*!
- * Validates whether the value of the specified property is numeric.
- *
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *          [self validatesNumericalityOf:@"age" withInitBlock:^void (OMValidator *validator)
- *          {
- *              OMNumericalityValidator *myValidator = (OMNumericalityValidator *)validator;
- *              [myValidator setGreaterThanOrEqualToNumber:[NSNumber numberWithInt:13]];
- *              [myValidator setInteger:[NSNumber numberWithBool:YES]];
- *          }];
- *		}
- *   @end
- */
+Validates whether the value of the specified property or properties is numeric.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesNumericalityOf:@"age" withInitBlock:^void (OMValidator *validator)
+            {
+                OMNumericalityValidator *numericalityValidator = (OMNumericalityValidator *)validator;
+                [numericalityValidator setGreaterThanOrEqualToNumber:[NSNumber numberWithInt:13]];
+                [numericalityValidator setInteger:[NSNumber numberWithBool:YES]];
+            }];
+        }
+    @end
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesNumericalityOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 

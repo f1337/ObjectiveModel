@@ -69,7 +69,7 @@
 
 /*!
  * Specifies whether the value has to be an integer, e.g. an integral value
- * (default is +false+).
+ * (default is `NO`).
  */
 @property (copy) NSNumber *integer;
 

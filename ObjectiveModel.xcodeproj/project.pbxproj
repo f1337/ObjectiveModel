@@ -289,19 +289,19 @@
 			isa = PBXGroup;
 			children = (
 				AC09CE4A158170E1008E581C /* Validations.h */,
+				AC09CDE015815F73008E581C /* OMValidator.h */,
+				AC09CDE115815F73008E581C /* OMValidator.m */,
+				AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */,
+				AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */,
+				AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */,
+				AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */,
 				AC09CDC115815F73008E581C /* AcceptanceValidator */,
 				3ADC2D0615E6E9E600C84A35 /* BlockValidator */,
 				AC09CDC615815F73008E581C /* ConfirmationValidator */,
 				AC09CDCB15815F73008E581C /* FormatValidator */,
 				AC09CDD015815F73008E581C /* LengthValidator */,
 				AC2A2F1B1582608500C5AF8E /* MembershipValidator */,
-				AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */,
-				AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */,
 				AC09CDD715815F73008E581C /* NumericalityValidator */,
-				AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */,
-				AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */,
-				AC09CDE015815F73008E581C /* OMValidator.h */,
-				AC09CDE115815F73008E581C /* OMValidator.m */,
 				AC09CDE215815F73008E581C /* PresenceValidator */,
 			);
 			path = Validations;
@@ -332,10 +332,10 @@
 		AC09CDCB15815F73008E581C /* FormatValidator */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */,
-				AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */,
 				AC09CDCE15815F73008E581C /* OMFormatValidator.h */,
 				AC09CDCF15815F73008E581C /* OMFormatValidator.m */,
+				AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */,
+				AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */,
 			);
 			path = FormatValidator;
 			sourceTree = "<group>";
@@ -343,10 +343,10 @@
 		AC09CDD015815F73008E581C /* LengthValidator */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */,
-				AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */,
 				AC09CDD315815F73008E581C /* OMLengthValidator.h */,
 				AC09CDD415815F73008E581C /* OMLengthValidator.m */,
+				AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */,
+				AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */,
 			);
 			path = LengthValidator;
 			sourceTree = "<group>";
@@ -354,12 +354,12 @@
 		AC09CDD715815F73008E581C /* NumericalityValidator */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */,
-				AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */,
-				AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */,
-				AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */,
 				AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */,
 				AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */,
+				AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */,
+				AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */,
+				AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */,
+				AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */,
 			);
 			path = NumericalityValidator;
 			sourceTree = "<group>";
@@ -367,10 +367,10 @@
 		AC09CDE215815F73008E581C /* PresenceValidator */ = {
 			isa = PBXGroup;
 			children = (
-				AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */,
-				AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidation.m */,
 				AC09CDE515815F73008E581C /* OMPresenceValidator.h */,
 				AC09CDE615815F73008E581C /* OMPresenceValidator.m */,
+				AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */,
+				AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidation.m */,
 			);
 			path = PresenceValidator;
 			sourceTree = "<group>";

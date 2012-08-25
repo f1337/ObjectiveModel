@@ -27,13 +27,58 @@
 
 
 
+/*!
+Returns YES if this number is even (divisible by 2 with no remainder), else NO.
+*/
 - (BOOL)isEven;
+
+
+
+/*!
+Returns YES if this number is greater than the minimum number provided, else NO.
+*/
 - (BOOL)isGreaterThanNumber:(NSNumber *)minimum;
+
+
+
+/*!
+Returns YES if this number is greater than or equal to the minimum number provided, else NO.
+*/
 - (BOOL)isGreaterThanOrEqualToNumber:(NSNumber *)minimum;
+
+
+
+/*!
+Returns YES if this number is less than the maximum number provided, else NO.
+*/
 - (BOOL)isLessThanNumber:(NSNumber *)maximum;
+
+
+
+/*!
+Returns YES if this number is less than or equal to the maximum number provided, else NO.
+*/
 - (BOOL)isLessThanOrEqualToNumber:(NSNumber *)maximum;
+
+
+
+/*!
+Returns YES if this number is an integer, else NO.
+*/
 - (BOOL)isInteger;
+
+
+
+/*!
+Returns YES if this number is equal to the expected number provided, else NO.
+*/
 - (BOOL)isNotEqualToNumber:(NSNumber *)expected;
+
+
+
+/*!
+Returns YES if this number is odd (*not* divisible by 2 without remainder), else NO.
+*/
 - (BOOL)isOdd;
 
 

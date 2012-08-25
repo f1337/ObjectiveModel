@@ -118,7 +118,7 @@ do { \
 
 
 /*!
- * @brief Removes all validators defined for the model.
+ * Removes all validators defined for the model.
  */
 + (void)removeAllValidations;
 

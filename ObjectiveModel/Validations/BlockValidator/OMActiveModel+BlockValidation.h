@@ -44,7 +44,7 @@ typedef BOOL (^ OMBlockValidatorValidationBlock) (OMBlockValidator *validator, O
 
 
 /*!
-Validates each attribute against the provided block.
+Validates each property against the provided block.
 
     @implementation Person
         + (void)initialize
@@ -65,6 +65,9 @@ Validates each attribute against the provided block.
             }];
         }
     @end
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMBlockValidatorValidationBlock against which to validate the properties.
 */
 + (void)validatesEach:(NSObject *)properties withBlock:(OMBlockValidatorValidationBlock)block;
 

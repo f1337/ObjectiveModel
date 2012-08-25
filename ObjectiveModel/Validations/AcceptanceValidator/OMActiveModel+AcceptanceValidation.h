@@ -51,6 +51,9 @@ service check box, "enter initials to accept", or similar agreement.
             }];
         }
     @end
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
 */
 + (void)validatesAcceptanceOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 

@@ -32,20 +32,20 @@
 
 
 /*!
- * @param properties A string property name OR
- * a collection of string property names conforming to NSFastEnumeration.
- *
- * Validates that the specified attributes are not blank (as defined by NSObject+Blank). Example:
- *
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *	    	[self validatesPresenceOf:@"firstName" withInitBlock:nil];
- *		}
- *   @end
- *
- * The firstName property must be defined for the object and it cannot be nil or blank.
- */
+Validates that the specified attributes are not blank (as defined by NSObject+Blank).
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesPresenceOf:@"firstName" withInitBlock:nil];
+        }
+    @end
+
+The firstName property must be defined for the object and it cannot be nil or blank.
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesPresenceOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 

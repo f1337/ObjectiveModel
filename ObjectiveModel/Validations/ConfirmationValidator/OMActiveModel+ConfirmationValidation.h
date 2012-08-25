@@ -61,6 +61,9 @@ to add a presence check for the confirmation attribute:
             return [person hasChangedPassword];
         }];
     }];
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
 */
 + (void)validatesConfirmationOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 

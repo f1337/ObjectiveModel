@@ -40,29 +40,81 @@ typedef id <OMCollection>(^ OMMembershipValidatorCollectionBlock) (OMActiveModel
 @interface OMActiveModel (MembershipValidation)
 
 
+/*!
+Validates that the value of the specified attribute is *not* in a
+particular enumerable object.
 
-// Validates that the value of the specified attribute is not in a
-// particular enumerable object.
-// 
-//   class Person < ActiveRecord::Base
-//     validates_exclusion_of :username, :in => %w( admin superuser ), :message => "You don't belong here"
-//     validates_exclusion_of :age, :in => 30..60, :message => "This site is only for under 30 and over 60"
-//     validates_exclusion_of :format, :in => %w( mov avi ), :message => "extension %{value} is not allowed"
-//     validates_exclusion_of :password, :in => lambda { |p| [p.username, p.first_name] },
-//                            :message => "should not be the same as your username or first name"
-//   end
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesExclusionOf:@"username" withInitBlock:^(OMValidator *validator)
+            {
+                OMExclusionValidator *exclusionValidator = (OMExclusionValidator *)validator;
+                [exclusionValidator setMessage:@"You don't belong here"];
+                [exclusionValidator setCollection:[NSArray arrayWithObjects:@"admin", @"superuser", nil]];
+            }];
+
+            [self validatesExclusionOf:@"format" withInitBlock:^(OMValidator *validator)
+            {
+                OMExclusionValidator *exclusionValidator = (OMExclusionValidator *)validator;
+                [exclusionValidator setMessage:@"extension %{value} is not allowed"];
+                [exclusionValidator setCollection:[NSArray arrayWithObjects:@"mov", @"avi", nil]];
+            }];
+
+            [self validatesExclusionOf:@"password" withInitBlock:^(OMValidator *validator)
+            {
+                OMExclusionValidator *exclusionValidator = (OMExclusionValidator *)validator;
+                [exclusionValidator setMessage:@"should not be the same as your username or first name"];
+                [exclusionValidator setCollectionBlock:^id<OMCollection>(id person)
+                {
+                    return [NSArray arrayWithObjects:[person username], [person firstName], nil];
+                }];
+            }];
+
+        }
+    @end
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesExclusionOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
-// Validates whether the value of the specified attribute is available in a
-// particular enumerable object.
-//
-//   class Person < ActiveRecord::Base
-//     validates_inclusion_of :gender, :in => %w( m f )
-//     validates_inclusion_of :age, :in => a..z
-//     validates_inclusion_of :format, :in => %w( jpg gif png ), :message => "extension %{value} is not included in the list"
-//     validates_inclusion_of :states, :in => lambda{ |person| STATES[person.country] }
-//   end
+/*!
+Validates whether the value of the specified attribute is available in a
+particular enumerable object.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesInclusionOf:@"gender" withInitBlock:^(OMValidator *validator)
+            {
+                OMInclusionValidator *inclusionValidator = (OMInclusionValidator *)validator;
+                [inclusionValidator setCollection:[NSArray arrayWithObjects:@"m", @"f", nil]];
+            }];
+
+            [self validatesInclusionOf:@"format" withInitBlock:^(OMValidator *validator)
+            {
+                OMInclusionValidator *inclusionValidator = (OMInclusionValidator *)validator;
+                [inclusionValidator setMessage:@"extension %{value} is not supported"];
+                [inclusionValidator setCollection:[NSArray arrayWithObjects:@"jpg", @"gif", @"png", nil]];
+            }];
+
+            [self validatesInclusionOf:@"states" withInitBlock:^(OMValidator *validator)
+            {
+                OMInclusionValidator *inclusionValidator = (OMInclusionValidator *)validator;
+                [inclusionValidator setCollectionBlock:^id<OMCollection>(id person)
+                {
+                    return [NSArray arrayWithObjects:@"CA", @"NY", @"OH", nil];
+                }];
+            }];
+
+        }
+    @end
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesInclusionOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 

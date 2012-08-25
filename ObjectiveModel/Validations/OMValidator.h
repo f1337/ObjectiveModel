@@ -31,19 +31,49 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 
+/*!
+A simple base class that can be used with OMActiveModel+Validation.
+
+Any class that inherits from OMValidator must implement the validateModel:withValue:forKey:error: method.
+To cause a validation error, the method must return NO. To raise a validation error with a message, use
+`[self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];`.
+
+	@interface Person : OMActiveModel @end
+	@implementation Person
+	    + (void)initialize
+	    {
+        	[self validatesEach:@"name" withClass:[MyValidator class] andInitBlock:nil];
+	    }
+	@end
+
+	@interface MyValidator : OMValidator @end
+	@implementation MyValidator
+		- (BOOL)validateModel:(OMActiveModel *)model withValue:(NSObject *)value forKey:(NSString *)inKey error:(NSError **)outError
+		{
+			BOOL valid = ([value isBlank] ? NO : YES);
+
+		    if ( ! valid )
+		    {
+		        [self errorWithOriginalError:outError value:value forKey:inKey message:[self message]];
+		    }
+
+		    return valid;
+		}
+	@end
+*/
 @interface OMValidator : NSObject
 
 
 
 /*!
- * If set to true, skips this validation if the attribute is blank (default is `false`).
+ * If YES, skips this validation if the attribute is blank (default is `NO`).
  */
 @property (assign) BOOL allowBlank;
 
 
 
 /*!
- * If set to true, skips this validation if the attribute is `nil` (default is `false`).
+ * If YES, skips this validation if the attribute is `nil` (default is `NO`).
  */
 @property (assign) BOOL allowNil;
 
@@ -54,7 +84,7 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 
-/*!
+/*
  * TODO?: validateForUpdate, validateForInsert, validateForDelete
  * see RoR's "ValidationContextTest"
  * ~mrf: May provide value with CoreData implementations.
@@ -69,20 +99,19 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 /*!
- * Specifies a block to call to determine if the validation should occur.
- *
- *   [model setShouldApplyValidationBlock:^(id)model
- *   {
- *      return ( [[model property] length] ? YES : NO );
- *   }];
- *
- * The block should return YES or NO.
- */
+Specifies a block to call to determine if the validation should occur.
+The block should return YES or NO.
+
+    [self setShouldApplyValidationBlock:^(id)model
+    {
+       return ( [[model property] length] ? YES : NO );
+    }];
+*/
 @property (copy) OMValidatorConditionalBlock shouldApplyValidationBlock;
 
 
 
-/*!
+/*
  * TODO?: Specifies whether validation should be strict.
  * ~mrf: This seems like overkill for now.
  *
@@ -94,7 +123,7 @@ typedef BOOL (^ OMValidatorConditionalBlock) (OMActiveModel *model);
 
 
 
-/*!
+/*
  * TODO?: Per ~mlj's feedback, add error title?
  * @property (copy) NSString *title;
  */

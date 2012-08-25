@@ -36,60 +36,74 @@ typedef NSRegularExpression *(^ OMFormatValidatorRegularExpressionBlock) (OMActi
 
 
 /*!
- * Validates whether the value of the specified attribute is of the correct
- * form, going by the regular expression provided.You can require that the
- * attribute matches the regular expression:
- * 
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *	    	[self validatesFormatOf:@"email" withOptions:nil andPattern:@"\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z"];
- *		}
- *   @end
- *
- * Alternatively, you can require that the specified attribute does _not_
- * match the regular expression:
- * 
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *	    	[self validatesFormatOf:@"email" withOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"shouldMatchPattern", nil] andPattern:@"NOSPAM"];
- *		}
- *   @end
- *
- * You can also provide a block which will determine the regular
- * expression that will be used to validate the attribute.
- * 
- *   @implementation Person
- *		+ (void)initialize
- *		{
- *          [self validatesFormatOf:@"nickName"
- *                    withOptions:nil
- *                       andBlock:^NSRegularExpression *(id person)
- *          {
- *              NSString *pattern;
- *
- *              if ( [person isAdmin] )
- *              {
- *                  pattern = @"\A[a-z0-9][a-z0-9_\-]*\Z";
- *              }
- *              else
- *              {
- *                  pattern = @"\A[a-z][a-z0-9_\-]*\Z";
- *              }
- *
- *              return [NSRegularExpression regularExpressionWithPattern:pattern
- *                                                               options:NSRegularExpressionCaseInsensitive
- *                                                                 error:nil];
- *          }];
- *		}
- *   @end
- *
- * Note: use <tt>\A</tt> and <tt>\Z</tt> to match the start and end of the
- * string, <tt>^</tt> and <tt>$</tt> match the start/end of a line.
- * http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40009708-CH1-SW53
- * 
- */
+Validates whether the value of the specified attribute is of the correct
+format, according to the regular expression provided. You can require that 
+the attribute matches the regular expression:
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesFormatOf:@"email" withInitBlock:^(OMValidator *validator)
+            {
+                OMFormatValidator *formatValidator = (OMFormatValidator *)validator;
+                [formatValidator setPattern:@"\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z"];
+            }];
+        }
+    @end
+
+Alternately, you can require that the specified attribute does _not_
+match the regular expression:
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesFormatOf:@"email" withInitBlock:^(OMValidator *validator)
+            {
+                OMFormatValidator *formatValidator = (OMFormatValidator *)validator;
+                [formatValidator setPattern:@"NOSPAM"];
+                [formatValidator setShouldMatchPattern:NO];
+            }];
+        }
+    @end
+
+You can also provide a block which will determine the regular
+expression that will be used to validate the attribute.
+
+    @implementation Person
+        + (void)initialize
+        {
+            [self validatesFormatOf:@"nickName" withInitBlock:^(OMValidator *validator)
+            {
+                OMFormatValidator *formatValidator = (OMFormatValidator *)validator;
+                [formatValidator setRegularExpressionBlock:^NSRegularExpression *(id person)
+                {
+                    NSString *pattern;
+
+                    if ( [person isAdmin] )
+                    {
+                        pattern = @"\A[a-z0-9][a-z0-9_\-]*\Z";
+                    }
+                    else
+                    {
+                        pattern = @"\A[a-z][a-z0-9_\-]*\Z";
+                    }
+
+                    return [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                     options:NSRegularExpressionCaseInsensitive
+                                                                       error:nil];
+                }];
+            }];
+        }
+    @end
+
+Note: use `\A` and `\Z` to match the start and end of the
+string, `^` and `$` match the start/end of a line.
+
+cf. http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40009708-CH1-SW53
+
+@param properties A NSString property name OR an NSArray of string property names.
+@param block An OMValidatorInitBlock for initializing the validator instance's properties.
+*/
 + (void)validatesFormatOf:(NSObject *)properties withInitBlock:(OMValidatorInitBlock)block;
 
 
