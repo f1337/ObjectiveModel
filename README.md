@@ -362,7 +362,9 @@ The firstName property must be defined for the object and it cannot be nil or bl
 
 
 
-LICENSE
--------
+COPYRIGHT & LICENSE
+-------------------
 
-ObjectiveModel is released under the MIT license ([www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT)).
+ObjectiveModel, © 2011-2012 Michael R. Fleet ([github.com/f1337](https://github.com/f1337)), is released under the MIT license ([www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT)).
+
+Portions of this software were transliterated from Ruby on Rails ([github.com/rails/rails](https://github.com/rails/rails)), © 2004-2012 David Heinemeier Hansson, also released under the MIT license ([www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT)).
