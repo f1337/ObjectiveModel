@@ -27,9 +27,24 @@ When the script has finished, the ObjectiveModel documentation will be available
 
 
 
-VALIDATION EXAMPLES
--------------------
+USAGE EXAMPLES
+--------------
 
+To add ObjectiveModel validations to your model:
+
+1. Import the ObjectiveModel headers:
+
+		#import <ObjectiveModel/Validations.h>
+
+2. Extend OMActiveModel:
+
+		@interface Person : OMActiveModel @end
+
+3. Implement one or more of the validation constraints described in the following examples.
+
+
+
+<!-- BEGIN EXAMPLES -->
 
 ### OMAcceptanceValidator
 
@@ -342,6 +357,8 @@ The firstName property must be defined for the object and it cannot be nil or bl
 
 
 (cf: <https://github.com/f1337/ObjectiveModel/tree/master/ObjectiveModel/Validations/PresenceValidator/OMActiveModel+PresenceValidation.h>)
+
+<!-- END EXAMPLES -->
 
 
 

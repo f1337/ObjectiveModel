@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A8213D915E70DF800E975A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A8213D815E70DF800E975A3 /* README.md */; };
 		3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */; };
 		3AA12B7215E5937A004A7AA2 /* OMExclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */; };
 		3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */; };
@@ -551,7 +550,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC09CD9615815E59008E581C /* InfoPlist.strings in Resources */,
-				3A8213D915E70DF800E975A3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
