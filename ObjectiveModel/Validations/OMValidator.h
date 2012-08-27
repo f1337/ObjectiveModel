@@ -112,8 +112,7 @@ The block should return YES or NO.
 
 
 /*
- * TODO?: Specifies whether validation should be strict.
- * ~mrf: This seems like overkill for now.
+ * TODO? This seems like overkill for now (~mrf):
  *
  * YES or NO. Specifies whether the validator should throw a runtime exception
  * if the validation fails, instead of raising a user-friendly error.
