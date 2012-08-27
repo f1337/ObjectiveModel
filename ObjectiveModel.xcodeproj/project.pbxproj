@@ -89,7 +89,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A8213D815E70DF800E975A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMExclusionValidator.h; path = InclusionValidator/OMExclusionValidator.h; sourceTree = "<group>"; };
 		3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMExclusionValidator.m; path = InclusionValidator/OMExclusionValidator.m; sourceTree = "<group>"; };
 		3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMInclusionValidator.h; path = InclusionValidator/OMInclusionValidator.h; sourceTree = "<group>"; };
@@ -217,7 +216,6 @@
 				AC09CDA815815E59008E581C /* ObjectiveModelTests */,
 				AC09CD9E15815E59008E581C /* Frameworks */,
 				AC09CD9015815E59008E581C /* Products */,
-				AC09CE4C15818E08008E581C /* Documentation */,
 			);
 			sourceTree = "<group>";
 		};
@@ -410,14 +408,6 @@
 				AC09CE2515815F87008E581C /* SenTestCase+Validation.m */,
 			);
 			path = Validations;
-			sourceTree = "<group>";
-		};
-		AC09CE4C15818E08008E581C /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				3A8213D815E70DF800E975A3 /* README.md */,
-			);
-			path = Documentation;
 			sourceTree = "<group>";
 		};
 		AC2A2F1B1582608500C5AF8E /* MembershipValidator */ = {
