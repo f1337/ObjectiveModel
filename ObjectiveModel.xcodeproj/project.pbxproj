@@ -7,6 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A246E3E1602305900E135C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC09CE381581627B008E581C /* Foundation.framework */; };
+		3A246E431602305900E135C1 /* ObjectiveModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A246E421602305900E135C1 /* ObjectiveModel.h */; };
+		3A246E451602305900E135C1 /* ObjectiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A246E441602305900E135C1 /* ObjectiveModel.m */; };
+		3A246E491602308D00E135C1 /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDBD15815F73008E581C /* NSObject+Blank.m */; };
+		3A246E4A1602308D00E135C1 /* OMActiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDBF15815F73008E581C /* OMActiveModel.m */; };
+		3A246E4B1602308D00E135C1 /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE115815F73008E581C /* OMValidator.m */; };
+		3A246E4C1602308D00E135C1 /* OMActiveModel+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */; };
+		3A246E4D1602308D00E135C1 /* NSError+ValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */; };
+		3A246E4E1602308D00E135C1 /* OMAcceptanceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC315815F73008E581C /* OMAcceptanceValidator.m */; };
+		3A246E4F1602308D00E135C1 /* OMActiveModel+AcceptanceValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC515815F73008E581C /* OMActiveModel+AcceptanceValidation.m */; };
+		3A246E501602308D00E135C1 /* OMBlockValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2D0A15E6E9E600C84A35 /* OMBlockValidator.m */; };
+		3A246E511602308D00E135C1 /* OMActiveModel+BlockValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2D0815E6E9E600C84A35 /* OMActiveModel+BlockValidation.m */; };
+		3A246E521602308D00E135C1 /* OMConfirmationValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCA15815F73008E581C /* OMConfirmationValidator.m */; };
+		3A246E531602308D00E135C1 /* OMActiveModel+ConfirmationValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */; };
+		3A246E541602308D00E135C1 /* OMFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCF15815F73008E581C /* OMFormatValidator.m */; };
+		3A246E551602308D00E135C1 /* OMActiveModel+FormatValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */; };
+		3A246E561602308D00E135C1 /* OMLengthValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD415815F73008E581C /* OMLengthValidator.m */; };
+		3A246E571602308D00E135C1 /* OMActiveModel+LengthValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */; };
+		3A246E581602308D00E135C1 /* OMExclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */; };
+		3A246E591602308D00E135C1 /* OMInclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7415E59DA3004A7AA2 /* OMInclusionValidator.m */; };
+		3A246E5A1602308D00E135C1 /* OMMembershipValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F1D158260B400C5AF8E /* OMMembershipValidator.m */; };
+		3A246E5B1602308D00E135C1 /* OMActiveModel+MembershipValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A2F21158260CD00C5AF8E /* OMActiveModel+MembershipValidation.m */; };
+		3A246E5C1602308D00E135C1 /* OMCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE55FBA1583EF62001DA475 /* OMCollection.m */; };
+		3A246E5D1602308D00E135C1 /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */; };
+		3A246E5E1602308D00E135C1 /* OMActiveModel+NumericalityValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */; };
+		3A246E5F1602308D00E135C1 /* NSNumber+ComparisonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */; };
+		3A246E601602308D00E135C1 /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE615815F73008E581C /* OMPresenceValidator.m */; };
+		3A246E611602308D00E135C1 /* OMActiveModel+PresenceValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidation.m */; };
+		3A246E711602314C00E135C1 /* NSObject+Blank.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBC15815F73008E581C /* NSObject+Blank.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E721602314C00E135C1 /* OMActiveModel.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBE15815F73008E581C /* OMActiveModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E731602314C00E135C1 /* Validations.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CE4A158170E1008E581C /* Validations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E741602314C00E135C1 /* OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE015815F73008E581C /* OMValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E751602314C00E135C1 /* OMActiveModel+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E761602314C00E135C1 /* NSError+ValidationErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E771602314C00E135C1 /* OMAcceptanceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC215815F73008E581C /* OMAcceptanceValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E781602314C00E135C1 /* OMActiveModel+AcceptanceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC415815F73008E581C /* OMActiveModel+AcceptanceValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E791602314C00E135C1 /* OMBlockValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ADC2D0915E6E9E600C84A35 /* OMBlockValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E7A1602314C00E135C1 /* OMActiveModel+BlockValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ADC2D0715E6E9E600C84A35 /* OMActiveModel+BlockValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E7B1602314C00E135C1 /* OMConfirmationValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC915815F73008E581C /* OMConfirmationValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E7C1602314C00E135C1 /* OMActiveModel+ConfirmationValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E7D1602314C00E135C1 /* OMFormatValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCE15815F73008E581C /* OMFormatValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E7E1602314C00E135C1 /* OMActiveModel+FormatValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E7F1602314C00E135C1 /* OMLengthValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD315815F73008E581C /* OMLengthValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E801602314C00E135C1 /* OMActiveModel+LengthValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E811602314C00E135C1 /* OMExclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E821602314C00E135C1 /* OMInclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E831602314C00E135C1 /* OMMembershipValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC2A2F1C158260B400C5AF8E /* OMMembershipValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E841602314C00E135C1 /* OMActiveModel+MembershipValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC2A2F20158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E851602314C00E135C1 /* OMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE55FB91583EF62001DA475 /* OMCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E861602314C00E135C1 /* OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E871602314C00E135C1 /* OMActiveModel+NumericalityValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E881602314C00E135C1 /* NSNumber+ComparisonMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E891602314C00E135C1 /* OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE515815F73008E581C /* OMPresenceValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A246E8A1602314C00E135C1 /* OMActiveModel+PresenceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */; };
 		3AA12B7215E5937A004A7AA2 /* OMExclusionValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */; };
 		3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */; };
@@ -20,39 +74,39 @@
 		AC09CDAD15815E59008E581C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC09CDAB15815E59008E581C /* InfoPlist.strings */; };
 		AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBC15815F73008E581C /* NSObject+Blank.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC09CDE815815F73008E581C /* NSObject+Blank.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDBD15815F73008E581C /* NSObject+Blank.m */; };
-		AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBE15815F73008E581C /* OMActiveModel.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDBE15815F73008E581C /* OMActiveModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC09CDEA15815F73008E581C /* OMActiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDBF15815F73008E581C /* OMActiveModel.m */; };
-		AC09CDEB15815F73008E581C /* OMAcceptanceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC215815F73008E581C /* OMAcceptanceValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDEB15815F73008E581C /* OMAcceptanceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC215815F73008E581C /* OMAcceptanceValidator.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDEC15815F73008E581C /* OMAcceptanceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC315815F73008E581C /* OMAcceptanceValidator.m */; };
-		AC09CDED15815F73008E581C /* OMActiveModel+AcceptanceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC415815F73008E581C /* OMActiveModel+AcceptanceValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDED15815F73008E581C /* OMActiveModel+AcceptanceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC415815F73008E581C /* OMActiveModel+AcceptanceValidation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDEE15815F73008E581C /* OMActiveModel+AcceptanceValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC515815F73008E581C /* OMActiveModel+AcceptanceValidation.m */; };
-		AC09CDEF15815F73008E581C /* OMActiveModel+ConfirmationValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDEF15815F73008E581C /* OMActiveModel+ConfirmationValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC715815F73008E581C /* OMActiveModel+ConfirmationValidation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDF015815F73008E581C /* OMActiveModel+ConfirmationValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDC815815F73008E581C /* OMActiveModel+ConfirmationValidation.m */; };
-		AC09CDF115815F73008E581C /* OMConfirmationValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC915815F73008E581C /* OMConfirmationValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDF115815F73008E581C /* OMConfirmationValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDC915815F73008E581C /* OMConfirmationValidator.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDF215815F73008E581C /* OMConfirmationValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCA15815F73008E581C /* OMConfirmationValidator.m */; };
-		AC09CDF315815F73008E581C /* OMActiveModel+FormatValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDF315815F73008E581C /* OMActiveModel+FormatValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCC15815F73008E581C /* OMActiveModel+FormatValidation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDF415815F73008E581C /* OMActiveModel+FormatValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCD15815F73008E581C /* OMActiveModel+FormatValidation.m */; };
-		AC09CDF515815F73008E581C /* OMFormatValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCE15815F73008E581C /* OMFormatValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDF515815F73008E581C /* OMFormatValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDCE15815F73008E581C /* OMFormatValidator.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDF615815F73008E581C /* OMFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDCF15815F73008E581C /* OMFormatValidator.m */; };
-		AC09CDF715815F73008E581C /* OMActiveModel+LengthValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDF715815F73008E581C /* OMActiveModel+LengthValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD115815F73008E581C /* OMActiveModel+LengthValidation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDF815815F73008E581C /* OMActiveModel+LengthValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD215815F73008E581C /* OMActiveModel+LengthValidation.m */; };
-		AC09CDF915815F73008E581C /* OMLengthValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD315815F73008E581C /* OMLengthValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDF915815F73008E581C /* OMLengthValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD315815F73008E581C /* OMLengthValidator.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDFA15815F73008E581C /* OMLengthValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD415815F73008E581C /* OMLengthValidator.m */; };
-		AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD515815F73008E581C /* NSError+ValidationErrors.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CDFC15815F73008E581C /* NSError+ValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD615815F73008E581C /* NSError+ValidationErrors.m */; };
 		AC09CDFD15815F73008E581C /* NSNumber+ComparisonMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDD815815F73008E581C /* NSNumber+ComparisonMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC09CDFE15815F73008E581C /* NSNumber+ComparisonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDD915815F73008E581C /* NSNumber+ComparisonMethods.m */; };
-		AC09CDFF15815F73008E581C /* OMActiveModel+NumericalityValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CDFF15815F73008E581C /* OMActiveModel+NumericalityValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDA15815F73008E581C /* OMActiveModel+NumericalityValidation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CE0015815F73008E581C /* OMActiveModel+NumericalityValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDB15815F73008E581C /* OMActiveModel+NumericalityValidation.m */; };
-		AC09CE0115815F73008E581C /* OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0115815F73008E581C /* OMNumericalityValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDC15815F73008E581C /* OMNumericalityValidator.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CE0215815F73008E581C /* OMNumericalityValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDD15815F73008E581C /* OMNumericalityValidator.m */; };
-		AC09CE0315815F73008E581C /* OMActiveModel+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0315815F73008E581C /* OMActiveModel+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDDE15815F73008E581C /* OMActiveModel+Validation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CE0415815F73008E581C /* OMActiveModel+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDDF15815F73008E581C /* OMActiveModel+Validation.m */; };
-		AC09CE0515815F73008E581C /* OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE015815F73008E581C /* OMValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0515815F73008E581C /* OMValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE015815F73008E581C /* OMValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC09CE0615815F73008E581C /* OMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE115815F73008E581C /* OMValidator.m */; };
-		AC09CE0715815F73008E581C /* OMActiveModel+PresenceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0715815F73008E581C /* OMActiveModel+PresenceValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE315815F73008E581C /* OMActiveModel+PresenceValidation.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CE0815815F73008E581C /* OMActiveModel+PresenceValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE415815F73008E581C /* OMActiveModel+PresenceValidation.m */; };
-		AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE515815F73008E581C /* OMPresenceValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = AC09CDE515815F73008E581C /* OMPresenceValidator.h */; settings = {ATTRIBUTES = (); }; };
 		AC09CE0A15815F73008E581C /* OMPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CDE615815F73008E581C /* OMPresenceValidator.m */; };
 		AC09CE2615815F87008E581C /* BlankTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE0D15815F87008E581C /* BlankTest.m */; };
 		AC09CE2715815F87008E581C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = AC09CE1015815F87008E581C /* Person.m */; };
@@ -88,7 +142,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3A246E3B1602305900E135C1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				3A246E431602305900E135C1 /* ObjectiveModel.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3A246E3D1602305900E135C1 /* libObjectiveModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjectiveModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A246E411602305900E135C1 /* ObjectiveModel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveModel-Prefix.pch"; sourceTree = "<group>"; };
+		3A246E421602305900E135C1 /* ObjectiveModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveModel.h; sourceTree = "<group>"; };
+		3A246E441602305900E135C1 /* ObjectiveModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveModel.m; sourceTree = "<group>"; };
 		3AA12B6F15E5937A004A7AA2 /* OMExclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMExclusionValidator.h; path = InclusionValidator/OMExclusionValidator.h; sourceTree = "<group>"; };
 		3AA12B7015E5937A004A7AA2 /* OMExclusionValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OMExclusionValidator.m; path = InclusionValidator/OMExclusionValidator.m; sourceTree = "<group>"; };
 		3AA12B7315E59DA2004A7AA2 /* OMInclusionValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OMInclusionValidator.h; path = InclusionValidator/OMInclusionValidator.h; sourceTree = "<group>"; };
@@ -99,7 +170,7 @@
 		3ADC2D0815E6E9E600C84A35 /* OMActiveModel+BlockValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OMActiveModel+BlockValidation.m"; sourceTree = "<group>"; };
 		3ADC2D0915E6E9E600C84A35 /* OMBlockValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMBlockValidator.h; sourceTree = "<group>"; };
 		3ADC2D0A15E6E9E600C84A35 /* OMBlockValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMBlockValidator.m; sourceTree = "<group>"; };
-		AC09CD8F15815E59008E581C /* ObjectiveModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectiveModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC09CD8F15815E59008E581C /* ObjectiveModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ObjectiveModel.framework; path = ObjectiveModelEFF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC09CD9315815E59008E581C /* ObjectiveModel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveModel-Info.plist"; sourceTree = "<group>"; };
 		AC09CD9515815E59008E581C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC09CD9715815E59008E581C /* ObjectiveModel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveModel-Prefix.pch"; sourceTree = "<group>"; };
@@ -179,6 +250,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A246E3A1602305900E135C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A246E3E1602305900E135C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC09CD8915815E59008E581C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +277,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A246E3F1602305900E135C1 /* ObjectiveModel */ = {
+			isa = PBXGroup;
+			children = (
+				3A246E421602305900E135C1 /* ObjectiveModel.h */,
+				3A246E441602305900E135C1 /* ObjectiveModel.m */,
+				3A246E401602305900E135C1 /* Supporting Files */,
+			);
+			path = ObjectiveModel;
+			sourceTree = "<group>";
+		};
+		3A246E401602305900E135C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A246E411602305900E135C1 /* ObjectiveModel-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3ADC2D0615E6E9E600C84A35 /* BlockValidator */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +311,7 @@
 			children = (
 				AC09CD9115815E59008E581C /* ObjectiveModel */,
 				AC09CDA815815E59008E581C /* ObjectiveModelTests */,
+				3A246E3F1602305900E135C1 /* ObjectiveModel */,
 				AC09CD9E15815E59008E581C /* Frameworks */,
 				AC09CD9015815E59008E581C /* Products */,
 			);
@@ -224,6 +322,7 @@
 			children = (
 				AC09CD8F15815E59008E581C /* ObjectiveModel.framework */,
 				AC09CD9D15815E59008E581C /* ObjectiveModelTests.octest */,
+				3A246E3D1602305900E135C1 /* libObjectiveModel.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -430,17 +529,57 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3A246E6F1602312C00E135C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A246E711602314C00E135C1 /* NSObject+Blank.h in Headers */,
+				3A246E721602314C00E135C1 /* OMActiveModel.h in Headers */,
+				3A246E731602314C00E135C1 /* Validations.h in Headers */,
+				3A246E741602314C00E135C1 /* OMValidator.h in Headers */,
+				3A246E751602314C00E135C1 /* OMActiveModel+Validation.h in Headers */,
+				3A246E761602314C00E135C1 /* NSError+ValidationErrors.h in Headers */,
+				3A246E771602314C00E135C1 /* OMAcceptanceValidator.h in Headers */,
+				3A246E781602314C00E135C1 /* OMActiveModel+AcceptanceValidation.h in Headers */,
+				3A246E791602314C00E135C1 /* OMBlockValidator.h in Headers */,
+				3A246E7A1602314C00E135C1 /* OMActiveModel+BlockValidation.h in Headers */,
+				3A246E7B1602314C00E135C1 /* OMConfirmationValidator.h in Headers */,
+				3A246E7C1602314C00E135C1 /* OMActiveModel+ConfirmationValidation.h in Headers */,
+				3A246E7D1602314C00E135C1 /* OMFormatValidator.h in Headers */,
+				3A246E7E1602314C00E135C1 /* OMActiveModel+FormatValidation.h in Headers */,
+				3A246E7F1602314C00E135C1 /* OMLengthValidator.h in Headers */,
+				3A246E801602314C00E135C1 /* OMActiveModel+LengthValidation.h in Headers */,
+				3A246E811602314C00E135C1 /* OMExclusionValidator.h in Headers */,
+				3A246E821602314C00E135C1 /* OMInclusionValidator.h in Headers */,
+				3A246E831602314C00E135C1 /* OMMembershipValidator.h in Headers */,
+				3A246E841602314C00E135C1 /* OMActiveModel+MembershipValidation.h in Headers */,
+				3A246E851602314C00E135C1 /* OMCollection.h in Headers */,
+				3A246E861602314C00E135C1 /* OMNumericalityValidator.h in Headers */,
+				3A246E871602314C00E135C1 /* OMActiveModel+NumericalityValidation.h in Headers */,
+				3A246E881602314C00E135C1 /* NSNumber+ComparisonMethods.h in Headers */,
+				3A246E891602314C00E135C1 /* OMPresenceValidator.h in Headers */,
+				3A246E8A1602314C00E135C1 /* OMActiveModel+PresenceValidation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC09CD8A15815E59008E581C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AC09CE4B1581716E008E581C /* Validations.h in Headers */,
 				AC09CE4915817096008E581C /* ObjectiveModel.h in Headers */,
+				AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */,
+				AC09CE0515815F73008E581C /* OMValidator.h in Headers */,
 				AC09CDFD15815F73008E581C /* NSNumber+ComparisonMethods.h in Headers */,
 				AC09CDE715815F73008E581C /* NSObject+Blank.h in Headers */,
 				ACE55FBB1583EF62001DA475 /* OMCollection.h in Headers */,
+				AC2A2F1E158260B400C5AF8E /* OMMembershipValidator.h in Headers */,
+				AC2A2F22158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h in Headers */,
+				3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */,
+				3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */,
+				3ADC2D0B15E6E9E600C84A35 /* OMActiveModel+BlockValidation.h in Headers */,
+				3ADC2D0D15E6E9E600C84A35 /* OMBlockValidator.h in Headers */,
 				AC09CDFB15815F73008E581C /* NSError+ValidationErrors.h in Headers */,
-				AC09CDE915815F73008E581C /* OMActiveModel.h in Headers */,
 				AC09CE0315815F73008E581C /* OMActiveModel+Validation.h in Headers */,
 				AC09CDED15815F73008E581C /* OMActiveModel+AcceptanceValidation.h in Headers */,
 				AC09CDEF15815F73008E581C /* OMActiveModel+ConfirmationValidation.h in Headers */,
@@ -448,28 +587,40 @@
 				AC09CDF715815F73008E581C /* OMActiveModel+LengthValidation.h in Headers */,
 				AC09CDFF15815F73008E581C /* OMActiveModel+NumericalityValidation.h in Headers */,
 				AC09CE0715815F73008E581C /* OMActiveModel+PresenceValidation.h in Headers */,
-				AC09CE0515815F73008E581C /* OMValidator.h in Headers */,
 				AC09CDEB15815F73008E581C /* OMAcceptanceValidator.h in Headers */,
 				AC09CDF115815F73008E581C /* OMConfirmationValidator.h in Headers */,
 				AC09CDF515815F73008E581C /* OMFormatValidator.h in Headers */,
 				AC09CDF915815F73008E581C /* OMLengthValidator.h in Headers */,
 				AC09CE0115815F73008E581C /* OMNumericalityValidator.h in Headers */,
 				AC09CE0915815F73008E581C /* OMPresenceValidator.h in Headers */,
-				AC2A2F1E158260B400C5AF8E /* OMMembershipValidator.h in Headers */,
-				AC2A2F22158260CD00C5AF8E /* OMActiveModel+MembershipValidation.h in Headers */,
-				3AA12B7115E5937A004A7AA2 /* OMExclusionValidator.h in Headers */,
-				3AA12B7515E59DA3004A7AA2 /* OMInclusionValidator.h in Headers */,
-				3ADC2D0B15E6E9E600C84A35 /* OMActiveModel+BlockValidation.h in Headers */,
-				3ADC2D0D15E6E9E600C84A35 /* OMBlockValidator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		AC09CD8E15815E59008E581C /* ObjectiveModel */ = {
+		3A246E3C1602305900E135C1 /* ObjectiveModel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC09CDB315815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModel" */;
+			buildConfigurationList = 3A246E461602305900E135C1 /* Build configuration list for PBXNativeTarget "ObjectiveModel" */;
+			buildPhases = (
+				3A246E391602305900E135C1 /* Sources */,
+				3A246E3A1602305900E135C1 /* Frameworks */,
+				3A246E6F1602312C00E135C1 /* Headers */,
+				3A246E3B1602305900E135C1 /* CopyFiles */,
+				3A246E9D1602399800E135C1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObjectiveModel;
+			productName = ObjectiveModel;
+			productReference = 3A246E3D1602305900E135C1 /* libObjectiveModel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AC09CD8E15815E59008E581C /* ObjectiveModelEFF */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC09CDB315815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModelEFF" */;
 			buildPhases = (
 				AC09CD8715815E59008E581C /* ShellScript */,
 				AC09CD8815815E59008E581C /* Sources */,
@@ -483,7 +634,7 @@
 			);
 			dependencies = (
 			);
-			name = ObjectiveModel;
+			name = ObjectiveModelEFF;
 			productName = ObjectiveModel;
 			productReference = AC09CD8F15815E59008E581C /* ObjectiveModel.framework */;
 			productType = "com.apple.product-type.bundle";
@@ -528,8 +679,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AC09CD8E15815E59008E581C /* ObjectiveModel */,
+				AC09CD8E15815E59008E581C /* ObjectiveModelEFF */,
 				AC09CD9C15815E59008E581C /* ObjectiveModelTests */,
+				3A246E3C1602305900E135C1 /* ObjectiveModel */,
 			);
 		};
 /* End PBXProject section */
@@ -554,6 +706,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3A246E9D1602399800E135C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# c.f. StackOverflow question/answer here: http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Version 2.1 (added support for header files in subfolders)\n#\n# Latest Change:\n#    - Some libs (e.g. box2D) require their headers in sub-folders; Xcode DOES NOT SUPPORT THIS, but you can hack Xcode to force it to obey the standards. But then this script would fail; this has now been fixed - script works with both types of project\n#\n# Purpose:\n#   Create a static library for iPhone from within XCode\n#   Because Apple staff DELIBERATELY broke Xcode to make this impossible from the GUI (Xcode 3.2.3 specifically states this in the Release notes!)\n#   ...no, I don't understand why they did this!\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\"\nxcodebuild -configuration \"${CONFIGURATION}\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nlipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}/usr/local/include\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}/usr/local/include\"\n# * needs to be outside the double quotes?\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}/usr/local/include/\"* \"${CREATING_UNIVERSAL_DIR}/usr/local/include\"\nfi\nfi";
+			showEnvVarsInLog = 0;
+		};
 		AC09CD8715815E59008E581C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -609,6 +775,39 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A246E391602305900E135C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A246E491602308D00E135C1 /* NSObject+Blank.m in Sources */,
+				3A246E4A1602308D00E135C1 /* OMActiveModel.m in Sources */,
+				3A246E4B1602308D00E135C1 /* OMValidator.m in Sources */,
+				3A246E4C1602308D00E135C1 /* OMActiveModel+Validation.m in Sources */,
+				3A246E4D1602308D00E135C1 /* NSError+ValidationErrors.m in Sources */,
+				3A246E4E1602308D00E135C1 /* OMAcceptanceValidator.m in Sources */,
+				3A246E4F1602308D00E135C1 /* OMActiveModel+AcceptanceValidation.m in Sources */,
+				3A246E501602308D00E135C1 /* OMBlockValidator.m in Sources */,
+				3A246E511602308D00E135C1 /* OMActiveModel+BlockValidation.m in Sources */,
+				3A246E521602308D00E135C1 /* OMConfirmationValidator.m in Sources */,
+				3A246E531602308D00E135C1 /* OMActiveModel+ConfirmationValidation.m in Sources */,
+				3A246E541602308D00E135C1 /* OMFormatValidator.m in Sources */,
+				3A246E551602308D00E135C1 /* OMActiveModel+FormatValidation.m in Sources */,
+				3A246E561602308D00E135C1 /* OMLengthValidator.m in Sources */,
+				3A246E571602308D00E135C1 /* OMActiveModel+LengthValidation.m in Sources */,
+				3A246E581602308D00E135C1 /* OMExclusionValidator.m in Sources */,
+				3A246E591602308D00E135C1 /* OMInclusionValidator.m in Sources */,
+				3A246E5A1602308D00E135C1 /* OMMembershipValidator.m in Sources */,
+				3A246E5B1602308D00E135C1 /* OMActiveModel+MembershipValidation.m in Sources */,
+				3A246E5C1602308D00E135C1 /* OMCollection.m in Sources */,
+				3A246E5D1602308D00E135C1 /* OMNumericalityValidator.m in Sources */,
+				3A246E5E1602308D00E135C1 /* OMActiveModel+NumericalityValidation.m in Sources */,
+				3A246E5F1602308D00E135C1 /* NSNumber+ComparisonMethods.m in Sources */,
+				3A246E601602308D00E135C1 /* OMPresenceValidator.m in Sources */,
+				3A246E611602308D00E135C1 /* OMActiveModel+PresenceValidation.m in Sources */,
+				3A246E451602305900E135C1 /* ObjectiveModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC09CD8815815E59008E581C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -666,7 +865,7 @@
 /* Begin PBXTargetDependency section */
 		AC09CDA615815E59008E581C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AC09CD8E15815E59008E581C /* ObjectiveModel */;
+			target = AC09CD8E15815E59008E581C /* ObjectiveModelEFF */;
 			targetProxy = AC09CDA515815E59008E581C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -691,6 +890,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3A246E471602305900E135C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DSTROOT = /tmp/ObjectiveModel.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObjectiveModel/ObjectiveModel-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3A246E481602305900E135C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DSTROOT = /tmp/ObjectiveModel.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObjectiveModel/ObjectiveModel-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		AC09CDB115815E59008E581C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -830,6 +1059,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A246E461602305900E135C1 /* Build configuration list for PBXNativeTarget "ObjectiveModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A246E471602305900E135C1 /* Debug */,
+				3A246E481602305900E135C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AC09CD8515815E59008E581C /* Build configuration list for PBXProject "ObjectiveModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -839,7 +1077,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC09CDB315815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModel" */ = {
+		AC09CDB315815E59008E581C /* Build configuration list for PBXNativeTarget "ObjectiveModelEFF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC09CDB415815E59008E581C /* Debug */,
