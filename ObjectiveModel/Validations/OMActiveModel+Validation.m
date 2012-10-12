@@ -178,7 +178,7 @@
     if ( ! validationsForSelf )
     {
         validationsForSelf = [NSMutableDictionary dictionary];
-        [[self validations] setObject:validationsForSelf forKey:self];
+        [[self validations] setObject:validationsForSelf forKey:(id <NSCopying>)self];
     }
     
     return validationsForSelf;
