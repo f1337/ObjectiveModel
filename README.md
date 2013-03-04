@@ -5,13 +5,17 @@ An ActiveModel implementation for Objective-C.
 ObjectiveModel validations were translated from [Ruby on Rails](https://github.com/rails/rails).
 
 
-INSTALLATION
-------------
+PREREQUISITES
+-------------
 
-ObjectiveModel is packaged as a static library. Standard TL;DR for using a static library in an Xcode project goes here.
+The following Cocoa frameworks must be linked in your application target for proper compilation:
 
-	git clone https://github.com/f1337/ObjectiveModel.git
+* **CoreData.framework**
 
+And the following linker flags must be set:
+
+* **-ObjC**
+* **-all_load**
 
 
 DOCUMENTATION
