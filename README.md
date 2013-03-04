@@ -369,7 +369,7 @@ The firstName property must be defined for the object and it cannot be nil or bl
 LICENSE
 -------
 
-Copyright © 2011-2012 Michael R. Fleet ([github.com/f1337](https://github.com/f1337)). Portions of this software were translated from Ruby on Rails ([github.com/rails/rails](https://github.com/rails/rails)), Copyright © 2004-2012 David Heinemeier Hansson.
+Copyright © 2011-2013 Michael R. Fleet ([github.com/f1337](https://github.com/f1337)). Portions of this software were translated from Ruby on Rails ([github.com/rails/rails](https://github.com/rails/rails)), Copyright © 2004-2012 David Heinemeier Hansson.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
